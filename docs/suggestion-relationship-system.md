@@ -17,6 +17,14 @@ The suggestion engine lives in:
 electrical-atlas-site/src/lib/suggestions.ts
 ```
 
+The old manual lesson suggestion list is archived in:
+
+```text
+docs/deprecated-manual-lesson-suggestions.md
+```
+
+That archive is deprecated legacy reference only. It should not be used as the active source for new suggestions.
+
 ## Why this exists
 
 The atlas should not only say that two topics are "related." It should say how they are related:

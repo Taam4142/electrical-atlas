@@ -112,6 +112,8 @@ See [docs/deployment.md](docs/deployment.md).
 - [First 20 lesson roadmap](docs/first-20-lessons.md)
 - [Lesson quality checklist](docs/lesson-quality-checklist.md)
 - [Suggestion and relationship system](docs/suggestion-relationship-system.md)
+- [Deprecated manual lesson suggestions](docs/deprecated-manual-lesson-suggestions.md)
+- [Agent notes](CLAUDE.md)
 
 ## Content principles
 
