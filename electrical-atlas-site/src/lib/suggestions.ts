@@ -1,4 +1,9 @@
 import type { AtlasTopic } from "./generated/atlasTopics";
+import {
+  getOutgoingRelationships,
+  getRelationLabel,
+  type RelationshipType,
+} from "./relationships";
 
 export type Locale = "en" | "th";
 export type LessonKey = "what-is-electricity" | "voltage" | "current" | "resistance" | "mosfet";
@@ -10,6 +15,7 @@ export interface SuggestionItem {
   href: string;
   kind: SuggestionKind;
   relation: string;
+  relationType?: RelationshipType | "metadata";
 }
 
 type LessonSuggestionEntry =
@@ -87,7 +93,8 @@ const lessonLabels: Record<LessonKey, Record<Locale, { title: string; summary: s
   },
 };
 
-const lessonSuggestionEntries: Record<LessonKey, LessonSuggestionEntry[]> = {
+/** @deprecated Lesson suggestions now come from atlasRelationships in relationships.ts. */
+export const legacyLessonSuggestionEntries: Record<LessonKey, LessonSuggestionEntry[]> = {
   "what-is-electricity": [
     {
       kind: "lesson",
@@ -325,17 +332,27 @@ const lessonSuggestionEntries: Record<LessonKey, LessonSuggestionEntry[]> = {
   ],
 };
 
+function isLessonKey(id: string): id is LessonKey {
+  return Object.prototype.hasOwnProperty.call(lessonLabels, id);
+}
+
 function topicPath(locale: Locale, topic: AtlasTopic) {
   return `/${locale}/topics/${topic.slug}/`;
 }
 
-export function topicToSuggestion(topic: AtlasTopic, locale: Locale, relation?: string): SuggestionItem {
+export function topicToSuggestion(
+  topic: AtlasTopic,
+  locale: Locale,
+  relation?: string,
+  relationType?: RelationshipType | "metadata",
+): SuggestionItem {
   return {
     title: topic.name,
     summary: topic.summary,
     href: topicPath(locale, topic),
     kind: "topic",
     relation: relation || topic.type,
+    relationType,
   };
 }
 
@@ -346,18 +363,25 @@ export function getLessonSuggestions(
 ): SuggestionItem[] {
   const topicById = new Map(topics.map((topic) => [topic.id, topic]));
 
-  return lessonSuggestionEntries[lessonKey]
-    .map((entry): SuggestionItem | undefined => {
-      if (entry.kind === "lesson") {
+  return getOutgoingRelationships({ kind: "lesson", id: lessonKey })
+    .map((relationship): SuggestionItem | undefined => {
+      const relation = getRelationLabel(relationship, locale);
+
+      if (relationship.target.kind === "lesson") {
+        if (!isLessonKey(relationship.target.id)) {
+          return undefined;
+        }
+
         return {
-          ...lessonLabels[entry.key][locale],
+          ...lessonLabels[relationship.target.id][locale],
           kind: "lesson",
-          relation: entry.relation[locale],
+          relation,
+          relationType: relationship.type,
         };
       }
 
-      const topic = topicById.get(entry.topicId);
-      return topic ? topicToSuggestion(topic, locale, entry.relation[locale]) : undefined;
+      const topic = topicById.get(relationship.target.id);
+      return topic ? topicToSuggestion(topic, locale, relation, relationship.type) : undefined;
     })
     .filter((item): item is SuggestionItem => Boolean(item));
 }
@@ -425,7 +449,27 @@ function topicSimilarityScore(current: AtlasTopic, candidate: AtlasTopic) {
   return score;
 }
 
-export function getRelatedTopics(current: AtlasTopic, topics: AtlasTopic[], limit = 6): AtlasTopic[] {
+function metadataRelationLabel(current: AtlasTopic, candidate: AtlasTopic, locale: Locale) {
+  if (locale === "th") {
+    return candidate.type;
+  }
+
+  if (current.subsection && current.subsection === candidate.subsection) {
+    return `same subsection / ${candidate.subsection}`;
+  }
+
+  if (current.section && current.section === candidate.section) {
+    return `same section / ${candidate.section}`;
+  }
+
+  if (current.domain && current.domain === candidate.domain) {
+    return `same domain / ${candidate.domain}`;
+  }
+
+  return `${candidate.type} / ${candidate.section || candidate.domain}`;
+}
+
+function getSimilarityRankedTopics(current: AtlasTopic, topics: AtlasTopic[]): AtlasTopic[] {
   return topics
     .map((topic) => ({
       topic,
@@ -433,6 +477,46 @@ export function getRelatedTopics(current: AtlasTopic, topics: AtlasTopic[], limi
     }))
     .filter((entry) => Number.isFinite(entry.score) && entry.score > 0)
     .sort((a, b) => b.score - a.score || a.topic.id.localeCompare(b.topic.id))
-    .slice(0, limit)
     .map((entry) => entry.topic);
+}
+
+function getExplicitTopicRelationships(current: AtlasTopic) {
+  return getOutgoingRelationships({ kind: "topic", id: current.id }).filter(
+    (relationship) => relationship.target.kind === "topic",
+  );
+}
+
+export function getRelatedTopics(current: AtlasTopic, topics: AtlasTopic[], limit = 6): AtlasTopic[] {
+  const topicById = new Map(topics.map((topic) => [topic.id, topic]));
+  const explicitTopics = getExplicitTopicRelationships(current)
+    .map((relationship) => topicById.get(relationship.target.id))
+    .filter((topic): topic is AtlasTopic => Boolean(topic));
+  const selectedIds = new Set([current.id, ...explicitTopics.map((topic) => topic.id)]);
+  const fallbackTopics = getSimilarityRankedTopics(current, topics).filter((topic) => !selectedIds.has(topic.id));
+
+  return [...explicitTopics, ...fallbackTopics].slice(0, limit);
+}
+
+export function getRelatedTopicSuggestions(
+  current: AtlasTopic,
+  topics: AtlasTopic[],
+  locale: Locale,
+  limit = 6,
+): SuggestionItem[] {
+  const topicById = new Map(topics.map((topic) => [topic.id, topic]));
+  const explicitSuggestions = getExplicitTopicRelationships(current)
+    .map((relationship): SuggestionItem | undefined => {
+      const topic = topicById.get(relationship.target.id);
+      return topic ? topicToSuggestion(topic, locale, getRelationLabel(relationship, locale), relationship.type) : undefined;
+    })
+    .filter((item): item is SuggestionItem => Boolean(item));
+  const selectedIds = new Set([
+    current.id,
+    ...explicitSuggestions.map((suggestion) => suggestion.href.split("/topics/")[1]?.replace(/\/$/, "") ?? ""),
+  ]);
+  const fallbackSuggestions = getSimilarityRankedTopics(current, topics)
+    .filter((topic) => !selectedIds.has(topic.slug))
+    .map((topic) => topicToSuggestion(topic, locale, metadataRelationLabel(current, topic, locale), "metadata"));
+
+  return [...explicitSuggestions, ...fallbackSuggestions].slice(0, limit);
 }

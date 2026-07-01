@@ -3,21 +3,21 @@ import TopicRecord from "../../../components/TopicRecord.astro";
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import { atlasTopics } from "../../../lib/generated/atlasTopics";
 import type { AtlasTopic } from "../../../lib/generated/atlasTopics";
-import { getRelatedTopics } from "../../../lib/suggestions";
+import { getRelatedTopicSuggestions, type SuggestionItem } from "../../../lib/suggestions";
 
 interface Props {
   topic: AtlasTopic;
-  relatedTopics: AtlasTopic[];
+  relatedSuggestions: SuggestionItem[];
 }
 
 export function getStaticPaths() {
   return atlasTopics.map((topic) => ({
     params: { slug: topic.slug },
-    props: { topic, relatedTopics: getRelatedTopics(topic, atlasTopics) },
+    props: { topic, relatedSuggestions: getRelatedTopicSuggestions(topic, atlasTopics, "th") },
   }));
 }
 
-const { topic, relatedTopics } = Astro.props;
+const { topic, relatedSuggestions } = Astro.props;
 ---
 
 <BaseLayout
@@ -27,5 +27,5 @@ const { topic, relatedTopics } = Astro.props;
   counterpartPath={`/en/topics/${topic.slug}/`}
   counterpartLabel="English"
 >
-  <TopicRecord topic={topic} relatedTopics={relatedTopics} locale="th" />
+  <TopicRecord topic={topic} relatedSuggestions={relatedSuggestions} locale="th" />
 </BaseLayout>

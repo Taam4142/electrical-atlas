@@ -20,7 +20,7 @@ It turns the planning corpus in `../electrical-atlas/` into a small Astro app wi
 - pure TypeScript physics helpers with tests.
 - a searchable topic browser generated from the Markdown inventory.
 - generated topic record pages for every mapped topic.
-- suggested next lessons/topics at the end of lesson and topic pages.
+- suggested next lessons/topics at the end of lesson and topic pages, backed by explicit relationship records plus metadata similarity fallback.
 
 ## Local commands
 

@@ -1,15 +1,16 @@
 ---
 import SuggestionSection from "./SuggestionSection.astro";
 import type { AtlasTopic } from "../lib/generated/atlasTopics";
-import { topicToSuggestion } from "../lib/suggestions";
+import { topicToSuggestion, type SuggestionItem } from "../lib/suggestions";
 
 interface Props {
   topic: AtlasTopic;
   locale?: "en" | "th";
   relatedTopics?: AtlasTopic[];
+  relatedSuggestions?: SuggestionItem[];
 }
 
-const { topic, locale = "en", relatedTopics = [] } = Astro.props;
+const { topic, locale = "en", relatedTopics = [], relatedSuggestions: providedRelatedSuggestions } = Astro.props;
 
 const copy = {
   en: {
@@ -138,22 +139,27 @@ const publishedLessonPaths: Partial<Record<string, Record<"en" | "th", string>>>
   },
 };
 const publishedLessonPath = publishedLessonPaths[topic.id]?.[locale] || "";
-const relatedSuggestions = relatedTopics.map((relatedTopic) =>
+const metadataRelatedSuggestions = relatedTopics.map((relatedTopic) =>
   topicToSuggestion(
     relatedTopic,
     locale,
     locale === "th" ? relatedTopic.type : `${relatedTopic.type} · ${relatedTopic.section || relatedTopic.domain}`,
   ),
 );
+const relatedSuggestions = providedRelatedSuggestions ?? metadataRelatedSuggestions;
 const relatedCopy = {
   en: {
     title: "Related topic records",
-    intro: "These suggestions are chosen from nearby atlas metadata: similar subject, section, component family, or technical field.",
+    intro: "These suggestions use explicit atlas relationships first, then nearby metadata such as subject, section, component family, or technical field.",
   },
   th: {
     title: "บันทึกหัวข้อที่เกี่ยวข้อง",
     intro: "ระบบเลือกจาก metadata ใกล้เคียงใน atlas เช่น วิชา หมวด กลุ่มชิ้นส่วน หรือสาขาเทคนิคที่คล้ายกัน",
   },
+}[locale];
+const relationAwareSuggestionIntro = {
+  en: "These suggestions use explicit atlas relationships first, then nearby metadata such as subject, section, component family, or technical field.",
+  th: "ระบบเลือกจากความสัมพันธ์ที่ระบุไว้ใน atlas ก่อน แล้วค่อยเติมด้วย metadata ใกล้เคียง เช่น วิชา หมวด กลุ่มชิ้นส่วน หรือสาขาเทคนิค",
 }[locale];
 
 const facts = [
@@ -239,5 +245,5 @@ const facts = [
   locale={locale}
   items={relatedSuggestions}
   title={relatedCopy.title}
-  intro={relatedCopy.intro}
+  intro={relationAwareSuggestionIntro}
 />

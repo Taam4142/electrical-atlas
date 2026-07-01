@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { atlasTopics } from "../lib/generated/atlasTopics";
-import { getLessonSuggestions, getRelatedTopics } from "../lib/suggestions";
+import { atlasRelationships, relationshipLabels } from "../lib/relationships";
+import { getLessonSuggestions, getRelatedTopicSuggestions, getRelatedTopics } from "../lib/suggestions";
 
 describe("suggestion system", () => {
   it("builds curated lesson suggestions from real atlas topics", () => {
@@ -49,6 +50,7 @@ describe("suggestion system", () => {
   it("builds curated resistance lesson suggestions", () => {
     const suggestions = getLessonSuggestions("resistance", "en", atlasTopics);
     const hrefs = suggestions.map((suggestion) => suggestion.href);
+    const ohmsLaw = suggestions.find((suggestion) => suggestion.href === "/en/topics/circuit-law-ohm/");
 
     expect(suggestions.length).toBeGreaterThanOrEqual(8);
     expect(hrefs).toContain("/en/lessons/voltage/");
@@ -56,6 +58,20 @@ describe("suggestion system", () => {
     expect(hrefs).toContain("/en/topics/circuit-law-ohm/");
     expect(hrefs).toContain("/en/topics/component-resistor/");
     expect(hrefs).toContain("/en/topics/transport-ohm-microscopic/");
+    expect(ohmsLaw?.relationType).toBe("mathematical-law");
+    expect(ohmsLaw?.relation).toBe("next practical law");
+  });
+
+  it("keeps structured relationship records pointed at real topic IDs", () => {
+    const topicIds = new Set(atlasTopics.map((topic) => topic.id));
+    const missingTopicIds = atlasRelationships.flatMap((relationship) =>
+      [relationship.source, relationship.target]
+        .filter((node) => node.kind === "topic" && !topicIds.has(node.id))
+        .map((node) => node.id),
+    );
+
+    expect(missingTopicIds).toEqual([]);
+    expect(Object.keys(relationshipLabels).length).toBeGreaterThan(10);
   });
 
   it("finds nearby topic records without recommending the current topic", () => {
@@ -68,5 +84,16 @@ describe("suggestion system", () => {
     expect(relatedIds).not.toContain("ea.device.fet.mosfet");
     expect(relatedIds).toContain("ea.device.fet.mosfet.gate-charge");
     expect(relatedIds.some((id) => id.startsWith("ea.device.fet.mosfet."))).toBe(true);
+  });
+
+  it("uses explicit topic relationships before metadata fallback suggestions", () => {
+    const mosfet = atlasTopics.find((topic) => topic.id === "ea.device.fet.mosfet");
+    expect(mosfet).toBeDefined();
+
+    const suggestions = getRelatedTopicSuggestions(mosfet!, atlasTopics, "en", 8);
+
+    expect(suggestions[0]?.href).toBe("/en/topics/device-fet-mosfet-gate-charge/");
+    expect(suggestions[0]?.relationType).toBe("implementation-detail");
+    expect(suggestions.some((suggestion) => suggestion.relationType === "metadata")).toBe(true);
   });
 });

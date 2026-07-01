@@ -30,7 +30,7 @@ Already included:
   - Resistance and Conductance
   - MOSFET
 - Interactive visuals for the first electricity lesson, Voltage, Electric Current, Resistance and Conductance, and MOSFET switching lesson.
-- Suggested next lessons/topics at the end of lesson and topic pages.
+- Suggested next lessons/topics at the end of lesson and topic pages, now backed by an explicit relationship seed graph plus metadata fallback.
 - Tests for physics helpers, interactions, generated topic data, and suggestions.
 
 ## Repository layout
@@ -111,6 +111,7 @@ See [docs/deployment.md](docs/deployment.md).
 - [Lesson template](docs/lesson-template.mdx)
 - [First 20 lesson roadmap](docs/first-20-lessons.md)
 - [Lesson quality checklist](docs/lesson-quality-checklist.md)
+- [Suggestion and relationship system](docs/suggestion-relationship-system.md)
 
 ## Content principles
 
@@ -127,7 +128,7 @@ See [docs/deployment.md](docs/deployment.md).
 2. Build the next foundation lessons: Ohm's Law, Electrical Power and Energy, and Battery.
 3. Add explicit topic relationship fields: prerequisite, successor, part-of, used-in, made-of, alternative-to, and fails-by.
 4. Expand Thai standard references for Thailand-relevant electrical practice.
-5. Improve the suggestion engine using explicit relationships rather than only metadata similarity.
+5. Expand the explicit relationship graph beyond the first seed set and add validation for duplicate or missing edges.
 
 ## License
 
