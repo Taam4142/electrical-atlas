@@ -1,0 +1,53 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import HeroCircuit from "../../components/HeroCircuit.astro";
+import SubjectMapPreview from "../../components/SubjectMapPreview.astro";
+---
+
+<BaseLayout
+  title="Electrical Atlas"
+  description="เรียนไฟฟ้าและอิเล็กทรอนิกส์ด้วยภาพอธิบายสองภาษาและแผนที่ความรู้"
+  lang="th"
+  counterpartPath="/en/"
+  counterpartLabel="English"
+>
+  <section class="hero">
+    <div>
+      <p class="eyebrow">เข้าใจง่าย · ไม่ทิ้งความจริงทางเทคนิค</p>
+      <h1>เรียนไฟฟ้าให้เห็นภาพ</h1>
+      <p class="hero-subtitle">
+        Electrical Atlas เริ่มจากประจุ สนามไฟฟ้า แรงดัน กระแส และพลังงาน แล้วค่อยขยายไปสู่ชิ้นส่วน วงจร
+        ระบบไฟฟ้ากำลัง อิเล็กทรอนิกส์ และบริบทมาตรฐานไทย
+      </p>
+      <div class="hero-actions">
+        <a class="button" href="/th/guide/">เริ่มตรงนี้: วิธีใช้เว็บ</a>
+        <a class="button" href="/th/lessons/what-is-electricity/">เริ่มบทแรก: ไฟฟ้าคืออะไร?</a>
+        <a class="button-secondary" href="/th/lessons/mosfet/">บทชิ้นส่วน: MOSFET</a>
+        <a class="button-secondary" href="/th/map/">เปิดแผนที่ความรู้</a>
+      </div>
+    </div>
+    <HeroCircuit />
+  </section>
+
+  <section class="path-grid" aria-label="เส้นทางการเรียน">
+    <article class="path-card">
+      <p class="eyebrow">path 01</p>
+      <h2>เริ่มจากแนวคิด</h2>
+      <p>ประจุ → สนาม → แรงดัน → กระแส → พลังงาน → เหตุและผลในวงจร</p>
+    </article>
+    <article class="path-card">
+      <p class="eyebrow">path 02</p>
+      <h2>เริ่มจากชิ้นส่วน</h2>
+      <p>เริ่มจาก MOSFET แล้วต่อไปยังแบตเตอรี่ ตัวต้านทาน หลอดไฟ ไดโอด ทรานซิสเตอร์ เซนเซอร์ คอนเวอร์เตอร์</p>
+    </article>
+    <article class="path-card">
+      <p class="eyebrow">path 03</p>
+      <h2>เริ่มจากระบบ</h2>
+      <p>แหล่งจ่ายไฟ มอเตอร์ไดรฟ์ ระบบฝังตัว กริดไฟฟ้า ลิงก์สื่อสาร</p>
+    </article>
+  </section>
+
+  <div id="map">
+    <SubjectMapPreview locale="th" />
+  </div>
+</BaseLayout>

@@ -1,0 +1,33 @@
+---
+import { subjectPreview } from "../lib/navigation";
+
+interface Props {
+  locale?: "en" | "th";
+}
+
+const { locale = "en" } = Astro.props;
+---
+
+<section class="subject-preview" aria-labelledby="subject-preview-title">
+  <div class="section-heading">
+    <p class="eyebrow">{locale === "th" ? "เริ่มจากโหนดความรู้" : "knowledge graph seed"}</p>
+    <h2 id="subject-preview-title">
+      {locale === "th" ? "บทแรกเชื่อมต่อกับแผนที่ทั้งหมด" : "The first lesson connects to the whole atlas"}
+    </h2>
+    <p>
+      {locale === "th"
+        ? "เว็บนี้จะไม่เป็นแค่บทความแยกกัน แต่เป็นกราฟความรู้: แนวคิด ชิ้นส่วน ระบบ และงานประยุกต์เชื่อมกันด้วยความสัมพันธ์ที่ชัดเจน"
+        : "This site will not be isolated articles. It is a knowledge graph: concepts, components, systems, and applications linked by explicit relationships."}
+    </p>
+  </div>
+
+  <div class="node-grid">
+    {subjectPreview.map((node) => (
+      <article class="node-card">
+        <p>{node.kind}</p>
+        <h3>{locale === "th" ? node.th : node.en}</h3>
+        <code>{node.id}</code>
+      </article>
+    ))}
+  </div>
+</section>

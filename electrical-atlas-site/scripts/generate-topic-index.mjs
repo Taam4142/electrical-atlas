@@ -1,0 +1,187 @@
+import { mkdirSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
+import { basename, dirname, join, resolve } from "node:path";
+
+const projectRoot = resolve(".");
+const inventoryRoot = resolve(projectRoot, "../electrical-atlas/inventory");
+const outputFile = resolve(projectRoot, "src/lib/generated/atlasTopics.ts");
+const outputMetaFile = resolve(projectRoot, "src/lib/generated/atlasTopicMeta.ts");
+const outputJsonFile = resolve(projectRoot, "public/data/atlas-topics.json");
+
+const inventoryFiles = readdirSync(inventoryRoot)
+  .filter((file) => /^\d{2}-.*\.md$/.test(file))
+  .sort();
+
+const domainTitles = {
+  "01-foundations-electromagnetism-circuits.md": "Foundations, electromagnetism, and circuits",
+  "02-materials-passives-devices.md": "Materials, passives, and devices",
+  "03-analog-mixed-signal.md": "Analog and mixed-signal",
+  "04-digital-computing-embedded.md": "Digital, computing, and embedded",
+  "05-signals-control-instrumentation.md": "Signals, control, and instrumentation",
+  "06-emc-rf-communications.md": "EMC, RF, and communications",
+  "07-photonics-imaging-quantum.md": "Photonics, imaging, and quantum",
+  "08-power-electronics-machines-drives.md": "Power electronics, machines, and drives",
+  "09-power-systems-energy.md": "Power systems and energy",
+  "10-ic-pcb-manufacturing.md": "IC, PCB, and manufacturing",
+  "11-reliability-safety-security.md": "Reliability, safety, and security",
+  "12-supporting-disciplines.md": "Supporting disciplines",
+  "13-applications-history-frontiers.md": "Applications, history, and frontiers",
+};
+
+function cleanText(value) {
+  return value
+    .replaceAll("โ€”", "—")
+    .replaceAll("โ€“", "–")
+    .replaceAll("โ€", "“")
+    .replaceAll("โ€", "”")
+    .replaceAll("โ€˜", "‘")
+    .replaceAll("โ€™", "’")
+    .replaceAll(/\s+/g, " ")
+    .trim();
+}
+
+function idToRouteSlug(id) {
+  return id
+    .replace(/^ea\./, "")
+    .replaceAll(".", "-")
+    .replace(/[^a-z0-9-]/gi, "-")
+    .replace(/-+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
+function normalizeDepthTag(tag) {
+  const numbers = [...tag.matchAll(/D(\d)/g)].map((match) => match[1]);
+
+  if (numbers.length >= 2) {
+    return `D${numbers[0]}-D${numbers[numbers.length - 1]}`;
+  }
+
+  if (numbers.length === 1) {
+    return `D${numbers[0]}`;
+  }
+
+  return cleanText(tag);
+}
+
+function parseInventoryFile(file) {
+  const fullPath = join(inventoryRoot, file);
+  const markdown = readFileSync(fullPath, "utf8");
+  const lines = markdown.split(/\r?\n/);
+  const topics = [];
+  let section = "";
+  let subsection = "";
+
+  for (const line of lines) {
+    const sectionMatch = line.match(/^##\s+(.+)$/);
+    if (sectionMatch) {
+      section = cleanText(sectionMatch[1]);
+      subsection = "";
+      continue;
+    }
+
+    const subsectionMatch = line.match(/^###\s+(.+)$/);
+    if (subsectionMatch) {
+      subsection = cleanText(subsectionMatch[1]);
+      continue;
+    }
+
+    const topicMatch = line.match(/^- `([^`]+)` \*\*([^*]+)\*\*\s+(?:—|–|-|โ€”|โ€“)\s+(.+?)\s+\[([^\]]+)\]\s*$/);
+    if (!topicMatch) {
+      continue;
+    }
+
+    const [, id, name, summary, rawTags] = topicMatch;
+    const tags = rawTags.split(";").map((tag) => cleanText(tag));
+    const type = tags[0] || "topic";
+    const depths = tags.filter((tag) => /^D\d/.test(tag)).map(normalizeDepthTag);
+    const safety = tags.filter((tag) => /^S\d/.test(tag));
+
+    topics.push({
+      id: cleanText(id),
+      name: cleanText(name),
+      summary: cleanText(summary),
+      type,
+      depth: depths.join(", "),
+      safety: safety.join(", "),
+      domain: domainTitles[file] ?? basename(file, ".md"),
+      sourceFile: file,
+      section,
+      subsection,
+      slug: idToRouteSlug(id),
+      status: "mapped",
+    });
+  }
+
+  return topics;
+}
+
+const topics = inventoryFiles.flatMap(parseInventoryFile);
+const ids = new Set();
+const duplicates = [];
+
+for (const topic of topics) {
+  if (ids.has(topic.id)) {
+    duplicates.push(topic.id);
+  }
+  ids.add(topic.id);
+}
+
+if (duplicates.length > 0) {
+  throw new Error(`Duplicate topic IDs: ${duplicates.join(", ")}`);
+}
+
+mkdirSync(dirname(outputFile), { recursive: true });
+mkdirSync(dirname(outputMetaFile), { recursive: true });
+mkdirSync(dirname(outputJsonFile), { recursive: true });
+
+const byType = Object.fromEntries(
+  [...new Set(topics.map((topic) => topic.type))].sort().map((type) => [
+    type,
+    topics.filter((topic) => topic.type === type).length,
+  ]),
+);
+
+const byDomain = Object.fromEntries(
+  [...new Set(topics.map((topic) => topic.domain))].sort().map((domain) => [
+    domain,
+    topics.filter((topic) => topic.domain === domain).length,
+  ]),
+);
+
+const topicMeta = {
+  generatedFrom: "outputs/electrical-atlas/inventory",
+  topicCount: topics.length,
+  inventoryFileCount: inventoryFiles.length,
+  byType,
+  byDomain,
+};
+
+const output = `// Generated by scripts/generate-topic-index.mjs. Do not edit manually.
+export type AtlasTopic = {
+  id: string;
+  name: string;
+  summary: string;
+  type: string;
+  depth: string;
+  safety: string;
+  domain: string;
+  sourceFile: string;
+  section: string;
+  subsection: string;
+  slug: string;
+  status: "mapped";
+};
+
+export const atlasTopicMeta = ${JSON.stringify(topicMeta, null, 2)};
+
+export const atlasTopics: AtlasTopic[] = ${JSON.stringify(topics, null, 2)};
+`;
+
+const metaOutput = `// Generated by scripts/generate-topic-index.mjs. Do not edit manually.
+export const atlasTopicMeta = ${JSON.stringify(topicMeta, null, 2)} as const;
+`;
+
+writeFileSync(outputFile, output, "utf8");
+writeFileSync(outputMetaFile, metaOutput, "utf8");
+writeFileSync(outputJsonFile, JSON.stringify({ meta: topicMeta, topics }, null, 2), "utf8");
+
+console.log(`Generated ${topics.length} topics from ${inventoryFiles.length} inventory files.`);

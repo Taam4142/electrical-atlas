@@ -1,0 +1,55 @@
+<figure class="hero-circuit" aria-labelledby="hero-circuit-title">
+  <svg viewBox="0 0 760 420" role="img">
+    <title id="hero-circuit-title">Conceptual battery, field, wire, and lamp diagram</title>
+    <defs>
+      <linearGradient id="wireGlow" x1="0" x2="1">
+        <stop offset="0" stop-color="#64f4ff" />
+        <stop offset="1" stop-color="#9eff6e" />
+      </linearGradient>
+      <filter id="softGlow">
+        <feGaussianBlur stdDeviation="5" result="blur" />
+        <feMerge>
+          <feMergeNode in="blur" />
+          <feMergeNode in="SourceGraphic" />
+        </feMerge>
+      </filter>
+    </defs>
+
+    <rect x="24" y="24" width="712" height="372" rx="30" fill="#0a1728" stroke="#1e3f5e" />
+    <path class="field-ribbon" d="M160 210 C250 80 520 80 610 210 C520 340 250 340 160 210Z" />
+    <path class="wire-path" d="M160 210 H305 M455 210 H610 M610 210 V310 H160 V210" />
+
+    <g class="battery" transform="translate(105 168)">
+      <rect x="0" y="0" width="92" height="84" rx="14" fill="#10233a" stroke="#64f4ff" />
+      <line x1="32" y1="18" x2="32" y2="66" stroke="#64f4ff" stroke-width="7" stroke-linecap="round" />
+      <line x1="58" y1="28" x2="58" y2="56" stroke="#9eff6e" stroke-width="7" stroke-linecap="round" />
+      <text x="26" y="-12" fill="#bfefff" font-size="20">9 V</text>
+    </g>
+
+    <g class="switch" transform="translate(304 184)">
+      <circle cx="0" cy="26" r="9" fill="#64f4ff" />
+      <circle cx="150" cy="26" r="9" fill="#64f4ff" />
+      <line x1="6" y1="20" x2="132" y2="-8" stroke="#f8d66d" stroke-width="7" stroke-linecap="round" />
+      <text x="44" y="72" fill="#d8ecff" font-size="18">switch</text>
+    </g>
+
+    <g class="lamp" transform="translate(574 158)">
+      <circle cx="36" cy="52" r="44" fill="#251d0a" stroke="#f8d66d" stroke-width="4" />
+      <path d="M17 54c11-22 27 22 38 0" fill="none" stroke="#ffd875" stroke-width="5" stroke-linecap="round" />
+      <path class="lamp-glow" d="M36 8a44 44 0 1 1 0 88a44 44 0 0 1 0-88Z" />
+      <text x="-5" y="124" fill="#d8ecff" font-size="18">lamp</text>
+    </g>
+
+    <g class="charges">
+      <circle cx="210" cy="310" r="5" />
+      <circle cx="280" cy="310" r="5" />
+      <circle cx="350" cy="310" r="5" />
+      <circle cx="420" cy="310" r="5" />
+      <circle cx="490" cy="310" r="5" />
+      <circle cx="560" cy="310" r="5" />
+    </g>
+  </svg>
+  <figcaption>
+    A teaching diagram: the electric field establishes the circuit condition quickly, while charge carriers drift slowly.
+  </figcaption>
+</figure>

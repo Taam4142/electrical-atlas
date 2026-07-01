@@ -1,0 +1,35 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import LessonShell from "../../../components/LessonShell.astro";
+import LessonModeToggle from "../../../components/LessonModeToggle";
+import CircuitFieldDemo from "../../../components/CircuitFieldDemo";
+import SuggestionSection from "../../../components/SuggestionSection.astro";
+import Content from "../../../content/lessons/th/what-is-electricity.mdx";
+import { atlasTopics } from "../../../lib/generated/atlasTopics";
+import { getLessonSuggestions } from "../../../lib/suggestions";
+
+const suggestions = getLessonSuggestions("what-is-electricity", "th", atlasTopics);
+---
+
+<BaseLayout
+  title="ไฟฟ้าคืออะไร?"
+  description="บทเรียนภาพอธิบายเรื่องประจุ สนามไฟฟ้า แรงดัน กระแส และแบตเตอรี่จุดหลอดไฟได้อย่างไร"
+  lang="th"
+  counterpartPath="/en/lessons/what-is-electricity/"
+  counterpartLabel="English"
+>
+  <LessonShell
+    locale="th"
+    eyebrow="บทแรก"
+    title="ไฟฟ้าคืออะไร?"
+    subtitle="ไฟฟ้าไม่ใช่ของเหลวลึกลับที่วิ่งในสายไฟ แต่เป็นกลุ่มปรากฏการณ์ที่เกี่ยวกับประจุ สนาม พลังงาน และสสาร"
+    lessonId="ea.lesson.what-is-electricity.v0.1"
+  >
+    <LessonModeToggle client:load locale="th" />
+    <CircuitFieldDemo client:load locale="th" />
+    <div class="lesson-content">
+      <Content />
+    </div>
+    <SuggestionSection locale="th" items={suggestions} />
+  </LessonShell>
+</BaseLayout>

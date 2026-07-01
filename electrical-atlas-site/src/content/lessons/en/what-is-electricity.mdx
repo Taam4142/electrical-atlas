@@ -1,0 +1,113 @@
+<section>
+
+## 1. A useful definition
+
+Electricity is not one single thing. It is a family of effects caused by electric charge and electromagnetic fields. When charge is separated, fields appear. When a conducting path is available, charges can respond to those fields. When energy is transferred into a device, something useful can happen: a lamp glows, a motor turns, a sensor reports, or a transistor switches.
+
+<aside className="callout">
+
+**First mental model:** do not imagine electricity as a bucket of invisible liquid poured from the battery into the lamp. Imagine matter full of charge carriers, and an electromagnetic field that organizes how energy moves through the circuit.
+
+</aside>
+
+</section>
+
+<section>
+
+## 2. Matter already contains charge
+
+Atoms contain positively charged protons and negatively charged electrons. Most everyday objects are nearly neutral because positive and negative charge balance. But “neutral” does not mean “no charge exists.” It means the charges add up to nearly zero from the outside.
+
+- **Conductors** such as copper have mobile electrons that can drift through the material.
+- **Insulators** hold their charges more tightly, so steady current is difficult.
+- **Semiconductors** can be controlled by doping, electric fields, heat, and light.
+- **Electrolytes and plasmas** can carry charge with ions, electrons, or both.
+
+</section>
+
+<section>
+
+## 3. The field is the messenger
+
+When a battery is connected to a circuit, it separates charge chemically. That separation creates voltage, and voltage is connected to electric potential energy. The important cause-and-effect signal is not one electron sprinting from the battery to the lamp. The electric field pattern around the circuit establishes very quickly, usually a significant fraction of the speed of light depending on geometry and materials.
+
+Once the field is established, charges throughout the wire begin to drift. Their drift speed is slow, often fractions of a millimeter per second in ordinary circuits. The lamp can still respond quickly because the field acts through the whole circuit, not because one special electron completed a race.
+
+</section>
+
+<section>
+
+## 4. Four words that must not be mixed up
+
+- **Voltage** is energy per unit charge. It is like a difference in electrical “height.”
+- **Current** is the rate of charge flow: `I = dQ/dt`.
+- **Resistance** describes how strongly a material or device opposes current for a given voltage.
+- **Power** is the rate of energy transfer: `P = VI`.
+
+In a simple resistor-like load, Ohm’s law says `V = IR`. That is useful, but it is not the whole story of electricity. Fields, materials, heating, geometry, frequency, and device physics all matter later.
+
+</section>
+
+<section>
+
+## 5. How a battery lights an incandescent lamp
+
+1. The battery uses chemistry to maintain a voltage between its terminals.
+2. With the switch open, the conducting path is broken, so there is no steady loop current.
+3. Closing the switch changes the boundary condition of the circuit.
+4. The electric field pattern establishes around the circuit and inside the conductors.
+5. Charge carriers in the wire drift in response to the field.
+6. Energy is delivered into the lamp filament, where collisions heat the filament.
+7. When the filament becomes hot enough, it emits visible light and infrared radiation.
+
+<aside className="callout">
+
+The first interactive visual above is intentionally simplified. Its job is to prevent a bad story: “electrons leave the battery, race to the lamp, and carry all the energy inside the wire.”
+
+</aside>
+
+</section>
+
+<section>
+
+## 6. Common traps
+
+- **“Voltage flows.”** Voltage does not flow. Charge can flow; voltage is a difference in potential.
+- **“Current is used up.”** In a simple series loop, the current is the same through each part. Energy is transferred, not current.
+- **“Electrons move at light speed.”** The field effect can propagate quickly; electron drift is slow.
+- **“Ground always means zero danger.”** Grounding is a safety and reference system, not magic. It must be designed and verified.
+
+</section>
+
+<section className="technical-only">
+
+## Technical track: equations behind the story
+
+Charge is quantized: `q = ne`, where `e` is the elementary charge. Electric fields relate to force through `F = qE`, and potential relates to field through `E = -grad(V)` in electrostatic conditions.
+
+Current density can be modeled as `J = sigma E` in an ohmic material. Conservation of charge appears as the continuity equation: `div(J) + d(rho)/dt = 0`. At deeper levels, Maxwell’s equations describe how electric and magnetic fields relate to charge, current, and changing fields.
+
+Energy transfer is more subtle than “energy travels inside the copper.” In field theory, electromagnetic power flow is described by the Poynting vector `S = E x H`. For a beginner lesson, we do not need full field simulation, but we must avoid teaching a model that later becomes impossible to repair.
+
+</section>
+
+<section>
+
+## 7. Where this connects next
+
+This lesson is the gateway into the atlas. The next concepts are electric field, voltage, current, resistance, energy, DC and AC, then components. The first large component module should be MOSFET, because it connects material physics, electric fields, switching, digital logic, power electronics, and real-world design limits.
+
+Thailand-specific safety, wiring, metrology, spectrum, and energy regulation topics will be handled as dedicated lessons. Exact Thai standard numbers and editions must be checked against official sources before publication.
+
+</section>
+
+<section>
+
+## Reference direction for review
+
+- Introductory electromagnetism textbooks for charge, field, potential, and Maxwell-level framing.
+- Practical electronics references for circuits, components, measurement, and real device behavior.
+- IEC Electropedia/IEV terminology and relevant IEEE/IEC standards families for vocabulary alignment.
+- Thai official sources such as TISI/TIS, EIT, MEA, PEA, ERC, NBTC, and NIMT when standards or public safety claims are made.
+
+</section>

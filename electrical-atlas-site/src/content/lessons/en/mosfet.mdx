@@ -1,0 +1,192 @@
+<section>
+
+## 1. A useful definition
+
+A **MOSFET** is a transistor controlled by an electric field. The name means **metal-oxide-semiconductor field-effect transistor**. In modern devices the gate material is often not literally metal, but the old name stayed because the structure still has the important idea: a gate electrode, an insulating oxide, and a semiconductor underneath.
+
+The most beginner-friendly version is an **n-channel enhancement MOSFET**. Enhancement means it is normally off. When the gate-to-source voltage `VGS` becomes high enough, the electric field from the gate creates a conducting channel between source and drain.
+
+<aside className="callout">
+
+**First mental model:** the gate is like a hand behind glass. It does not touch the current path directly, but its electric field can pull mobile charge carriers into place and create a bridge.
+
+</aside>
+
+</section>
+
+<section>
+
+## 2. What a MOSFET is made of
+
+A simplified n-channel MOSFET contains:
+
+- **Source** and **drain** regions: heavily doped n-type semiconductor regions where electrons can enter and leave.
+- **Body** or **substrate**: usually p-type material for an n-channel device.
+- **Gate oxide**: a very thin insulating layer, commonly silicon dioxide or a high-k dielectric in advanced processes.
+- **Gate electrode**: the control plate above the oxide.
+- **Body diode**: an unavoidable diode formed by the p-n junctions in many power MOSFET structures.
+- **Package and metal interconnects**: the real-world electrical and thermal path from silicon to your circuit board.
+
+The important trick is the oxide. Because the gate is insulated, ideal DC gate current is almost zero. But the gate still has capacitance, so changing gate voltage requires moving charge into and out of that capacitance.
+
+</section>
+
+<section>
+
+## 3. How the gate creates a channel
+
+Imagine the p-type body under the gate. At first, source and drain are separated by material that does not provide a continuous electron path. When the gate becomes positive relative to the source, the electric field through the oxide repels holes away from the surface and attracts electrons toward the surface.
+
+As `VGS` rises:
+
+1. **Below threshold**, there is no strong continuous channel. The MOSFET is treated as off, though tiny leakage can exist.
+2. **Near threshold**, the surface begins to invert. A thin electron-rich layer starts forming.
+3. **Above threshold**, a channel connects source and drain. Now a drain-to-source voltage can push current through that channel.
+4. **Strong gate drive** makes the channel more conductive, reducing `RDS(on)` in a switching application.
+
+This is the “electric field pulls electrons to make a bridge” story. It is not mechanical pulling like a rope; it is field control of charge distribution inside a semiconductor.
+
+</section>
+
+<section>
+
+## 4. MOSFET as a switch
+
+The most common beginner circuit is an **n-channel low-side switch**:
+
+1. The load connects to positive supply.
+2. The MOSFET drain connects to the load.
+3. The MOSFET source connects to ground.
+4. A control signal drives the gate relative to the source.
+
+When `VGS` is low, the channel is absent, so the load current is almost zero. When `VGS` is high enough, the channel exists, the MOSFET behaves like a small resistance, and current flows through the load.
+
+For a real switch, the question is not only “is `VGS` above threshold?” The better question is: **is the gate driven high enough for the current, temperature, and voltage drop I need?** A MOSFET threshold voltage is not the “fully on” voltage. It is usually measured at a tiny current.
+
+<aside className="callout">
+
+For practical switching, look for logic-level gate drive, `RDS(on)` at your actual `VGS`, drain current rating, power dissipation, thermal resistance, avalanche/inductive-load behavior, and safe operating area.
+
+</aside>
+
+</section>
+
+<section>
+
+## 5. The four terminals and the hidden diode
+
+Many schematic symbols show gate, drain, and source. But the silicon device also has a **body** terminal. In many discrete MOSFETs the body is internally tied to the source. That connection creates the familiar **body diode** between body/drain/source regions.
+
+That diode matters:
+
+- It can conduct when voltage polarity is reversed.
+- It affects motor drivers, half-bridges, synchronous rectifiers, and reverse-polarity circuits.
+- It explains why two MOSFETs are often placed back-to-back for bidirectional blocking.
+
+So a MOSFET is not an ideal switch. It is a controlled semiconductor device with capacitances, leakage, resistance, diode behavior, breakdown limits, and heat.
+
+</section>
+
+<section>
+
+## 6. Gate charge: why switching is not free
+
+Because the gate is insulated, people sometimes say “a MOSFET takes no input current.” That is only true for steady DC in an idealized picture. To turn a MOSFET on or off quickly, the driver must charge and discharge gate capacitances.
+
+Important quantities include:
+
+- **Input capacitance**: how much the gate looks like a capacitor.
+- **Gate charge `Qg`**: how much charge the driver must move during switching.
+- **Miller plateau**: a gate-voltage region where drain voltage is changing and gate charge is doing useful work.
+- **Gate resistor**: slows or damps switching, reducing ringing and electromagnetic noise but increasing switching loss.
+
+Fast switching is a bargain with physics: lower switching time can reduce transition losses, but it can increase ringing, EMI, overshoot, and stress.
+
+</section>
+
+<section>
+
+## 7. Where MOSFETs work
+
+MOSFETs are everywhere because they can be tiny, fast, efficient, and manufacturable at enormous scale.
+
+- **Digital logic:** CMOS gates, processors, memory, microcontrollers, FPGAs.
+- **Power electronics:** DC-DC converters, motor drives, battery chargers, inverters, synchronous rectifiers.
+- **Analog electronics:** current mirrors, active loads, source followers, switches, sample-and-hold circuits.
+- **Protection and power routing:** load switches, ideal-diode controllers, reverse-polarity protection.
+- **RF and mixed-signal:** low-noise amplifiers, mixers, switches, power amplifiers in specialized processes.
+- **Sensors and interfaces:** image sensors, touch sensing, analog multiplexers.
+
+The same basic field-effect idea scales from microscopic transistors inside chips to power MOSFETs that switch many amps.
+
+</section>
+
+<section>
+
+## 8. Common traps
+
+- **“Threshold voltage means fully on.”** No. It usually marks the beginning of conduction at a small specified current.
+- **“The gate uses no current.”** It uses little steady DC current, but switching requires gate charge.
+- **“Any MOSFET works with any microcontroller.”** Not always. Check `RDS(on)` at the microcontroller’s actual gate voltage.
+- **“Current rating alone is enough.”** Thermal resistance, board copper, package, switching loss, and safe operating area can dominate.
+- **“A MOSFET is just a resistor when on.”** Useful approximation, but capacitance, body diode, temperature, and avalanche behavior still matter.
+
+</section>
+
+<section className="technical-only">
+
+## Technical track: first equations and regions
+
+For a long-channel textbook MOSFET, threshold-based equations often start with overdrive voltage:
+
+`VOV = VGS - VTH`
+
+In the linear or triode region, a simplified model is:
+
+`ID ≈ kn[(VGS - VTH)VDS - VDS²/2]`
+
+In saturation:
+
+`ID ≈ (kn/2)(VGS - VTH)²`
+
+Those equations are useful for learning but incomplete for modern devices. Real MOSFETs include body effect, channel-length modulation, mobility degradation, velocity saturation, subthreshold conduction, parasitic capacitances, package inductance, self-heating, and process variation.
+
+For switching power MOSFETs, the practical model often becomes:
+
+- off-state leakage and breakdown,
+- `RDS(on)` during conduction,
+- gate charge and switching energy during transitions,
+- diode or third-quadrant conduction,
+- thermal impedance over time.
+
+</section>
+
+<section>
+
+## 9. Where this connects next
+
+MOSFET is a bridge topic. It connects semiconductor physics to real circuits:
+
+- electric field → gate control,
+- semiconductor doping → source, drain, body, channel,
+- capacitance → gate charge and switching speed,
+- resistance and heat → conduction loss,
+- inductance and layout → ringing and EMI,
+- logic → CMOS,
+- power electronics → converters and motor drives.
+
+Good next lessons after this are diode, BJT, CMOS inverter, MOSFET gate charge, low-side switch, high-side switch, buck converter, H-bridge, PCB layout for switching loops, and safe measurement with an oscilloscope.
+
+</section>
+
+<section>
+
+## Reference direction for review
+
+- Semiconductor device textbooks for MOS capacitor, inversion, threshold, and MOSFET regions.
+- Practical electronics and power electronics references for switching behavior, `RDS(on)`, gate charge, thermal design, and layout.
+- Manufacturer datasheets and application notes for real MOSFET selection.
+- IEC/IEEE terminology families for vocabulary alignment.
+- Thai safety and installation contexts should be checked against official Thai sources when a MOSFET lesson connects to mains-powered equipment, EV chargers, solar inverters, or industrial control panels.
+
+</section>

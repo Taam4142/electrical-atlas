@@ -1,0 +1,51 @@
+---
+import type { Locale, SuggestionItem } from "../lib/suggestions";
+
+interface Props {
+  items: SuggestionItem[];
+  locale?: Locale;
+  title?: string;
+  intro?: string;
+}
+
+const { items, locale = "en", title, intro } = Astro.props;
+const copy = {
+  en: {
+    eyebrow: "suggested next",
+    title: "Suggested lessons and topics",
+    intro: "Continue with nearby ideas, prerequisite concepts, or practical applications related to this page.",
+    lesson: "lesson",
+    topic: "topic",
+  },
+  th: {
+    eyebrow: "แนะนำต่อ",
+    title: "บทเรียนและหัวข้อที่เกี่ยวข้อง",
+    intro: "เรียนต่อด้วยแนวคิดใกล้เคียง ความรู้พื้นฐาน หรือการใช้งานจริงที่เกี่ยวข้องกับหน้านี้",
+    lesson: "บทเรียน",
+    topic: "หัวข้อ",
+  },
+}[locale];
+---
+
+{items.length > 0 ? (
+  <section class="suggestion-section" aria-labelledby="suggestion-title">
+    <div class="section-heading">
+      <p class="eyebrow">{copy.eyebrow}</p>
+      <h2 id="suggestion-title">{title ?? copy.title}</h2>
+      <p>{intro ?? copy.intro}</p>
+    </div>
+
+    <div class="suggestion-grid">
+      {items.map((item) => (
+        <a class="suggestion-card" href={item.href}>
+          <div class="suggestion-card-topline">
+            <span>{item.kind === "lesson" ? copy.lesson : copy.topic}</span>
+            <span>{item.relation}</span>
+          </div>
+          <h3>{item.title}</h3>
+          <p>{item.summary}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+) : null}

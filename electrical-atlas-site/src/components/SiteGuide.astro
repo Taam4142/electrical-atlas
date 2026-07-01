@@ -1,0 +1,284 @@
+---
+interface Props {
+  locale?: "en" | "th";
+}
+
+const { locale = "en" } = Astro.props;
+
+const copy = {
+  en: {
+    eyebrow: "site guide",
+    title: "How to use Electrical Atlas",
+    subtitle:
+      "Think of this prototype as a learning map, not a finished textbook. Start with one guided lesson, then use the subject map to see where every future topic will live.",
+    quickStartTitle: "Quick start",
+    quickStartIntro: "If you are not sure what to click, use this order:",
+    quickStart: [
+      {
+        title: "1. Read the guide first",
+        body: "You are here. This page explains what each part of the prototype is for.",
+        href: "/en/guide/",
+        label: "Stay here",
+      },
+      {
+        title: "2. Start the first lesson",
+        body: "Use “What Is Electricity?” to learn the site’s teaching style: visual explanation first, technical detail when needed.",
+        href: "/en/lessons/what-is-electricity/",
+        label: "Open first lesson",
+      },
+      {
+        title: "3. Open the knowledge map",
+        body: "Use the map when you want to browse by subject, component, system, application, or prerequisite path.",
+        href: "/en/map/",
+        label: "Open map",
+      },
+    ],
+    currentPartsTitle: "What exists right now",
+    currentParts: [
+      {
+        name: "Home",
+        body: "A landing page that shows the project direction and the main entry points.",
+      },
+      {
+        name: "First lesson",
+        body: "A finished prototype lesson about charge, fields, voltage, current, and a battery lighting a lamp.",
+      },
+      {
+        name: "MOSFET lesson",
+        body: "The first full component lesson. It explains structure, gate field control, switching behavior, gate charge, and application areas.",
+      },
+      {
+        name: "Subject map",
+        body: "The big atlas index. It currently exposes 1,607 mapped topics from the Markdown knowledge inventory.",
+      },
+      {
+        name: "Search",
+        body: "A way to find where a topic belongs and open its mapped topic record. Topic records are not full lessons yet.",
+      },
+      {
+        name: "Language switch",
+        body: "The globe button shows the current language. Click it to go to the same page in the other language when that page exists.",
+      },
+      {
+        name: "Suggested next",
+        body: "The end of each lesson or topic record points to related lessons, nearby topics, prerequisites, or practical applications.",
+      },
+    ],
+    lessonTitle: "How to read a lesson",
+    lessonSteps: [
+      "Start in Guided mode if the topic is new.",
+      "Use Technical mode when you want equations, precise terms, or engineering vocabulary.",
+      "Treat interactive diagrams as concept builders. They are not circuit simulators yet.",
+      "Use safety notes seriously. The site is for learning; live wiring and standards work need verified sources and qualified practice.",
+    ],
+    mapTitle: "How to use the subject map",
+    mapSteps: [
+      "Browse the subject backbone to understand the big structure.",
+      "Use search for a specific word like MOSFET, battery, Coulomb, transformer, or IEC.",
+      "Open a topic record to learn its primary home, type, domain, and summary.",
+      "If the record exists but no lesson exists yet, that means the topic is mapped but not published.",
+    ],
+    statusTitle: "Important status rule",
+    statusBody:
+      "Mapped does not mean published. The atlas can know where MOSFET gate charge belongs before the MOSFET lesson is fully written, illustrated, reviewed, translated, and tested.",
+    pathsTitle: "Choose your path",
+    paths: [
+      {
+        label: "I am a beginner",
+        route: "Guide → First lesson → Subject map → Search simple parts",
+      },
+      {
+        label: "I want a component",
+        route: "Subject map → Search component name → Open topic record → Ask for that lesson next",
+      },
+      {
+        label: "I want Thai engineering context",
+        route: "Thai pages → Safety/standards topics → verified TISI, EIT, MEA, PEA, ERC, NBTC, NIMT references later",
+      },
+    ],
+    nextTitle: "What I recommend next",
+    nextBody:
+      "Now that the MOSFET component lesson exists, the next build step should be topic-to-lesson relationships: prerequisites, successor topics, and related component/circuit links.",
+  },
+  th: {
+    eyebrow: "คู่มือใช้งานเว็บ",
+    title: "วิธีใช้ Electrical Atlas",
+    subtitle:
+      "ให้คิดว่าเว็บนี้เป็นแผนที่การเรียนรู้ ไม่ใช่ตำราที่ทำเสร็จทั้งเล่มแล้ว เริ่มจากบทเรียนตัวอย่างหนึ่งบท แล้วใช้แผนที่วิชาเพื่อดูว่าแต่ละหัวข้อจะอยู่ตรงไหนในอนาคต",
+    quickStartTitle: "เริ่มเร็วแบบไม่หลง",
+    quickStartIntro: "ถ้าไม่แน่ใจว่าควรกดอะไร ให้เริ่มตามลำดับนี้:",
+    quickStart: [
+      {
+        title: "1. อ่านคู่มือนี้ก่อน",
+        body: "หน้านี้อธิบายว่าแต่ละส่วนของต้นแบบมีไว้ทำอะไร",
+        href: "/th/guide/",
+        label: "อยู่หน้านี้",
+      },
+      {
+        title: "2. เริ่มจากบทเรียนแรก",
+        body: "ใช้บท “ไฟฟ้าคืออะไร?” เพื่อดูแนวทางการสอนของเว็บ: เริ่มจากภาพรวมและภาพอธิบาย แล้วค่อยเพิ่มความละเอียดทางเทคนิค",
+        href: "/th/lessons/what-is-electricity/",
+        label: "เปิดบทแรก",
+      },
+      {
+        title: "3. เปิดแผนที่ความรู้",
+        body: "ใช้แผนที่เมื่ออยากดูตามวิชา ชิ้นส่วน ระบบ งานประยุกต์ หรือเส้นทางความรู้พื้นฐาน",
+        href: "/th/map/",
+        label: "เปิดแผนที่",
+      },
+    ],
+    currentPartsTitle: "ตอนนี้เว็บมีอะไรแล้ว",
+    currentParts: [
+      {
+        name: "หน้าแรก",
+        body: "หน้าต้อนรับที่บอกทิศทางของโปรเจกต์และทางเข้าหลัก",
+      },
+      {
+        name: "บทเรียนแรก",
+        body: "บทต้นแบบเรื่องประจุ สนามไฟฟ้า แรงดัน กระแส และแบตเตอรี่ที่ทำให้หลอดไฟติด",
+      },
+      {
+        name: "บทเรียน MOSFET",
+        body: "บทเรียนชิ้นส่วนเต็มบทแรก อธิบายโครงสร้าง การควบคุมด้วยสนามที่ gate การสวิตช์ gate charge และงานที่ใช้ MOSFET",
+      },
+      {
+        name: "แผนที่วิชา",
+        body: "ดัชนีใหญ่ของ atlas ตอนนี้ดึงหัวข้อที่ทำแผนที่ไว้แล้ว 1,607 หัวข้อจากชุด Markdown",
+      },
+      {
+        name: "ค้นหา",
+        body: "ใช้หาว่าหัวข้อหนึ่งควรอยู่ตรงไหน และเปิดบันทึกหัวข้อที่ทำแผนที่ไว้แล้ว บันทึกหัวข้อยังไม่ใช่บทเรียนเต็ม",
+      },
+      {
+        name: "ปุ่มภาษา",
+        body: "ปุ่มรูปโลกจะแสดงภาษาปัจจุบัน กดเพื่อไปหน้าเดียวกันในอีกภาษาหนึ่งเมื่อหน้านั้นมีอยู่แล้ว",
+      },
+      {
+        name: "แนะนำต่อ",
+        body: "ท้ายบทเรียนหรือบันทึกหัวข้อจะมีลิงก์ไปบทเรียนใกล้เคียง หัวข้อที่เกี่ยวข้อง พื้นฐานที่ควรรู้ หรือการใช้งานจริง",
+      },
+    ],
+    lessonTitle: "วิธีอ่านบทเรียน",
+    lessonSteps: [
+      "เริ่มด้วยโหมด Guided ถ้าหัวข้อนั้นยังใหม่สำหรับคุณ",
+      "ใช้โหมด Technical เมื่อต้องการสมการ คำศัพท์แม่น ๆ หรือรายละเอียดเชิงวิศวกรรม",
+      "ใช้ภาพและตัวปรับแบบ interactive เพื่อสร้างความเข้าใจเชิงแนวคิด ตอนนี้ยังไม่ใช่ circuit simulator เต็มรูปแบบ",
+      "อ่านหมายเหตุความปลอดภัยอย่างจริงจัง เว็บนี้มีไว้เพื่อเรียนรู้ งานไฟจริงและงานมาตรฐานต้องใช้แหล่งอ้างอิงที่ตรวจแล้วและผู้มีความรู้รับผิดชอบ",
+    ],
+    mapTitle: "วิธีใช้แผนที่วิชา",
+    mapSteps: [
+      "ดูแกนสาขาหลักเพื่อเข้าใจภาพใหญ่ก่อน",
+      "ใช้ช่องค้นหาถ้าต้องการคำเฉพาะ เช่น MOSFET, battery, Coulomb, transformer หรือ IEC",
+      "เปิดบันทึกหัวข้อเพื่อดูบ้านหลักของหัวข้อนั้น ชนิดของหัวข้อ โดเมน และสรุปสั้น",
+      "ถ้าหัวข้อมีบันทึกแต่ยังไม่มีบทเรียน แปลว่าหัวข้อนั้นถูกทำแผนที่แล้วแต่ยังไม่ได้เผยแพร่เป็นบทเรียน",
+    ],
+    statusTitle: "กฎสำคัญเรื่องสถานะ",
+    statusBody:
+      "Mapped ไม่ได้แปลว่า Published ทันที ตัว atlas อาจรู้แล้วว่า MOSFET gate charge ควรอยู่ตรงไหน ก่อนที่บท MOSFET จะถูกเขียน วาดภาพ ตรวจทาน แปล และทดสอบจนพร้อมเผยแพร่",
+    pathsTitle: "เลือกเส้นทางของคุณ",
+    paths: [
+      {
+        label: "ผม/ฉันเป็นมือใหม่",
+        route: "คู่มือ → บทเรียนแรก → แผนที่วิชา → ค้นหาชิ้นส่วนง่าย ๆ",
+      },
+      {
+        label: "อยากเรียนชิ้นส่วนเฉพาะ",
+        route: "แผนที่วิชา → ค้นหาชื่อชิ้นส่วน → เปิดบันทึกหัวข้อ → เลือกหัวข้อนั้นเป็นบทเรียนถัดไป",
+      },
+      {
+        label: "อยากได้บริบทมาตรฐานไทย",
+        route: "หน้าไทย → หัวข้อความปลอดภัย/มาตรฐาน → อ้างอิง มอก., วสท., กฟน., กฟภ., กกพ., กสทช., มว. ที่ตรวจแล้วในอนาคต",
+      },
+    ],
+    nextTitle: "สิ่งที่ผมแนะนำให้ทำต่อ",
+    nextBody:
+      "ตอนนี้บทเรียน MOSFET มีแล้ว ขั้นถัดไปควรทำความสัมพันธ์ระหว่างหัวข้อกับบทเรียน เช่น prerequisite, successor topic และลิงก์หัวข้อ/วงจรที่เกี่ยวข้อง",
+  },
+}[locale];
+---
+
+<section class="guide-hero">
+  <p class="eyebrow">{copy.eyebrow}</p>
+  <h1>{copy.title}</h1>
+  <p class="hero-subtitle">{copy.subtitle}</p>
+</section>
+
+<section class="guide-section" aria-labelledby="quick-start-title">
+  <div class="section-heading">
+    <p class="eyebrow">start here</p>
+    <h2 id="quick-start-title">{copy.quickStartTitle}</h2>
+    <p>{copy.quickStartIntro}</p>
+  </div>
+
+  <div class="guide-step-grid">
+    {copy.quickStart.map((step) => (
+      <article class="guide-step-card">
+        <h3>{step.title}</h3>
+        <p>{step.body}</p>
+        <a class="text-link" href={step.href}>{step.label}</a>
+      </article>
+    ))}
+  </div>
+</section>
+
+<section class="guide-section" aria-labelledby="current-parts-title">
+  <div class="section-heading">
+    <p class="eyebrow">prototype map</p>
+    <h2 id="current-parts-title">{copy.currentPartsTitle}</h2>
+  </div>
+
+  <div class="guide-list-grid">
+    {copy.currentParts.map((part) => (
+      <article class="guide-list-card">
+        <h3>{part.name}</h3>
+        <p>{part.body}</p>
+      </article>
+    ))}
+  </div>
+</section>
+
+<section class="guide-two-column">
+  <article class="guide-panel">
+    <p class="eyebrow">lesson mode</p>
+    <h2>{copy.lessonTitle}</h2>
+    <ol>
+      {copy.lessonSteps.map((step) => <li>{step}</li>)}
+    </ol>
+  </article>
+
+  <article class="guide-panel">
+    <p class="eyebrow">map mode</p>
+    <h2>{copy.mapTitle}</h2>
+    <ol>
+      {copy.mapSteps.map((step) => <li>{step}</li>)}
+    </ol>
+  </article>
+</section>
+
+<section class="guide-status-card" aria-labelledby="status-rule-title">
+  <p class="eyebrow">mapped ≠ published</p>
+  <h2 id="status-rule-title">{copy.statusTitle}</h2>
+  <p>{copy.statusBody}</p>
+</section>
+
+<section class="guide-section" aria-labelledby="choose-path-title">
+  <div class="section-heading">
+    <p class="eyebrow">navigation recipes</p>
+    <h2 id="choose-path-title">{copy.pathsTitle}</h2>
+  </div>
+
+  <div class="guide-path-list">
+    {copy.paths.map((path) => (
+      <article>
+        <h3>{path.label}</h3>
+        <p>{path.route}</p>
+      </article>
+    ))}
+  </div>
+</section>
+
+<section class="guide-status-card guide-next-card">
+  <p class="eyebrow">next build step</p>
+  <h2>{copy.nextTitle}</h2>
+  <p>{copy.nextBody}</p>
+</section>

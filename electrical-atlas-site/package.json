@@ -1,0 +1,28 @@
+{
+  "name": "electrical-atlas-site",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "generate:topics": "node ./scripts/generate-topic-index.mjs",
+    "pretest": "node ./scripts/generate-topic-index.mjs",
+    "dev": "node ./scripts/task.mjs dev",
+    "check": "node ./scripts/task.mjs check",
+    "prebuild": "node ./scripts/generate-topic-index.mjs",
+    "build": "node ./scripts/task.mjs build",
+    "preview": "node ./scripts/task.mjs preview",
+    "test": "node ./scripts/task.mjs test"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "latest",
+    "@astrojs/react": "latest",
+    "astro": "latest",
+    "react": "latest",
+    "react-dom": "latest"
+  },
+  "devDependencies": {
+    "@astrojs/check": "latest",
+    "typescript": "latest",
+    "vitest": "latest"
+  }
+}

@@ -1,0 +1,192 @@
+<section>
+
+## 1. นิยามที่ใช้เรียนต่อได้จริง
+
+**MOSFET** คือทรานซิสเตอร์ที่ควบคุมด้วยสนามไฟฟ้า ชื่อเต็มคือ **metal-oxide-semiconductor field-effect transistor** ในอุปกรณ์สมัยใหม่ gate อาจไม่ได้เป็นโลหะตามชื่อเดิมเสมอไป แต่แนวคิดสำคัญยังเหมือนเดิม: มีขั้ว gate มีชั้นฉนวน oxide และมีสารกึ่งตัวนำอยู่ข้างใต้
+
+แบบที่เข้าใจง่ายที่สุดคือ **n-channel enhancement MOSFET** คำว่า enhancement หมายถึงปกติปิดอยู่ เมื่อแรงดัน gate-to-source หรือ `VGS` สูงพอ สนามไฟฟ้าจาก gate จะสร้างช่องนำกระแสระหว่าง source และ drain
+
+<aside className="callout">
+
+**ภาพจำแรก:** gate คล้ายมือที่อยู่หลังกระจก มันไม่ได้แตะทางเดินกระแสโดยตรง แต่สนามไฟฟ้าของมันดึงตัวพาประจุให้มาเรียงตัวจนเกิดสะพานนำกระแสได้
+
+</aside>
+
+</section>
+
+<section>
+
+## 2. MOSFET ทำมาจากอะไร
+
+ภาพอย่างง่ายของ n-channel MOSFET มีส่วนสำคัญคือ:
+
+- **Source และ drain:** บริเวณสารกึ่งตัวนำ n-type ที่เจือสารเข้มข้น อิเล็กตรอนเข้าออกทางนี้
+- **Body หรือ substrate:** มักเป็น p-type สำหรับ n-channel MOSFET
+- **Gate oxide:** ชั้นฉนวนบางมาก เช่น silicon dioxide หรือ high-k dielectric ในเทคโนโลยีขั้นสูง
+- **Gate electrode:** แผ่นควบคุมที่อยู่เหนือ oxide
+- **Body diode:** ไดโอดที่เกิดจาก p-n junction ในโครงสร้างจริง โดยเฉพาะ MOSFET กำลัง
+- **Package และ metal interconnects:** เส้นทางไฟฟ้าและความร้อนจาก silicon ออกมาสู่วงจรจริง
+
+เคล็ดลับอยู่ที่ oxide เพราะ gate ถูกฉนวนกั้นไว้ กระแส DC เข้า gate ในภาพอุดมคติจึงเกือบเป็นศูนย์ แต่ gate ยังเป็นความจุไฟฟ้า ดังนั้นการเปลี่ยนแรงดัน gate ต้องอัดและคายประจุเข้าออก capacitance นี้
+
+</section>
+
+<section>
+
+## 3. Gate สร้างช่องนำกระแสอย่างไร
+
+ให้นึกถึง body แบบ p-type ใต้ gate ตอนแรก source กับ drain ถูกคั่นด้วยเนื้อสารที่ยังไม่มีทางอิเล็กตรอนต่อเนื่อง เมื่อ gate เป็นบวกเมื่อเทียบกับ source สนามไฟฟ้าผ่าน oxide จะผลัก hole ออกจากผิว และดึงอิเล็กตรอนเข้ามาใกล้ผิว
+
+เมื่อ `VGS` เพิ่มขึ้น:
+
+1. **ต่ำกว่า threshold** ยังไม่มีช่องต่อเนื่องชัดเจน MOSFET ถือว่าปิด ถึงแม้อาจมี leakage เล็กมาก
+2. **ใกล้ threshold** ผิวเริ่มเกิด inversion ชั้นบาง ๆ ที่มีอิเล็กตรอนมากขึ้นเริ่มก่อตัว
+3. **สูงกว่า threshold** ช่องนำกระแสเชื่อม source กับ drain แล้ว แรงดัน drain-to-source จึงผลักกระแสผ่านช่องนี้ได้
+4. **ขับ gate แรงพอ** ช่องนำกระแสนำไฟฟ้าดีขึ้น ทำให้ `RDS(on)` ต่ำลงในงานสวิตช์
+
+นี่คือภาพ “ใช้สนามไฟฟ้าดึงอิเล็กตรอนมาทำสะพาน” แต่ไม่ใช่การดึงแบบเชือก เป็นการควบคุมการกระจายตัวของประจุในสารกึ่งตัวนำด้วยสนามไฟฟ้า
+
+</section>
+
+<section>
+
+## 4. MOSFET เป็นสวิตช์อย่างไร
+
+วงจรเริ่มต้นที่พบบ่อยคือ **n-channel low-side switch**:
+
+1. โหลดต่อกับขั้วบวกของแหล่งจ่าย
+2. drain ของ MOSFET ต่อกับโหลด
+3. source ของ MOSFET ต่อกับกราวด์
+4. สัญญาณควบคุมขับ gate โดยวัดเทียบกับ source
+
+เมื่อ `VGS` ต่ำ ช่องนำกระแสยังไม่เกิด กระแสโหลดจึงเกือบเป็นศูนย์ เมื่อ `VGS` สูงพอ ช่องนำกระแสเกิดขึ้น MOSFET ทำตัวคล้ายความต้านทานขนาดเล็ก และกระแสไหลผ่านโหลดได้
+
+ในการใช้งานจริง คำถามไม่ใช่แค่ “`VGS` สูงกว่า threshold หรือยัง?” แต่ควรถามว่า **gate ถูกขับสูงพอสำหรับกระแส อุณหภูมิ และแรงดันตกคร่อมที่ต้องการหรือไม่?** ค่า threshold voltage ไม่ใช่แรงดันที่ทำให้เปิดเต็ม มักวัดที่กระแสเล็กมากเท่านั้น
+
+<aside className="callout">
+
+สำหรับงานสวิตช์จริง ให้ดู logic-level gate drive, `RDS(on)` ที่ `VGS` จริง, drain current rating, power dissipation, thermal resistance, พฤติกรรมกับโหลดเหนี่ยวนำ และ safe operating area
+
+</aside>
+
+</section>
+
+<section>
+
+## 5. สี่ขาและไดโอดที่ซ่อนอยู่
+
+สัญลักษณ์หลายแบบแสดงแค่ gate, drain และ source แต่ใน silicon จริงยังมีขั้ว **body** ด้วย ใน MOSFET แยกชิ้นจำนวนมาก body จะถูกต่อไว้กับ source ภายใน การต่อนี้ทำให้เกิด **body diode** ที่คุ้นกัน
+
+ไดโอดนี้สำคัญ เพราะ:
+
+- อาจนำกระแสเมื่อแรงดันกลับขั้ว
+- มีผลกับ motor driver, half-bridge, synchronous rectifier และวงจรป้องกันกลับขั้ว
+- อธิบายว่าทำไมวงจรที่ต้องบล็อกกระแสสองทิศทางมักใช้ MOSFET สองตัวต่อ back-to-back
+
+ดังนั้น MOSFET ไม่ใช่สวิตช์อุดมคติ มันเป็นอุปกรณ์สารกึ่งตัวนำที่มี capacitance, leakage, resistance, diode, breakdown limit และความร้อน
+
+</section>
+
+<section>
+
+## 6. Gate charge: ทำไมการสวิตช์ไม่ฟรี
+
+เพราะ gate ถูกฉนวนกั้นไว้ บางคนจึงพูดว่า “MOSFET ไม่กินกระแสที่ input” ประโยคนี้จริงเฉพาะ steady DC ในภาพอุดมคติเท่านั้น ถ้าต้องการเปิดปิดเร็ว driver ต้องอัดและคายประจุของ gate capacitance
+
+ค่าที่ควรรู้:
+
+- **Input capacitance:** gate ดูเหมือน capacitor มากแค่ไหน
+- **Gate charge `Qg`:** driver ต้องย้ายประจุเท่าไรระหว่างการสวิตช์
+- **Miller plateau:** ช่วงแรงดัน gate ที่ drain voltage กำลังเปลี่ยนและประจุ gate กำลังทำงานสำคัญ
+- **Gate resistor:** ทำให้สวิตช์ช้าลงหรือช่วย damping ลด ringing และ EMI แต่เพิ่ม switching loss ได้
+
+การสวิตช์เร็วคือการต่อรองกับฟิสิกส์: เวลาเปลี่ยนสถานะสั้นลงอาจลด transition loss แต่เพิ่ม ringing, EMI, overshoot และความเครียดของอุปกรณ์
+
+</section>
+
+<section>
+
+## 7. MOSFET ใช้ในงานอะไรบ้าง
+
+MOSFET อยู่แทบทุกที่ เพราะทำให้เล็ก เร็ว มีประสิทธิภาพ และผลิตจำนวนมหาศาลได้
+
+- **Digital logic:** CMOS gate, processor, memory, microcontroller, FPGA
+- **Power electronics:** DC-DC converter, motor drive, battery charger, inverter, synchronous rectifier
+- **Analog electronics:** current mirror, active load, source follower, analog switch, sample-and-hold
+- **Protection and power routing:** load switch, ideal-diode controller, reverse-polarity protection
+- **RF and mixed-signal:** low-noise amplifier, mixer, switch, power amplifier ใน process เฉพาะทาง
+- **Sensors and interfaces:** image sensor, touch sensing, analog multiplexer
+
+แนวคิด field-effect เดียวกันนี้ขยายได้ตั้งแต่ transistor จิ๋วใน chip ไปจนถึง power MOSFET ที่สวิตช์กระแสหลายแอมป์
+
+</section>
+
+<section>
+
+## 8. กับดักความเข้าใจผิด
+
+- **“Threshold voltage แปลว่าเปิดเต็มแล้ว”** ไม่ใช่ มันมักบอกจุดเริ่มนำกระแสที่กระแสเล็กตามเงื่อนไขทดสอบ
+- **“Gate ไม่กินกระแสเลย”** กระแส DC คงที่น้อยมาก แต่การสวิตช์ต้องใช้ gate charge
+- **“MOSFET อะไรก็ใช้กับ microcontroller ได้”** ไม่เสมอ ต้องดู `RDS(on)` ที่แรงดัน gate จริงของ microcontroller
+- **“ดู current rating อย่างเดียวพอ”** ความร้อน package แผ่นทองแดงบน PCB switching loss และ safe operating area อาจเป็นตัวจำกัดหลัก
+- **“ตอนเปิด MOSFET เป็นแค่ตัวต้านทาน”** เป็น approximation ที่มีประโยชน์ แต่ capacitance, body diode, อุณหภูมิ และ avalanche ยังมีผล
+
+</section>
+
+<section className="technical-only">
+
+## โหมดเชิงเทคนิค: สมการและ region แรก ๆ
+
+ใน MOSFET แบบ long-channel ตามตำรา เรามักเริ่มจาก overdrive voltage:
+
+`VOV = VGS - VTH`
+
+ใน linear หรือ triode region แบบจำลองอย่างง่ายคือ:
+
+`ID ≈ kn[(VGS - VTH)VDS - VDS²/2]`
+
+ใน saturation:
+
+`ID ≈ (kn/2)(VGS - VTH)²`
+
+สมการเหล่านี้ดีสำหรับการเรียน แต่ยังไม่ครบสำหรับอุปกรณ์สมัยใหม่ ของจริงยังมี body effect, channel-length modulation, mobility degradation, velocity saturation, subthreshold conduction, parasitic capacitance, package inductance, self-heating และ process variation
+
+สำหรับ power MOSFET ที่ใช้เป็นสวิตช์ โมเดลเชิงปฏิบัติมักเปลี่ยนเป็น:
+
+- leakage และ breakdown ตอนปิด
+- `RDS(on)` ตอนนำกระแส
+- gate charge และ switching energy ตอนเปลี่ยนสถานะ
+- diode หรือ third-quadrant conduction
+- thermal impedance ตามเวลา
+
+</section>
+
+<section>
+
+## 9. บทนี้เชื่อมไปไหนต่อ
+
+MOSFET เป็นหัวข้อสะพานที่เชื่อม semiconductor physics เข้ากับวงจรจริง:
+
+- electric field → การควบคุมด้วย gate
+- semiconductor doping → source, drain, body, channel
+- capacitance → gate charge และ switching speed
+- resistance และ heat → conduction loss
+- inductance และ layout → ringing และ EMI
+- logic → CMOS
+- power electronics → converter และ motor drive
+
+บทถัดไปที่เหมาะคือ diode, BJT, CMOS inverter, MOSFET gate charge, low-side switch, high-side switch, buck converter, H-bridge, PCB layout สำหรับ switching loop และการวัดด้วย oscilloscope อย่างปลอดภัย
+
+</section>
+
+<section>
+
+## ทิศทางแหล่งอ้างอิงสำหรับรอบตรวจทาน
+
+- ตำรา semiconductor device สำหรับ MOS capacitor, inversion, threshold และ MOSFET region
+- แหล่งอ้างอิงอิเล็กทรอนิกส์และ power electronics สำหรับ switching behavior, `RDS(on)`, gate charge, thermal design และ layout
+- datasheet และ application note ของผู้ผลิตสำหรับการเลือก MOSFET จริง
+- กลุ่มศัพท์ IEC/IEEE เพื่อจัดคำศัพท์ให้สอดคล้อง
+- บริบทความปลอดภัยและการติดตั้งในไทยควรตรวจจากแหล่งทางการเมื่อบท MOSFET เชื่อมกับอุปกรณ์ไฟบ้าน EV charger solar inverter หรือ control panel อุตสาหกรรม
+
+</section>

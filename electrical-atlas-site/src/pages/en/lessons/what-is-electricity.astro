@@ -1,0 +1,35 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import LessonShell from "../../../components/LessonShell.astro";
+import LessonModeToggle from "../../../components/LessonModeToggle";
+import CircuitFieldDemo from "../../../components/CircuitFieldDemo";
+import SuggestionSection from "../../../components/SuggestionSection.astro";
+import Content from "../../../content/lessons/en/what-is-electricity.mdx";
+import { atlasTopics } from "../../../lib/generated/atlasTopics";
+import { getLessonSuggestions } from "../../../lib/suggestions";
+
+const suggestions = getLessonSuggestions("what-is-electricity", "en", atlasTopics);
+---
+
+<BaseLayout
+  title="What Is Electricity?"
+  description="A visual first lesson explaining charge, electric fields, voltage, current, and how a battery lights a lamp."
+  lang="en"
+  counterpartPath="/th/lessons/what-is-electricity/"
+  counterpartLabel="ไทย"
+>
+  <LessonShell
+    locale="en"
+    eyebrow="first lesson"
+    title="What Is Electricity?"
+    subtitle="Not a magic fluid in wires. Electricity is a family of phenomena involving charge, fields, energy, and matter."
+    lessonId="ea.lesson.what-is-electricity.v0.1"
+  >
+    <LessonModeToggle client:load locale="en" />
+    <CircuitFieldDemo client:load locale="en" />
+    <div class="lesson-content">
+      <Content />
+    </div>
+    <SuggestionSection locale="en" items={suggestions} />
+  </LessonShell>
+</BaseLayout>

@@ -1,0 +1,31 @@
+---
+import TopicRecord from "../../../components/TopicRecord.astro";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { atlasTopics } from "../../../lib/generated/atlasTopics";
+import type { AtlasTopic } from "../../../lib/generated/atlasTopics";
+import { getRelatedTopics } from "../../../lib/suggestions";
+
+interface Props {
+  topic: AtlasTopic;
+  relatedTopics: AtlasTopic[];
+}
+
+export function getStaticPaths() {
+  return atlasTopics.map((topic) => ({
+    params: { slug: topic.slug },
+    props: { topic, relatedTopics: getRelatedTopics(topic, atlasTopics) },
+  }));
+}
+
+const { topic, relatedTopics } = Astro.props;
+---
+
+<BaseLayout
+  title={`${topic.name} Topic Record`}
+  description={`Mapped Electrical Atlas topic record for ${topic.name}: ${topic.summary}`}
+  lang="en"
+  counterpartPath={`/th/topics/${topic.slug}/`}
+  counterpartLabel="ไทย"
+>
+  <TopicRecord topic={topic} relatedTopics={relatedTopics} locale="en" />
+</BaseLayout>

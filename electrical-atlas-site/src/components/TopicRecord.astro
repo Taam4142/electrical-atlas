@@ -1,0 +1,218 @@
+---
+import SuggestionSection from "./SuggestionSection.astro";
+import type { AtlasTopic } from "../lib/generated/atlasTopics";
+import { topicToSuggestion } from "../lib/suggestions";
+
+interface Props {
+  topic: AtlasTopic;
+  locale?: "en" | "th";
+  relatedTopics?: AtlasTopic[];
+}
+
+const { topic, locale = "en", relatedTopics = [] } = Astro.props;
+
+const copy = {
+  en: {
+    eyebrow: "topic record",
+    statusLabel: "Mapped, not a full lesson yet",
+    canonicalNote:
+      "Canonical topic names are English for now. Thai labels and Thai-specific wording will be added when each topic enters the publishing pipeline.",
+    primaryHome: "Primary home",
+    whatThisIsTitle: "What this page is",
+    whatThisIs:
+      "This is a structured atlas record. It tells us where the topic belongs, how it should be classified, and what kind of future lesson or reference page it needs.",
+    notLessonTitle: "What this page is not",
+    notLesson:
+      "This is not a complete explainer lesson yet. It does not replace researched lessons, visual diagrams, source review, translation, safety checks, or standards verification.",
+    factsTitle: "Topic facts",
+    canonicalId: "Canonical ID",
+    type: "Node type",
+    depth: "Expected depth",
+    safety: "Safety tag",
+    status: "Content status",
+    domain: "Domain",
+    section: "Section",
+    subsection: "Subsection",
+    sourceFile: "Inventory source",
+    pipelineTitle: "Publishing pipeline",
+    pipeline: [
+      "Mapped in the atlas inventory",
+      "Outlined as a lesson or reference page",
+      "Researched from authoritative sources",
+      "Illustrated with original visuals or interactive graphics",
+      "Reviewed for technical accuracy and safety",
+      "Localized into Thai/English publication copy",
+      "Published as a finished lesson",
+    ],
+    useTitle: "How to use this record",
+    useItems: [
+      "Use it to confirm that a topic has a logical home in the atlas.",
+      "Use its ID when asking to build a lesson next.",
+      "Use the domain and section to understand what prerequisites may matter.",
+      "Treat the summary as a map label, not as the final explanation.",
+    ],
+    map: "Back to knowledge map",
+    guide: "How to use this site",
+    firstLesson: "Read the first lesson",
+    publishedLesson: "Published lesson available",
+    openPublishedLesson: "Open MOSFET lesson",
+    mapped: "mapped",
+    noSafetyTag: "No explicit safety tag yet",
+  },
+  th: {
+    eyebrow: "บันทึกหัวข้อ",
+    statusLabel: "ทำแผนที่แล้ว แต่ยังไม่ใช่บทเรียนเต็ม",
+    canonicalNote:
+      "ชื่อหัวข้อ canonical ยังเป็นภาษาอังกฤษก่อน ป้ายภาษาไทยและถ้อยคำเฉพาะบริบทไทยจะเพิ่มเมื่อแต่ละหัวข้อเข้าสู่ pipeline การเผยแพร่",
+    primaryHome: "บ้านหลักของหัวข้อ",
+    whatThisIsTitle: "หน้านี้คืออะไร",
+    whatThisIs:
+      "นี่คือบันทึกหัวข้อแบบมีโครงสร้างของ atlas ใช้บอกว่าหัวข้อนี้ควรอยู่ตรงไหน ถูกจัดประเภทอย่างไร และในอนาคตควรพัฒนาเป็นบทเรียนหรือหน้าอ้างอิงแบบใด",
+    notLessonTitle: "หน้านี้ยังไม่ใช่อะไร",
+    notLesson:
+      "หน้านี้ยังไม่ใช่บทเรียนอธิบายเต็มรูปแบบ ยังไม่แทนการค้นคว้า วาดภาพ ตรวจแหล่งอ้างอิง แปล ตรวจความปลอดภัย หรือยืนยันมาตรฐาน",
+    factsTitle: "ข้อมูลหัวข้อ",
+    canonicalId: "Canonical ID",
+    type: "ชนิดของโหนด",
+    depth: "ระดับความลึกที่คาดไว้",
+    safety: "แท็กความปลอดภัย",
+    status: "สถานะเนื้อหา",
+    domain: "โดเมน",
+    section: "หมวด",
+    subsection: "หมวดย่อย",
+    sourceFile: "ไฟล์ inventory",
+    pipelineTitle: "ขั้นตอนก่อนเผยแพร่",
+    pipeline: [
+      "ทำแผนที่ไว้ใน inventory ของ atlas",
+      "วาง outline เป็นบทเรียนหรือหน้าอ้างอิง",
+      "ค้นคว้าจากแหล่งที่น่าเชื่อถือ",
+      "วาดภาพหรือทำ interactive graphic ของเราเอง",
+      "ตรวจความถูกต้องทางเทคนิคและความปลอดภัย",
+      "ปรับเป็นภาษาไทย/อังกฤษสำหรับเผยแพร่",
+      "เผยแพร่เป็นบทเรียนที่เสร็จสมบูรณ์",
+    ],
+    useTitle: "วิธีใช้บันทึกนี้",
+    useItems: [
+      "ใช้ยืนยันว่าหัวข้อนี้มีบ้านที่ชัดเจนใน atlas",
+      "ใช้ ID นี้เมื่ออยากให้สร้างบทเรียนหัวข้อนี้ต่อ",
+      "ใช้โดเมนและหมวดเพื่อดูว่าความรู้พื้นฐานใดอาจเกี่ยวข้อง",
+      "ให้มองสรุปสั้นเป็นป้ายบนแผนที่ ไม่ใช่คำอธิบายสุดท้ายของบทเรียน",
+    ],
+    map: "กลับไปแผนที่ความรู้",
+    guide: "วิธีใช้เว็บนี้",
+    firstLesson: "อ่านบทเรียนแรก",
+    publishedLesson: "มีบทเรียนเผยแพร่แล้ว",
+    openPublishedLesson: "เปิดบทเรียน MOSFET",
+    mapped: "ทำแผนที่แล้ว",
+    noSafetyTag: "ยังไม่มีแท็กความปลอดภัยเฉพาะ",
+  },
+}[locale];
+
+const mapPath = locale === "th" ? "/th/map/" : "/en/map/";
+const guidePath = locale === "th" ? "/th/guide/" : "/en/guide/";
+const firstLessonPath = locale === "th" ? "/th/lessons/what-is-electricity/" : "/en/lessons/what-is-electricity/";
+const publishedLessonPath =
+  topic.id === "ea.device.fet.mosfet" ? (locale === "th" ? "/th/lessons/mosfet/" : "/en/lessons/mosfet/") : "";
+const relatedSuggestions = relatedTopics.map((relatedTopic) =>
+  topicToSuggestion(
+    relatedTopic,
+    locale,
+    locale === "th" ? relatedTopic.type : `${relatedTopic.type} · ${relatedTopic.section || relatedTopic.domain}`,
+  ),
+);
+const relatedCopy = {
+  en: {
+    title: "Related topic records",
+    intro: "These suggestions are chosen from nearby atlas metadata: similar subject, section, component family, or technical field.",
+  },
+  th: {
+    title: "บันทึกหัวข้อที่เกี่ยวข้อง",
+    intro: "ระบบเลือกจาก metadata ใกล้เคียงใน atlas เช่น วิชา หมวด กลุ่มชิ้นส่วน หรือสาขาเทคนิคที่คล้ายกัน",
+  },
+}[locale];
+
+const facts = [
+  { label: copy.canonicalId, value: topic.id, code: true },
+  { label: copy.type, value: topic.type },
+  { label: copy.depth, value: topic.depth },
+  { label: copy.safety, value: topic.safety || copy.noSafetyTag },
+  { label: copy.status, value: locale === "th" ? copy.mapped : topic.status },
+  { label: copy.domain, value: topic.domain },
+  { label: copy.section, value: topic.section },
+  { label: copy.subsection, value: topic.subsection },
+  { label: copy.sourceFile, value: topic.sourceFile, code: true },
+].filter((fact) => fact.value);
+---
+
+<section class="topic-record-hero">
+  <p class="eyebrow">{copy.eyebrow}</p>
+  <h1>{topic.name}</h1>
+  <p class="hero-subtitle">{topic.summary}</p>
+  <div class="topic-record-pills" aria-label={copy.primaryHome}>
+    <span>{topic.type}</span>
+    {topic.depth ? <span>{topic.depth}</span> : null}
+    <span>{copy.statusLabel}</span>
+  </div>
+  <p class="topic-language-note">{copy.canonicalNote}</p>
+  <div class="hero-actions">
+    {publishedLessonPath ? <a class="button" href={publishedLessonPath}>{copy.openPublishedLesson}</a> : null}
+    <a class="button" href={mapPath}>{copy.map}</a>
+    <a class="button-secondary" href={guidePath}>{copy.guide}</a>
+    <a class="button-secondary" href={firstLessonPath}>{copy.firstLesson}</a>
+  </div>
+</section>
+
+<section class="topic-record-grid" aria-label={copy.factsTitle}>
+  <article class="topic-record-panel">
+    <p class="eyebrow">status</p>
+    <h2>{copy.whatThisIsTitle}</h2>
+    {publishedLessonPath ? <p class="state-pill topic-published-pill">{copy.publishedLesson}</p> : null}
+    <p>{copy.whatThisIs}</p>
+  </article>
+
+  <article class="topic-record-panel warning-panel">
+    <p class="eyebrow">not published yet</p>
+    <h2>{copy.notLessonTitle}</h2>
+    <p>{copy.notLesson}</p>
+  </article>
+</section>
+
+<section class="topic-record-layout">
+  <article class="topic-record-panel">
+    <p class="eyebrow">metadata</p>
+    <h2>{copy.factsTitle}</h2>
+    <dl class="topic-fact-list">
+      {facts.map((fact) => (
+        <div>
+          <dt>{fact.label}</dt>
+          <dd>{fact.code ? <code>{fact.value}</code> : fact.value}</dd>
+        </div>
+      ))}
+    </dl>
+  </article>
+
+  <div class="topic-record-stack">
+    <article class="topic-record-panel">
+      <p class="eyebrow">workflow</p>
+      <h2>{copy.pipelineTitle}</h2>
+      <ol class="topic-pipeline-list">
+        {copy.pipeline.map((step) => <li>{step}</li>)}
+      </ol>
+    </article>
+
+    <article class="topic-record-panel">
+      <p class="eyebrow">usage</p>
+      <h2>{copy.useTitle}</h2>
+      <ul class="topic-usage-list">
+        {copy.useItems.map((item) => <li>{item}</li>)}
+      </ul>
+    </article>
+  </div>
+</section>
+
+<SuggestionSection
+  locale={locale}
+  items={relatedSuggestions}
+  title={relatedCopy.title}
+  intro={relatedCopy.intro}
+/>

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Electrical Atlas">
+  <rect width="64" height="64" rx="16" fill="#07111f"/>
+  <path d="M34 7 15 37h14l-2 20 22-33H35z" fill="#64f4ff"/>
+  <path d="M12 46c13 10 27 10 40 0" fill="none" stroke="#9eff6e" stroke-width="4" stroke-linecap="round"/>
+</svg>

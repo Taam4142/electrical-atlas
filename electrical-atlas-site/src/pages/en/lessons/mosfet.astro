@@ -1,0 +1,35 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import LessonShell from "../../../components/LessonShell.astro";
+import LessonModeToggle from "../../../components/LessonModeToggle";
+import MosfetSwitchDemo from "../../../components/MosfetSwitchDemo";
+import SuggestionSection from "../../../components/SuggestionSection.astro";
+import Content from "../../../content/lessons/en/mosfet.mdx";
+import { atlasTopics } from "../../../lib/generated/atlasTopics";
+import { getLessonSuggestions } from "../../../lib/suggestions";
+
+const suggestions = getLessonSuggestions("mosfet", "en", atlasTopics);
+---
+
+<BaseLayout
+  title="What Is a MOSFET?"
+  description="A visual component lesson explaining what a MOSFET is, what it is made of, how its gate field forms a channel, and how MOSFETs work as switches."
+  lang="en"
+  counterpartPath="/th/lessons/mosfet/"
+  counterpartLabel="ไทย"
+>
+  <LessonShell
+    locale="en"
+    eyebrow="component lesson"
+    title="What Is a MOSFET?"
+    subtitle="A MOSFET is a field-controlled switch: an insulated gate uses an electric field to create or remove a conducting channel."
+    lessonId="ea.lesson.mosfet.v0.1"
+  >
+    <LessonModeToggle client:load locale="en" />
+    <MosfetSwitchDemo client:load locale="en" />
+    <div class="lesson-content">
+      <Content />
+    </div>
+    <SuggestionSection locale="en" items={suggestions} />
+  </LessonShell>
+</BaseLayout>

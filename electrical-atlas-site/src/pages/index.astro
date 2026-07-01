@@ -1,0 +1,43 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import HeroCircuit from "../components/HeroCircuit.astro";
+---
+
+<BaseLayout
+  title="Electrical Atlas"
+  description="A bilingual visual website prototype for learning electricity and electronics from first principles."
+  lang="en"
+  counterpartPath="/th/"
+  counterpartLabel="ไทย"
+>
+  <section class="hero">
+    <div>
+      <p class="eyebrow">prototype v0.1</p>
+      <h1>Electrical Atlas</h1>
+      <p class="hero-subtitle">
+        A visual, bilingual knowledge map for electricity and electronics — starting with the deceptively simple
+        question: what is electricity?
+      </p>
+      <div class="hero-actions">
+        <a class="button" href="/en/">English</a>
+        <a class="button-secondary" href="/th/" lang="th">ภาษาไทย</a>
+      </div>
+    </div>
+    <HeroCircuit />
+  </section>
+
+  <section class="choice-grid" aria-label="Prototype routes">
+    <a class="choice-card" href="/en/lessons/what-is-electricity/">
+      <h2>First lesson</h2>
+      <p>What Is Electricity? with guided and technical modes.</p>
+    </a>
+    <a class="choice-card" href="/en/lessons/mosfet/">
+      <h2>MOSFET lesson</h2>
+      <p>The first full component lesson: structure, channel formation, switching, and applications.</p>
+    </a>
+    <a class="choice-card" href="/en/map/">
+      <h2>Knowledge map</h2>
+      <p>Browse the first web version of the larger atlas backbone.</p>
+    </a>
+  </section>
+</BaseLayout>

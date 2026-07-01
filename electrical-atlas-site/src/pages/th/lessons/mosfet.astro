@@ -1,0 +1,35 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import LessonShell from "../../../components/LessonShell.astro";
+import LessonModeToggle from "../../../components/LessonModeToggle";
+import MosfetSwitchDemo from "../../../components/MosfetSwitchDemo";
+import SuggestionSection from "../../../components/SuggestionSection.astro";
+import Content from "../../../content/lessons/th/mosfet.mdx";
+import { atlasTopics } from "../../../lib/generated/atlasTopics";
+import { getLessonSuggestions } from "../../../lib/suggestions";
+
+const suggestions = getLessonSuggestions("mosfet", "th", atlasTopics);
+---
+
+<BaseLayout
+  title="MOSFET คืออะไร?"
+  description="บทเรียนภาพอธิบายว่า MOSFET คืออะไร ทำมาจากอะไร สนามไฟฟ้าที่ gate สร้างช่องนำกระแสอย่างไร และ MOSFET ทำงานเป็นสวิตช์อย่างไร"
+  lang="th"
+  counterpartPath="/en/lessons/mosfet/"
+  counterpartLabel="English"
+>
+  <LessonShell
+    locale="th"
+    eyebrow="บทเรียนชิ้นส่วน"
+    title="MOSFET คืออะไร?"
+    subtitle="MOSFET คือสวิตช์ที่ควบคุมด้วยสนามไฟฟ้า: gate ที่ถูกฉนวนกั้นไว้ใช้สนามไฟฟ้าสร้างหรือเอาช่องนำกระแสออก"
+    lessonId="ea.lesson.mosfet.v0.1"
+  >
+    <LessonModeToggle client:load locale="th" />
+    <MosfetSwitchDemo client:load locale="th" />
+    <div class="lesson-content">
+      <Content />
+    </div>
+    <SuggestionSection locale="th" items={suggestions} />
+  </LessonShell>
+</BaseLayout>

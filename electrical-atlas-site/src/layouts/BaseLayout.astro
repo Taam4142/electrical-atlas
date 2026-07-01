@@ -1,0 +1,85 @@
+---
+import "../styles/global.css";
+import LanguageSwitch from "../components/LanguageSwitch.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  lang?: "en" | "th";
+  counterpartPath?: string;
+  counterpartLabel?: string;
+}
+
+const {
+  title,
+  description,
+  lang = "en",
+  counterpartPath,
+  counterpartLabel,
+} = Astro.props;
+
+const homePath = lang === "th" ? "/th/" : "/en/";
+const guidePath = lang === "th" ? "/th/guide/" : "/en/guide/";
+const lessonPath = lang === "th" ? "/th/lessons/what-is-electricity/" : "/en/lessons/what-is-electricity/";
+const mosfetPath = lang === "th" ? "/th/lessons/mosfet/" : "/en/lessons/mosfet/";
+const mapPath = lang === "th" ? "/th/map/" : "/en/map/";
+const fullTitle = title === "Electrical Atlas" ? title : `${title} • Electrical Atlas`;
+---
+
+<!doctype html>
+<html lang={lang} data-lesson-mode="guided">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#07111f" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <title>{fullTitle}</title>
+    <script is:inline>
+      try {
+        const savedMode = localStorage.getItem("ea.lessonMode") || "guided";
+        document.documentElement.dataset.lessonMode = savedMode;
+      } catch {
+        document.documentElement.dataset.lessonMode = "guided";
+      }
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href={homePath} aria-label="Electrical Atlas home">
+        <span class="brand-mark" aria-hidden="true">⚡</span>
+        <span>
+          <strong>Electrical Atlas</strong>
+          <small>{lang === "th" ? "แผนที่ความรู้ไฟฟ้า" : "visual knowledge map"}</small>
+        </span>
+      </a>
+
+      <nav class="site-nav" aria-label="Primary">
+        <a href={guidePath}>{lang === "th" ? "วิธีใช้เว็บ" : "Guide"}</a>
+        <a href={lessonPath}>{lang === "th" ? "บทแรก" : "First lesson"}</a>
+        <a href={mosfetPath}>MOSFET</a>
+        <a href={mapPath}>{lang === "th" ? "แผนที่วิชา" : "Subject map"}</a>
+      </nav>
+
+      <LanguageSwitch locale={lang} counterpartPath={counterpartPath} counterpartLabel={counterpartLabel} />
+    </header>
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <p>
+        {lang === "th"
+          ? "ต้นแบบ v0.1 — เนื้อหาไทย/อังกฤษ, ภาพอธิบายเชิงแนวคิด, และหมายเหตุความปลอดภัยจะถูกตรวจเพิ่มทีละบท"
+          : "Prototype v0.1 — bilingual content, conceptual visuals, and safety notes will be reviewed lesson by lesson"}
+      </p>
+      <p>
+        {lang === "th"
+          ? "บริบทประเทศไทย: มอก., วสท., กฟน., กฟภ., กกพ., กสทช. และ มว. จะถูกอ้างอิงเมื่อเข้าสู่บทมาตรฐาน/ความปลอดภัย"
+          : "Thailand context: TISI/TIS, EIT, MEA, PEA, ERC, NBTC, and NIMT references will be verified when standards and safety lessons are published"}
+      </p>
+    </footer>
+  </body>
+</html>

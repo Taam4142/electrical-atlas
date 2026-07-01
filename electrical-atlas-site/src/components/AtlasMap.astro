@@ -1,0 +1,113 @@
+---
+import { atlasBrowseModes, atlasMapGroups } from "../lib/atlasMap";
+import TopicSearch from "./TopicSearch";
+
+interface Props {
+  locale?: "en" | "th";
+}
+
+const { locale = "en" } = Astro.props;
+const t = {
+  en: {
+    eyebrow: "atlas browser v0.1",
+    title: "Browse the electrical knowledge map",
+    intro:
+      "This is the first web version of the big Markdown atlas. It is not yet a full database, but it gives every future lesson a visible home.",
+    modesTitle: "Browse by",
+    groupsTitle: "Subject backbone",
+    statusLabel: "status",
+    scopeLabel: "scope",
+    examplesLabel: "example nodes",
+    mapped: "mapped",
+    prototype: "prototype",
+    planned: "planned",
+    foundation: "foundation",
+    core: "core",
+    engineering: "engineering",
+    application: "application",
+    note:
+      "Taxonomy presence does not mean a finished lesson exists. A node becomes public only after research, review, localization, visual QA, and accessibility checks.",
+  },
+  th: {
+    eyebrow: "atlas browser v0.1",
+    title: "เลือกดูแผนที่ความรู้ไฟฟ้า",
+    intro:
+      "นี่คือเวอร์ชันเว็บแรกของแผนที่ Markdown ขนาดใหญ่ ยังไม่ใช่ฐานข้อมูลเต็มรูปแบบ แต่ทำให้บทเรียนในอนาคตมีบ้านที่เห็นได้ชัด",
+    modesTitle: "เลือกดูได้ตาม",
+    groupsTitle: "แกนสาขาหลัก",
+    statusLabel: "สถานะ",
+    scopeLabel: "ขอบเขต",
+    examplesLabel: "ตัวอย่างโหนด",
+    mapped: "ทำแผนที่แล้ว",
+    prototype: "มีต้นแบบแล้ว",
+    planned: "วางแผนแล้ว",
+    foundation: "พื้นฐาน",
+    core: "แกนหลัก",
+    engineering: "วิศวกรรมสนับสนุน",
+    application: "งานประยุกต์",
+    note:
+      "การมีอยู่ใน taxonomy ไม่ได้แปลว่ามีบทเรียนสมบูรณ์แล้ว โหนดจะเผยแพร่จริงหลังผ่านการค้นคว้า ตรวจทาน แปล/ปรับภาษา QA ภาพ และตรวจการเข้าถึง",
+  },
+}[locale];
+---
+
+<section class="map-hero">
+  <p class="eyebrow">{t.eyebrow}</p>
+  <h1>{t.title}</h1>
+  <p class="hero-subtitle">{t.intro}</p>
+</section>
+
+<TopicSearch client:load locale={locale} />
+
+<section class="map-browser-panel" aria-labelledby="browse-modes-title">
+  <div class="section-heading">
+    <p class="eyebrow">navigation model</p>
+    <h2 id="browse-modes-title">{t.modesTitle}</h2>
+  </div>
+  <div class="browse-mode-row">
+    {atlasBrowseModes.map((mode) => (
+      <span>{locale === "th" ? mode.th : mode.en}</span>
+    ))}
+  </div>
+</section>
+
+<section class="map-browser-panel" aria-labelledby="atlas-groups-title">
+  <div class="section-heading">
+    <p class="eyebrow">taxonomy backbone</p>
+    <h2 id="atlas-groups-title">{t.groupsTitle}</h2>
+    <p>{t.note}</p>
+  </div>
+
+  <div class="atlas-group-grid">
+    {atlasMapGroups.map((group) => {
+      const copy = group[locale];
+      return (
+        <article class="atlas-group-card">
+          <div class="atlas-card-topline">
+            <code>{group.id}</code>
+            <span>{t[group.status]}</span>
+          </div>
+          <h3>{copy.title}</h3>
+          <p>{copy.summary}</p>
+          <dl>
+            <div>
+              <dt>{t.scopeLabel}</dt>
+              <dd>{t[group.scope]}</dd>
+            </div>
+            <div>
+              <dt>{t.examplesLabel}</dt>
+              <dd>
+                {copy.examples.map((example, index) => (
+                  <>
+                    <span>{example}</span>
+                    {index < copy.examples.length - 1 ? " · " : ""}
+                  </>
+                ))}
+              </dd>
+            </div>
+          </dl>
+        </article>
+      );
+    })}
+  </div>
+</section>

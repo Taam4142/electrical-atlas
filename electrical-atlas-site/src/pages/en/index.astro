@@ -1,0 +1,53 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import HeroCircuit from "../../components/HeroCircuit.astro";
+import SubjectMapPreview from "../../components/SubjectMapPreview.astro";
+---
+
+<BaseLayout
+  title="Electrical Atlas"
+  description="Learn electricity and electronics through visual, bilingual, knowledge-graph-based lessons."
+  lang="en"
+  counterpartPath="/th/"
+  counterpartLabel="ไทย"
+>
+  <section class="hero">
+    <div>
+      <p class="eyebrow">beginner friendly · technically honest</p>
+      <h1>Electricity, without the fog.</h1>
+      <p class="hero-subtitle">
+        Electrical Atlas starts from charge, fields, voltage, current, and energy — then grows toward components,
+        circuits, power systems, electronics, and Thai engineering practice.
+      </p>
+      <div class="hero-actions">
+        <a class="button" href="/en/guide/">Start here: How to use this site</a>
+        <a class="button" href="/en/lessons/what-is-electricity/">Start: What Is Electricity?</a>
+        <a class="button-secondary" href="/en/lessons/mosfet/">Component lesson: MOSFET</a>
+        <a class="button-secondary" href="/en/map/">Open the knowledge map</a>
+      </div>
+    </div>
+    <HeroCircuit />
+  </section>
+
+  <section class="path-grid" aria-label="Learning paths">
+    <article class="path-card">
+      <p class="eyebrow">path 01</p>
+      <h2>Concept first</h2>
+      <p>Charge → field → voltage → current → energy → circuit causality.</p>
+    </article>
+    <article class="path-card">
+      <p class="eyebrow">path 02</p>
+      <h2>Component first</h2>
+      <p>Start with MOSFET, then battery, resistor, lamp, diode, transistor, sensor, converter.</p>
+    </article>
+    <article class="path-card">
+      <p class="eyebrow">path 03</p>
+      <h2>System first</h2>
+      <p>Power supply, motor drive, embedded controller, grid, communications link.</p>
+    </article>
+  </section>
+
+  <div id="map">
+    <SubjectMapPreview locale="en" />
+  </div>
+</BaseLayout>

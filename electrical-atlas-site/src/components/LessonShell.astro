@@ -1,0 +1,28 @@
+---
+interface Props {
+  locale?: "en" | "th";
+  eyebrow: string;
+  title: string;
+  subtitle: string;
+  lessonId: string;
+}
+
+const { locale = "en", eyebrow, title, subtitle, lessonId } = Astro.props;
+---
+
+<article class="lesson-shell">
+  <header class="lesson-hero">
+    <div>
+      <p class="eyebrow">{eyebrow}</p>
+      <h1>{title}</h1>
+      <p class="hero-subtitle">{subtitle}</p>
+      <div class="lesson-meta" aria-label={locale === "th" ? "ข้อมูลบทเรียน" : "Lesson metadata"}>
+        <span>{lessonId}</span>
+        <span>{locale === "th" ? "สถานะ: ต้นแบบ" : "status: prototype"}</span>
+        <span>{locale === "th" ? "ระดับ: เริ่มต้น → เทคนิค" : "depth: beginner → technical"}</span>
+      </div>
+    </div>
+  </header>
+
+  <slot />
+</article>

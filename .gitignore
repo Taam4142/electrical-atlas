@@ -1,0 +1,10 @@
+electrical-atlas-site/node_modules/
+electrical-atlas-site/dist/
+electrical-atlas-site/.astro/
+
+.env
+.env.*
+*.log
+
+.DS_Store
+Thumbs.db
