@@ -4,6 +4,10 @@ Electrical Atlas is an early bilingual knowledge-map and lesson website for elec
 
 The long-term goal is ambitious: every important electrical/electronic topic should have a clear home, useful relationships, and eventually a visual explanation that can be browsed by subject, component, system, application, or prerequisite path.
 
+Live prototype:
+
+https://electrical-atlas-r3zv.vercel.app/
+
 The project currently has two layers:
 
 - `electrical-atlas/` — the Markdown planning corpus, taxonomy model, master subject map, and inventory files.
@@ -98,6 +102,13 @@ The site currently uses normal root-relative routes such as `/en/` and `/th/`, s
 
 See [docs/deployment.md](docs/deployment.md).
 
+## Production docs
+
+- [Lesson production system](docs/lesson-production-system.md)
+- [Lesson template](docs/lesson-template.mdx)
+- [First 20 lesson roadmap](docs/first-20-lessons.md)
+- [Lesson quality checklist](docs/lesson-quality-checklist.md)
+
 ## Content principles
 
 - English is the canonical authoring language for now.
@@ -109,11 +120,11 @@ See [docs/deployment.md](docs/deployment.md).
 
 ## Near roadmap
 
-1. Stabilize repo, CI, and deployment.
-2. Create a reusable lesson template.
+1. Keep CI and Vercel deployment green.
+2. Build the next foundation lessons: Voltage, Electric Current, Resistance and Conductance.
 3. Add explicit topic relationship fields: prerequisite, successor, part-of, used-in, made-of, alternative-to, and fails-by.
 4. Expand Thai standard references for Thailand-relevant electrical practice.
-5. Build more high-quality lessons from the taxonomy, starting with foundational components and power concepts.
+5. Improve the suggestion engine using explicit relationships rather than only metadata similarity.
 
 ## License
 

@@ -1,0 +1,215 @@
+# Lesson template
+
+Copy this file when starting a new lesson. Replace every placeholder before publishing.
+
+```mdx
+<section>
+
+## 1. A useful definition
+
+**<Topic name>** is <one-sentence definition>.
+
+In plain language: <beginner-friendly meaning>.
+
+<aside className="callout">
+
+**First mental model:** <one strong image or analogy that is useful but not misleading>.
+
+</aside>
+
+</section>
+
+<section>
+
+## 2. Why this matters
+
+<Explain where the learner will meet this topic: circuits, machines, power systems, embedded systems, repair, safety, etc.>
+
+- <Real example 1>
+- <Real example 2>
+- <Real example 3>
+
+</section>
+
+<section>
+
+## 3. Where you see it in real life
+
+<Connect the topic to familiar objects, tools, devices, systems, or measurements.>
+
+</section>
+
+<section>
+
+## 4. What it is made of / what is involved
+
+<For components: list parts/materials/terminals.>
+
+<For concepts/laws: list quantities, assumptions, and physical objects.>
+
+- **<Part or quantity>**: <role>.
+- **<Part or quantity>**: <role>.
+- **<Part or quantity>**: <role>.
+
+</section>
+
+<section>
+
+## 5. How it works physically
+
+<Explain the physical mechanism before equations. Use fields, charge, energy, forces, heat, motion, or information flow as appropriate.>
+
+Step by step:
+
+1. <Step 1>
+2. <Step 2>
+3. <Step 3>
+4. <Step 4>
+
+</section>
+
+<section>
+
+## 6. Main symbols and equations
+
+<Introduce symbols before using equations.>
+
+- `<symbol>`: <meaning and unit>
+- `<symbol>`: <meaning and unit>
+- `<symbol>`: <meaning and unit>
+
+Useful starting equation:
+
+`<equation>`
+
+This equation means <plain-language meaning>.
+
+<aside className="callout">
+
+**Simplification warning:** <state the assumption or limit of the model>.
+
+</aside>
+
+</section>
+
+<section>
+
+## 7. Practical use
+
+<Show how engineers/technicians/designers use the idea.>
+
+- <Use note 1>
+- <Use note 2>
+- <Use note 3>
+
+</section>
+
+<section>
+
+## 8. Common mistakes
+
+- **<Mistake>**: <correction>.
+- **<Mistake>**: <correction>.
+- **<Mistake>**: <correction>.
+
+</section>
+
+<section>
+
+## 9. Failure modes and limits
+
+<For a component/system: list ways it can fail.>
+
+<For a concept/law/model: list where the model stops being accurate.>
+
+- <Failure/limit 1>
+- <Failure/limit 2>
+- <Failure/limit 3>
+
+</section>
+
+<section>
+
+## 10. Safety notes
+
+<State hazards if any. If none, say why safety relevance is low.>
+
+If this connects to mains power, batteries, high current, high voltage, vehicles, buildings, or industrial systems, add a stronger warning and source plan.
+
+</section>
+
+<section className="technical-only">
+
+## Technical track
+
+<Add deeper math, device physics, circuit analysis, or standards detail here.>
+
+</section>
+
+<section>
+
+## Where this connects next
+
+Good next lessons:
+
+- <Prerequisite or sibling lesson>
+- <Successor lesson>
+- <Application lesson>
+
+</section>
+
+<section>
+
+## Reference direction for review
+
+- <Textbook/source family>
+- <Standards/source family>
+- <Datasheet/application-note family if relevant>
+- Thai context: <TISI/EIT/MEA/PEA/ERC/current Thai source check if relevant>
+
+</section>
+```
+
+## Route wrapper checklist
+
+Each published lesson also needs an Astro route wrapper:
+
+Before using a new `<lesson-key>`, add that key and its curated suggestions in:
+
+```text
+electrical-atlas-site/src/lib/suggestions.ts
+```
+
+```astro
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import LessonShell from "../../../components/LessonShell.astro";
+import SuggestionSection from "../../../components/SuggestionSection.astro";
+import Content from "../../../content/lessons/en/<slug>.mdx";
+import { atlasTopics } from "../../../lib/generated/atlasTopics";
+import { getLessonSuggestions } from "../../../lib/suggestions";
+
+const suggestions = getLessonSuggestions("<lesson-key>", "en", atlasTopics);
+---
+
+<BaseLayout
+  title="<Page title>"
+  description="<Page description>"
+  lang="en"
+  counterpartPath="/th/lessons/<slug>/"
+  counterpartLabel="Thai"
+>
+  <LessonShell
+    locale="en"
+    eyebrow="<lesson type>"
+    title="<Lesson title>"
+    subtitle="<One-sentence promise>"
+    lessonId="ea.lesson.<slug>.v0.1"
+  >
+    <div class="lesson-content">
+      <Content />
+    </div>
+    <SuggestionSection locale="en" items={suggestions} />
+  </LessonShell>
+</BaseLayout>
+```
