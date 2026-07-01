@@ -1,14 +1,17 @@
 import { describe, expect, it } from "vitest";
 import {
   calculateChargeFromCurrentTime,
+  calculateConductanceFromResistance,
   calculateCurrentFromChargeTime,
   calculateEnergyFromVoltageCharge,
   calculateOhmsLaw,
+  calculateResistanceFromConductance,
   calculateVoltageFromEnergyCharge,
   estimateCurrentFlow,
   estimateElectronDriftSpeed,
   estimateFieldArrivalFraction,
   estimateLampCircuit,
+  estimateResistanceConductance,
   estimateVoltageEnergy,
 } from "../lib/physics";
 
@@ -49,6 +52,22 @@ describe("physics helpers", () => {
     expect(estimate.chargeMilliCoulombs).toBeCloseTo(1000, 10);
     expect(estimate.electronCount).toBeGreaterThan(6e18);
     expect(estimate.driftSpeedMillimetersPerSecond).toBeGreaterThan(0);
+  });
+
+  it("treats conductance as the reciprocal of resistance", () => {
+    expect(calculateConductanceFromResistance(100)).toBeCloseTo(0.01, 12);
+    expect(calculateResistanceFromConductance(0.01)).toBeCloseTo(100, 12);
+
+    const estimate = estimateResistanceConductance({
+      voltage: 12,
+      resistanceOhms: 24,
+      maxPowerWatts: 10,
+    });
+
+    expect(estimate.conductanceSiemens).toBeCloseTo(1 / 24, 12);
+    expect(estimate.currentAmps).toBeCloseTo(0.5, 12);
+    expect(estimate.powerWatts).toBeCloseTo(6, 12);
+    expect(estimate.heatLevel).toBeCloseTo(0.6, 12);
   });
 
   it("estimates slow electron drift compared with field propagation", () => {

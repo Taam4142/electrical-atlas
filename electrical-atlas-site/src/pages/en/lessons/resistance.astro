@@ -1,0 +1,35 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import LessonShell from "../../../components/LessonShell.astro";
+import LessonModeToggle from "../../../components/LessonModeToggle";
+import ResistanceConductanceDemo from "../../../components/ResistanceConductanceDemo";
+import SuggestionSection from "../../../components/SuggestionSection.astro";
+import Content from "../../../content/lessons/en/resistance.mdx";
+import { atlasTopics } from "../../../lib/generated/atlasTopics";
+import { getLessonSuggestions } from "../../../lib/suggestions";
+
+const suggestions = getLessonSuggestions("resistance", "en", atlasTopics);
+---
+
+<BaseLayout
+  title="Resistance and Conductance"
+  description="A visual foundation lesson explaining resistance, conductance, Ohm's law intuition, current limiting, and heat."
+  lang="en"
+  counterpartPath="/th/lessons/resistance/"
+  counterpartLabel="ไทย"
+>
+  <LessonShell
+    locale="en"
+    eyebrow="foundation lesson"
+    title="Resistance and Conductance"
+    subtitle="Resistance tells how strongly a path opposes current. Conductance tells how easily that path lets current through."
+    lessonId="ea.lesson.resistance.v0.1"
+  >
+    <LessonModeToggle client:load locale="en" />
+    <ResistanceConductanceDemo client:load locale="en" />
+    <div class="lesson-content">
+      <Content />
+    </div>
+    <SuggestionSection locale="en" items={suggestions} />
+  </LessonShell>
+</BaseLayout>

@@ -1,7 +1,7 @@
 import type { AtlasTopic } from "./generated/atlasTopics";
 
 export type Locale = "en" | "th";
-export type LessonKey = "what-is-electricity" | "voltage" | "current" | "mosfet";
+export type LessonKey = "what-is-electricity" | "voltage" | "current" | "resistance" | "mosfet";
 export type SuggestionKind = "lesson" | "topic";
 
 export interface SuggestionItem {
@@ -61,6 +61,18 @@ const lessonLabels: Record<LessonKey, Record<Locale, { title: string; summary: s
       href: "/th/lessons/current/",
     },
   },
+  resistance: {
+    en: {
+      title: "Resistance and Conductance",
+      summary: "Resistance and conductance explained as opposite views of how a path limits or allows current.",
+      href: "/en/lessons/resistance/",
+    },
+    th: {
+      title: "ความต้านทานและความนำไฟฟ้า",
+      summary: "ความต้านทานและความนำไฟฟ้า อธิบายเป็นสองมุมของเส้นทางที่จำกัดหรือยอมให้กระแสผ่าน",
+      href: "/th/lessons/resistance/",
+    },
+  },
   mosfet: {
     en: {
       title: "What Is a MOSFET?",
@@ -85,6 +97,11 @@ const lessonSuggestionEntries: Record<LessonKey, LessonSuggestionEntry[]> = {
     {
       kind: "lesson",
       key: "current",
+      relation: { en: "next foundation lesson", th: "บทพื้นฐานถัดไป" },
+    },
+    {
+      kind: "lesson",
+      key: "resistance",
       relation: { en: "next foundation lesson", th: "บทพื้นฐานถัดไป" },
     },
     {
@@ -130,6 +147,11 @@ const lessonSuggestionEntries: Record<LessonKey, LessonSuggestionEntry[]> = {
       relation: { en: "natural next lesson", th: "บทถัดไปตามธรรมชาติ" },
     },
     {
+      kind: "lesson",
+      key: "resistance",
+      relation: { en: "sets up Ohm's law", th: "ปูทางสู่กฎของโอห์ม" },
+    },
+    {
       kind: "topic",
       topicId: "ea.fundamentals.current",
       relation: { en: "natural next quantity", th: "ปริมาณถัดไป" },
@@ -173,6 +195,11 @@ const lessonSuggestionEntries: Record<LessonKey, LessonSuggestionEntry[]> = {
     },
     {
       kind: "lesson",
+      key: "resistance",
+      relation: { en: "natural next lesson", th: "บทถัดไปตามธรรมชาติ" },
+    },
+    {
+      kind: "lesson",
       key: "what-is-electricity",
       relation: { en: "foundation refresher", th: "ย้อนพื้นฐาน" },
     },
@@ -210,6 +237,53 @@ const lessonSuggestionEntries: Record<LessonKey, LessonSuggestionEntry[]> = {
       kind: "topic",
       topicId: "ea.device.fet.mosfet.soa",
       relation: { en: "component current limit", th: "ขีดจำกัดกระแสของชิ้นส่วน" },
+    },
+  ],
+  resistance: [
+    {
+      kind: "lesson",
+      key: "voltage",
+      relation: { en: "paired foundation", th: "พื้นฐานที่คู่กัน" },
+    },
+    {
+      kind: "lesson",
+      key: "current",
+      relation: { en: "paired foundation", th: "พื้นฐานที่คู่กัน" },
+    },
+    {
+      kind: "topic",
+      topicId: "ea.circuit.law.ohm",
+      relation: { en: "next practical law", th: "กฎใช้งานถัดไป" },
+    },
+    {
+      kind: "topic",
+      topicId: "ea.fundamentals.power",
+      relation: { en: "heat and energy link", th: "เชื่อมสู่ความร้อนและพลังงาน" },
+    },
+    {
+      kind: "topic",
+      topicId: "ea.fundamentals.conductance",
+      relation: { en: "reciprocal quantity", th: "ปริมาณส่วนกลับ" },
+    },
+    {
+      kind: "topic",
+      topicId: "ea.component.resistor",
+      relation: { en: "first physical component", th: "ชิ้นส่วนจริงชิ้นแรก" },
+    },
+    {
+      kind: "topic",
+      topicId: "ea.transport.ohm-microscopic",
+      relation: { en: "material physics view", th: "มุมมองฟิสิกส์วัสดุ" },
+    },
+    {
+      kind: "topic",
+      topicId: "ea.circuit.topology.series-parallel",
+      relation: { en: "combine resistive paths", th: "รวมเส้นทางต้านทาน" },
+    },
+    {
+      kind: "topic",
+      topicId: "ea.component.resistor.current-sense",
+      relation: { en: "measurement application", th: "งานวัดกระแส" },
     },
   ],
   mosfet: [

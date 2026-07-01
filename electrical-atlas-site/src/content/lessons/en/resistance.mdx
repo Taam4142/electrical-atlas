@@ -1,0 +1,289 @@
+<section>
+
+## 1. A useful definition
+
+**Resistance** is how strongly a material, component, or path opposes electric current.
+
+The unit is the **ohm**, written `Ω`.
+
+**Conductance** is the opposite idea: how easily a path lets current through.
+
+The unit is the **siemens**, written `S`.
+
+The two are reciprocals:
+
+`G = 1 / R`
+
+`R = 1 / G`
+
+In plain language: resistance is electrical “hard to pass through”; conductance is electrical “easy to pass through.”
+
+<aside className="callout">
+
+**First mental model:** resistance is like a narrow or rough path for charge movement. A wider, smoother path has more conductance. This is only a model, but it helps explain why the same voltage can create different currents.
+
+</aside>
+
+</section>
+
+<section>
+
+## 2. Why resistance matters
+
+Resistance is the missing piece that connects voltage to current.
+
+If voltage is the energy difference per charge, and current is how much charge crosses a point per second, resistance tells us how much current the circuit path allows for a given voltage.
+
+That leads to the most famous beginner circuit relationship:
+
+`I = V / R`
+
+Resistance matters because it controls:
+
+- LED current,
+- heating in wires and PCB traces,
+- voltage drops,
+- sensor readings,
+- battery drain,
+- signal loading,
+- motor and coil current,
+- short-circuit severity,
+- power loss and efficiency.
+
+</section>
+
+<section>
+
+## 3. Where you see resistance in real life
+
+You see resistance in:
+
+- resistors,
+- wires and cable runs,
+- contacts and connectors,
+- switches and relays,
+- heating elements,
+- incandescent lamp filaments,
+- motor windings,
+- PCB traces,
+- sensors such as thermistors and strain gauges,
+- semiconductor channels such as MOSFET on-resistance.
+
+Sometimes resistance is intentional, like a resistor that limits LED current. Sometimes it is unwanted, like contact resistance that makes a connector heat up.
+
+</section>
+
+<section>
+
+## 4. What is involved
+
+Resistance depends on several things:
+
+- **Material**: copper conducts well; rubber insulates well; carbon, silicon, and alloys can sit between extremes.
+- **Length**: a longer path usually has more resistance.
+- **Cross-sectional area**: a wider path usually has less resistance.
+- **Temperature**: many metals increase resistance as they heat; some materials do the opposite.
+- **Geometry**: bends, thin traces, constrictions, and contacts matter.
+- **Device physics**: semiconductors, lamps, thermistors, and arcs are not always simple fixed resistors.
+
+For a uniform conductor, a common model is:
+
+`R = ρL / A`
+
+where `ρ` is resistivity, `L` is length, and `A` is cross-sectional area.
+
+</section>
+
+<section>
+
+## 5. How resistance works physically
+
+In a metal, mobile electrons respond to the electric field, but they constantly interact with the material lattice, impurities, defects, and vibrations. These interactions scatter the charge carriers and limit the average current.
+
+Step by step:
+
+1. A voltage creates an electric field in a conducting path.
+2. Mobile charge carriers respond to that field.
+3. Material structure and temperature interrupt the motion through scattering.
+4. The result is a limited current for the applied voltage.
+5. The electrical energy lost in that path usually becomes heat.
+
+Resistance is not a magic “current eater.” It is a property of the path that converts some electrical energy into heat while setting the current-voltage relationship.
+
+</section>
+
+<section>
+
+## 6. Resistance versus conductance
+
+Resistance and conductance describe the same thing from opposite directions.
+
+- High resistance means low conductance.
+- Low resistance means high conductance.
+- `1 Ω` corresponds to `1 S`.
+- `100 Ω` corresponds to `0.01 S`.
+- `1 kΩ` corresponds to `0.001 S`, or `1 mS`.
+
+Most beginner electronics talks about resistance because resistors are labeled in ohms. Conductance becomes useful when thinking about parallel paths, admittance, semiconductor channels, and how “open” a path is.
+
+</section>
+
+<section>
+
+## 7. Main symbols and equations
+
+Common symbols:
+
+- `R`: resistance in ohms.
+- `G`: conductance in siemens.
+- `V`: voltage in volts.
+- `I`: current in amperes.
+- `P`: power in watts.
+
+Core equations:
+
+`I = V / R`
+
+`V = IR`
+
+`R = V / I`
+
+`G = 1 / R`
+
+`I = GV`
+
+Power converted to heat in a resistor can be written:
+
+`P = VI`
+
+`P = I²R`
+
+`P = V² / R`
+
+The last equation is why lowering resistance at the same voltage can make heat rise fast.
+
+</section>
+
+<section>
+
+## 8. Practical use
+
+Engineers and technicians use resistance to ask:
+
+- What resistor limits this LED to a safe current?
+- How much voltage will drop across this wire?
+- Will this trace or cable overheat?
+- Is this fuse seeing a short-circuit condition?
+- Is this sensor resistance changing with temperature, strain, light, or position?
+- Is this MOSFET on-resistance low enough for the load current?
+- Is this connector developing dangerous contact resistance?
+
+Resistance is usually measured with an ohmmeter when the circuit is unpowered. Measuring resistance inside a powered circuit can damage the meter, damage the circuit, or give meaningless results.
+
+</section>
+
+<section>
+
+## 9. Common mistakes
+
+- **"Resistance uses up current."** Loads convert energy; current is not a consumable fluid.
+- **"Resistance is always bad."** Resistance is useful for current limiting, sensing, biasing, heating, damping, and protection.
+- **"A resistor always has the same value."** Real parts have tolerance, temperature coefficient, voltage coefficient, aging, noise, and power limits.
+- **"Zero ohms means no problem."** Very low resistance can mean huge current if the source can supply it.
+- **"An open circuit has high resistance, so it is safe."** It may still have dangerous voltage or stored energy.
+- **"Conductance is a different phenomenon."** Conductance is the reciprocal view of resistance.
+
+</section>
+
+<section>
+
+## 10. Failure modes and limits
+
+Resistance-related failures include:
+
+- overheated wires,
+- burned resistors,
+- PCB trace damage,
+- connector heating from contact resistance,
+- thermal runaway in some devices,
+- insulation breakdown after overheating,
+- poor sensor accuracy from lead resistance,
+- unexpected voltage drop in long cables,
+- fire risk from short circuits and overcurrent.
+
+Current creates heat in resistive paths. If heat cannot leave fast enough, temperature rises, material properties change, and failure can accelerate.
+
+</section>
+
+<section>
+
+## 11. Safety notes
+
+This lesson is conceptual. Do not use it as instructions for sizing wires, choosing breakers, modifying building wiring, repairing appliances, or working inside switchboards.
+
+Resistance, current, and heat are central to electrical safety. Real systems require proper cable sizing, protective devices, grounding/earthing, enclosure ratings, installation method, ambient temperature, and regulatory compliance.
+
+For Thailand-specific installation or safety content, verify current TISI/TIS, EIT, MEA, PEA, ERC, and related IEC/IEEE references before publication. The physics definition is stable; the legal and safety details must be checked from official sources.
+
+</section>
+
+<section className="technical-only">
+
+## Technical track
+
+For a uniform conductor:
+
+`R = ρL / A`
+
+where `ρ` is resistivity. Conductivity is:
+
+`σ = 1 / ρ`
+
+Conductance for the same simple geometry is:
+
+`G = σA / L`
+
+Microscopic Ohm's law relates current density `J` and electric field `E`:
+
+`J = σE`
+
+For many metals over limited ranges, resistance changes approximately with temperature:
+
+`R(T) = R0[1 + α(T - T0)]`
+
+This linear form is only an approximation. Semiconductors, thermistors, lamps, varistors, arcs, and many electronic devices are nonlinear. Their current-voltage relationship cannot be described by one fixed resistance over all operating points.
+
+</section>
+
+<section>
+
+## Where this connects next
+
+Resistance and conductance connect directly to:
+
+- voltage,
+- current,
+- Ohm's law,
+- electric power and heat,
+- resistors,
+- wires and PCB traces,
+- fuses and breakers,
+- sensors,
+- MOSFET on-resistance,
+- grounding, short circuits, and safe measurement.
+
+Good next lessons are Ohm's Law, Electrical Power and Energy, Resistor, Series and Parallel Circuits, Fuse/Breaker/Short Circuit, and MOSFET On-Resistance.
+
+</section>
+
+<section>
+
+## Reference direction for review
+
+- Introductory circuit theory references for resistance, conductance, Ohm's law, and power.
+- Electromagnetism and materials references for resistivity, conductivity, current density, and microscopic Ohm's law.
+- Practical electronics references for resistor ratings, tolerances, temperature coefficient, and PCB trace heating.
+- Safety and installation references for cable sizing, overcurrent protection, and thermal limits.
+- Thai context: verify current TISI/TIS, EIT, MEA, PEA, ERC, and related IEC/IEEE references before making installation or legal claims.
+
+</section>

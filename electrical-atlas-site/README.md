@@ -8,10 +8,14 @@ It turns the planning corpus in `../electrical-atlas/` into a small Astro app wi
 - a bilingual guide page for using the prototype;
 - a foundation lesson: **Voltage / แรงดันไฟฟ้า**;
 - a foundation lesson: **Electric Current / กระแสไฟฟ้า**;
+- a foundation lesson: **Resistance and Conductance / ความต้านทานและความนำไฟฟ้า**;
 - a first lesson: **What Is Electricity? / ไฟฟ้าคืออะไร?**;
 - a first full component lesson: **MOSFET / MOSFET คืออะไร?**;
 - a guided/technical mode toggle;
 - one React interactive visual for a battery-switch-lamp circuit;
+- one React interactive visual for voltage as energy per charge;
+- one React interactive visual for current as charge flow;
+- one React interactive visual for resistance/conductance as current limiting and heat;
 - one React interactive visual for MOSFET channel formation;
 - pure TypeScript physics helpers with tests.
 - a searchable topic browser generated from the Markdown inventory.
@@ -36,6 +40,8 @@ npm.cmd test
 - `/th/lessons/voltage/` — Thai Voltage foundation lesson
 - `/en/lessons/current/` — English Electric Current foundation lesson
 - `/th/lessons/current/` — Thai Electric Current foundation lesson
+- `/en/lessons/resistance/` — English Resistance and Conductance foundation lesson
+- `/th/lessons/resistance/` — Thai Resistance and Conductance foundation lesson
 
 - `/` — language gateway and project overview
 - `/en/` — English landing page

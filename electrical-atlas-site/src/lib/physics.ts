@@ -33,6 +33,15 @@ export type CurrentFlowEstimate = {
   driftSpeedMillimetersPerSecond: number;
 };
 
+export type ResistanceConductanceEstimate = {
+  voltage: number;
+  resistanceOhms: number;
+  conductanceSiemens: number;
+  currentAmps: number;
+  powerWatts: number;
+  heatLevel: number;
+};
+
 export function clamp(value: number, min = 0, max = 1): number {
   if (Number.isNaN(value)) {
     return min;
@@ -57,6 +66,46 @@ export function calculateOhmsLaw(voltage: number, resistance: number): OhmsLawRe
     resistance,
     current,
     power: voltage * current,
+  };
+}
+
+export function calculateConductanceFromResistance(resistanceOhms: number): number {
+  if (!Number.isFinite(resistanceOhms) || resistanceOhms <= 0) {
+    throw new Error("Resistance must be a positive finite number.");
+  }
+
+  return 1 / resistanceOhms;
+}
+
+export function calculateResistanceFromConductance(conductanceSiemens: number): number {
+  if (!Number.isFinite(conductanceSiemens) || conductanceSiemens <= 0) {
+    throw new Error("Conductance must be a positive finite number.");
+  }
+
+  return 1 / conductanceSiemens;
+}
+
+export function estimateResistanceConductance(params: {
+  voltage: number;
+  resistanceOhms: number;
+  maxPowerWatts?: number;
+}): ResistanceConductanceEstimate {
+  const { voltage, resistanceOhms, maxPowerWatts = 6 } = params;
+
+  if (!Number.isFinite(maxPowerWatts) || maxPowerWatts <= 0) {
+    throw new Error("Maximum power must be a positive finite number.");
+  }
+
+  const ohms = calculateOhmsLaw(voltage, resistanceOhms);
+  const conductanceSiemens = calculateConductanceFromResistance(resistanceOhms);
+
+  return {
+    voltage,
+    resistanceOhms,
+    conductanceSiemens,
+    currentAmps: ohms.current,
+    powerWatts: ohms.power,
+    heatLevel: clamp(Math.abs(ohms.power) / maxPowerWatts),
   };
 }
 

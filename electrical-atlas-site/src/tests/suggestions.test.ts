@@ -18,6 +18,7 @@ describe("suggestion system", () => {
 
     expect(suggestions.some((suggestion) => suggestion.href === "/th/lessons/voltage/")).toBe(true);
     expect(suggestions.some((suggestion) => suggestion.href === "/th/lessons/current/")).toBe(true);
+    expect(suggestions.some((suggestion) => suggestion.href === "/th/lessons/resistance/")).toBe(true);
     expect(suggestions.some((suggestion) => suggestion.href === "/th/lessons/mosfet/")).toBe(true);
     expect(suggestions.every((suggestion) => suggestion.href.startsWith("/th/"))).toBe(true);
   });
@@ -43,6 +44,18 @@ describe("suggestion system", () => {
     expect(hrefs).toContain("/en/topics/circuit-law-ohm/");
     expect(hrefs).toContain("/en/topics/transport-current-density/");
     expect(hrefs).toContain("/en/topics/component-fuse/");
+  });
+
+  it("builds curated resistance lesson suggestions", () => {
+    const suggestions = getLessonSuggestions("resistance", "en", atlasTopics);
+    const hrefs = suggestions.map((suggestion) => suggestion.href);
+
+    expect(suggestions.length).toBeGreaterThanOrEqual(8);
+    expect(hrefs).toContain("/en/lessons/voltage/");
+    expect(hrefs).toContain("/en/lessons/current/");
+    expect(hrefs).toContain("/en/topics/circuit-law-ohm/");
+    expect(hrefs).toContain("/en/topics/component-resistor/");
+    expect(hrefs).toContain("/en/topics/transport-ohm-microscopic/");
   });
 
   it("finds nearby topic records without recommending the current topic", () => {

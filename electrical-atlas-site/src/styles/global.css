@@ -1050,6 +1050,61 @@ p {
   transition: width 180ms ease;
 }
 
+.resistance-demo-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.65fr);
+  gap: 1rem;
+  align-items: stretch;
+}
+
+.resistance-battery {
+  fill: #10233a;
+  stroke: var(--cyan);
+  stroke-width: 3;
+  filter: url("#resistanceGlow");
+}
+
+.resistance-lead {
+  fill: none;
+  stroke: rgba(100, 244, 255, 0.75);
+  stroke-width: 10;
+  stroke-linecap: round;
+  filter: url("#resistanceGlow");
+}
+
+.resistance-body {
+  fill: rgba(248, 214, 109, 0.13);
+  stroke: rgba(248, 214, 109, 0.72);
+  stroke-width: 4;
+  filter: url("#resistanceGlow");
+  transition: d 180ms ease;
+}
+
+.resistance-current-ribbon {
+  fill: none;
+  stroke: url("#resistanceGradient");
+  stroke-linecap: round;
+  filter: url("#resistanceGlow");
+  transition:
+    stroke-dasharray 180ms ease,
+    stroke-width 180ms ease;
+}
+
+.resistance-heat-halo {
+  fill: var(--danger);
+  filter: url("#resistanceGlow");
+  transition:
+    opacity 180ms ease,
+    r 180ms ease;
+}
+
+.resistance-symbol {
+  fill: #fff4d2;
+  font-size: 30px;
+  font-weight: 950;
+  text-anchor: middle;
+}
+
 .node-card {
   padding: 1.1rem;
 }
@@ -1340,7 +1395,8 @@ input[type="range"] {
   .circuit-demo-grid,
   .mosfet-demo-grid,
   .voltage-demo-grid,
-  .current-demo-grid {
+  .current-demo-grid,
+  .resistance-demo-grid {
     grid-template-columns: 1fr;
   }
 

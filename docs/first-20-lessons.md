@@ -21,7 +21,7 @@ The sequence is not purely academic. It is designed for the website experience: 
 | 2 | Electric Charge | `ea.fundamentals.charge` | P1 | planned | Explains what is moving, stored, separated, and conserved. |
 | 3 | Voltage | `ea.fundamentals.voltage` | P1 | prototype | Learners need energy-per-charge before circuits make sense. |
 | 4 | Electric Current | `ea.fundamentals.current` | P1 | prototype | The core flow quantity behind circuits, signals, and power. |
-| 5 | Resistance and Conductance | `ea.fundamentals.resistance` | P1 | planned | Turns material behavior into circuit behavior. |
+| 5 | Resistance and Conductance | `ea.fundamentals.resistance` | P1 | prototype | Turns material behavior into circuit behavior. |
 | 6 | Electrical Power and Energy | `ea.fundamentals.power` / `ea.fundamentals.energy` | P1 | planned | Connects electricity to heat, work, battery life, and safety. |
 | 7 | Ohm's Law | `ea.circuit.law.ohm` | P1 | planned | First quantitative law most learners will use. |
 | 8 | Series and Parallel Circuits | `ea.circuit.topology.series-parallel` | P1 | planned | Needed for almost every beginner circuit explanation. |
@@ -77,8 +77,8 @@ This batch prepares the way for power electronics, embedded outputs, protection,
 
 Recommended immediate order:
 
-1. **Resistance and Conductance** - sets up Ohm's law, heat, and real components.
-2. **Ohm's Law** - turns voltage/current/resistance into the first practical circuit law.
-3. **Electrical Power and Energy** - connects voltage and current to heat, work, battery life, and safety.
+1. **Ohm's Law** - turns voltage/current/resistance into the first practical circuit law.
+2. **Electrical Power and Energy** - connects voltage and current to heat, work, battery life, and safety.
+3. **Battery** - gives learners a real voltage source and energy store to connect to circuits.
 
-After those, build **Battery**. Then the original "battery lights a lamp" lesson can become a strong integrated beginner lesson rather than a lonely one-off.
+After those, build **Series and Parallel Circuits**. Then the original "battery lights a lamp" lesson can become a strong integrated beginner lesson rather than a lonely one-off.
