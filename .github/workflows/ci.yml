@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  website:
+    name: Website checks
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: electrical-atlas-site
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: electrical-atlas-site/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate topic index
+        run: npm run generate:topics
+
+      - name: Run tests
+        run: npm test
+
+      - name: Build static site
+        run: npm run build
