@@ -147,6 +147,13 @@ export const atlasRelationships: AtlasRelationship[] = [
   },
   {
     source: { kind: "lesson", id: "what-is-electricity" },
+    target: { kind: "lesson", id: "battery" },
+    type: "energy-source",
+    weight: 62,
+    label: { en: "first real source lesson" },
+  },
+  {
+    source: { kind: "lesson", id: "what-is-electricity" },
     target: { kind: "lesson", id: "mosfet" },
     type: "application",
     weight: 55,
@@ -223,6 +230,13 @@ export const atlasRelationships: AtlasRelationship[] = [
   },
   {
     source: { kind: "lesson", id: "voltage" },
+    target: { kind: "lesson", id: "battery" },
+    type: "energy-source",
+    weight: 68,
+    label: { en: "real voltage source" },
+  },
+  {
+    source: { kind: "lesson", id: "voltage" },
     target: { kind: "topic", id: "ea.fundamentals.current" },
     type: "paired-foundation",
     weight: 80,
@@ -295,6 +309,13 @@ export const atlasRelationships: AtlasRelationship[] = [
     type: "energy-link",
     weight: 74,
     label: { en: "energy flow rate applied" },
+  },
+  {
+    source: { kind: "lesson", id: "current" },
+    target: { kind: "lesson", id: "battery" },
+    type: "energy-source",
+    weight: 62,
+    label: { en: "source current limits" },
   },
   {
     source: { kind: "lesson", id: "current" },
@@ -536,6 +557,13 @@ export const atlasRelationships: AtlasRelationship[] = [
   },
   {
     source: { kind: "lesson", id: "power-energy" },
+    target: { kind: "lesson", id: "battery" },
+    type: "energy-source",
+    weight: 86,
+    label: { en: "next energy source lesson" },
+  },
+  {
+    source: { kind: "lesson", id: "power-energy" },
     target: { kind: "topic", id: "ea.component.resistor" },
     type: "component",
     weight: 76,
@@ -568,6 +596,98 @@ export const atlasRelationships: AtlasRelationship[] = [
     type: "successor",
     weight: 58,
     label: { en: "next circuit skill" },
+  },
+
+  {
+    source: { kind: "lesson", id: "battery" },
+    target: { kind: "lesson", id: "power-energy" },
+    type: "prerequisite",
+    weight: 100,
+  },
+  {
+    source: { kind: "lesson", id: "battery" },
+    target: { kind: "lesson", id: "voltage" },
+    type: "prerequisite",
+    weight: 96,
+  },
+  {
+    source: { kind: "lesson", id: "battery" },
+    target: { kind: "lesson", id: "current" },
+    type: "prerequisite",
+    weight: 94,
+  },
+  {
+    source: { kind: "lesson", id: "battery" },
+    target: { kind: "lesson", id: "ohms-law" },
+    type: "prerequisite",
+    weight: 88,
+  },
+  {
+    source: { kind: "lesson", id: "battery" },
+    target: { kind: "topic", id: "ea.storage.electrochemistry" },
+    type: "technical-definition",
+    weight: 86,
+  },
+  {
+    source: { kind: "lesson", id: "battery" },
+    target: { kind: "topic", id: "ea.storage.cell.metric" },
+    type: "measurement",
+    weight: 82,
+    label: { en: "capacity and energy metrics" },
+  },
+  {
+    source: { kind: "lesson", id: "battery" },
+    target: { kind: "topic", id: "ea.storage.lithium-ion" },
+    type: "component",
+    weight: 78,
+    label: { en: "common rechargeable chemistry" },
+  },
+  {
+    source: { kind: "lesson", id: "battery" },
+    target: { kind: "topic", id: "ea.storage.lead-acid" },
+    type: "component",
+    weight: 72,
+    label: { en: "classic high-energy source" },
+  },
+  {
+    source: { kind: "lesson", id: "battery" },
+    target: { kind: "topic", id: "ea.storage.bms" },
+    type: "safety",
+    weight: 70,
+    label: { en: "protection and monitoring" },
+  },
+  {
+    source: { kind: "lesson", id: "battery" },
+    target: { kind: "topic", id: "ea.storage.charging" },
+    type: "successor",
+    weight: 68,
+    label: { en: "charging control" },
+  },
+  {
+    source: { kind: "lesson", id: "battery" },
+    target: { kind: "topic", id: "ea.storage.thermal-runaway" },
+    type: "failure-mode",
+    weight: 66,
+  },
+  {
+    source: { kind: "lesson", id: "battery" },
+    target: { kind: "topic", id: "ea.safety.battery" },
+    type: "safety",
+    weight: 64,
+  },
+  {
+    source: { kind: "lesson", id: "battery" },
+    target: { kind: "topic", id: "ea.power.charger.battery" },
+    type: "successor",
+    weight: 60,
+    label: { en: "charger system" },
+  },
+  {
+    source: { kind: "lesson", id: "battery" },
+    target: { kind: "topic", id: "ea.storage.pack" },
+    type: "successor",
+    weight: 56,
+    label: { en: "pack engineering" },
   },
 
   {
@@ -748,6 +868,74 @@ export const atlasRelationships: AtlasRelationship[] = [
     target: { kind: "topic", id: "ea.transport.joule-heating" },
     type: "energy-link",
     weight: 76,
+  },
+
+  {
+    source: { kind: "topic", id: "ea.storage.electrochemistry" },
+    target: { kind: "topic", id: "ea.storage.cell.metric" },
+    type: "measurement",
+    weight: 100,
+  },
+  {
+    source: { kind: "topic", id: "ea.storage.electrochemistry" },
+    target: { kind: "topic", id: "ea.storage.lithium-ion" },
+    type: "component",
+    weight: 92,
+  },
+  {
+    source: { kind: "topic", id: "ea.storage.electrochemistry" },
+    target: { kind: "topic", id: "ea.storage.lead-acid" },
+    type: "component",
+    weight: 86,
+  },
+  {
+    source: { kind: "topic", id: "ea.storage.electrochemistry" },
+    target: { kind: "topic", id: "ea.storage.bms" },
+    type: "safety",
+    weight: 78,
+  },
+  {
+    source: { kind: "topic", id: "ea.storage.electrochemistry" },
+    target: { kind: "topic", id: "ea.storage.charging" },
+    type: "successor",
+    weight: 74,
+  },
+  {
+    source: { kind: "topic", id: "ea.storage.electrochemistry" },
+    target: { kind: "topic", id: "ea.safety.battery" },
+    type: "safety",
+    weight: 70,
+  },
+  {
+    source: { kind: "topic", id: "ea.storage.electrochemistry" },
+    target: { kind: "topic", id: "ea.storage.thermal-runaway" },
+    type: "failure-mode",
+    weight: 68,
+  },
+
+  {
+    source: { kind: "topic", id: "ea.storage.cell.metric" },
+    target: { kind: "topic", id: "ea.fundamentals.voltage" },
+    type: "prerequisite",
+    weight: 92,
+  },
+  {
+    source: { kind: "topic", id: "ea.storage.cell.metric" },
+    target: { kind: "topic", id: "ea.fundamentals.energy" },
+    type: "energy-link",
+    weight: 90,
+  },
+  {
+    source: { kind: "topic", id: "ea.storage.cell.metric" },
+    target: { kind: "topic", id: "ea.fundamentals.current" },
+    type: "prerequisite",
+    weight: 86,
+  },
+  {
+    source: { kind: "topic", id: "ea.storage.cell.metric" },
+    target: { kind: "topic", id: "ea.storage.soc-soh" },
+    type: "measurement",
+    weight: 80,
   },
 
   {

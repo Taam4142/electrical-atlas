@@ -1,0 +1,35 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import LessonShell from "../../../components/LessonShell.astro";
+import LessonModeToggle from "../../../components/LessonModeToggle";
+import BatteryDemo from "../../../components/BatteryDemo";
+import SuggestionSection from "../../../components/SuggestionSection.astro";
+import Content from "../../../content/lessons/th/battery.mdx";
+import { atlasTopics } from "../../../lib/generated/atlasTopics";
+import { getLessonSuggestions } from "../../../lib/suggestions";
+
+const suggestions = getLessonSuggestions("battery", "th", atlasTopics);
+---
+
+<BaseLayout
+  title="แบตเตอรี่"
+  description="บทเรียนภาพอธิบายแบตเตอรี่ cell แรงดัน ความจุ watt-hour ความต้านทานภายใน C-rate การชาร์จ และความปลอดภัย"
+  lang="th"
+  counterpartPath="/en/lessons/battery/"
+  counterpartLabel="English"
+>
+  <LessonShell
+    locale="th"
+    eyebrow="บทเรียนพื้นฐาน"
+    title="แบตเตอรี่"
+    subtitle="แบตเตอรี่เก็บพลังงานเคมีและรักษาแรงดัน เพื่อให้วงจรรับกำลังไฟฟ้าได้ต่อเนื่องตามเวลา"
+    lessonId="ea.lesson.battery.v0.1"
+  >
+    <LessonModeToggle client:load locale="th" />
+    <BatteryDemo client:load locale="th" />
+    <div class="lesson-content">
+      <Content />
+    </div>
+    <SuggestionSection locale="th" items={suggestions} />
+  </LessonShell>
+</BaseLayout>

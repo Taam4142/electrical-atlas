@@ -22,6 +22,7 @@ describe("suggestion system", () => {
     expect(suggestions.some((suggestion) => suggestion.href === "/th/lessons/resistance/")).toBe(true);
     expect(suggestions.some((suggestion) => suggestion.href === "/th/lessons/ohms-law/")).toBe(true);
     expect(suggestions.some((suggestion) => suggestion.href === "/th/lessons/power-energy/")).toBe(true);
+    expect(suggestions.some((suggestion) => suggestion.href === "/th/lessons/battery/")).toBe(true);
     expect(suggestions.some((suggestion) => suggestion.href === "/th/lessons/mosfet/")).toBe(true);
     expect(suggestions.every((suggestion) => suggestion.href.startsWith("/th/"))).toBe(true);
   });
@@ -89,11 +90,29 @@ describe("suggestion system", () => {
     expect(hrefs).toContain("/en/lessons/voltage/");
     expect(hrefs).toContain("/en/lessons/current/");
     expect(hrefs).toContain("/en/lessons/resistance/");
+    expect(hrefs).toContain("/en/lessons/battery/");
     expect(hrefs).toContain("/en/topics/fundamentals-energy/");
     expect(hrefs).toContain("/en/topics/transport-joule-heating/");
     expect(hrefs).toContain("/en/topics/storage-electrochemistry/");
     expect(hrefs).toContain("/en/topics/component-fuse/");
     expect(hrefs).toContain("/en/topics/circuit-ac-power/");
+  });
+
+  it("builds curated battery lesson suggestions", () => {
+    const suggestions = getLessonSuggestions("battery", "en", atlasTopics);
+    const hrefs = suggestions.map((suggestion) => suggestion.href);
+
+    expect(suggestions.length).toBeGreaterThanOrEqual(10);
+    expect(hrefs).toContain("/en/lessons/power-energy/");
+    expect(hrefs).toContain("/en/lessons/voltage/");
+    expect(hrefs).toContain("/en/lessons/current/");
+    expect(hrefs).toContain("/en/lessons/ohms-law/");
+    expect(hrefs).toContain("/en/topics/storage-electrochemistry/");
+    expect(hrefs).toContain("/en/topics/storage-cell-metric/");
+    expect(hrefs).toContain("/en/topics/storage-lithium-ion/");
+    expect(hrefs).toContain("/en/topics/storage-bms/");
+    expect(hrefs).toContain("/en/topics/storage-thermal-runaway/");
+    expect(hrefs).toContain("/en/topics/safety-battery/");
   });
 
   it("keeps structured relationship records pointed at real topic IDs", () => {
@@ -105,6 +124,7 @@ describe("suggestion system", () => {
       "resistance",
       "ohms-law",
       "power-energy",
+      "battery",
       "mosfet",
     ]);
     const missingTopicIds = atlasRelationships.flatMap((relationship) =>

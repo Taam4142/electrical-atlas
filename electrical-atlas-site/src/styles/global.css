@@ -1312,6 +1312,124 @@ p {
   font-weight: 800;
 }
 
+.battery-demo-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.65fr);
+  gap: 1rem;
+  align-items: stretch;
+}
+
+.battery-shell {
+  fill: rgba(100, 244, 255, 0.08);
+  stroke: rgba(100, 244, 255, 0.58);
+  stroke-width: 4;
+  filter: url("#batteryGlow");
+}
+
+.battery-cap {
+  fill: #10233a;
+  stroke: var(--cyan);
+  stroke-width: 3;
+  filter: url("#batteryGlow");
+}
+
+.battery-energy-fill {
+  fill: url("#batteryGradient");
+  filter: url("#batteryGlow");
+  transition:
+    height 180ms ease,
+    y 180ms ease;
+}
+
+.battery-percent-text {
+  fill: #fff4d2;
+  font-size: 42px;
+  font-weight: 950;
+  text-anchor: middle;
+}
+
+.battery-current-flow {
+  fill: none;
+  stroke: url("#batteryGradient");
+  stroke-linecap: round;
+  filter: url("#batteryGlow");
+  transition: stroke-width 180ms ease;
+}
+
+.battery-return-flow {
+  fill: none;
+  stroke: rgba(100, 244, 255, 0.24);
+  stroke-width: 7;
+  stroke-linecap: round;
+}
+
+.battery-internal-heat {
+  fill: var(--danger);
+  filter: url("#batteryGlow");
+  transition:
+    opacity 180ms ease,
+    r 180ms ease;
+}
+
+.battery-sag-bar {
+  fill: rgba(255, 91, 91, 0.22);
+  stroke: rgba(255, 91, 91, 0.62);
+  stroke-width: 2;
+  filter: url("#batteryGlow");
+  transition: width 180ms ease;
+}
+
+.battery-load {
+  fill: rgba(248, 214, 109, 0.12);
+  stroke: rgba(248, 214, 109, 0.76);
+  stroke-width: 4;
+  filter: url("#batteryGlow");
+}
+
+.battery-load-symbol,
+.battery-equation-text {
+  fill: #fff4d2;
+  font-weight: 950;
+  text-anchor: middle;
+}
+
+.battery-load-symbol {
+  font-size: 26px;
+}
+
+.battery-equation-text {
+  font-family: var(--font-mono);
+  font-size: 22px;
+}
+
+.battery-meter-bar {
+  height: 0.72rem;
+  overflow: hidden;
+  border: 1px solid rgba(100, 244, 255, 0.22);
+  border-radius: 999px;
+  background: rgba(4, 11, 23, 0.78);
+}
+
+.battery-meter-bar span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, rgba(100, 244, 255, 0.85), rgba(158, 255, 110, 0.85));
+  transition: width 180ms ease;
+}
+
+.battery-meter-bar.current-bar span {
+  background: linear-gradient(90deg, rgba(158, 255, 110, 0.85), rgba(248, 214, 109, 0.85));
+}
+
+.battery-meter-bar.resistance-bar span {
+  background: linear-gradient(90deg, rgba(248, 214, 109, 0.82), rgba(255, 91, 91, 0.78));
+}
+
+.battery-meter-bar.capacity-bar span {
+  background: linear-gradient(90deg, rgba(100, 244, 255, 0.8), rgba(248, 214, 109, 0.84));
+}
+
 .node-card {
   padding: 1.1rem;
 }
@@ -1605,7 +1723,8 @@ input[type="range"] {
   .current-demo-grid,
   .resistance-demo-grid,
   .ohms-demo-grid,
-  .power-energy-demo-grid {
+  .power-energy-demo-grid,
+  .battery-demo-grid {
     grid-template-columns: 1fr;
   }
 

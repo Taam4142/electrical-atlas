@@ -1,0 +1,35 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import LessonShell from "../../../components/LessonShell.astro";
+import LessonModeToggle from "../../../components/LessonModeToggle";
+import BatteryDemo from "../../../components/BatteryDemo";
+import SuggestionSection from "../../../components/SuggestionSection.astro";
+import Content from "../../../content/lessons/en/battery.mdx";
+import { atlasTopics } from "../../../lib/generated/atlasTopics";
+import { getLessonSuggestions } from "../../../lib/suggestions";
+
+const suggestions = getLessonSuggestions("battery", "en", atlasTopics);
+---
+
+<BaseLayout
+  title="Battery"
+  description="A visual foundation lesson explaining batteries, cells, voltage, capacity, watt-hours, internal resistance, C-rate, charging, and safety."
+  lang="en"
+  counterpartPath="/th/lessons/battery/"
+  counterpartLabel="ไทย"
+>
+  <LessonShell
+    locale="en"
+    eyebrow="foundation lesson"
+    title="Battery"
+    subtitle="A battery stores chemical energy and maintains voltage so a circuit can receive power over time."
+    lessonId="ea.lesson.battery.v0.1"
+  >
+    <LessonModeToggle client:load locale="en" />
+    <BatteryDemo client:load locale="en" />
+    <div class="lesson-content">
+      <Content />
+    </div>
+    <SuggestionSection locale="en" items={suggestions} />
+  </LessonShell>
+</BaseLayout>

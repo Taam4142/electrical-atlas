@@ -11,6 +11,7 @@ import {
   calculateVoltageFromEnergyCharge,
   convertJoulesToWattHours,
   estimateCurrentFlow,
+  estimateBatteryLoad,
   estimateElectronDriftSpeed,
   estimateFieldArrivalFraction,
   estimateLampCircuit,
@@ -44,6 +45,28 @@ describe("physics helpers", () => {
     expect(estimate.energyWattHours).toBeCloseTo(0.1, 12);
     expect(estimate.chargeCoulombs).toBeCloseTo(30, 12);
     expect(estimate.heatLevel).toBeCloseTo(0.5, 12);
+  });
+
+  it("estimates battery voltage sag, runtime, and internal heating", () => {
+    const estimate = estimateBatteryLoad({
+      nominalVoltage: 3.7,
+      capacityAh: 2.5,
+      stateOfCharge: 0.8,
+      loadCurrentAmps: 0.7,
+      internalResistanceOhms: 0.16,
+      maxSafeCRate: 2,
+    });
+
+    expect(estimate.openCircuitVoltage).toBeCloseTo(3.922, 12);
+    expect(estimate.voltageSag).toBeCloseTo(0.112, 12);
+    expect(estimate.terminalVoltage).toBeCloseTo(3.81, 12);
+    expect(estimate.remainingChargeAh).toBeCloseTo(2, 12);
+    expect(estimate.remainingEnergyWh).toBeCloseTo(7.4, 12);
+    expect(estimate.loadPowerWatts).toBeCloseTo(2.667, 12);
+    expect(estimate.internalHeatWatts).toBeCloseTo(0.0784, 12);
+    expect(estimate.runtimeHours).toBeCloseTo(7.4 / 2.667, 12);
+    expect(estimate.cRate).toBeCloseTo(0.28, 12);
+    expect(estimate.stressLevel).toBeGreaterThan(0);
   });
 
   it("treats voltage as energy per charge", () => {

@@ -1,0 +1,276 @@
+<section>
+
+## 1. The useful idea
+
+A **battery** is an electrochemical energy source.
+
+It stores energy in chemicals, then uses chemical reactions to maintain a voltage between two terminals.
+
+When you connect a circuit between the positive and negative terminals:
+
+- the battery creates an electric field through the circuit,
+- charge carriers in the circuit start moving,
+- current flows through the load,
+- chemical energy inside the battery is converted into electrical energy and then into heat, light, motion, sound, or stored energy somewhere else.
+
+<aside className="callout">
+
+**First mental model:** a battery is not a box full of loose electrons. It is a chemical pump that keeps the two terminals at different electrical potentials.
+
+</aside>
+
+</section>
+
+<section>
+
+## 2. Cell, battery, and pack
+
+People often say “battery” for everything, but the words can be more precise:
+
+- A **cell** is one electrochemical unit.
+- A **battery** is one or more cells connected together.
+- A **battery pack** adds structure, wiring, protection, sensing, balancing, thermal design, and sometimes communication.
+
+Examples:
+
+- a single alkaline AA cell is one cell,
+- a 9 V rectangular battery contains several small cells,
+- a power-bank or EV battery is a pack made from many cells plus protection and control electronics.
+
+</section>
+
+<section>
+
+## 3. Where the voltage comes from
+
+Inside a battery, two different electrode materials are separated by an electrolyte.
+
+The chemistry prefers electrons to be at different energy levels on the two sides. That difference appears at the terminals as voltage.
+
+When the circuit is open, the battery can hold a voltage with almost no external current.
+
+When the circuit is closed, chemical reactions can keep separating charge while the external circuit lets energy leave the battery.
+
+This is why a battery can push current through a lamp, resistor, microcontroller, motor, or phone.
+
+</section>
+
+<section>
+
+## 4. How a battery lights a load
+
+A simple battery-load circuit needs a closed path.
+
+When the path is closed:
+
+1. the battery sets up voltage between its terminals,
+2. the electric field appears through the connected circuit very quickly,
+3. current flows according to the load and source limits,
+4. power moves from the battery to the load,
+5. the battery's stored chemical energy decreases.
+
+For a simple resistive load, Ohm's law can estimate current:
+
+`I = V / R`
+
+Power delivered to the load is:
+
+`P = V × I`
+
+Energy used over time is:
+
+`E = P × t`
+
+</section>
+
+<section>
+
+## 5. Capacity: amp-hours and watt-hours
+
+Battery capacity is often written in **amp-hours**:
+
+`Ah = current × time`
+
+For example, a `2 Ah` cell can ideally provide `2 A` for `1 h`, or `1 A` for `2 h`.
+
+But amp-hours are not total energy by themselves. Energy also needs voltage:
+
+`Wh = V × Ah`
+
+So a `2 Ah` cell at `3.7 V` is roughly:
+
+`3.7 × 2 = 7.4 Wh`
+
+while a `2 Ah` battery at `12 V` is roughly:
+
+`12 × 2 = 24 Wh`
+
+Same amp-hours, different energy.
+
+</section>
+
+<section>
+
+## 6. Internal resistance and voltage sag
+
+Real batteries are not ideal voltage sources.
+
+They have internal resistance and other internal limits. Under load, the terminal voltage drops:
+
+`V_terminal ≈ V_open - I × R_internal`
+
+This drop is called **voltage sag**.
+
+Internal resistance also makes heat:
+
+`P_heat = I²R_internal`
+
+This is why a weak, cold, old, small, or damaged battery may show a reasonable voltage with no load but collapse when a real load is connected.
+
+</section>
+
+<section>
+
+## 7. C-rate
+
+**C-rate** compares load current to battery capacity.
+
+`C-rate = current / capacity`
+
+For a `2 Ah` cell:
+
+- `1 A` is `0.5 C`,
+- `2 A` is `1 C`,
+- `4 A` is `2 C`.
+
+Higher C-rate means the battery is being charged or discharged harder.
+
+Different chemistries and cell designs allow different C-rates. Do not assume a battery can safely deliver any current just because the voltage and capacity look large enough.
+
+</section>
+
+<section>
+
+## 8. Series and parallel cells
+
+Cells are combined to make useful battery voltages and capacities.
+
+**Series connection** increases voltage:
+
+- two `3.7 V` cells in series are roughly `7.4 V`,
+- three are roughly `11.1 V`.
+
+**Parallel connection** increases capacity and current capability:
+
+- two `2 Ah` cells in parallel are roughly `4 Ah` at the same voltage.
+
+Series and parallel packs need protection and balance. One weak cell can limit or endanger the whole pack.
+
+</section>
+
+<section>
+
+## 9. Charging is chemistry-specific
+
+Charging is not just “push current backward.”
+
+Different batteries need different charging rules:
+
+- lithium-ion cells usually need controlled current, controlled voltage, temperature limits, and protection,
+- lead-acid batteries use different voltage stages and behavior,
+- nickel-based batteries have their own termination methods,
+- primary cells are generally not rechargeable.
+
+Using the wrong charger can overheat, leak, vent, damage, or ignite a battery.
+
+</section>
+
+<section>
+
+## 10. Common mistakes
+
+- **Thinking voltage alone tells remaining energy.** Voltage helps, but chemistry, load, temperature, and history matter.
+- **Comparing batteries only by amp-hours.** Watt-hours are better for energy comparison.
+- **Ignoring internal resistance.** Voltage sag and heating may dominate under load.
+- **Ignoring C-rate.** Capacity does not automatically mean high-current capability.
+- **Mixing cells casually.** Different age, charge, chemistry, capacity, or condition can create unsafe imbalance.
+- **Treating all batteries like lithium-ion.** Alkaline, lead-acid, NiMH, lithium-ion, LFP, and other chemistries behave differently.
+- **Using an unknown charger.** Charging rules are part of the battery system, not an optional detail.
+
+</section>
+
+<section>
+
+## 11. Safety notes
+
+Batteries can store a lot of energy in a small volume.
+
+Possible hazards include short-circuit current, burns, fire, toxic or corrosive materials, vented gas, swelling, thermal runaway, arcing, explosion of sealed cells, and environmental disposal problems.
+
+Do not use this lesson alone to design packs, choose protection, repair damaged batteries, charge unknown cells, work on EV batteries, modify power banks, or connect batteries to building wiring.
+
+For Thailand-specific product, installation, transport, recycling, or safety content, verify current TISI/TIS, EIT, MEA, PEA, ERC, Department of Industrial Works, transport authority, and related IEC/IEEE/UN references before publication. The physics ideas are stable; compliance details must be checked from current official sources.
+
+</section>
+
+<section className="technical-only">
+
+## Technical track
+
+A simple battery model is an ideal voltage source plus internal resistance:
+
+`V_terminal = V_oc - I × R_internal`
+
+Load power is:
+
+`P_load = V_terminal × I`
+
+Internal heating is:
+
+`P_loss = I²R_internal`
+
+Remaining energy can be approximated from:
+
+`Wh ≈ V_nominal × Ah_remaining`
+
+This is only a first model.
+
+Real battery voltage depends on state of charge, temperature, aging, rest time, current direction, diffusion, electrochemical kinetics, hysteresis, cell construction, and protection circuitry.
+
+For deeper work, battery models may include equivalent circuits, lookup tables, coulomb counting, Kalman filters, electrochemical models, thermal models, and aging models.
+
+</section>
+
+<section>
+
+## Where this connects next
+
+Battery knowledge connects directly to:
+
+- voltage as energy per charge,
+- current and load demand,
+- electrical power and energy,
+- internal resistance and heating,
+- state of charge and state of health,
+- battery management systems,
+- battery chargers,
+- cell balancing,
+- thermal runaway,
+- renewable energy storage,
+- mobile devices, EVs, UPS systems, and power banks.
+
+Good next lessons are Series and Parallel Circuits, Switches and Contacts, Resistor, Diode, Fuse/Breaker/Short Circuit, and Battery Charger.
+
+</section>
+
+<section>
+
+## Reference direction for review
+
+- Introductory circuit theory references for voltage sources, internal resistance, power, energy, and load lines.
+- Electrochemistry references for electrodes, electrolyte, redox reactions, open-circuit voltage, and transport.
+- Battery engineering references for capacity, C-rate, internal resistance, SoC/SoH, charging, balancing, thermal behavior, and pack design.
+- Safety references for short circuits, overcharge, overdischarge, thermal runaway, storage, handling, transport, and disposal.
+- Thai context: verify current TISI/TIS, EIT, MEA, PEA, ERC, Department of Industrial Works, transport authority, and related IEC/IEEE/UN references before making product, installation, legal, transport, or safety claims.
+
+</section>

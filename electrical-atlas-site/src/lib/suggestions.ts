@@ -13,6 +13,7 @@ export type LessonKey =
   | "resistance"
   | "ohms-law"
   | "power-energy"
+  | "battery"
   | "mosfet";
 export type SuggestionKind = "lesson" | "topic";
 
@@ -96,6 +97,18 @@ const lessonLabels: Record<LessonKey, Record<Locale, { title: string; summary: s
       title: "กำลังและพลังงานไฟฟ้า",
       summary: "วัตต์ จูล วัตต์-ชั่วโมง ความร้อน แบตเตอรี่ และเหตุผลที่เวลาสำคัญในทุกวงจร",
       href: "/th/lessons/power-energy/",
+    },
+  },
+  battery: {
+    en: {
+      title: "Battery",
+      summary: "Chemical energy storage, terminal voltage, capacity, watt-hours, internal resistance, C-rate, and safety.",
+      href: "/en/lessons/battery/",
+    },
+    th: {
+      title: "แบตเตอรี่",
+      summary: "การเก็บพลังงานเคมี แรงดันปลายขั้ว ความจุ watt-hour ความต้านทานภายใน C-rate และความปลอดภัย",
+      href: "/th/lessons/battery/",
     },
   },
   mosfet: {

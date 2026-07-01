@@ -53,6 +53,24 @@ export type PowerEnergyEstimate = {
   heatLevel: number;
 };
 
+export type BatteryLoadEstimate = {
+  nominalVoltage: number;
+  capacityAh: number;
+  stateOfCharge: number;
+  loadCurrentAmps: number;
+  internalResistanceOhms: number;
+  openCircuitVoltage: number;
+  terminalVoltage: number;
+  voltageSag: number;
+  remainingChargeAh: number;
+  remainingEnergyWh: number;
+  loadPowerWatts: number;
+  internalHeatWatts: number;
+  runtimeHours: number;
+  cRate: number;
+  stressLevel: number;
+};
+
 export function clamp(value: number, min = 0, max = 1): number {
   if (Number.isNaN(value)) {
     return min;
@@ -140,6 +158,77 @@ export function estimatePowerEnergy(params: {
     energyWattHours: convertJoulesToWattHours(energyJoules),
     chargeCoulombs: calculateChargeFromCurrentTime(currentAmps, durationSeconds),
     heatLevel: clamp(Math.abs(powerWatts) / maxPowerWatts),
+  };
+}
+
+export function estimateBatteryLoad(params: {
+  nominalVoltage: number;
+  capacityAh: number;
+  stateOfCharge: number;
+  loadCurrentAmps: number;
+  internalResistanceOhms: number;
+  maxSafeCRate?: number;
+}): BatteryLoadEstimate {
+  const {
+    nominalVoltage,
+    capacityAh,
+    stateOfCharge,
+    loadCurrentAmps,
+    internalResistanceOhms,
+    maxSafeCRate = 2,
+  } = params;
+
+  if (!Number.isFinite(nominalVoltage) || nominalVoltage <= 0) {
+    throw new Error("Nominal voltage must be a positive finite number.");
+  }
+
+  if (!Number.isFinite(capacityAh) || capacityAh <= 0) {
+    throw new Error("Capacity must be a positive finite number.");
+  }
+
+  if (!Number.isFinite(stateOfCharge) || stateOfCharge < 0 || stateOfCharge > 1) {
+    throw new Error("State of charge must be between 0 and 1.");
+  }
+
+  if (!Number.isFinite(loadCurrentAmps) || loadCurrentAmps < 0) {
+    throw new Error("Load current must be a non-negative finite number.");
+  }
+
+  if (!Number.isFinite(internalResistanceOhms) || internalResistanceOhms < 0) {
+    throw new Error("Internal resistance must be a non-negative finite number.");
+  }
+
+  if (!Number.isFinite(maxSafeCRate) || maxSafeCRate <= 0) {
+    throw new Error("Maximum safe C-rate must be a positive finite number.");
+  }
+
+  const openCircuitVoltage = nominalVoltage * (0.9 + stateOfCharge * 0.2);
+  const voltageSag = loadCurrentAmps * internalResistanceOhms;
+  const terminalVoltage = Math.max(0, openCircuitVoltage - voltageSag);
+  const remainingChargeAh = capacityAh * stateOfCharge;
+  const remainingEnergyWh = nominalVoltage * remainingChargeAh;
+  const loadPowerWatts = terminalVoltage * loadCurrentAmps;
+  const internalHeatWatts = loadCurrentAmps * loadCurrentAmps * internalResistanceOhms;
+  const runtimeHours = loadPowerWatts > 0 ? remainingEnergyWh / loadPowerWatts : Infinity;
+  const cRate = loadCurrentAmps / capacityAh;
+  const stressLevel = clamp(Math.max(cRate / maxSafeCRate, voltageSag / nominalVoltage));
+
+  return {
+    nominalVoltage,
+    capacityAh,
+    stateOfCharge,
+    loadCurrentAmps,
+    internalResistanceOhms,
+    openCircuitVoltage,
+    terminalVoltage,
+    voltageSag,
+    remainingChargeAh,
+    remainingEnergyWh,
+    loadPowerWatts,
+    internalHeatWatts,
+    runtimeHours,
+    cRate,
+    stressLevel,
   };
 }
 

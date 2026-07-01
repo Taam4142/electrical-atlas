@@ -11,6 +11,7 @@ It turns the planning corpus in `../electrical-atlas/` into a small Astro app wi
 - a foundation lesson: **Resistance and Conductance / ความต้านทานและความนำไฟฟ้า**;
 - a foundation lesson: **Ohm's Law / กฎของโอห์ม**;
 - a foundation lesson: **Electrical Power and Energy / กำลังและพลังงานไฟฟ้า**;
+- a foundation lesson: **Battery / แบตเตอรี่**;
 - a first lesson: **What Is Electricity? / ไฟฟ้าคืออะไร?**;
 - a first full component lesson: **MOSFET / MOSFET คืออะไร?**;
 - a guided/technical mode toggle;
@@ -20,6 +21,7 @@ It turns the planning corpus in `../electrical-atlas/` into a small Astro app wi
 - one React interactive visual for resistance/conductance as current limiting and heat;
 - one React interactive visual for Ohm's Law as the voltage-current-resistance relationship;
 - one React interactive visual for electrical power and energy accumulation;
+- one React interactive visual for battery state of charge, voltage sag, runtime, and internal heating;
 - one React interactive visual for MOSFET channel formation;
 - pure TypeScript physics helpers with tests.
 - a searchable topic browser generated from the Markdown inventory.
@@ -50,6 +52,8 @@ npm.cmd test
 - `/th/lessons/ohms-law/` — Thai Ohm's Law foundation lesson
 - `/en/lessons/power-energy/` — English Electrical Power and Energy foundation lesson
 - `/th/lessons/power-energy/` — Thai Electrical Power and Energy foundation lesson
+- `/en/lessons/battery/` — English Battery foundation lesson
+- `/th/lessons/battery/` — Thai Battery foundation lesson
 
 - `/` — language gateway and project overview
 - `/en/` — English landing page
