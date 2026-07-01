@@ -1,0 +1,17 @@
+{
+  "name": "electrical-atlas",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "electrical-atlas-site"
+  ],
+  "scripts": {
+    "generate:topics": "npm --workspace electrical-atlas-site run generate:topics",
+    "dev": "npm --workspace electrical-atlas-site run dev",
+    "check": "npm --workspace electrical-atlas-site run check",
+    "build": "npm --workspace electrical-atlas-site run build",
+    "preview": "npm --workspace electrical-atlas-site run preview",
+    "test": "npm --workspace electrical-atlas-site test"
+  }
+}

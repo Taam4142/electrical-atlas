@@ -11,12 +11,14 @@ Suggested Vercel settings:
 | Setting | Value |
 | --- | --- |
 | Framework preset | Astro |
-| Root directory | `electrical-atlas-site` |
+| Root directory | repository root, or `electrical-atlas-site` |
 | Install command | `npm ci` |
 | Build command | `npm run build` |
-| Output directory | `dist` |
+| Output directory | `electrical-atlas-site/dist` from the repository root, or `dist` if the root directory is `electrical-atlas-site` |
 
 No environment variables are required for the current prototype.
+
+The repository includes a root `package.json`, root `package-lock.json`, and `vercel.json` so Vercel can build correctly from the repository root. This prevents the common error where Vercel runs `npm ci` at the root but cannot find a lockfile.
 
 ## Alternative: GitHub Pages
 

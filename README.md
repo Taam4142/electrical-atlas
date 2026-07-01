@@ -66,6 +66,8 @@ npm.cmd test
 npm.cmd run build
 ```
 
+You can also run these commands from the repository root because the root `package.json` forwards them into `electrical-atlas-site/`.
+
 The topic generator reads:
 
 ```text

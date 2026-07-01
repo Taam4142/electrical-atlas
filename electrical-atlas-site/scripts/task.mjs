@@ -1,5 +1,6 @@
 import { spawn } from "node:child_process";
-import { join } from "node:path";
+import { existsSync } from "node:fs";
+import { dirname, join, parse } from "node:path";
 import { cwd, env, exit, platform } from "node:process";
 
 const task = process.argv[2];
@@ -21,7 +22,23 @@ if (!task || !taskMap[task]) {
 }
 
 function localBin(name) {
-  return join(cwd(), "node_modules", ".bin", `${name}${platform === "win32" ? ".cmd" : ""}`);
+  const executable = `${name}${platform === "win32" ? ".cmd" : ""}`;
+  let current = cwd();
+  const root = parse(current).root;
+  const candidates = [];
+
+  while (true) {
+    const candidate = join(current, "node_modules", ".bin", executable);
+    if (existsSync(candidate)) {
+      candidates.push(candidate);
+    }
+
+    if (current === root) {
+      return candidates.at(-1) ?? executable;
+    }
+
+    current = dirname(current);
+  }
 }
 
 function run([binName, ...args]) {
