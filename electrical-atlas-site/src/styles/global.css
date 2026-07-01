@@ -981,6 +981,75 @@ p {
   transition: width 180ms ease;
 }
 
+.current-demo-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.65fr);
+  gap: 1rem;
+  align-items: stretch;
+}
+
+.current-wire-shadow,
+.current-wire,
+.current-direction-arrow {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.current-wire-shadow {
+  stroke: rgba(100, 244, 255, 0.11);
+  stroke-width: 42;
+}
+
+.current-wire {
+  stroke: url("#currentGradient");
+  filter: url("#currentGlow");
+  transition: stroke-width 180ms ease;
+}
+
+.current-count-gate {
+  stroke: rgba(248, 214, 109, 0.85);
+  stroke-dasharray: 10 10;
+  stroke-width: 5;
+  filter: url("#currentGlow");
+}
+
+.current-gate-label {
+  fill: rgba(248, 214, 109, 0.16);
+  stroke: rgba(248, 214, 109, 0.42);
+}
+
+.current-charge-dot {
+  fill: var(--green);
+  stroke: #dbffd0;
+  stroke-width: 3;
+  filter: url("#currentGlow");
+  transition:
+    opacity 180ms ease,
+    r 180ms ease;
+}
+
+.current-direction-arrow {
+  stroke: var(--cyan);
+  stroke-width: 6;
+  filter: url("#currentGlow");
+}
+
+.current-direction-head {
+  fill: var(--cyan);
+  filter: url("#currentGlow");
+}
+
+.charge-count-track {
+  fill: rgba(100, 244, 255, 0.12);
+}
+
+.charge-count-fill {
+  fill: url("#currentGradient");
+  filter: url("#currentGlow");
+  transition: width 180ms ease;
+}
+
 .node-card {
   padding: 1.1rem;
 }
@@ -1270,7 +1339,8 @@ input[type="range"] {
   .hero,
   .circuit-demo-grid,
   .mosfet-demo-grid,
-  .voltage-demo-grid {
+  .voltage-demo-grid,
+  .current-demo-grid {
     grid-template-columns: 1fr;
   }
 

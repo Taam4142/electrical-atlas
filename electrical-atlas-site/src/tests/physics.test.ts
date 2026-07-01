@@ -1,8 +1,11 @@
 import { describe, expect, it } from "vitest";
 import {
+  calculateChargeFromCurrentTime,
+  calculateCurrentFromChargeTime,
   calculateEnergyFromVoltageCharge,
   calculateOhmsLaw,
   calculateVoltageFromEnergyCharge,
+  estimateCurrentFlow,
   estimateElectronDriftSpeed,
   estimateFieldArrivalFraction,
   estimateLampCircuit,
@@ -29,6 +32,23 @@ describe("physics helpers", () => {
     expect(estimate.chargeCoulombs).toBeCloseTo(10e-6, 14);
     expect(estimate.energyMicroJoules).toBeCloseTo(90, 10);
     expect(estimate.electronCount).toBeGreaterThan(6e13);
+  });
+
+  it("treats current as charge per time", () => {
+    expect(calculateCurrentFromChargeTime(6, 2)).toBe(3);
+    expect(calculateChargeFromCurrentTime(3, 2)).toBe(6);
+
+    const estimate = estimateCurrentFlow({
+      currentAmps: 2,
+      timeMilliseconds: 500,
+      conductorAreaMm2: 0.5,
+    });
+
+    expect(estimate.timeSeconds).toBeCloseTo(0.5, 10);
+    expect(estimate.chargeCoulombs).toBeCloseTo(1, 10);
+    expect(estimate.chargeMilliCoulombs).toBeCloseTo(1000, 10);
+    expect(estimate.electronCount).toBeGreaterThan(6e18);
+    expect(estimate.driftSpeedMillimetersPerSecond).toBeGreaterThan(0);
   });
 
   it("estimates slow electron drift compared with field propagation", () => {

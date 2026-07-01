@@ -23,11 +23,12 @@ Already included:
 - A guide page for using the site.
 - A subject map and searchable topic browser.
 - 1,607 generated topic record pages from the Markdown inventory.
-- Three starter lessons:
+- Four starter lessons:
   - What Is Electricity?
   - Voltage
+  - Electric Current
   - MOSFET
-- Interactive visuals for the first electricity lesson, Voltage, and MOSFET switching lesson.
+- Interactive visuals for the first electricity lesson, Voltage, Electric Current, and MOSFET switching lesson.
 - Suggested next lessons/topics at the end of lesson and topic pages.
 - Tests for physics helpers, interactions, generated topic data, and suggestions.
 
@@ -122,7 +123,7 @@ See [docs/deployment.md](docs/deployment.md).
 ## Near roadmap
 
 1. Keep CI and Vercel deployment green.
-2. Build the next foundation lessons: Electric Current, Resistance and Conductance.
+2. Build the next foundation lessons: Resistance and Conductance, Ohm's Law, and Electrical Power and Energy.
 3. Add explicit topic relationship fields: prerequisite, successor, part-of, used-in, made-of, alternative-to, and fails-by.
 4. Expand Thai standard references for Thailand-relevant electrical practice.
 5. Improve the suggestion engine using explicit relationships rather than only metadata similarity.

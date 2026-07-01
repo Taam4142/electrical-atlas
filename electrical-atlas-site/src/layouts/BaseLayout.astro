@@ -22,6 +22,7 @@ const homePath = lang === "th" ? "/th/" : "/en/";
 const guidePath = lang === "th" ? "/th/guide/" : "/en/guide/";
 const lessonPath = lang === "th" ? "/th/lessons/what-is-electricity/" : "/en/lessons/what-is-electricity/";
 const voltagePath = lang === "th" ? "/th/lessons/voltage/" : "/en/lessons/voltage/";
+const currentPath = lang === "th" ? "/th/lessons/current/" : "/en/lessons/current/";
 const mosfetPath = lang === "th" ? "/th/lessons/mosfet/" : "/en/lessons/mosfet/";
 const mapPath = lang === "th" ? "/th/map/" : "/en/map/";
 const fullTitle = title === "Electrical Atlas" ? title : `${title} • Electrical Atlas`;
@@ -60,6 +61,7 @@ const fullTitle = title === "Electrical Atlas" ? title : `${title} • Electrica
         <a href={guidePath}>{lang === "th" ? "วิธีใช้เว็บ" : "Guide"}</a>
         <a href={lessonPath}>{lang === "th" ? "บทแรก" : "First lesson"}</a>
         <a href={voltagePath}>{lang === "th" ? "แรงดัน" : "Voltage"}</a>
+        <a href={currentPath}>{lang === "th" ? "กระแส" : "Current"}</a>
         <a href={mosfetPath}>MOSFET</a>
         <a href={mapPath}>{lang === "th" ? "แผนที่วิชา" : "Subject map"}</a>
       </nav>

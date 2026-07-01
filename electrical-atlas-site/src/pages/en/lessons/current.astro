@@ -1,0 +1,35 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import LessonShell from "../../../components/LessonShell.astro";
+import LessonModeToggle from "../../../components/LessonModeToggle";
+import CurrentFlowDemo from "../../../components/CurrentFlowDemo";
+import SuggestionSection from "../../../components/SuggestionSection.astro";
+import Content from "../../../content/lessons/en/current.mdx";
+import { atlasTopics } from "../../../lib/generated/atlasTopics";
+import { getLessonSuggestions } from "../../../lib/suggestions";
+
+const suggestions = getLessonSuggestions("current", "en", atlasTopics);
+---
+
+<BaseLayout
+  title="What Is Electric Current?"
+  description="A visual foundation lesson explaining electric current as charge flow rate: how much charge crosses a point per second."
+  lang="en"
+  counterpartPath="/th/lessons/current/"
+  counterpartLabel="ไทย"
+>
+  <LessonShell
+    locale="en"
+    eyebrow="foundation lesson"
+    title="What Is Electric Current?"
+    subtitle="Current is not voltage. Current is the rate at which electric charge crosses a chosen point in a circuit."
+    lessonId="ea.lesson.current.v0.1"
+  >
+    <LessonModeToggle client:load locale="en" />
+    <CurrentFlowDemo client:load locale="en" />
+    <div class="lesson-content">
+      <Content />
+    </div>
+    <SuggestionSection locale="en" items={suggestions} />
+  </LessonShell>
+</BaseLayout>

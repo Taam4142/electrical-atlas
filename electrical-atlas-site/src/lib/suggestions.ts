@@ -1,7 +1,7 @@
 import type { AtlasTopic } from "./generated/atlasTopics";
 
 export type Locale = "en" | "th";
-export type LessonKey = "what-is-electricity" | "voltage" | "mosfet";
+export type LessonKey = "what-is-electricity" | "voltage" | "current" | "mosfet";
 export type SuggestionKind = "lesson" | "topic";
 
 export interface SuggestionItem {
@@ -49,6 +49,18 @@ const lessonLabels: Record<LessonKey, Record<Locale, { title: string; summary: s
       href: "/th/lessons/voltage/",
     },
   },
+  current: {
+    en: {
+      title: "What Is Electric Current?",
+      summary: "Electric current explained as charge flow rate: how much charge crosses a point per second.",
+      href: "/en/lessons/current/",
+    },
+    th: {
+      title: "กระแสไฟฟ้าคืออะไร?",
+      summary: "กระแสไฟฟ้าอธิบายเป็นอัตราการไหลของประจุ หรือประจุที่ผ่านจุดหนึ่งต่อวินาที",
+      href: "/th/lessons/current/",
+    },
+  },
   mosfet: {
     en: {
       title: "What Is a MOSFET?",
@@ -68,6 +80,11 @@ const lessonSuggestionEntries: Record<LessonKey, LessonSuggestionEntry[]> = {
     {
       kind: "lesson",
       key: "voltage",
+      relation: { en: "next foundation lesson", th: "บทพื้นฐานถัดไป" },
+    },
+    {
+      kind: "lesson",
+      key: "current",
       relation: { en: "next foundation lesson", th: "บทพื้นฐานถัดไป" },
     },
     {
@@ -108,6 +125,11 @@ const lessonSuggestionEntries: Record<LessonKey, LessonSuggestionEntry[]> = {
       relation: { en: "foundation refresher", th: "ย้อนพื้นฐาน" },
     },
     {
+      kind: "lesson",
+      key: "current",
+      relation: { en: "natural next lesson", th: "บทถัดไปตามธรรมชาติ" },
+    },
+    {
       kind: "topic",
       topicId: "ea.fundamentals.current",
       relation: { en: "natural next quantity", th: "ปริมาณถัดไป" },
@@ -141,6 +163,53 @@ const lessonSuggestionEntries: Record<LessonKey, LessonSuggestionEntry[]> = {
       kind: "topic",
       topicId: "ea.component.capacitor",
       relation: { en: "stores energy by voltage", th: "เก็บพลังงานด้วยแรงดัน" },
+    },
+  ],
+  current: [
+    {
+      kind: "lesson",
+      key: "voltage",
+      relation: { en: "paired foundation", th: "พื้นฐานที่คู่กัน" },
+    },
+    {
+      kind: "lesson",
+      key: "what-is-electricity",
+      relation: { en: "foundation refresher", th: "ย้อนพื้นฐาน" },
+    },
+    {
+      kind: "topic",
+      topicId: "ea.fundamentals.resistance",
+      relation: { en: "next foundation quantity", th: "ปริมาณพื้นฐานถัดไป" },
+    },
+    {
+      kind: "topic",
+      topicId: "ea.circuit.law.ohm",
+      relation: { en: "voltage-current relationship", th: "ความสัมพันธ์แรงดัน-กระแส" },
+    },
+    {
+      kind: "topic",
+      topicId: "ea.transport.current-density",
+      relation: { en: "technical extension", th: "ต่อยอดเชิงเทคนิค" },
+    },
+    {
+      kind: "topic",
+      topicId: "ea.transport.drift",
+      relation: { en: "carrier motion", th: "การเคลื่อนที่ของตัวพา" },
+    },
+    {
+      kind: "topic",
+      topicId: "ea.transport.joule-heating",
+      relation: { en: "heating effect", th: "ผลด้านความร้อน" },
+    },
+    {
+      kind: "topic",
+      topicId: "ea.component.fuse",
+      relation: { en: "overcurrent protection", th: "การป้องกันกระแสเกิน" },
+    },
+    {
+      kind: "topic",
+      topicId: "ea.device.fet.mosfet.soa",
+      relation: { en: "component current limit", th: "ขีดจำกัดกระแสของชิ้นส่วน" },
     },
   ],
   mosfet: [

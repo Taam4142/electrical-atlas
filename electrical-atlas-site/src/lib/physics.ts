@@ -23,6 +23,16 @@ export type VoltageEnergyEstimate = {
   electronCount: number;
 };
 
+export type CurrentFlowEstimate = {
+  currentAmps: number;
+  timeSeconds: number;
+  chargeCoulombs: number;
+  chargeMilliCoulombs: number;
+  electronCount: number;
+  driftSpeedMetersPerSecond: number;
+  driftSpeedMillimetersPerSecond: number;
+};
+
 export function clamp(value: number, min = 0, max = 1): number {
   if (Number.isNaN(value)) {
     return min;
@@ -94,6 +104,30 @@ export function estimateVoltageEnergy(params: {
   };
 }
 
+export function calculateCurrentFromChargeTime(chargeCoulombs: number, timeSeconds: number): number {
+  if (!Number.isFinite(chargeCoulombs) || chargeCoulombs < 0) {
+    throw new Error("Charge must be a non-negative finite number.");
+  }
+
+  if (!Number.isFinite(timeSeconds) || timeSeconds <= 0) {
+    throw new Error("Time must be a positive finite number.");
+  }
+
+  return chargeCoulombs / timeSeconds;
+}
+
+export function calculateChargeFromCurrentTime(currentAmps: number, timeSeconds: number): number {
+  if (!Number.isFinite(currentAmps) || currentAmps < 0) {
+    throw new Error("Current must be a non-negative finite number.");
+  }
+
+  if (!Number.isFinite(timeSeconds) || timeSeconds < 0) {
+    throw new Error("Time must be a non-negative finite number.");
+  }
+
+  return currentAmps * timeSeconds;
+}
+
 export function estimateElectronDriftSpeed(params: {
   current: number;
   conductorAreaM2: number;
@@ -124,6 +158,39 @@ export function estimateElectronDriftSpeed(params: {
   }
 
   return current / (carrierDensityPerM3 * carrierChargeCoulomb * conductorAreaM2);
+}
+
+export function estimateCurrentFlow(params: {
+  currentAmps: number;
+  timeMilliseconds: number;
+  conductorAreaMm2?: number;
+}): CurrentFlowEstimate {
+  const { currentAmps, timeMilliseconds, conductorAreaMm2 = 0.5 } = params;
+
+  if (!Number.isFinite(timeMilliseconds) || timeMilliseconds < 0) {
+    throw new Error("Time must be a non-negative finite number.");
+  }
+
+  if (!Number.isFinite(conductorAreaMm2) || conductorAreaMm2 <= 0) {
+    throw new Error("Conductor area must be a positive finite number.");
+  }
+
+  const timeSeconds = timeMilliseconds / 1000;
+  const chargeCoulombs = calculateChargeFromCurrentTime(currentAmps, timeSeconds);
+  const driftSpeedMetersPerSecond = estimateElectronDriftSpeed({
+    current: currentAmps,
+    conductorAreaM2: conductorAreaMm2 * 1e-6,
+  });
+
+  return {
+    currentAmps,
+    timeSeconds,
+    chargeCoulombs,
+    chargeMilliCoulombs: chargeCoulombs * 1000,
+    electronCount: chargeCoulombs / ELEMENTARY_CHARGE_COULOMB,
+    driftSpeedMetersPerSecond,
+    driftSpeedMillimetersPerSecond: driftSpeedMetersPerSecond * 1000,
+  };
 }
 
 export function estimateFieldArrivalFraction(params: {

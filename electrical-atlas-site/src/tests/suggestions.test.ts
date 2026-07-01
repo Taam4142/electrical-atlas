@@ -17,6 +17,7 @@ describe("suggestion system", () => {
     const suggestions = getLessonSuggestions("what-is-electricity", "th", atlasTopics);
 
     expect(suggestions.some((suggestion) => suggestion.href === "/th/lessons/voltage/")).toBe(true);
+    expect(suggestions.some((suggestion) => suggestion.href === "/th/lessons/current/")).toBe(true);
     expect(suggestions.some((suggestion) => suggestion.href === "/th/lessons/mosfet/")).toBe(true);
     expect(suggestions.every((suggestion) => suggestion.href.startsWith("/th/"))).toBe(true);
   });
@@ -30,6 +31,18 @@ describe("suggestion system", () => {
     expect(hrefs).toContain("/en/topics/fundamentals-current/");
     expect(hrefs).toContain("/en/topics/em-potential-electric/");
     expect(hrefs).toContain("/en/topics/component-capacitor/");
+  });
+
+  it("builds curated current lesson suggestions", () => {
+    const suggestions = getLessonSuggestions("current", "en", atlasTopics);
+    const hrefs = suggestions.map((suggestion) => suggestion.href);
+
+    expect(suggestions.length).toBeGreaterThanOrEqual(7);
+    expect(hrefs).toContain("/en/lessons/voltage/");
+    expect(hrefs).toContain("/en/topics/fundamentals-resistance/");
+    expect(hrefs).toContain("/en/topics/circuit-law-ohm/");
+    expect(hrefs).toContain("/en/topics/transport-current-density/");
+    expect(hrefs).toContain("/en/topics/component-fuse/");
   });
 
   it("finds nearby topic records without recommending the current topic", () => {

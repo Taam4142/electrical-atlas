@@ -1,0 +1,251 @@
+<section>
+
+## 1. A useful definition
+
+**Electric current** is the rate at which electric charge passes through a surface, wire, device terminal, or chosen point in a circuit.
+
+The unit is the **ampere**, usually shortened to **amp**:
+
+`1 A = 1 C/s`
+
+In plain language: current tells you **how much charge crosses a point each second**.
+
+<aside className="callout">
+
+**First mental model:** current is like a people counter at a doorway. The counter does not ask where each person started or where each person will end up. It counts how many pass through the doorway per second.
+
+</aside>
+
+</section>
+
+<section>
+
+## 2. Why current matters
+
+Current is one of the core quantities because it connects electrical ideas to real effects:
+
+- current through a resistor creates heat,
+- current through an LED creates light,
+- current through a motor winding creates magnetic force,
+- current into a capacitor changes its voltage,
+- current into a battery charges or discharges it,
+- current through the body can be dangerous.
+
+Voltage is energy per charge. Current is charge per time. Together they lead naturally to power:
+
+`P = VI`
+
+That is why voltage alone is not enough. A `5 V` supply that can deliver `3 A` is very different from a `5 V` signal pin that should only source a few milliamps.
+
+</section>
+
+<section>
+
+## 3. Where you see current in real life
+
+You see current ratings on power adapters, fuses, circuit breakers, wires, relays, MOSFETs, motors, LEDs, batteries, chargers, and solar equipment.
+
+Examples:
+
+- A small LED may use `5 mA` to `20 mA`.
+- A phone charger may supply a few amps.
+- A motor may draw a large startup current.
+- A household branch circuit, breaker, cable, and outlet all have current limits.
+
+The exact safe current for wiring or equipment depends on voltage, cable size, insulation, installation method, temperature, protection devices, and local rules. Thailand-specific installation content must be handled with verified Thai standards and authority guidance, not guessed from a beginner lesson.
+
+</section>
+
+<section>
+
+## 4. What is involved
+
+Current involves:
+
+- **charge carriers**: electrons in metals, ions in electrolytes, electrons and holes in semiconductors,
+- **a path**: a conductor, semiconductor channel, plasma, electrolyte, vacuum tube, or other medium,
+- **an electric field**: the field that pushes mobile charge carriers,
+- **a chosen cross-section**: the surface where we count charge passing through,
+- **time**: current is a rate, so time is part of the definition.
+
+A closed path is usually needed for steady current in ordinary circuits. If a path is open, charges may shift briefly while fields settle, but steady conduction current cannot continue through the open gap.
+
+</section>
+
+<section>
+
+## 5. Conventional current and electron motion
+
+Circuit diagrams usually draw **conventional current** in the direction positive charge would move: from higher potential toward lower potential through a load.
+
+In a metal wire, the mobile carriers are mostly electrons. Electrons are negative, so their average drift is opposite the conventional current direction.
+
+This sounds annoying at first, but it is just a sign convention. Circuit equations work consistently as long as we keep the convention straight.
+
+<aside className="callout">
+
+**Important distinction:** current can be large even though individual electrons drift slowly. The field pattern and energy transfer through a circuit can respond much faster than one electron drifts along a whole wire.
+
+</aside>
+
+</section>
+
+<section>
+
+## 6. How current works physically
+
+When a source is connected to a load through conductors, the circuit's electric field changes. Mobile charge carriers inside the materials respond to that field.
+
+Step by step:
+
+1. A voltage source establishes an electric field around the connected circuit.
+2. Charge carriers inside conductors and devices feel force from that field.
+3. They drift with a small average velocity while also colliding constantly with the material.
+4. A chosen cross-section of the wire sees charge passing through over time.
+5. That rate of charge crossing the section is the current.
+
+The wire is already full of mobile charge carriers. A battery does not need to "send one electron from the battery to the lamp" before anything happens. It changes the field conditions that organize charge movement throughout the circuit.
+
+</section>
+
+<section>
+
+## 7. Main symbols and equations
+
+Common symbols:
+
+- `I`: current, measured in amperes.
+- `q` or `Q`: electric charge, measured in coulombs.
+- `t`: time, measured in seconds.
+- `A`: ampere as a unit, not to be confused with area.
+
+The beginner equation is:
+
+`I = Q / t`
+
+If `3 C` of charge passes a point in `2 s`, the current is:
+
+`I = 3 C / 2 s = 1.5 A`
+
+The reverse form is:
+
+`Q = It`
+
+So a `2 A` current for `5 s` means `10 C` of charge has passed the chosen point.
+
+</section>
+
+<section>
+
+## 8. Practical use
+
+Engineers and technicians use current to ask practical questions:
+
+- Will this wire overheat?
+- Will this fuse or breaker trip?
+- Can this power supply deliver enough current?
+- Is the motor startup current too high?
+- Is this LED protected by enough resistance or current regulation?
+- Is this MOSFET within its current and thermal limits?
+- Is this battery charging or discharging safely?
+
+Current is usually measured **through** something, so an ammeter is placed in series with the branch being measured. Clamp meters measure current by sensing the magnetic field around a conductor, which is especially useful for higher-current systems.
+
+</section>
+
+<section>
+
+## 9. Common mistakes
+
+- **"Current is the same as voltage."** Voltage is energy per charge; current is charge per time.
+- **"Current gets used up."** Energy is converted in loads. In a simple series loop, the same current enters and leaves each element.
+- **"Electrons move at near light speed."** The electromagnetic influence is fast; electron drift in a metal wire is usually slow.
+- **"A supply pushes its rated current all the time."** A `5 V 2 A` adapter can supply up to about `2 A`; the load determines the actual current within limits.
+- **"Only high voltage is dangerous."** Current through the body, path, time, frequency, environment, and available energy all matter.
+
+</section>
+
+<section>
+
+## 10. Failure modes and limits
+
+Too much current can cause:
+
+- overheating wires and PCB traces,
+- damaged connectors and contacts,
+- blown fuses or tripped breakers,
+- burned resistors, LEDs, motors, or ICs,
+- MOSFET overcurrent and thermal runaway,
+- battery stress, venting, fire, or explosion,
+- electric shock hazards when current passes through a person.
+
+Current ratings are not just numbers on a label. They depend on heat, duration, cooling, enclosure, cable installation, ambient temperature, and protection coordination.
+
+</section>
+
+<section>
+
+## 11. Safety notes
+
+This lesson is conceptual. Do not use it as instructions for sizing cables, selecting breakers, modifying building wiring, repairing mains equipment, or working inside panels.
+
+For Thailand-specific electrical installation or safety content, verify current TISI/TIS, EIT, MEA, PEA, ERC, and related IEC/IEEE references before publication. The beginner idea "current is charge per time" is stable; safe real-world design rules must be checked against official sources.
+
+</section>
+
+<section className="technical-only">
+
+## Technical track
+
+Instantaneous current is:
+
+`I = dq/dt`
+
+For distributed conduction, current density `J` describes current per unit area:
+
+`I = ∫ J · dA`
+
+For a simple conductor with carrier density `n`, carrier charge `q`, cross-sectional area `A`, and average drift velocity `vd`:
+
+`I = nqAvd`
+
+Charge conservation is expressed by the continuity equation:
+
+`∂ρ/∂t + ∇ · J = 0`
+
+In semiconductors, current can include drift and diffusion components. In capacitors, changing electric field creates displacement current. At high frequencies, current is no longer just "flow in one wire"; return paths, fields, skin effect, parasitics, and transmission-line behavior matter.
+
+</section>
+
+<section>
+
+## Where this connects next
+
+Current connects directly to:
+
+- voltage,
+- charge,
+- resistance,
+- Ohm's law,
+- current density,
+- Joule heating,
+- power,
+- fuses and breakers,
+- wires and PCB traces,
+- LEDs, motors, relays, MOSFETs, batteries, and sensors.
+
+Good next lessons are Resistance and Conductance, Ohm's Law, Electrical Power and Energy, Battery, LED, Fuse/Breaker/Short Circuit, and MOSFET Current Rating.
+
+</section>
+
+<section>
+
+## Reference direction for review
+
+- Introductory circuit theory references for current, branch current, series measurement, and sign convention.
+- Electromagnetism references for current density, continuity, and drift velocity.
+- Practical electronics references for current ratings, fuses, wire gauge, PCB trace heating, and power supplies.
+- Safety and installation references for high-current and mains systems.
+- Thai context: verify current TISI/TIS, EIT, MEA, PEA, ERC, and related IEC/IEEE references before making installation or legal claims.
+
+</section>

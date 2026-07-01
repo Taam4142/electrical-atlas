@@ -1,0 +1,35 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import LessonShell from "../../../components/LessonShell.astro";
+import LessonModeToggle from "../../../components/LessonModeToggle";
+import CurrentFlowDemo from "../../../components/CurrentFlowDemo";
+import SuggestionSection from "../../../components/SuggestionSection.astro";
+import Content from "../../../content/lessons/th/current.mdx";
+import { atlasTopics } from "../../../lib/generated/atlasTopics";
+import { getLessonSuggestions } from "../../../lib/suggestions";
+
+const suggestions = getLessonSuggestions("current", "th", atlasTopics);
+---
+
+<BaseLayout
+  title="กระแสไฟฟ้าคืออะไร?"
+  description="บทเรียนพื้นฐานอธิบายกระแสไฟฟ้าว่าเป็นอัตราการไหลของประจุ หรือปริมาณประจุที่ผ่านจุดหนึ่งต่อวินาที"
+  lang="th"
+  counterpartPath="/en/lessons/current/"
+  counterpartLabel="English"
+>
+  <LessonShell
+    locale="th"
+    eyebrow="บทเรียนพื้นฐาน"
+    title="กระแสไฟฟ้าคืออะไร?"
+    subtitle="กระแสไม่ใช่แรงดัน แต่คืออัตราที่ประจุไฟฟ้าผ่านจุดที่เราเลือกในวงจร"
+    lessonId="ea.lesson.current.v0.1"
+  >
+    <LessonModeToggle client:load locale="th" />
+    <CurrentFlowDemo client:load locale="th" />
+    <div class="lesson-content">
+      <Content />
+    </div>
+    <SuggestionSection locale="th" items={suggestions} />
+  </LessonShell>
+</BaseLayout>
