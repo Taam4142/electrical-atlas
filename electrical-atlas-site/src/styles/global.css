@@ -1196,6 +1196,122 @@ p {
   font-weight: 800;
 }
 
+.power-energy-demo-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.65fr);
+  gap: 1rem;
+  align-items: stretch;
+}
+
+.power-energy-source {
+  fill: #10233a;
+  stroke: var(--cyan);
+  stroke-width: 3;
+  filter: url("#powerEnergyGlow");
+}
+
+.power-energy-flow {
+  fill: none;
+  stroke: url("#powerEnergyGradient");
+  stroke-linecap: round;
+  filter: url("#powerEnergyGlow");
+  transition: stroke-width 180ms ease;
+}
+
+.power-energy-return {
+  fill: none;
+  stroke: rgba(100, 244, 255, 0.28);
+  stroke-width: 7;
+  stroke-linecap: round;
+}
+
+.power-energy-load {
+  fill: rgba(248, 214, 109, 0.12);
+  stroke: rgba(248, 214, 109, 0.76);
+  stroke-width: 4;
+  filter: url("#powerEnergyGlow");
+}
+
+.power-energy-heat {
+  fill: var(--danger);
+  filter: url("#powerEnergyGlow");
+  transition:
+    opacity 180ms ease,
+    r 180ms ease;
+}
+
+.power-energy-load-symbol,
+.power-energy-equation-text {
+  fill: #fff4d2;
+  font-weight: 950;
+  text-anchor: middle;
+}
+
+.power-energy-load-symbol {
+  font-size: 24px;
+}
+
+.power-energy-equation-text {
+  font-family: var(--font-mono);
+  font-size: 20px;
+}
+
+.power-energy-tank {
+  fill: rgba(100, 244, 255, 0.08);
+  stroke: rgba(100, 244, 255, 0.45);
+  stroke-width: 3;
+}
+
+.power-energy-fill {
+  fill: url("#powerEnergyGradient");
+  filter: url("#powerEnergyGlow");
+  transition:
+    height 180ms ease,
+    y 180ms ease;
+}
+
+.power-energy-meter-bar {
+  height: 0.72rem;
+  overflow: hidden;
+  border: 1px solid rgba(100, 244, 255, 0.22);
+  border-radius: 999px;
+  background: rgba(4, 11, 23, 0.78);
+}
+
+.power-energy-meter-bar span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, rgba(100, 244, 255, 0.85), rgba(158, 255, 110, 0.85));
+  transition: width 180ms ease;
+}
+
+.power-energy-meter-bar.current-bar span {
+  background: linear-gradient(90deg, rgba(158, 255, 110, 0.85), rgba(248, 214, 109, 0.85));
+}
+
+.power-energy-meter-bar.time-bar span {
+  background: linear-gradient(90deg, rgba(248, 214, 109, 0.82), rgba(255, 91, 91, 0.78));
+}
+
+.power-energy-formula-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-top: 1rem;
+}
+
+.power-energy-formula-row span {
+  border: 1px solid rgba(100, 244, 255, 0.18);
+  border-radius: 999px;
+  padding: 0.55rem 0.75rem;
+  background: rgba(100, 244, 255, 0.07);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
 .node-card {
   padding: 1.1rem;
 }
@@ -1488,7 +1604,8 @@ input[type="range"] {
   .voltage-demo-grid,
   .current-demo-grid,
   .resistance-demo-grid,
-  .ohms-demo-grid {
+  .ohms-demo-grid,
+  .power-energy-demo-grid {
     grid-template-columns: 1fr;
   }
 

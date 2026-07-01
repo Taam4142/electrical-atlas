@@ -1,0 +1,35 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import LessonShell from "../../../components/LessonShell.astro";
+import LessonModeToggle from "../../../components/LessonModeToggle";
+import PowerEnergyDemo from "../../../components/PowerEnergyDemo";
+import SuggestionSection from "../../../components/SuggestionSection.astro";
+import Content from "../../../content/lessons/en/power-energy.mdx";
+import { atlasTopics } from "../../../lib/generated/atlasTopics";
+import { getLessonSuggestions } from "../../../lib/suggestions";
+
+const suggestions = getLessonSuggestions("power-energy", "en", atlasTopics);
+---
+
+<BaseLayout
+  title="Electrical Power and Energy"
+  description="A visual foundation lesson explaining electrical power, energy, watts, joules, watt-hours, heat, batteries, and safety limits."
+  lang="en"
+  counterpartPath="/th/lessons/power-energy/"
+  counterpartLabel="ไทย"
+>
+  <LessonShell
+    locale="en"
+    eyebrow="foundation lesson"
+    title="Electrical Power and Energy"
+    subtitle="Power is the rate of electrical energy transfer. Energy is what accumulates over time."
+    lessonId="ea.lesson.power-energy.v0.1"
+  >
+    <LessonModeToggle client:load locale="en" />
+    <PowerEnergyDemo client:load locale="en" />
+    <div class="lesson-content">
+      <Content />
+    </div>
+    <SuggestionSection locale="en" items={suggestions} />
+  </LessonShell>
+</BaseLayout>

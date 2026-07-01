@@ -21,6 +21,7 @@ describe("suggestion system", () => {
     expect(suggestions.some((suggestion) => suggestion.href === "/th/lessons/current/")).toBe(true);
     expect(suggestions.some((suggestion) => suggestion.href === "/th/lessons/resistance/")).toBe(true);
     expect(suggestions.some((suggestion) => suggestion.href === "/th/lessons/ohms-law/")).toBe(true);
+    expect(suggestions.some((suggestion) => suggestion.href === "/th/lessons/power-energy/")).toBe(true);
     expect(suggestions.some((suggestion) => suggestion.href === "/th/lessons/mosfet/")).toBe(true);
     expect(suggestions.every((suggestion) => suggestion.href.startsWith("/th/"))).toBe(true);
   });
@@ -57,6 +58,7 @@ describe("suggestion system", () => {
     expect(hrefs).toContain("/en/lessons/voltage/");
     expect(hrefs).toContain("/en/lessons/current/");
     expect(hrefs).toContain("/en/lessons/ohms-law/");
+    expect(hrefs).toContain("/en/lessons/power-energy/");
     expect(hrefs).toContain("/en/topics/circuit-law-ohm/");
     expect(hrefs).toContain("/en/topics/component-resistor/");
     expect(hrefs).toContain("/en/topics/transport-ohm-microscopic/");
@@ -71,15 +73,40 @@ describe("suggestion system", () => {
     expect(hrefs).toContain("/en/lessons/voltage/");
     expect(hrefs).toContain("/en/lessons/current/");
     expect(hrefs).toContain("/en/lessons/resistance/");
+    expect(hrefs).toContain("/en/lessons/power-energy/");
     expect(hrefs).toContain("/en/topics/fundamentals-power/");
     expect(hrefs).toContain("/en/topics/circuit-topology-series-parallel/");
     expect(hrefs).toContain("/en/topics/photonics-led/");
     expect(hrefs).toContain("/en/topics/device-diode-pn/");
   });
 
+  it("builds curated power and energy lesson suggestions", () => {
+    const suggestions = getLessonSuggestions("power-energy", "en", atlasTopics);
+    const hrefs = suggestions.map((suggestion) => suggestion.href);
+
+    expect(suggestions.length).toBeGreaterThanOrEqual(9);
+    expect(hrefs).toContain("/en/lessons/ohms-law/");
+    expect(hrefs).toContain("/en/lessons/voltage/");
+    expect(hrefs).toContain("/en/lessons/current/");
+    expect(hrefs).toContain("/en/lessons/resistance/");
+    expect(hrefs).toContain("/en/topics/fundamentals-energy/");
+    expect(hrefs).toContain("/en/topics/transport-joule-heating/");
+    expect(hrefs).toContain("/en/topics/storage-electrochemistry/");
+    expect(hrefs).toContain("/en/topics/component-fuse/");
+    expect(hrefs).toContain("/en/topics/circuit-ac-power/");
+  });
+
   it("keeps structured relationship records pointed at real topic IDs", () => {
     const topicIds = new Set(atlasTopics.map((topic) => topic.id));
-    const lessonIds = new Set(["what-is-electricity", "voltage", "current", "resistance", "ohms-law", "mosfet"]);
+    const lessonIds = new Set([
+      "what-is-electricity",
+      "voltage",
+      "current",
+      "resistance",
+      "ohms-law",
+      "power-energy",
+      "mosfet",
+    ]);
     const missingTopicIds = atlasRelationships.flatMap((relationship) =>
       [relationship.source, relationship.target]
         .filter((node) => node.kind === "topic" && !topicIds.has(node.id))

@@ -42,6 +42,17 @@ export type ResistanceConductanceEstimate = {
   heatLevel: number;
 };
 
+export type PowerEnergyEstimate = {
+  voltage: number;
+  currentAmps: number;
+  durationSeconds: number;
+  powerWatts: number;
+  energyJoules: number;
+  energyWattHours: number;
+  chargeCoulombs: number;
+  heatLevel: number;
+};
+
 export function clamp(value: number, min = 0, max = 1): number {
   if (Number.isNaN(value)) {
     return min;
@@ -66,6 +77,69 @@ export function calculateOhmsLaw(voltage: number, resistance: number): OhmsLawRe
     resistance,
     current,
     power: voltage * current,
+  };
+}
+
+export function calculateElectricalPower(voltage: number, currentAmps: number): number {
+  if (!Number.isFinite(voltage)) {
+    throw new Error("Voltage must be a finite number.");
+  }
+
+  if (!Number.isFinite(currentAmps)) {
+    throw new Error("Current must be a finite number.");
+  }
+
+  return voltage * currentAmps;
+}
+
+export function calculateEnergyFromPowerTime(powerWatts: number, durationSeconds: number): number {
+  if (!Number.isFinite(powerWatts)) {
+    throw new Error("Power must be a finite number.");
+  }
+
+  if (!Number.isFinite(durationSeconds) || durationSeconds < 0) {
+    throw new Error("Duration must be a non-negative finite number.");
+  }
+
+  return powerWatts * durationSeconds;
+}
+
+export function convertJoulesToWattHours(energyJoules: number): number {
+  if (!Number.isFinite(energyJoules)) {
+    throw new Error("Energy must be a finite number.");
+  }
+
+  return energyJoules / 3600;
+}
+
+export function estimatePowerEnergy(params: {
+  voltage: number;
+  currentAmps: number;
+  durationSeconds: number;
+  maxPowerWatts?: number;
+}): PowerEnergyEstimate {
+  const { voltage, currentAmps, durationSeconds, maxPowerWatts = 60 } = params;
+
+  if (!Number.isFinite(currentAmps) || currentAmps < 0) {
+    throw new Error("Current must be a non-negative finite number.");
+  }
+
+  if (!Number.isFinite(maxPowerWatts) || maxPowerWatts <= 0) {
+    throw new Error("Maximum power must be a positive finite number.");
+  }
+
+  const powerWatts = calculateElectricalPower(voltage, currentAmps);
+  const energyJoules = calculateEnergyFromPowerTime(powerWatts, durationSeconds);
+
+  return {
+    voltage,
+    currentAmps,
+    durationSeconds,
+    powerWatts,
+    energyJoules,
+    energyWattHours: convertJoulesToWattHours(energyJoules),
+    chargeCoulombs: calculateChargeFromCurrentTime(currentAmps, durationSeconds),
+    heatLevel: clamp(Math.abs(powerWatts) / maxPowerWatts),
   };
 }
 

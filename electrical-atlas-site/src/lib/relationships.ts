@@ -140,6 +140,13 @@ export const atlasRelationships: AtlasRelationship[] = [
   },
   {
     source: { kind: "lesson", id: "what-is-electricity" },
+    target: { kind: "lesson", id: "power-energy" },
+    type: "energy-link",
+    weight: 66,
+    label: { en: "energy foundation lesson" },
+  },
+  {
+    source: { kind: "lesson", id: "what-is-electricity" },
     target: { kind: "lesson", id: "mosfet" },
     type: "application",
     weight: 55,
@@ -209,6 +216,13 @@ export const atlasRelationships: AtlasRelationship[] = [
   },
   {
     source: { kind: "lesson", id: "voltage" },
+    target: { kind: "lesson", id: "power-energy" },
+    type: "energy-link",
+    weight: 72,
+    label: { en: "energy per charge applied" },
+  },
+  {
+    source: { kind: "lesson", id: "voltage" },
     target: { kind: "topic", id: "ea.fundamentals.current" },
     type: "paired-foundation",
     weight: 80,
@@ -274,6 +288,13 @@ export const atlasRelationships: AtlasRelationship[] = [
     type: "mathematical-law",
     weight: 86,
     label: { en: "first circuit law lesson" },
+  },
+  {
+    source: { kind: "lesson", id: "current" },
+    target: { kind: "lesson", id: "power-energy" },
+    type: "energy-link",
+    weight: 74,
+    label: { en: "energy flow rate applied" },
   },
   {
     source: { kind: "lesson", id: "current" },
@@ -353,6 +374,13 @@ export const atlasRelationships: AtlasRelationship[] = [
   },
   {
     source: { kind: "lesson", id: "resistance" },
+    target: { kind: "lesson", id: "power-energy" },
+    type: "energy-link",
+    weight: 84,
+    label: { en: "heat and wattage next" },
+  },
+  {
+    source: { kind: "lesson", id: "resistance" },
     target: { kind: "topic", id: "ea.circuit.law.ohm" },
     type: "mathematical-law",
     weight: 90,
@@ -418,9 +446,16 @@ export const atlasRelationships: AtlasRelationship[] = [
   },
   {
     source: { kind: "lesson", id: "ohms-law" },
+    target: { kind: "lesson", id: "power-energy" },
+    type: "energy-link",
+    weight: 92,
+    label: { en: "next foundation lesson" },
+  },
+  {
+    source: { kind: "lesson", id: "ohms-law" },
     target: { kind: "topic", id: "ea.fundamentals.power" },
     type: "energy-link",
-    weight: 88,
+    weight: 84,
   },
   {
     source: { kind: "lesson", id: "ohms-law" },
@@ -454,6 +489,85 @@ export const atlasRelationships: AtlasRelationship[] = [
     target: { kind: "topic", id: "ea.transport.ohm-microscopic" },
     type: "material-view",
     weight: 60,
+  },
+
+  {
+    source: { kind: "lesson", id: "power-energy" },
+    target: { kind: "lesson", id: "ohms-law" },
+    type: "prerequisite",
+    weight: 100,
+  },
+  {
+    source: { kind: "lesson", id: "power-energy" },
+    target: { kind: "lesson", id: "voltage" },
+    type: "prerequisite",
+    weight: 96,
+  },
+  {
+    source: { kind: "lesson", id: "power-energy" },
+    target: { kind: "lesson", id: "current" },
+    type: "prerequisite",
+    weight: 94,
+  },
+  {
+    source: { kind: "lesson", id: "power-energy" },
+    target: { kind: "lesson", id: "resistance" },
+    type: "prerequisite",
+    weight: 90,
+  },
+  {
+    source: { kind: "lesson", id: "power-energy" },
+    target: { kind: "topic", id: "ea.fundamentals.energy" },
+    type: "energy-link",
+    weight: 88,
+  },
+  {
+    source: { kind: "lesson", id: "power-energy" },
+    target: { kind: "topic", id: "ea.transport.joule-heating" },
+    type: "energy-link",
+    weight: 84,
+  },
+  {
+    source: { kind: "lesson", id: "power-energy" },
+    target: { kind: "topic", id: "ea.storage.electrochemistry" },
+    type: "energy-source",
+    weight: 80,
+    label: { en: "battery energy storage" },
+  },
+  {
+    source: { kind: "lesson", id: "power-energy" },
+    target: { kind: "topic", id: "ea.component.resistor" },
+    type: "component",
+    weight: 76,
+    label: { en: "power rating application" },
+  },
+  {
+    source: { kind: "lesson", id: "power-energy" },
+    target: { kind: "topic", id: "ea.component.fuse" },
+    type: "safety",
+    weight: 72,
+    label: { en: "overpower and overcurrent protection" },
+  },
+  {
+    source: { kind: "lesson", id: "power-energy" },
+    target: { kind: "topic", id: "ea.device.fet.mosfet.soa" },
+    type: "safety",
+    weight: 66,
+    label: { en: "device dissipation limit" },
+  },
+  {
+    source: { kind: "lesson", id: "power-energy" },
+    target: { kind: "topic", id: "ea.circuit.ac-power" },
+    type: "successor",
+    weight: 62,
+    label: { en: "AC extension" },
+  },
+  {
+    source: { kind: "lesson", id: "power-energy" },
+    target: { kind: "topic", id: "ea.circuit.topology.series-parallel" },
+    type: "successor",
+    weight: 58,
+    label: { en: "next circuit skill" },
   },
 
   {
@@ -584,6 +698,56 @@ export const atlasRelationships: AtlasRelationship[] = [
     target: { kind: "topic", id: "ea.circuit.topology.series-parallel" },
     type: "combines-with",
     weight: 70,
+  },
+
+  {
+    source: { kind: "topic", id: "ea.fundamentals.power" },
+    target: { kind: "topic", id: "ea.fundamentals.energy" },
+    type: "energy-link",
+    weight: 100,
+  },
+  {
+    source: { kind: "topic", id: "ea.fundamentals.power" },
+    target: { kind: "topic", id: "ea.circuit.law.ohm" },
+    type: "mathematical-law",
+    weight: 92,
+  },
+  {
+    source: { kind: "topic", id: "ea.fundamentals.power" },
+    target: { kind: "topic", id: "ea.transport.joule-heating" },
+    type: "energy-link",
+    weight: 86,
+  },
+  {
+    source: { kind: "topic", id: "ea.fundamentals.power" },
+    target: { kind: "topic", id: "ea.component.resistor" },
+    type: "component",
+    weight: 80,
+  },
+  {
+    source: { kind: "topic", id: "ea.fundamentals.power" },
+    target: { kind: "topic", id: "ea.circuit.ac-power" },
+    type: "successor",
+    weight: 74,
+  },
+
+  {
+    source: { kind: "topic", id: "ea.fundamentals.energy" },
+    target: { kind: "topic", id: "ea.fundamentals.power" },
+    type: "energy-link",
+    weight: 100,
+  },
+  {
+    source: { kind: "topic", id: "ea.fundamentals.energy" },
+    target: { kind: "topic", id: "ea.storage.electrochemistry" },
+    type: "energy-source",
+    weight: 88,
+  },
+  {
+    source: { kind: "topic", id: "ea.fundamentals.energy" },
+    target: { kind: "topic", id: "ea.transport.joule-heating" },
+    type: "energy-link",
+    weight: 76,
   },
 
   {

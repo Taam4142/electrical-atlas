@@ -6,7 +6,14 @@ import {
 } from "./relationships";
 
 export type Locale = "en" | "th";
-export type LessonKey = "what-is-electricity" | "voltage" | "current" | "resistance" | "ohms-law" | "mosfet";
+export type LessonKey =
+  | "what-is-electricity"
+  | "voltage"
+  | "current"
+  | "resistance"
+  | "ohms-law"
+  | "power-energy"
+  | "mosfet";
 export type SuggestionKind = "lesson" | "topic";
 
 export interface SuggestionItem {
@@ -77,6 +84,18 @@ const lessonLabels: Record<LessonKey, Record<Locale, { title: string; summary: s
       title: "กฎของโอห์ม",
       summary: "แรงดัน กระแส และความต้านทานที่เชื่อมกันด้วย V = IR พร้อมกำลังและข้อจำกัดของอุปกรณ์ non-ohmic",
       href: "/th/lessons/ohms-law/",
+    },
+  },
+  "power-energy": {
+    en: {
+      title: "Electrical Power and Energy",
+      summary: "Watts, joules, watt-hours, heat, batteries, and why time matters in every circuit.",
+      href: "/en/lessons/power-energy/",
+    },
+    th: {
+      title: "กำลังและพลังงานไฟฟ้า",
+      summary: "วัตต์ จูล วัตต์-ชั่วโมง ความร้อน แบตเตอรี่ และเหตุผลที่เวลาสำคัญในทุกวงจร",
+      href: "/th/lessons/power-energy/",
     },
   },
   mosfet: {

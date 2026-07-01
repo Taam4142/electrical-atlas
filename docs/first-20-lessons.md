@@ -23,7 +23,7 @@ The sequence is not purely academic. It is designed for the website experience: 
 | 4 | Electric Current | `ea.fundamentals.current` | P1 | prototype | The core flow quantity behind circuits, signals, and power. |
 | 5 | Resistance and Conductance | `ea.fundamentals.resistance` | P1 | prototype | Turns material behavior into circuit behavior. |
 | 6 | Ohm's Law | `ea.circuit.law.ohm` | P1 | prototype | First quantitative law most learners will use. |
-| 7 | Electrical Power and Energy | `ea.fundamentals.power` / `ea.fundamentals.energy` | P1 | planned | Connects electricity to heat, work, battery life, and safety. |
+| 7 | Electrical Power and Energy | `ea.fundamentals.power` / `ea.fundamentals.energy` | P1 | prototype | Connects electricity to heat, work, battery life, and safety. |
 | 8 | Series and Parallel Circuits | `ea.circuit.topology.series-parallel` | P1 | planned | Needed for almost every beginner circuit explanation. |
 | 9 | Battery | `ea.storage.electrochemistry` | P1 | planned | Gives a real source of voltage and energy; supports the lamp lesson. |
 | 10 | Switches and Contacts | `ea.component.switch` | P2 | planned | Bridges everyday switching to ideal/real circuit behavior. |
@@ -77,8 +77,8 @@ This batch prepares the way for power electronics, embedded outputs, protection,
 
 Recommended immediate order:
 
-1. **Electrical Power and Energy** - connects voltage and current to heat, work, battery life, and safety.
-2. **Battery** - gives learners a real voltage source and energy store to connect to circuits.
-3. **Series and Parallel Circuits** - teaches how simple parts combine before larger circuit examples.
+1. **Battery** - gives learners a real voltage source and energy store to connect to circuits.
+2. **Series and Parallel Circuits** - teaches how simple parts combine before larger circuit examples.
+3. **Switches and Contacts** - bridges everyday on/off behavior to ideal and real circuit switching.
 
-After those, build **Switches and Contacts**. Then the original "battery lights a lamp" lesson can become a strong integrated beginner mini-project rather than a lonely one-off.
+After those, the original "battery lights a lamp" lesson can become a strong integrated beginner mini-project rather than a lonely one-off.

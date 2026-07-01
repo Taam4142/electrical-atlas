@@ -1,0 +1,249 @@
+<section>
+
+## 1. The useful idea
+
+**Electrical power** is the rate at which electrical energy is transferred.
+
+**Electrical energy** is the accumulated amount of transferred energy.
+
+The beginner formula is:
+
+`P = V × I`
+
+where:
+
+- `P` is power in watts,
+- `V` is voltage in volts,
+- `I` is current in amperes.
+
+If that power continues for some time:
+
+`E = P × t`
+
+where `E` is energy in joules and `t` is time in seconds.
+
+<aside className="callout">
+
+**First mental model:** power is “how fast the energy is moving.” Energy is “how much has moved so far.”
+
+</aside>
+
+</section>
+
+<section>
+
+## 2. Why this matters
+
+Power and energy connect the abstract circuit quantities to things you can feel and measure:
+
+- heat in a resistor, wire, connector, MOSFET, fuse, or PCB trace,
+- light from a lamp or LED,
+- motion from a motor,
+- sound from a speaker,
+- chemical energy stored or released by a battery,
+- energy cost on an electricity bill.
+
+Voltage and current tell you what the circuit is doing right now. Power tells you how intense the energy transfer is. Energy tells you how much total work, heat, storage, or consumption has happened over time.
+
+</section>
+
+<section>
+
+## 3. Power: volts times amps
+
+If a load has `12 V` across it and `0.5 A` through it:
+
+`P = 12 × 0.5 = 6 W`
+
+That means the load is receiving energy at `6 joules per second`.
+
+The same power can happen in different ways:
+
+- `12 V × 0.5 A = 6 W`
+- `6 V × 1 A = 6 W`
+- `3 V × 2 A = 6 W`
+
+The power is the same, but the circuit stress may not be. Higher current can heat wires and switches more. Higher voltage can stress insulation, spacing, and safety.
+
+</section>
+
+<section>
+
+## 4. Energy: power over time
+
+If a `6 W` load runs for `10 s`:
+
+`E = 6 × 10 = 60 J`
+
+If it runs for `100 s`:
+
+`E = 6 × 100 = 600 J`
+
+Power did not change. The total energy changed because the time changed.
+
+That is why a small load can use a large amount of energy if it runs for a long time, and a large load can use little energy if it runs only briefly.
+
+</section>
+
+<section>
+
+## 5. Joules, watt-hours, and kilowatt-hours
+
+In physics, energy is often measured in **joules**.
+
+In batteries and electricity bills, energy is often measured in **watt-hours**:
+
+`1 Wh = 3600 J`
+
+because:
+
+`1 W × 1 hour = 1 J/s × 3600 s = 3600 J`
+
+For buildings and utility bills, the common unit is **kilowatt-hour**:
+
+`1 kWh = 1000 Wh`
+
+A device rated `100 W` running for `10 hours` uses:
+
+`100 W × 10 h = 1000 Wh = 1 kWh`
+
+</section>
+
+<section>
+
+## 6. Power in resistors and heat
+
+For a resistor, combine power with Ohm's law:
+
+`P = V × I`
+
+`P = I²R`
+
+`P = V² / R`
+
+These forms explain why heating can surprise beginners.
+
+At fixed resistance, increasing voltage increases power quickly because current rises too.
+
+At fixed voltage, lowering resistance increases current and can make power rise quickly.
+
+Real resistors, wires, PCB traces, connectors, MOSFETs, fuses, and batteries have thermal limits. A circuit can be mathematically correct and still burn if the energy cannot leave as heat safely.
+
+</section>
+
+<section>
+
+## 7. Battery energy is not just amp-hours
+
+Batteries are often labeled in amp-hours, such as `2 Ah`.
+
+Amp-hours tell charge capacity:
+
+`Ah = current × time`
+
+But energy also depends on voltage:
+
+`Wh = V × Ah`
+
+A `2 Ah` cell at `3.7 V` stores roughly:
+
+`3.7 × 2 = 7.4 Wh`
+
+A `2 Ah` pack at `12 V` stores roughly:
+
+`12 × 2 = 24 Wh`
+
+Same amp-hours, different energy. This is one reason battery comparisons should use watt-hours when you care about runtime or total stored energy.
+
+</section>
+
+<section>
+
+## 8. Common mistakes
+
+- **Mixing power and energy.** Watts are a rate. Joules, watt-hours, and kilowatt-hours are amounts.
+- **Ignoring time.** A low-power device can still use significant energy if it runs all day.
+- **Using amp-hours as energy.** Amp-hours need voltage before they become watt-hours.
+- **Forgetting heat.** Power dissipation becomes a thermal design problem.
+- **Assuming rated power means safe in every situation.** Cooling, enclosure, ambient temperature, waveform, pulse duration, and mounting matter.
+- **Applying DC formulas blindly to AC.** AC power can involve RMS values, real power, reactive power, apparent power, and power factor.
+
+</section>
+
+<section>
+
+## 9. Safety notes
+
+Power and energy are safety topics.
+
+High power can overheat conductors and components. High energy can make arcs, burns, battery failures, fires, or mechanical damage more severe.
+
+Do not use this lesson alone to size wires, select fuses or breakers, design battery packs, work on mains wiring, modify switchboards, or certify equipment.
+
+For Thailand-specific installation, utility, energy, or safety content, verify current TISI/TIS, EIT, MEA, PEA, ERC, and related IEC/IEEE references before publication. The physics formulas are stable; the rules, editions, and authority requirements must be checked from official sources.
+
+</section>
+
+<section className="technical-only">
+
+## Technical track
+
+Instantaneous electrical power is:
+
+`p(t) = v(t)i(t)`
+
+With the passive sign convention, positive power means the element absorbs energy. Negative power means the element delivers energy.
+
+Energy over time is the integral of power:
+
+`E = ∫ p(t) dt`
+
+For DC steady state, this becomes:
+
+`E = VIt`
+
+For AC systems, the important distinction is:
+
+- instantaneous power `p(t)`,
+- average or real power `P`,
+- reactive power `Q`,
+- apparent power `S`,
+- power factor.
+
+This lesson only introduces the DC foundation. AC power deserves its own lesson.
+
+</section>
+
+<section>
+
+## Where this connects next
+
+Electrical power and energy connect directly to:
+
+- batteries and energy storage,
+- resistor ratings and heat,
+- Joule heating,
+- fuses and breakers,
+- wire and PCB trace current limits,
+- MOSFET safe operating area,
+- motors and mechanical work,
+- power supplies and converters,
+- electricity bills and `kWh`,
+- AC power and power factor.
+
+Good next lessons are Battery, Series and Parallel Circuits, Switches and Contacts, Resistor, Fuse/Breaker/Short Circuit, and AC vs DC.
+
+</section>
+
+<section>
+
+## Reference direction for review
+
+- Introductory circuit theory references for power, energy, passive sign convention, and Ohm's law.
+- Electronics references for resistor power ratings, thermal derating, current sensing, and device dissipation.
+- Battery references for watt-hours, amp-hours, discharge rates, and energy storage.
+- Power systems references for energy consumption, metering, and AC power.
+- Safety references for overcurrent, short circuits, heating, arcs, batteries, and protective devices.
+- Thai context: verify current TISI/TIS, EIT, MEA, PEA, ERC, and related IEC/IEEE references before making installation, legal, or safety claims.
+
+</section>

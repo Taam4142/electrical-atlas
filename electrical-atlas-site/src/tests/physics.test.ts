@@ -3,14 +3,18 @@ import {
   calculateChargeFromCurrentTime,
   calculateConductanceFromResistance,
   calculateCurrentFromChargeTime,
+  calculateElectricalPower,
   calculateEnergyFromVoltageCharge,
+  calculateEnergyFromPowerTime,
   calculateOhmsLaw,
   calculateResistanceFromConductance,
   calculateVoltageFromEnergyCharge,
+  convertJoulesToWattHours,
   estimateCurrentFlow,
   estimateElectronDriftSpeed,
   estimateFieldArrivalFraction,
   estimateLampCircuit,
+  estimatePowerEnergy,
   estimateResistanceConductance,
   estimateVoltageEnergy,
 } from "../lib/physics";
@@ -21,6 +25,25 @@ describe("physics helpers", () => {
 
     expect(result.current).toBeCloseTo(0.3, 10);
     expect(result.power).toBeCloseTo(2.7, 10);
+  });
+
+  it("calculates electrical power and accumulated energy", () => {
+    expect(calculateElectricalPower(12, 0.5)).toBeCloseTo(6, 12);
+    expect(calculateEnergyFromPowerTime(6, 60)).toBeCloseTo(360, 12);
+    expect(convertJoulesToWattHours(3600)).toBeCloseTo(1, 12);
+
+    const estimate = estimatePowerEnergy({
+      voltage: 12,
+      currentAmps: 0.5,
+      durationSeconds: 60,
+      maxPowerWatts: 12,
+    });
+
+    expect(estimate.powerWatts).toBeCloseTo(6, 12);
+    expect(estimate.energyJoules).toBeCloseTo(360, 12);
+    expect(estimate.energyWattHours).toBeCloseTo(0.1, 12);
+    expect(estimate.chargeCoulombs).toBeCloseTo(30, 12);
+    expect(estimate.heatLevel).toBeCloseTo(0.5, 12);
   });
 
   it("treats voltage as energy per charge", () => {
