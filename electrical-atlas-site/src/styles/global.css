@@ -1105,6 +1105,97 @@ p {
   text-anchor: middle;
 }
 
+.ohms-demo-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.65fr);
+  gap: 1rem;
+  align-items: stretch;
+}
+
+.ohms-battery {
+  fill: #10233a;
+  stroke: var(--cyan);
+  stroke-width: 3;
+  filter: url("#ohmsGlow");
+}
+
+.ohms-lead {
+  fill: none;
+  stroke: rgba(100, 244, 255, 0.75);
+  stroke-width: 10;
+  stroke-linecap: round;
+  filter: url("#ohmsGlow");
+}
+
+.ohms-resistor {
+  fill: rgba(248, 214, 109, 0.13);
+  stroke: rgba(248, 214, 109, 0.78);
+  stroke-width: 4;
+  filter: url("#ohmsGlow");
+  transition: d 180ms ease;
+}
+
+.ohms-current-arc {
+  fill: none;
+  stroke: url("#ohmsGradient");
+  stroke-linecap: round;
+  filter: url("#ohmsGlow");
+  transition: stroke-width 180ms ease;
+}
+
+.ohms-heat-halo {
+  fill: var(--danger);
+  filter: url("#ohmsGlow");
+  transition:
+    opacity 180ms ease,
+    r 180ms ease;
+}
+
+.ohms-equation-text {
+  fill: #fff4d2;
+  font-size: 28px;
+  font-weight: 950;
+  text-anchor: middle;
+}
+
+.ohms-meter-bar {
+  height: 0.72rem;
+  overflow: hidden;
+  border: 1px solid rgba(100, 244, 255, 0.22);
+  border-radius: 999px;
+  background: rgba(4, 11, 23, 0.78);
+}
+
+.ohms-meter-bar span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, rgba(100, 244, 255, 0.85), rgba(158, 255, 110, 0.85));
+  transition: width 180ms ease;
+}
+
+.ohms-meter-bar.resistance-bar span {
+  background: linear-gradient(90deg, rgba(248, 214, 109, 0.82), rgba(255, 91, 91, 0.78));
+}
+
+.ohms-formula-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-top: 1rem;
+}
+
+.ohms-formula-row span {
+  border: 1px solid rgba(100, 244, 255, 0.18);
+  border-radius: 999px;
+  padding: 0.55rem 0.75rem;
+  background: rgba(100, 244, 255, 0.07);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
 .node-card {
   padding: 1.1rem;
 }
@@ -1396,7 +1487,8 @@ input[type="range"] {
   .mosfet-demo-grid,
   .voltage-demo-grid,
   .current-demo-grid,
-  .resistance-demo-grid {
+  .resistance-demo-grid,
+  .ohms-demo-grid {
     grid-template-columns: 1fr;
   }
 

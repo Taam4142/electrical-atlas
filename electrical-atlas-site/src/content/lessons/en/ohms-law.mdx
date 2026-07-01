@@ -1,0 +1,249 @@
+<section>
+
+## 1. The useful idea
+
+**Ohm's law** is the relationship between voltage, current, and resistance for an **ohmic** path.
+
+The most common form is:
+
+`V = I × R`
+
+where:
+
+- `V` is voltage in volts,
+- `I` is current in amperes,
+- `R` is resistance in ohms.
+
+You can rearrange the same idea:
+
+`I = V / R`
+
+`R = V / I`
+
+In plain language: for a fixed resistance, more voltage produces more current. For a fixed voltage, more resistance allows less current.
+
+<aside className="callout">
+
+**First mental model:** voltage is the electrical push, resistance is how difficult the path is, and current is the resulting flow rate.
+
+</aside>
+
+</section>
+
+<section>
+
+## 2. Why Ohm's law matters
+
+Ohm's law is usually the first practical circuit law because it lets you turn one known pair into the missing third value.
+
+You can use it to ask:
+
+- What current flows through a resistor?
+- What resistor value limits current to a safe amount?
+- What voltage drop appears across a wire or resistor?
+- How much current might a short circuit try to draw?
+- What power turns into heat in a resistive part?
+
+It is the bridge between the previous foundation lessons:
+
+- voltage: energy per charge,
+- current: charge flow per second,
+- resistance: how strongly the path opposes current.
+
+</section>
+
+<section>
+
+## 3. The three forms
+
+Use the form that matches the unknown you need.
+
+If current is unknown:
+
+`I = V / R`
+
+If voltage is unknown:
+
+`V = I × R`
+
+If resistance is unknown:
+
+`R = V / I`
+
+Example:
+
+If a `12 V` source is connected across `24 Ω`:
+
+`I = 12 / 24 = 0.5 A`
+
+The current is half an ampere.
+
+</section>
+
+<section>
+
+## 4. Power is the practical warning
+
+Ohm's law tells current, but real parts also heat up.
+
+Electrical power is:
+
+`P = V × I`
+
+For a resistor, you can combine this with Ohm's law:
+
+`P = I²R`
+
+`P = V² / R`
+
+That last form is important: at the same voltage, lowering resistance can make power rise very quickly.
+
+A resistor, wire, connector, PCB trace, MOSFET, fuse, or battery path can fail if the heat cannot escape.
+
+</section>
+
+<section>
+
+## 5. When Ohm's law works well
+
+Ohm's law works well when the path behaves like a mostly fixed resistance over the operating range.
+
+Good beginner examples:
+
+- ordinary resistors within their rating,
+- short pieces of wire at low current,
+- many metal conductors over a small temperature range,
+- a MOSFET on-resistance as a rough local approximation,
+- current-sense resistors,
+- heating elements when modeled over a limited range.
+
+In those cases, the graph of current versus voltage is close to a straight line.
+
+</section>
+
+<section>
+
+## 6. When Ohm's law is not enough
+
+Many real devices are **non-ohmic**. Their current-voltage relationship is not one fixed straight line.
+
+Examples:
+
+- LEDs and diodes,
+- MOSFETs outside the simple on-resistance region,
+- incandescent lamps as the filament heats up,
+- motors during startup,
+- batteries under load,
+- thermistors and varistors,
+- arcs, sparks, and breakdown regions.
+
+You can sometimes use a local or approximate resistance, but the simple formula may mislead you if the device changes with voltage, current, temperature, light, magnetic field, or time.
+
+</section>
+
+<section>
+
+## 7. A beginner circuit example
+
+Suppose you have a `9 V` battery and want about `20 mA` through an LED path.
+
+Ignoring the LED for a moment would give:
+
+`R = V / I = 9 / 0.02 = 450 Ω`
+
+But an LED is not an ordinary resistor. It has a forward voltage. If the LED drops about `2 V`, the resistor sees about:
+
+`9 V - 2 V = 7 V`
+
+Then:
+
+`R = 7 / 0.02 = 350 Ω`
+
+This is why Ohm's law is powerful, but only after you know which part of the circuit is actually acting like the resistor.
+
+</section>
+
+<section>
+
+## 8. Common mistakes
+
+- **Using Ohm's law on the wrong part of the circuit.** Apply it to a specific element or path, not vaguely to "everything."
+- **Forgetting units.** Use volts, amperes, and ohms together.
+- **Treating LEDs as resistors.** LEDs need a current-limiting element or driver.
+- **Ignoring power.** A mathematically correct resistor value can still burn if the wattage is too low.
+- **Assuming resistance never changes.** Temperature, tolerance, aging, and device physics matter.
+- **Confusing a short circuit with "low resistance is good."** Low resistance at a strong source can mean dangerous current.
+
+</section>
+
+<section>
+
+## 9. Safety notes
+
+Ohm's law is central to safety, but it is not a replacement for electrical design rules.
+
+Do not use this lesson alone to size building wires, choose breakers, work on mains wiring, repair appliances, design battery packs, or modify switchboards.
+
+For Thailand-specific installation or safety content, verify current TISI/TIS, EIT, MEA, PEA, ERC, and related IEC/IEEE references before publication. The formula is stable; the legal and installation rules must be checked from official sources.
+
+</section>
+
+<section className="technical-only">
+
+## Technical track
+
+Ohm's law has several related forms.
+
+For a circuit element:
+
+`v = Ri`
+
+For conductance:
+
+`i = Gv`
+
+For a material in a local field approximation:
+
+`J = σE`
+
+where `J` is current density, `σ` is conductivity, and `E` is electric field.
+
+Real devices may need differential or small-signal resistance:
+
+`r = dV / dI`
+
+That is different from the simple large-signal ratio `R = V / I` when the device is nonlinear.
+
+</section>
+
+<section>
+
+## Where this connects next
+
+Ohm's law connects directly to:
+
+- electrical power and energy,
+- series and parallel circuits,
+- resistors and current sensing,
+- voltage dividers,
+- LED current limiting,
+- wire and PCB trace heating,
+- fuses and breakers,
+- MOSFET on-resistance,
+- measurement with meters.
+
+Good next lessons are Electrical Power and Energy, Series and Parallel Circuits, Battery, Resistor, LED, and Fuse/Breaker/Short Circuit.
+
+</section>
+
+<section>
+
+## Reference direction for review
+
+- Introductory circuit theory references for Ohm's law, voltage, current, resistance, and power.
+- Materials/electromagnetism references for microscopic Ohm's law, resistivity, and conductivity.
+- Practical electronics references for current limiting, resistor ratings, LED circuits, and power dissipation.
+- Safety references for overcurrent, short circuits, cable heating, and protective devices.
+- Thai context: verify current TISI/TIS, EIT, MEA, PEA, ERC, and related IEC/IEEE references before making installation or legal claims.
+
+</section>

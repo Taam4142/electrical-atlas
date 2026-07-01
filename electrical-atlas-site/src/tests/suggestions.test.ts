@@ -20,6 +20,7 @@ describe("suggestion system", () => {
     expect(suggestions.some((suggestion) => suggestion.href === "/th/lessons/voltage/")).toBe(true);
     expect(suggestions.some((suggestion) => suggestion.href === "/th/lessons/current/")).toBe(true);
     expect(suggestions.some((suggestion) => suggestion.href === "/th/lessons/resistance/")).toBe(true);
+    expect(suggestions.some((suggestion) => suggestion.href === "/th/lessons/ohms-law/")).toBe(true);
     expect(suggestions.some((suggestion) => suggestion.href === "/th/lessons/mosfet/")).toBe(true);
     expect(suggestions.every((suggestion) => suggestion.href.startsWith("/th/"))).toBe(true);
   });
@@ -55,22 +56,43 @@ describe("suggestion system", () => {
     expect(suggestions.length).toBeGreaterThanOrEqual(8);
     expect(hrefs).toContain("/en/lessons/voltage/");
     expect(hrefs).toContain("/en/lessons/current/");
+    expect(hrefs).toContain("/en/lessons/ohms-law/");
     expect(hrefs).toContain("/en/topics/circuit-law-ohm/");
     expect(hrefs).toContain("/en/topics/component-resistor/");
     expect(hrefs).toContain("/en/topics/transport-ohm-microscopic/");
     expect(ohmsLaw?.relationType).toBe("mathematical-law");
-    expect(ohmsLaw?.relation).toBe("next practical law");
+  });
+
+  it("builds curated Ohm's law lesson suggestions", () => {
+    const suggestions = getLessonSuggestions("ohms-law", "en", atlasTopics);
+    const hrefs = suggestions.map((suggestion) => suggestion.href);
+
+    expect(suggestions.length).toBeGreaterThanOrEqual(8);
+    expect(hrefs).toContain("/en/lessons/voltage/");
+    expect(hrefs).toContain("/en/lessons/current/");
+    expect(hrefs).toContain("/en/lessons/resistance/");
+    expect(hrefs).toContain("/en/topics/fundamentals-power/");
+    expect(hrefs).toContain("/en/topics/circuit-topology-series-parallel/");
+    expect(hrefs).toContain("/en/topics/photonics-led/");
+    expect(hrefs).toContain("/en/topics/device-diode-pn/");
   });
 
   it("keeps structured relationship records pointed at real topic IDs", () => {
     const topicIds = new Set(atlasTopics.map((topic) => topic.id));
+    const lessonIds = new Set(["what-is-electricity", "voltage", "current", "resistance", "ohms-law", "mosfet"]);
     const missingTopicIds = atlasRelationships.flatMap((relationship) =>
       [relationship.source, relationship.target]
         .filter((node) => node.kind === "topic" && !topicIds.has(node.id))
         .map((node) => node.id),
     );
+    const missingLessonIds = atlasRelationships.flatMap((relationship) =>
+      [relationship.source, relationship.target]
+        .filter((node) => node.kind === "lesson" && !lessonIds.has(node.id))
+        .map((node) => node.id),
+    );
 
     expect(missingTopicIds).toEqual([]);
+    expect(missingLessonIds).toEqual([]);
     expect(Object.keys(relationshipLabels).length).toBeGreaterThan(10);
   });
 

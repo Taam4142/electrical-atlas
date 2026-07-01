@@ -6,7 +6,7 @@ import {
 } from "./relationships";
 
 export type Locale = "en" | "th";
-export type LessonKey = "what-is-electricity" | "voltage" | "current" | "resistance" | "mosfet";
+export type LessonKey = "what-is-electricity" | "voltage" | "current" | "resistance" | "ohms-law" | "mosfet";
 export type SuggestionKind = "lesson" | "topic";
 
 export interface SuggestionItem {
@@ -17,18 +17,6 @@ export interface SuggestionItem {
   relation: string;
   relationType?: RelationshipType | "metadata";
 }
-
-type LessonSuggestionEntry =
-  | {
-      kind: "lesson";
-      key: LessonKey;
-      relation: Record<Locale, string>;
-    }
-  | {
-      kind: "topic";
-      topicId: string;
-      relation: Record<Locale, string>;
-    };
 
 const lessonLabels: Record<LessonKey, Record<Locale, { title: string; summary: string; href: string }>> = {
   "what-is-electricity": {
@@ -79,6 +67,18 @@ const lessonLabels: Record<LessonKey, Record<Locale, { title: string; summary: s
       href: "/th/lessons/resistance/",
     },
   },
+  "ohms-law": {
+    en: {
+      title: "Ohm's Law",
+      summary: "Voltage, current, and resistance linked by V = IR, with power and non-ohmic limits.",
+      href: "/en/lessons/ohms-law/",
+    },
+    th: {
+      title: "กฎของโอห์ม",
+      summary: "แรงดัน กระแส และความต้านทานที่เชื่อมกันด้วย V = IR พร้อมกำลังและข้อจำกัดของอุปกรณ์ non-ohmic",
+      href: "/th/lessons/ohms-law/",
+    },
+  },
   mosfet: {
     en: {
       title: "What Is a MOSFET?",
@@ -91,245 +91,6 @@ const lessonLabels: Record<LessonKey, Record<Locale, { title: string; summary: s
       href: "/th/lessons/mosfet/",
     },
   },
-};
-
-/** @deprecated Lesson suggestions now come from atlasRelationships in relationships.ts. */
-export const legacyLessonSuggestionEntries: Record<LessonKey, LessonSuggestionEntry[]> = {
-  "what-is-electricity": [
-    {
-      kind: "lesson",
-      key: "voltage",
-      relation: { en: "next foundation lesson", th: "บทพื้นฐานถัดไป" },
-    },
-    {
-      kind: "lesson",
-      key: "current",
-      relation: { en: "next foundation lesson", th: "บทพื้นฐานถัดไป" },
-    },
-    {
-      kind: "lesson",
-      key: "resistance",
-      relation: { en: "next foundation lesson", th: "บทพื้นฐานถัดไป" },
-    },
-    {
-      kind: "lesson",
-      key: "mosfet",
-      relation: { en: "first component lesson", th: "บทเรียนชิ้นส่วนถัดไป" },
-    },
-    {
-      kind: "topic",
-      topicId: "ea.fundamentals.voltage",
-      relation: { en: "core prerequisite", th: "พื้นฐานสำคัญ" },
-    },
-    {
-      kind: "topic",
-      topicId: "ea.fundamentals.current",
-      relation: { en: "core prerequisite", th: "พื้นฐานสำคัญ" },
-    },
-    {
-      kind: "topic",
-      topicId: "ea.em.field.electric",
-      relation: { en: "same field idea", th: "แนวคิดสนามเดียวกัน" },
-    },
-    {
-      kind: "topic",
-      topicId: "ea.circuit.law.ohm",
-      relation: { en: "first circuit law", th: "กฎวงจรแรก ๆ" },
-    },
-    {
-      kind: "topic",
-      topicId: "ea.storage.lithium-ion",
-      relation: { en: "energy source path", th: "เส้นทางแหล่งพลังงาน" },
-    },
-  ],
-  voltage: [
-    {
-      kind: "lesson",
-      key: "what-is-electricity",
-      relation: { en: "foundation refresher", th: "ย้อนพื้นฐาน" },
-    },
-    {
-      kind: "lesson",
-      key: "current",
-      relation: { en: "natural next lesson", th: "บทถัดไปตามธรรมชาติ" },
-    },
-    {
-      kind: "lesson",
-      key: "resistance",
-      relation: { en: "sets up Ohm's law", th: "ปูทางสู่กฎของโอห์ม" },
-    },
-    {
-      kind: "topic",
-      topicId: "ea.fundamentals.current",
-      relation: { en: "natural next quantity", th: "ปริมาณถัดไป" },
-    },
-    {
-      kind: "topic",
-      topicId: "ea.fundamentals.resistance",
-      relation: { en: "needed for Ohm's law", th: "จำเป็นต่อกฎของโอห์ม" },
-    },
-    {
-      kind: "topic",
-      topicId: "ea.circuit.law.ohm",
-      relation: { en: "first circuit law", th: "กฎวงจรแรก" },
-    },
-    {
-      kind: "topic",
-      topicId: "ea.em.potential.electric",
-      relation: { en: "technical definition", th: "นิยามเชิงเทคนิค" },
-    },
-    {
-      kind: "topic",
-      topicId: "ea.em.field.electric",
-      relation: { en: "physical mechanism", th: "กลไกทางฟิสิกส์" },
-    },
-    {
-      kind: "topic",
-      topicId: "ea.storage.electrochemistry",
-      relation: { en: "real voltage source", th: "แหล่งแรงดันจริง" },
-    },
-    {
-      kind: "topic",
-      topicId: "ea.component.capacitor",
-      relation: { en: "stores energy by voltage", th: "เก็บพลังงานด้วยแรงดัน" },
-    },
-  ],
-  current: [
-    {
-      kind: "lesson",
-      key: "voltage",
-      relation: { en: "paired foundation", th: "พื้นฐานที่คู่กัน" },
-    },
-    {
-      kind: "lesson",
-      key: "resistance",
-      relation: { en: "natural next lesson", th: "บทถัดไปตามธรรมชาติ" },
-    },
-    {
-      kind: "lesson",
-      key: "what-is-electricity",
-      relation: { en: "foundation refresher", th: "ย้อนพื้นฐาน" },
-    },
-    {
-      kind: "topic",
-      topicId: "ea.fundamentals.resistance",
-      relation: { en: "next foundation quantity", th: "ปริมาณพื้นฐานถัดไป" },
-    },
-    {
-      kind: "topic",
-      topicId: "ea.circuit.law.ohm",
-      relation: { en: "voltage-current relationship", th: "ความสัมพันธ์แรงดัน-กระแส" },
-    },
-    {
-      kind: "topic",
-      topicId: "ea.transport.current-density",
-      relation: { en: "technical extension", th: "ต่อยอดเชิงเทคนิค" },
-    },
-    {
-      kind: "topic",
-      topicId: "ea.transport.drift",
-      relation: { en: "carrier motion", th: "การเคลื่อนที่ของตัวพา" },
-    },
-    {
-      kind: "topic",
-      topicId: "ea.transport.joule-heating",
-      relation: { en: "heating effect", th: "ผลด้านความร้อน" },
-    },
-    {
-      kind: "topic",
-      topicId: "ea.component.fuse",
-      relation: { en: "overcurrent protection", th: "การป้องกันกระแสเกิน" },
-    },
-    {
-      kind: "topic",
-      topicId: "ea.device.fet.mosfet.soa",
-      relation: { en: "component current limit", th: "ขีดจำกัดกระแสของชิ้นส่วน" },
-    },
-  ],
-  resistance: [
-    {
-      kind: "lesson",
-      key: "voltage",
-      relation: { en: "paired foundation", th: "พื้นฐานที่คู่กัน" },
-    },
-    {
-      kind: "lesson",
-      key: "current",
-      relation: { en: "paired foundation", th: "พื้นฐานที่คู่กัน" },
-    },
-    {
-      kind: "topic",
-      topicId: "ea.circuit.law.ohm",
-      relation: { en: "next practical law", th: "กฎใช้งานถัดไป" },
-    },
-    {
-      kind: "topic",
-      topicId: "ea.fundamentals.power",
-      relation: { en: "heat and energy link", th: "เชื่อมสู่ความร้อนและพลังงาน" },
-    },
-    {
-      kind: "topic",
-      topicId: "ea.fundamentals.conductance",
-      relation: { en: "reciprocal quantity", th: "ปริมาณส่วนกลับ" },
-    },
-    {
-      kind: "topic",
-      topicId: "ea.component.resistor",
-      relation: { en: "first physical component", th: "ชิ้นส่วนจริงชิ้นแรก" },
-    },
-    {
-      kind: "topic",
-      topicId: "ea.transport.ohm-microscopic",
-      relation: { en: "material physics view", th: "มุมมองฟิสิกส์วัสดุ" },
-    },
-    {
-      kind: "topic",
-      topicId: "ea.circuit.topology.series-parallel",
-      relation: { en: "combine resistive paths", th: "รวมเส้นทางต้านทาน" },
-    },
-    {
-      kind: "topic",
-      topicId: "ea.component.resistor.current-sense",
-      relation: { en: "measurement application", th: "งานวัดกระแส" },
-    },
-  ],
-  mosfet: [
-    {
-      kind: "lesson",
-      key: "what-is-electricity",
-      relation: { en: "foundation refresher", th: "ย้อนพื้นฐาน" },
-    },
-    {
-      kind: "topic",
-      topicId: "ea.device.fet.mosfet.gate-charge",
-      relation: { en: "next MOSFET detail", th: "รายละเอียด MOSFET ถัดไป" },
-    },
-    {
-      kind: "topic",
-      topicId: "ea.device.fet.mosfet.threshold",
-      relation: { en: "common confusion", th: "จุดที่มักเข้าใจผิด" },
-    },
-    {
-      kind: "topic",
-      topicId: "ea.device.fet.mosfet.channel",
-      relation: { en: "same physical mechanism", th: "กลไกฟิสิกส์เดียวกัน" },
-    },
-    {
-      kind: "topic",
-      topicId: "ea.digital.cmos.inverter",
-      relation: { en: "digital application", th: "งานดิจิทัล" },
-    },
-    {
-      kind: "topic",
-      topicId: "ea.converter.dc.buck",
-      relation: { en: "power electronics application", th: "งาน power electronics" },
-    },
-    {
-      kind: "topic",
-      topicId: "ea.pcb.power",
-      relation: { en: "layout and switching loops", th: "layout และ loop สวิตช์" },
-    },
-  ],
 };
 
 function isLessonKey(id: string): id is LessonKey {

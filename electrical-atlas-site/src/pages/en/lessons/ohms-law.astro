@@ -1,0 +1,35 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import LessonShell from "../../../components/LessonShell.astro";
+import LessonModeToggle from "../../../components/LessonModeToggle";
+import OhmsLawDemo from "../../../components/OhmsLawDemo";
+import SuggestionSection from "../../../components/SuggestionSection.astro";
+import Content from "../../../content/lessons/en/ohms-law.mdx";
+import { atlasTopics } from "../../../lib/generated/atlasTopics";
+import { getLessonSuggestions } from "../../../lib/suggestions";
+
+const suggestions = getLessonSuggestions("ohms-law", "en", atlasTopics);
+---
+
+<BaseLayout
+  title="Ohm's Law"
+  description="A visual foundation lesson explaining Ohm's law, V = IR, current, resistance, voltage, power, and non-ohmic limits."
+  lang="en"
+  counterpartPath="/th/lessons/ohms-law/"
+  counterpartLabel="ไทย"
+>
+  <LessonShell
+    locale="en"
+    eyebrow="foundation lesson"
+    title="Ohm's Law"
+    subtitle="Ohm's law links voltage, current, and resistance: more voltage pushes more current; more resistance limits it."
+    lessonId="ea.lesson.ohms-law.v0.1"
+  >
+    <LessonModeToggle client:load locale="en" />
+    <OhmsLawDemo client:load locale="en" />
+    <div class="lesson-content">
+      <Content />
+    </div>
+    <SuggestionSection locale="en" items={suggestions} />
+  </LessonShell>
+</BaseLayout>

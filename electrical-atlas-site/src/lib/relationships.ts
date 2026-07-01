@@ -133,6 +133,13 @@ export const atlasRelationships: AtlasRelationship[] = [
   },
   {
     source: { kind: "lesson", id: "what-is-electricity" },
+    target: { kind: "lesson", id: "ohms-law" },
+    type: "successor",
+    weight: 70,
+    label: { en: "first circuit law lesson" },
+  },
+  {
+    source: { kind: "lesson", id: "what-is-electricity" },
     target: { kind: "lesson", id: "mosfet" },
     type: "application",
     weight: 55,
@@ -195,6 +202,13 @@ export const atlasRelationships: AtlasRelationship[] = [
   },
   {
     source: { kind: "lesson", id: "voltage" },
+    target: { kind: "lesson", id: "ohms-law" },
+    type: "mathematical-law",
+    weight: 86,
+    label: { en: "first circuit law lesson" },
+  },
+  {
+    source: { kind: "lesson", id: "voltage" },
     target: { kind: "topic", id: "ea.fundamentals.current" },
     type: "paired-foundation",
     weight: 80,
@@ -253,6 +267,13 @@ export const atlasRelationships: AtlasRelationship[] = [
     type: "successor",
     weight: 90,
     label: { en: "natural next lesson" },
+  },
+  {
+    source: { kind: "lesson", id: "current" },
+    target: { kind: "lesson", id: "ohms-law" },
+    type: "mathematical-law",
+    weight: 86,
+    label: { en: "first circuit law lesson" },
   },
   {
     source: { kind: "lesson", id: "current" },
@@ -325,6 +346,13 @@ export const atlasRelationships: AtlasRelationship[] = [
   },
   {
     source: { kind: "lesson", id: "resistance" },
+    target: { kind: "lesson", id: "ohms-law" },
+    type: "mathematical-law",
+    weight: 92,
+    label: { en: "next practical law" },
+  },
+  {
+    source: { kind: "lesson", id: "resistance" },
     target: { kind: "topic", id: "ea.circuit.law.ohm" },
     type: "mathematical-law",
     weight: 90,
@@ -368,6 +396,64 @@ export const atlasRelationships: AtlasRelationship[] = [
     type: "measurement",
     weight: 56,
     label: { en: "measurement application" },
+  },
+
+  {
+    source: { kind: "lesson", id: "ohms-law" },
+    target: { kind: "lesson", id: "voltage" },
+    type: "prerequisite",
+    weight: 100,
+  },
+  {
+    source: { kind: "lesson", id: "ohms-law" },
+    target: { kind: "lesson", id: "current" },
+    type: "prerequisite",
+    weight: 98,
+  },
+  {
+    source: { kind: "lesson", id: "ohms-law" },
+    target: { kind: "lesson", id: "resistance" },
+    type: "prerequisite",
+    weight: 96,
+  },
+  {
+    source: { kind: "lesson", id: "ohms-law" },
+    target: { kind: "topic", id: "ea.fundamentals.power" },
+    type: "energy-link",
+    weight: 88,
+  },
+  {
+    source: { kind: "lesson", id: "ohms-law" },
+    target: { kind: "topic", id: "ea.circuit.topology.series-parallel" },
+    type: "successor",
+    weight: 82,
+    label: { en: "next circuit skill" },
+  },
+  {
+    source: { kind: "lesson", id: "ohms-law" },
+    target: { kind: "topic", id: "ea.component.resistor" },
+    type: "component",
+    weight: 78,
+  },
+  {
+    source: { kind: "lesson", id: "ohms-law" },
+    target: { kind: "topic", id: "ea.photonics.led" },
+    type: "application",
+    weight: 70,
+    label: { en: "current-limiting application" },
+  },
+  {
+    source: { kind: "lesson", id: "ohms-law" },
+    target: { kind: "topic", id: "ea.device.diode.pn" },
+    type: "application",
+    weight: 64,
+    label: { en: "non-ohmic contrast" },
+  },
+  {
+    source: { kind: "lesson", id: "ohms-law" },
+    target: { kind: "topic", id: "ea.transport.ohm-microscopic" },
+    type: "material-view",
+    weight: 60,
   },
 
   {

@@ -24,6 +24,7 @@ const lessonPath = lang === "th" ? "/th/lessons/what-is-electricity/" : "/en/les
 const voltagePath = lang === "th" ? "/th/lessons/voltage/" : "/en/lessons/voltage/";
 const currentPath = lang === "th" ? "/th/lessons/current/" : "/en/lessons/current/";
 const resistancePath = lang === "th" ? "/th/lessons/resistance/" : "/en/lessons/resistance/";
+const ohmsLawPath = lang === "th" ? "/th/lessons/ohms-law/" : "/en/lessons/ohms-law/";
 const mosfetPath = lang === "th" ? "/th/lessons/mosfet/" : "/en/lessons/mosfet/";
 const mapPath = lang === "th" ? "/th/map/" : "/en/map/";
 const fullTitle = title === "Electrical Atlas" ? title : `${title} • Electrical Atlas`;
@@ -64,6 +65,7 @@ const fullTitle = title === "Electrical Atlas" ? title : `${title} • Electrica
         <a href={voltagePath}>{lang === "th" ? "แรงดัน" : "Voltage"}</a>
         <a href={currentPath}>{lang === "th" ? "กระแส" : "Current"}</a>
         <a href={resistancePath}>{lang === "th" ? "ความต้านทาน" : "Resistance"}</a>
+        <a href={ohmsLawPath}>{lang === "th" ? "กฎของโอห์ม" : "Ohm's Law"}</a>
         <a href={mosfetPath}>MOSFET</a>
         <a href={mapPath}>{lang === "th" ? "แผนที่วิชา" : "Subject map"}</a>
       </nav>

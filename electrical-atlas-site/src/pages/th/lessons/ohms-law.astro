@@ -1,0 +1,35 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import LessonShell from "../../../components/LessonShell.astro";
+import LessonModeToggle from "../../../components/LessonModeToggle";
+import OhmsLawDemo from "../../../components/OhmsLawDemo";
+import SuggestionSection from "../../../components/SuggestionSection.astro";
+import Content from "../../../content/lessons/th/ohms-law.mdx";
+import { atlasTopics } from "../../../lib/generated/atlasTopics";
+import { getLessonSuggestions } from "../../../lib/suggestions";
+
+const suggestions = getLessonSuggestions("ohms-law", "th", atlasTopics);
+---
+
+<BaseLayout
+  title="กฎของโอห์ม"
+  description="บทเรียนภาพอธิบายกฎของโอห์ม V = IR ความสัมพันธ์ของแรงดัน กระแส ความต้านทาน กำลัง และข้อจำกัดของอุปกรณ์ non-ohmic"
+  lang="th"
+  counterpartPath="/en/lessons/ohms-law/"
+  counterpartLabel="English"
+>
+  <LessonShell
+    locale="th"
+    eyebrow="บทเรียนพื้นฐาน"
+    title="กฎของโอห์ม"
+    subtitle="กฎของโอห์มเชื่อมแรงดัน กระแส และความต้านทาน: แรงดันมากขึ้นดันกระแสมากขึ้น ส่วนความต้านทานมากขึ้นจำกัดกระแส"
+    lessonId="ea.lesson.ohms-law.v0.1"
+  >
+    <LessonModeToggle client:load locale="th" />
+    <OhmsLawDemo client:load locale="th" />
+    <div class="lesson-content">
+      <Content />
+    </div>
+    <SuggestionSection locale="th" items={suggestions} />
+  </LessonShell>
+</BaseLayout>
