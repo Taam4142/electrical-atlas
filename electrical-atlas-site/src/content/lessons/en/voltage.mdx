@@ -1,0 +1,221 @@
+<section>
+
+## 1. A useful definition
+
+**Voltage** is electric potential difference: the difference in electric energy per unit charge between two points.
+
+The unit is the **volt**. One volt means **one joule per coulomb**:
+
+`1 V = 1 J/C`
+
+In plain language: voltage tells you how much energy each bit of charge could give or receive when it moves between two points.
+
+<aside className="callout">
+
+**First mental model:** voltage is like height for electric energy. A charge at a higher electric potential has more energy available relative to a chosen lower point, just like water higher up can release energy as it moves downward.
+
+</aside>
+
+</section>
+
+<section>
+
+## 2. Why voltage matters
+
+Voltage is one of the first quantities you meet because it appears everywhere:
+
+- A AA cell is about `1.5 V`.
+- A USB supply is commonly `5 V`.
+- A car battery is called `12 V`, even though the exact value changes.
+- Many microcontrollers use `3.3 V` or `5 V` logic.
+- Thai household mains is nominally around `230 V AC`, but mains topics need proper safety treatment.
+
+Voltage is not the whole story. A high voltage with almost no available charge may only make a small static spark. A lower-voltage battery can still deliver dangerous current if it can supply a lot of energy. Voltage tells us the energy per charge; current, resistance, power, and source capability tell the rest.
+
+</section>
+
+<section>
+
+## 3. Where you see voltage in real life
+
+You see voltage printed on batteries, power adapters, solar panels, phone chargers, multimeters, motor drivers, logic pins, capacitors, and warning labels.
+
+When someone says "this point is 5 volts," the hidden question is: **5 volts relative to what?** Usually the reference is ground, the negative terminal of a supply, chassis, earth, or another named node.
+
+Voltage is always a comparison between two points.
+
+</section>
+
+<section>
+
+## 4. What is involved
+
+Voltage involves:
+
+- **Two points**: voltage is measured between them.
+- **Charge**: the thing that can gain or lose electric potential energy.
+- **Energy**: the ability to do work, make heat, create light, move a motor, or carry information.
+- **Electric field**: the field that pushes or pulls charge when a path exists.
+- **Reference point**: the "zero" chosen for a circuit or measurement.
+
+A battery creates chemical separation of charge. That separation establishes an electric field around the circuit when a conducting path is connected. The field is what guides energy transfer through the circuit.
+
+</section>
+
+<section>
+
+## 5. How voltage works physically
+
+Imagine a battery that has separated charge internally. The positive terminal is at a higher electric potential than the negative terminal. If a complete path connects the terminals through a load, the electric field in and around the conductors pushes mobile charge carriers.
+
+Step by step:
+
+1. A source separates charge and creates a potential difference.
+2. The circuit geometry and materials establish an electric field.
+3. Charge carriers respond to the field.
+4. Energy is transferred from the source to the load.
+5. The load converts that energy into heat, light, motion, sound, computation, or stored energy.
+
+The charges in the wire do not have to travel from the battery all the way to the lamp before the lamp can respond. The field pattern spreads through the circuit quickly, while individual electrons drift slowly.
+
+</section>
+
+<section>
+
+## 6. Main symbols and equations
+
+Common symbols:
+
+- `V`: voltage or potential difference, measured in volts.
+- `q`: charge, measured in coulombs.
+- `E`: energy, measured in joules.
+- `ΔV`: voltage difference between two points.
+
+The beginner equation is:
+
+`E = Vq`
+
+So a `9 V` battery gives `9 J` of energy for every `1 C` of charge that moves through the full battery-to-load path in the ideal picture.
+
+Another way to say the same thing:
+
+`V = E / q`
+
+Voltage is energy per charge.
+
+<aside className="callout">
+
+**Simplification warning:** real sources have internal resistance, limits, chemistry, temperature effects, and safety constraints. A voltage label does not tell you all available power or energy.
+
+</aside>
+
+</section>
+
+<section>
+
+## 7. Practical use
+
+Engineers and technicians use voltage to ask practical questions:
+
+- Is this supply high enough for the circuit?
+- Is this GPIO level safe for the chip?
+- Is this capacitor voltage rating high enough?
+- Is this battery full, empty, or under load?
+- Is this node at the expected value relative to ground?
+- Is there dangerous voltage present before touching or repairing equipment?
+
+Voltage is measured with a voltmeter or multimeter **across two points**. In a circuit, the meter is usually connected in parallel with the part or nodes being compared.
+
+</section>
+
+<section>
+
+## 8. Common mistakes
+
+- **"Voltage flows."** Current flows. Voltage is a difference between two points.
+- **"A point has voltage by itself."** A point has voltage only relative to a reference.
+- **"More voltage always means more danger."** Higher voltage is often more dangerous, but danger also depends on available current, energy, path through the body, time, frequency, and environment.
+- **"Battery voltage is battery capacity."** Voltage is not capacity. Capacity is usually expressed in amp-hours or watt-hours.
+- **"Ground is always zero and always safe."** Ground is a chosen reference. In real systems, grounding and earthing require careful design.
+
+</section>
+
+<section>
+
+## 9. Failure modes and limits
+
+Voltage becomes a problem when insulation, components, or people are exposed to more electric stress than they can tolerate.
+
+- Too much voltage can break down insulation.
+- Capacitors can store energy after power is removed.
+- Wrong voltage can destroy electronics.
+- Long wires and fast switching can create voltage spikes.
+- Floating circuits can sit at unexpected voltages.
+- Mains and high-energy systems need qualified safety practice.
+
+</section>
+
+<section>
+
+## 10. Safety notes
+
+This lesson is conceptual. Do not use it as instructions for working on mains wiring, switchboards, EV chargers, solar inverters, or industrial panels.
+
+For Thailand-specific electrical installation or safety content, exact Thai standards and authority guidance should be checked from current official sources before publication, including relevant TISI/TIS, EIT, MEA, PEA, ERC, and IEC/IEEE source families where applicable.
+
+</section>
+
+<section className="technical-only">
+
+## Technical track
+
+Electric potential is often written as `φ` or `V`. The voltage from point `b` to point `a` can be written:
+
+`Vab = Va - Vb`
+
+In electrostatics, electric field and potential are related by:
+
+`E = -∇V`
+
+That means the electric field points in the direction where potential decreases most rapidly for positive test charge convention.
+
+For a path in an electric field:
+
+`Vab = -∫ E · dl`
+
+In circuit theory, ideal wires are often treated as equipotential nodes. That assumption works when wire resistance, inductance, time delay, and high-frequency effects are small enough to ignore. At high speed, high current, RF, or power-switching edges, voltage is no longer just a neat number at a node; layout, return path, inductance, capacitance, and electromagnetic fields become part of the story.
+
+</section>
+
+<section>
+
+## Where this connects next
+
+Voltage connects directly to:
+
+- electric charge,
+- electric field,
+- electric current,
+- resistance,
+- Ohm's law,
+- power and energy,
+- batteries and sources,
+- capacitors,
+- grounding and references,
+- safe measurement.
+
+Good next lessons are Electric Current, Resistance and Conductance, Ohm's Law, Battery, Capacitor, and Grounding.
+
+</section>
+
+<section>
+
+## Reference direction for review
+
+- Introductory circuit theory references for voltage, current, node reference, and measurement.
+- Electromagnetism references for electric potential and electric field.
+- Practical electronics references for multimeter measurement and voltage ratings.
+- Safety and installation references for mains/high-energy systems.
+- Thai context: verify current TISI/TIS, EIT, MEA, PEA, ERC, and related IEC/IEEE references before making installation or legal claims.
+
+</section>

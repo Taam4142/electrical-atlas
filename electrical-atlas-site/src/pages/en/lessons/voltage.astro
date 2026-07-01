@@ -1,0 +1,35 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import LessonShell from "../../../components/LessonShell.astro";
+import LessonModeToggle from "../../../components/LessonModeToggle";
+import VoltageEnergyDemo from "../../../components/VoltageEnergyDemo";
+import SuggestionSection from "../../../components/SuggestionSection.astro";
+import Content from "../../../content/lessons/en/voltage.mdx";
+import { atlasTopics } from "../../../lib/generated/atlasTopics";
+import { getLessonSuggestions } from "../../../lib/suggestions";
+
+const suggestions = getLessonSuggestions("voltage", "en", atlasTopics);
+---
+
+<BaseLayout
+  title="What Is Voltage?"
+  description="A visual foundation lesson explaining voltage as electric potential difference: energy per unit charge between two points."
+  lang="en"
+  counterpartPath="/th/lessons/voltage/"
+  counterpartLabel="ไทย"
+>
+  <LessonShell
+    locale="en"
+    eyebrow="foundation lesson"
+    title="What Is Voltage?"
+    subtitle="Voltage is not something that flows. It is the electric energy difference per unit charge between two points."
+    lessonId="ea.lesson.voltage.v0.1"
+  >
+    <LessonModeToggle client:load locale="en" />
+    <VoltageEnergyDemo client:load locale="en" />
+    <div class="lesson-content">
+      <Content />
+    </div>
+    <SuggestionSection locale="en" items={suggestions} />
+  </LessonShell>
+</BaseLayout>

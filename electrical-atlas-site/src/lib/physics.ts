@@ -15,6 +15,14 @@ export type LampCircuitEstimate = OhmsLawResult & {
   driftSpeedMillimetersPerSecond: number;
 };
 
+export type VoltageEnergyEstimate = {
+  voltage: number;
+  chargeCoulombs: number;
+  energyJoules: number;
+  energyMicroJoules: number;
+  electronCount: number;
+};
+
 export function clamp(value: number, min = 0, max = 1): number {
   if (Number.isNaN(value)) {
     return min;
@@ -39,6 +47,50 @@ export function calculateOhmsLaw(voltage: number, resistance: number): OhmsLawRe
     resistance,
     current,
     power: voltage * current,
+  };
+}
+
+export function calculateEnergyFromVoltageCharge(voltage: number, chargeCoulombs: number): number {
+  if (!Number.isFinite(voltage)) {
+    throw new Error("Voltage must be a finite number.");
+  }
+
+  if (!Number.isFinite(chargeCoulombs) || chargeCoulombs < 0) {
+    throw new Error("Charge must be a non-negative finite number.");
+  }
+
+  return voltage * chargeCoulombs;
+}
+
+export function calculateVoltageFromEnergyCharge(energyJoules: number, chargeCoulombs: number): number {
+  if (!Number.isFinite(energyJoules)) {
+    throw new Error("Energy must be a finite number.");
+  }
+
+  if (!Number.isFinite(chargeCoulombs) || chargeCoulombs <= 0) {
+    throw new Error("Charge must be a positive finite number.");
+  }
+
+  return energyJoules / chargeCoulombs;
+}
+
+export function estimateVoltageEnergy(params: {
+  voltage: number;
+  chargeMicroCoulombs: number;
+}): VoltageEnergyEstimate {
+  if (!Number.isFinite(params.chargeMicroCoulombs) || params.chargeMicroCoulombs < 0) {
+    throw new Error("Charge must be a non-negative finite number.");
+  }
+
+  const chargeCoulombs = params.chargeMicroCoulombs * 1e-6;
+  const energyJoules = calculateEnergyFromVoltageCharge(params.voltage, chargeCoulombs);
+
+  return {
+    voltage: params.voltage,
+    chargeCoulombs,
+    energyJoules,
+    energyMicroJoules: energyJoules * 1e6,
+    electronCount: chargeCoulombs / ELEMENTARY_CHARGE_COULOMB,
   };
 }
 

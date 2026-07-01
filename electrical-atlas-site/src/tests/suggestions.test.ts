@@ -16,8 +16,20 @@ describe("suggestion system", () => {
   it("builds localized route prefixes for Thai suggestions", () => {
     const suggestions = getLessonSuggestions("what-is-electricity", "th", atlasTopics);
 
+    expect(suggestions.some((suggestion) => suggestion.href === "/th/lessons/voltage/")).toBe(true);
     expect(suggestions.some((suggestion) => suggestion.href === "/th/lessons/mosfet/")).toBe(true);
     expect(suggestions.every((suggestion) => suggestion.href.startsWith("/th/"))).toBe(true);
+  });
+
+  it("builds curated voltage lesson suggestions", () => {
+    const suggestions = getLessonSuggestions("voltage", "en", atlasTopics);
+    const hrefs = suggestions.map((suggestion) => suggestion.href);
+
+    expect(suggestions.length).toBeGreaterThanOrEqual(6);
+    expect(hrefs).toContain("/en/lessons/what-is-electricity/");
+    expect(hrefs).toContain("/en/topics/fundamentals-current/");
+    expect(hrefs).toContain("/en/topics/em-potential-electric/");
+    expect(hrefs).toContain("/en/topics/component-capacitor/");
   });
 
   it("finds nearby topic records without recommending the current topic", () => {

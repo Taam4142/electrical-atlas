@@ -917,6 +917,70 @@ p {
   filter: url("#mosfetGlow");
 }
 
+.voltage-demo-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.65fr);
+  gap: 1rem;
+  align-items: stretch;
+}
+
+.voltage-plate {
+  stroke-width: 4;
+  filter: url("#voltageGlow");
+}
+
+.voltage-plate.low {
+  fill: rgba(100, 244, 255, 0.18);
+  stroke: rgba(100, 244, 255, 0.65);
+}
+
+.voltage-plate.high {
+  fill: rgba(248, 214, 109, 0.2);
+  stroke: rgba(248, 214, 109, 0.78);
+}
+
+.voltage-field-line,
+.voltage-field-arc {
+  fill: none;
+  stroke: url("#voltageGradient");
+  stroke-linecap: round;
+  filter: url("#voltageGlow");
+}
+
+.voltage-field-line {
+  stroke-width: 6;
+  opacity: 0.75;
+}
+
+.voltage-field-arc {
+  stroke-width: 4;
+  opacity: 0.45;
+}
+
+.charge-packet {
+  fill: rgba(158, 255, 110, 0.88);
+  stroke: #dbffd0;
+  stroke-width: 4;
+  filter: url("#voltageGlow");
+  transition: all 180ms ease;
+}
+
+.charge-symbol {
+  fill: #06111f;
+  font-size: 26px;
+  font-weight: 900;
+}
+
+.energy-bar-track {
+  fill: rgba(100, 244, 255, 0.12);
+}
+
+.energy-bar-fill {
+  fill: url("#voltageGradient");
+  filter: url("#voltageGlow");
+  transition: width 180ms ease;
+}
+
 .node-card {
   padding: 1.1rem;
 }
@@ -1205,7 +1269,8 @@ input[type="range"] {
 
   .hero,
   .circuit-demo-grid,
-  .mosfet-demo-grid {
+  .mosfet-demo-grid,
+  .voltage-demo-grid {
     grid-template-columns: 1fr;
   }
 

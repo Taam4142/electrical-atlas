@@ -1,0 +1,35 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import LessonShell from "../../../components/LessonShell.astro";
+import LessonModeToggle from "../../../components/LessonModeToggle";
+import VoltageEnergyDemo from "../../../components/VoltageEnergyDemo";
+import SuggestionSection from "../../../components/SuggestionSection.astro";
+import Content from "../../../content/lessons/th/voltage.mdx";
+import { atlasTopics } from "../../../lib/generated/atlasTopics";
+import { getLessonSuggestions } from "../../../lib/suggestions";
+
+const suggestions = getLessonSuggestions("voltage", "th", atlasTopics);
+---
+
+<BaseLayout
+  title="แรงดันไฟฟ้าคืออะไร?"
+  description="บทเรียนพื้นฐานอธิบายแรงดันไฟฟ้าหรือความต่างศักย์ว่าเป็นพลังงานต่อประจุระหว่างสองจุด"
+  lang="th"
+  counterpartPath="/en/lessons/voltage/"
+  counterpartLabel="English"
+>
+  <LessonShell
+    locale="th"
+    eyebrow="บทเรียนพื้นฐาน"
+    title="แรงดันไฟฟ้าคืออะไร?"
+    subtitle="แรงดันไม่ใช่สิ่งที่ไหล แต่คือความต่างของพลังงานไฟฟ้าต่อประจุระหว่างสองจุด"
+    lessonId="ea.lesson.voltage.v0.1"
+  >
+    <LessonModeToggle client:load locale="th" />
+    <VoltageEnergyDemo client:load locale="th" />
+    <div class="lesson-content">
+      <Content />
+    </div>
+    <SuggestionSection locale="th" items={suggestions} />
+  </LessonShell>
+</BaseLayout>

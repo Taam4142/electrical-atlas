@@ -55,7 +55,7 @@ const copy = {
     guide: "How to use this site",
     firstLesson: "Read the first lesson",
     publishedLesson: "Published lesson available",
-    openPublishedLesson: "Open MOSFET lesson",
+    openPublishedLesson: "Open full lesson",
     mapped: "mapped",
     noSafetyTag: "No explicit safety tag yet",
   },
@@ -111,8 +111,21 @@ const copy = {
 const mapPath = locale === "th" ? "/th/map/" : "/en/map/";
 const guidePath = locale === "th" ? "/th/guide/" : "/en/guide/";
 const firstLessonPath = locale === "th" ? "/th/lessons/what-is-electricity/" : "/en/lessons/what-is-electricity/";
-const publishedLessonPath =
-  topic.id === "ea.device.fet.mosfet" ? (locale === "th" ? "/th/lessons/mosfet/" : "/en/lessons/mosfet/") : "";
+const publishedLessonPaths: Partial<Record<string, Record<"en" | "th", string>>> = {
+  "ea.fundamentals.electricity": {
+    en: "/en/lessons/what-is-electricity/",
+    th: "/th/lessons/what-is-electricity/",
+  },
+  "ea.fundamentals.voltage": {
+    en: "/en/lessons/voltage/",
+    th: "/th/lessons/voltage/",
+  },
+  "ea.device.fet.mosfet": {
+    en: "/en/lessons/mosfet/",
+    th: "/th/lessons/mosfet/",
+  },
+};
+const publishedLessonPath = publishedLessonPaths[topic.id]?.[locale] || "";
 const relatedSuggestions = relatedTopics.map((relatedTopic) =>
   topicToSuggestion(
     relatedTopic,
@@ -155,7 +168,7 @@ const facts = [
   </div>
   <p class="topic-language-note">{copy.canonicalNote}</p>
   <div class="hero-actions">
-    {publishedLessonPath ? <a class="button" href={publishedLessonPath}>{copy.openPublishedLesson}</a> : null}
+    {publishedLessonPath ? <a class="button" href={publishedLessonPath}>{locale === "th" ? "เปิดบทเรียนเต็ม" : copy.openPublishedLesson}</a> : null}
     <a class="button" href={mapPath}>{copy.map}</a>
     <a class="button-secondary" href={guidePath}>{copy.guide}</a>
     <a class="button-secondary" href={firstLessonPath}>{copy.firstLesson}</a>

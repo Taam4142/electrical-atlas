@@ -6,6 +6,7 @@ It turns the planning corpus in `../electrical-atlas/` into a small Astro app wi
 
 - bilingual English/Thai routes;
 - a bilingual guide page for using the prototype;
+- a foundation lesson: **Voltage / แรงดันไฟฟ้า**;
 - a first lesson: **What Is Electricity? / ไฟฟ้าคืออะไร?**;
 - a first full component lesson: **MOSFET / MOSFET คืออะไร?**;
 - a guided/technical mode toggle;
@@ -29,6 +30,9 @@ npm.cmd test
 ```
 
 ## Routes
+
+- `/en/lessons/voltage/` — English Voltage foundation lesson
+- `/th/lessons/voltage/` — Thai Voltage foundation lesson
 
 - `/` — language gateway and project overview
 - `/en/` — English landing page

@@ -1,7 +1,7 @@
 import type { AtlasTopic } from "./generated/atlasTopics";
 
 export type Locale = "en" | "th";
-export type LessonKey = "what-is-electricity" | "mosfet";
+export type LessonKey = "what-is-electricity" | "voltage" | "mosfet";
 export type SuggestionKind = "lesson" | "topic";
 
 export interface SuggestionItem {
@@ -37,6 +37,18 @@ const lessonLabels: Record<LessonKey, Record<Locale, { title: string; summary: s
       href: "/th/lessons/what-is-electricity/",
     },
   },
+  voltage: {
+    en: {
+      title: "What Is Voltage?",
+      summary: "Electric potential difference explained as energy per unit charge between two points.",
+      href: "/en/lessons/voltage/",
+    },
+    th: {
+      title: "แรงดันไฟฟ้าคืออะไร?",
+      summary: "แรงดันหรือความต่างศักย์ อธิบายเป็นพลังงานต่อประจุระหว่างสองจุด",
+      href: "/th/lessons/voltage/",
+    },
+  },
   mosfet: {
     en: {
       title: "What Is a MOSFET?",
@@ -53,6 +65,11 @@ const lessonLabels: Record<LessonKey, Record<Locale, { title: string; summary: s
 
 const lessonSuggestionEntries: Record<LessonKey, LessonSuggestionEntry[]> = {
   "what-is-electricity": [
+    {
+      kind: "lesson",
+      key: "voltage",
+      relation: { en: "next foundation lesson", th: "บทพื้นฐานถัดไป" },
+    },
     {
       kind: "lesson",
       key: "mosfet",
@@ -82,6 +99,48 @@ const lessonSuggestionEntries: Record<LessonKey, LessonSuggestionEntry[]> = {
       kind: "topic",
       topicId: "ea.storage.lithium-ion",
       relation: { en: "energy source path", th: "เส้นทางแหล่งพลังงาน" },
+    },
+  ],
+  voltage: [
+    {
+      kind: "lesson",
+      key: "what-is-electricity",
+      relation: { en: "foundation refresher", th: "ย้อนพื้นฐาน" },
+    },
+    {
+      kind: "topic",
+      topicId: "ea.fundamentals.current",
+      relation: { en: "natural next quantity", th: "ปริมาณถัดไป" },
+    },
+    {
+      kind: "topic",
+      topicId: "ea.fundamentals.resistance",
+      relation: { en: "needed for Ohm's law", th: "จำเป็นต่อกฎของโอห์ม" },
+    },
+    {
+      kind: "topic",
+      topicId: "ea.circuit.law.ohm",
+      relation: { en: "first circuit law", th: "กฎวงจรแรก" },
+    },
+    {
+      kind: "topic",
+      topicId: "ea.em.potential.electric",
+      relation: { en: "technical definition", th: "นิยามเชิงเทคนิค" },
+    },
+    {
+      kind: "topic",
+      topicId: "ea.em.field.electric",
+      relation: { en: "physical mechanism", th: "กลไกทางฟิสิกส์" },
+    },
+    {
+      kind: "topic",
+      topicId: "ea.storage.electrochemistry",
+      relation: { en: "real voltage source", th: "แหล่งแรงดันจริง" },
+    },
+    {
+      kind: "topic",
+      topicId: "ea.component.capacitor",
+      relation: { en: "stores energy by voltage", th: "เก็บพลังงานด้วยแรงดัน" },
     },
   ],
   mosfet: [

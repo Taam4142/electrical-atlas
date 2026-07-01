@@ -1,9 +1,12 @@
 import { describe, expect, it } from "vitest";
 import {
+  calculateEnergyFromVoltageCharge,
   calculateOhmsLaw,
+  calculateVoltageFromEnergyCharge,
   estimateElectronDriftSpeed,
   estimateFieldArrivalFraction,
   estimateLampCircuit,
+  estimateVoltageEnergy,
 } from "../lib/physics";
 
 describe("physics helpers", () => {
@@ -12,6 +15,20 @@ describe("physics helpers", () => {
 
     expect(result.current).toBeCloseTo(0.3, 10);
     expect(result.power).toBeCloseTo(2.7, 10);
+  });
+
+  it("treats voltage as energy per charge", () => {
+    expect(calculateEnergyFromVoltageCharge(9, 2)).toBe(18);
+    expect(calculateVoltageFromEnergyCharge(18, 2)).toBe(9);
+
+    const estimate = estimateVoltageEnergy({
+      voltage: 9,
+      chargeMicroCoulombs: 10,
+    });
+
+    expect(estimate.chargeCoulombs).toBeCloseTo(10e-6, 14);
+    expect(estimate.energyMicroJoules).toBeCloseTo(90, 10);
+    expect(estimate.electronCount).toBeGreaterThan(6e13);
   });
 
   it("estimates slow electron drift compared with field propagation", () => {
