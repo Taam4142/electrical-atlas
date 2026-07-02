@@ -1,0 +1,35 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import LessonShell from "../../../components/LessonShell.astro";
+import LessonModeToggle from "../../../components/LessonModeToggle";
+import SwitchesContactsDemo from "../../../components/SwitchesContactsDemo";
+import SuggestionSection from "../../../components/SuggestionSection.astro";
+import Content from "../../../content/lessons/th/switches-contacts.mdx";
+import { atlasTopics } from "../../../lib/generated/atlasTopics";
+import { getLessonSuggestions } from "../../../lib/suggestions";
+
+const suggestions = getLessonSuggestions("switches-contacts", "th", atlasTopics);
+---
+
+<BaseLayout
+  title="สวิตช์และหน้าสัมผัส"
+  description="บทเรียนภาพอธิบายสวิตช์ หน้าสัมผัส วงจรเปิดและปิด ความต้านทานหน้าสัมผัส bounce อาร์ก พิกัด และขอบเขตความปลอดภัย"
+  lang="th"
+  counterpartPath="/en/lessons/switches-contacts/"
+  counterpartLabel="English"
+>
+  <LessonShell
+    locale="th"
+    eyebrow="บทเรียนชิ้นส่วน"
+    title="สวิตช์และหน้าสัมผัส"
+    subtitle="สวิตช์ดูเรียบง่าย แต่หน้าสัมผัสจริงมีความต้านทาน bounce อาร์ก พิกัด และข้อจำกัดด้านความปลอดภัย"
+    lessonId="ea.lesson.switches-contacts.v0.1"
+  >
+    <LessonModeToggle client:load locale="th" />
+    <SwitchesContactsDemo client:load locale="th" />
+    <div class="lesson-content">
+      <Content />
+    </div>
+    <SuggestionSection locale="th" items={suggestions} />
+  </LessonShell>
+</BaseLayout>

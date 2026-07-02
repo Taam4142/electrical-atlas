@@ -251,7 +251,7 @@ The safest path is to migrate gradually. Do not rewrite everything at once.
 
 ### Phase 1: Create the registry
 
-Add `lessonRegistry.ts` with entries for the current nine lessons:
+Add `lessonRegistry.ts` with entries for the current ten prototype lessons:
 
 1. What Is Electricity?
 2. Voltage
@@ -262,16 +262,16 @@ Add `lessonRegistry.ts` with entries for the current nine lessons:
 7. Electrical Power and Energy
 8. Battery
 9. MOSFET
+10. Switches and Contacts
 
 Add roadmap entries for the immediate next lessons if useful:
 
-- Switches and Contacts — now `outlined`
 - Capacitor — `planned`
 - Diode — `planned`
 
-Planned and outlined lessons should have `hasPage.en: false` and `hasPage.th: false` until real content and route wrappers exist.
+Planned and outlined lessons should have `hasPage.en: false` and `hasPage.th: false` until real content and route wrappers exist. Switches and Contacts is now a bilingual `prototype` with real routes, content, an interactive demo, and draft source status.
 
-Current status: completed for the current nine lessons plus roadmap metadata for Switches and Contacts, Capacitor, and Diode. Switches and Contacts now has an outline in `docs/lesson-outlines/switches-contacts.md`.
+Current status: completed for the current ten prototype lessons plus roadmap metadata for Capacitor and Diode. The Switches and Contacts planning outline remains in `docs/lesson-outlines/switches-contacts.md` as production history.
 
 ### Phase 2: Replace lesson labels in suggestions
 

@@ -90,6 +90,7 @@ describe("lesson registry", () => {
       "power-energy",
       "battery",
       "mosfet",
+      "switches-contacts",
     ]);
 
     expect(getLessonHomeLabel(getImplementedLessons("th")[0], "th")).toBe("เริ่มบทแรก: ไฟฟ้าคืออะไร?");
@@ -103,7 +104,7 @@ describe("lesson registry", () => {
       .map((lesson) => lesson.slug);
 
     expect(planningLessonsWithPages).toEqual([]);
-    expect(registryEntries.find((lesson) => lesson.slug === "switches-contacts")?.status).toBe("outlined");
+    expect(registryEntries.find((lesson) => lesson.slug === "capacitor")?.status).toBe("planned");
   });
 
   it("derives published topic-record lesson links from coverage metadata", () => {
@@ -112,7 +113,23 @@ describe("lesson registry", () => {
       "/en/lessons/resistance/",
     );
     expect(getLessonForCoveredTopic("ea.storage.cell.metric", "th")?.paths.th).toBe("/th/lessons/battery/");
+    expect(getLessonForCoveredTopic("ea.circuit.element.switch-ideal", "en")?.paths.en).toBe(
+      "/en/lessons/switches-contacts/",
+    );
+    expect(getLessonForCoveredTopic("ea.transport.contact", "th")?.paths.th).toBe(
+      "/th/lessons/switches-contacts/",
+    );
     expect(getLessonForCoveredTopic("ea.component.capacitor", "en")).toBeUndefined();
+  });
+
+  it("tracks Switches and Contacts as a bilingual source-sensitive prototype", () => {
+    const switches = registryEntries.find((lesson) => lesson.slug === "switches-contacts");
+
+    expect(switches?.status).toBe("prototype");
+    expect(switches?.hasPage).toEqual({ en: true, th: true });
+    expect(switches?.requiresThailandContext).toBe(true);
+    expect(switches?.sourceStatus).toBe("draft");
+    expect(switches?.demoComponent).toBe("SwitchesContactsDemo");
   });
 
   it("keeps relationship lesson references pointed at registry slugs", () => {

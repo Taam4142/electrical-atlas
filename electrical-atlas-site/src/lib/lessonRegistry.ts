@@ -334,8 +334,13 @@ export const lessonRegistry = [
     slug: "switches-contacts",
     lessonId: "ea.lesson.switches-contacts.v0.1",
     primaryTopicId: "ea.component.switch",
-    coveredTopicIds: ["ea.component.switch"],
-    status: "outlined",
+    coveredTopicIds: [
+      "ea.component.switch",
+      "ea.circuit.element.switch-ideal",
+      "ea.transport.contact",
+      "ea.material.contact",
+    ],
+    status: "prototype",
     safetyLevel: "moderate",
     sourceStatus: "draft",
     requiresThailandContext: true,
@@ -358,9 +363,10 @@ export const lessonRegistry = [
       th: "/th/lessons/switches-contacts/",
     },
     hasPage: {
-      en: false,
-      th: false,
+      en: true,
+      th: true,
     },
+    demoComponent: "SwitchesContactsDemo",
   },
   {
     slug: "capacitor",

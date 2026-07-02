@@ -1,0 +1,210 @@
+<section>
+
+## 1. The useful idea
+
+A **switch** is a device that intentionally opens or closes an electrical path.
+
+The **contacts** are the conductive surfaces inside the switch that touch or separate.
+
+In the simplest schematic, a switch has only two states:
+
+- **open:** the path is broken, so current should not flow through that path;
+- **closed:** the path is connected, so current can flow if the rest of the circuit allows it.
+
+That idea is useful, but real switches are not perfect. Real contacts have resistance, timing, bounce, wear, ratings, and safety limits.
+
+<aside className="callout">
+
+**First mental model:** a switch is a controlled gap in a circuit. Closing the switch removes the gap. Opening the switch creates the gap again.
+
+</aside>
+
+</section>
+
+<section>
+
+## 2. What a basic switch is made of
+
+A beginner switch usually has:
+
+- an **actuator**: the button, lever, rocker, or slider you move;
+- **terminals**: the metal connection points for the circuit;
+- **fixed contacts**: conductive surfaces that stay in place;
+- a **moving contact**: the conductive surface moved by the mechanism;
+- a **spring or snap mechanism**: pushes the switch into stable states;
+- an **insulating body**: separates live conductive parts from each other and from the user;
+- **markings or a datasheet**: voltage, current, load type, environment, and approval information.
+
+The outside can look simple, but the inside is a small electromechanical system.
+
+</section>
+
+<section>
+
+## 3. How current starts and stops
+
+When the switch is open, the air or insulation gap interrupts the conductive path.
+
+When the actuator moves:
+
+1. the moving contact approaches the fixed contact,
+2. the metal surfaces first touch at tiny microscopic high spots,
+3. enough contact force makes a low-resistance path,
+4. current flows through the closed contact,
+5. when the contacts separate again, current stops after the gap becomes large enough and any arc is extinguished.
+
+The important beginner distinction:
+
+- an **ideal switch** changes instantly and has zero resistance when closed;
+- a **real switch** has contact resistance, bounce, finite opening distance, heat, wear, and interruption limits.
+
+</section>
+
+<section>
+
+## 4. Contact resistance and heat
+
+Closed contacts still have a small resistance called **contact resistance**.
+
+The heat produced at the contact is approximately:
+
+`P_contact = I² × R_contact`
+
+This is the same heating idea from resistance and power, but now the resistance may be hidden inside a switch.
+
+Even a tiny resistance can matter when current is high. A loose, dirty, oxidized, undersized, or worn contact can heat more than expected.
+
+That is one reason switches have current ratings, and one reason high-current switching is treated carefully.
+
+</section>
+
+<section>
+
+## 5. Contact bounce
+
+Mechanical contacts rarely close in one perfect motion.
+
+When a button is pressed, the contacts may physically bounce for a few milliseconds:
+
+- touch,
+- separate,
+- touch again,
+- separate again,
+- then finally settle.
+
+For a lamp, that bounce may be invisible. For a microcontroller input, it can look like many fast button presses.
+
+This is why digital switch inputs often need **debouncing** in hardware, software, or both.
+
+</section>
+
+<section>
+
+## 6. Arcing and load type
+
+Opening a switch is not always gentle.
+
+If current is flowing and the circuit has stored energy, the current may try to continue while the contacts separate. The voltage across the growing gap can become high enough to form an **arc**.
+
+Load type matters:
+
+- **signal load:** usually small current and low energy;
+- **resistive load:** current mostly follows voltage and resistance;
+- **inductive load:** coils, relays, solenoids, and motors can keep current trying to flow;
+- **capacitive or lamp loads:** may create high inrush current when first switched on.
+
+AC and DC ratings may also differ. AC current naturally crosses zero repeatedly, which can help an arc stop. DC does not have that automatic zero crossing, so interrupting DC can be harder.
+
+</section>
+
+<section>
+
+## 7. Ratings are part of the component
+
+A switch is not safe for every circuit just because it physically fits.
+
+Before using a real switch, check:
+
+- voltage rating;
+- current rating;
+- AC or DC rating;
+- load type rating;
+- temperature and environment;
+- insulation and enclosure;
+- expected lifetime;
+- datasheet and approval marks;
+- whether a different device is required, such as a relay, contactor, fuse, breaker, isolator, or emergency stop system.
+
+A small tactile switch may be good for a microcontroller input but completely wrong for a motor, heater, mains circuit, or high-current battery.
+
+</section>
+
+<section>
+
+## 8. Common mistakes
+
+- **“A closed switch has zero resistance.”** Real contacts have contact resistance.
+- **“Open means safe.”** An open switch may still have dangerous voltage across it or dangerous energy upstream.
+- **“Any switch can switch any load.”** Ratings depend on voltage, current, AC/DC, load type, construction, and environment.
+- **“An AC rating automatically works for DC.”** DC interruption can be harder because the current does not naturally cross zero.
+- **“Contact bounce is a software bug.”** It is a physical behavior of mechanical contacts.
+- **“A switch turning something off means the whole device is discharged.”** Batteries, capacitors, and upstream wiring can still store energy.
+
+</section>
+
+<section>
+
+## 9. Safety notes
+
+This lesson is a **conceptual low-voltage explanation**. It is not installation advice.
+
+Do not use this lesson alone to:
+
+- replace a wall switch;
+- design building wiring;
+- modify switchboards or distribution boards;
+- work on mains voltage;
+- work on high-current batteries;
+- switch motors, compressors, heaters, EV chargers, solar systems, or industrial controls;
+- choose safety devices for emergency stop or isolation.
+
+For real work in Thailand, verify current requirements from the relevant official and professional source families before publishing or acting: TISI/TIS for product standards, EIT for engineering practice, MEA or PEA for utility/service context, ERC for energy regulation context, manufacturer documentation, and applicable IEC/IEEE standards.
+
+If the circuit can shock, burn, arc, start a fire, damage property, or affect other people, use qualified help.
+
+</section>
+
+<section className="technical-only">
+
+## Technical track
+
+A more technical view separates several effects:
+
+- **constriction resistance:** current passes through microscopic contact spots;
+- **surface films:** oxide, contamination, moisture, or plating change contact behavior;
+- **wetting current:** very small signal contacts may need enough current to keep contact surfaces reliable;
+- **bounce waveform:** a mechanical closure can create a rapid digital pulse train;
+- **arc energy:** opening under load can transfer material, pit contacts, or weld contacts;
+- **inrush current:** lamps, capacitors, and power supplies can draw a large short current at turn-on;
+- **inductive kick:** coils need a safe current path when interrupted, such as a flyback diode in DC relay-coil circuits;
+- **poles and throws:** SPST, SPDT, DPST, DPDT, normally-open, and normally-closed contacts describe how many paths are controlled.
+
+This prototype does not choose exact clearances, creepage distances, utilization categories, protection coordination, or national installation rules. Those belong in standards-reviewed lessons.
+
+</section>
+
+<section>
+
+## 10. Where this connects next
+
+Switches connect many future lessons:
+
+- **Capacitor:** stored energy and why “off” is not always discharged.
+- **Diode:** one-way current and flyback paths for coils.
+- **Relay:** an electrically controlled mechanical switch.
+- **Fuse and breaker:** protection when current becomes unsafe.
+- **Contactors and motor starters:** high-power switching with specific load rules.
+- **Microcontroller input:** reading mechanical contacts without false triggers.
+- **Electrical safety and isolation:** when conceptual switching becomes real-world responsibility.
+
+</section>

@@ -472,7 +472,7 @@ Do not try to fix every risk at once. The next practical sequence should be:
    This protects the bilingual foundation before many more Thai pages are written.
 
 6. **Continue the next lessons.**  
-   Switches and Contacts is outlined. Next content step: turn it into a prototype lesson, then outline/build Capacitor and Diode.
+   Switches and Contacts is now a bilingual prototype with a draft-source safety posture. Next content step: build Capacitor and Diode, while keeping Switches out of exact standards/installation claims until a source-review pass.
 
 ## What not to do
 

@@ -135,8 +135,8 @@ See [docs/deployment.md](docs/deployment.md).
 ## Near roadmap
 
 1. Keep CI and Vercel deployment green.
-2. Turn the Switches and Contacts outline into a prototype lesson with bilingual MDX, visuals, routes, and source review.
-3. Build the next foundation lessons after that: Capacitor and Diode.
+2. Source-review the Switches and Contacts prototype only where exact safety, installation, or standards claims are added.
+3. Build the next component lessons: Capacitor and Diode.
 4. Pin dependencies or add controlled dependency update tooling.
 5. Add explicit topic relationship fields: prerequisite, successor, part-of, used-in, made-of, alternative-to, and fails-by.
 6. Expand Thai standard references for Thailand-relevant electrical practice.

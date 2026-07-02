@@ -137,6 +137,25 @@ describe("suggestion system", () => {
     expect(hrefs).toContain("/en/topics/safety-battery/");
   });
 
+  it("builds curated switches and contacts lesson suggestions", () => {
+    const suggestions = getLessonSuggestions("switches-contacts", "en", atlasTopics);
+    const hrefs = suggestions.map((suggestion) => suggestion.href);
+
+    expect(suggestions.length).toBeGreaterThanOrEqual(12);
+    expect(hrefs).toContain("/en/lessons/series-parallel/");
+    expect(hrefs).toContain("/en/lessons/battery/");
+    expect(hrefs).toContain("/en/lessons/power-energy/");
+    expect(hrefs).toContain("/en/lessons/ohms-law/");
+    expect(hrefs).toContain("/en/topics/component-switch/");
+    expect(hrefs).toContain("/en/topics/circuit-element-switch-ideal/");
+    expect(hrefs).toContain("/en/topics/transport-contact/");
+    expect(hrefs).toContain("/en/topics/material-contact/");
+    expect(hrefs).toContain("/en/topics/transport-joule-heating/");
+    expect(hrefs).toContain("/en/topics/component-fuse/");
+    expect(hrefs).toContain("/en/topics/component-capacitor/");
+    expect(hrefs).toContain("/en/topics/device-diode-pn/");
+  });
+
   it("keeps structured relationship records pointed at real topic IDs", () => {
     const topicIds = new Set(atlasTopics.map((topic) => topic.id));
     const lessonIds = new Set<string>(lessonSlugs);

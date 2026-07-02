@@ -1,0 +1,35 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import LessonShell from "../../../components/LessonShell.astro";
+import LessonModeToggle from "../../../components/LessonModeToggle";
+import SwitchesContactsDemo from "../../../components/SwitchesContactsDemo";
+import SuggestionSection from "../../../components/SuggestionSection.astro";
+import Content from "../../../content/lessons/en/switches-contacts.mdx";
+import { atlasTopics } from "../../../lib/generated/atlasTopics";
+import { getLessonSuggestions } from "../../../lib/suggestions";
+
+const suggestions = getLessonSuggestions("switches-contacts", "en", atlasTopics);
+---
+
+<BaseLayout
+  title="Switches and Contacts"
+  description="A visual component lesson explaining switches, contacts, open and closed paths, contact resistance, bounce, arcing, ratings, and safety boundaries."
+  lang="en"
+  counterpartPath="/th/lessons/switches-contacts/"
+  counterpartLabel="ไทย"
+>
+  <LessonShell
+    locale="en"
+    eyebrow="component lesson"
+    title="Switches and Contacts"
+    subtitle="A switch looks simple, but real contacts bring resistance, bounce, arcing, ratings, and safety limits."
+    lessonId="ea.lesson.switches-contacts.v0.1"
+  >
+    <LessonModeToggle client:load locale="en" />
+    <SwitchesContactsDemo client:load locale="en" />
+    <div class="lesson-content">
+      <Content />
+    </div>
+    <SuggestionSection locale="en" items={suggestions} />
+  </LessonShell>
+</BaseLayout>

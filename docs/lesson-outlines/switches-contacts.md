@@ -5,10 +5,13 @@ Lesson control block
 
 slug: switches-contacts
 lessonId: ea.lesson.switches-contacts.v0.1
-registryStatus: outlined
+registryStatus: prototype
 primaryTopicId: ea.component.switch
 coveredTopicIds:
   - ea.component.switch
+  - ea.circuit.element.switch-ideal
+  - ea.transport.contact
+  - ea.material.contact
 prerequisiteLessons:
   - what-is-electricity
   - voltage
@@ -26,11 +29,13 @@ successorLessons:
 safetyLevel: moderate
 sourceStatus: draft
 requiresThailandContext: true
-publicLanguages: none
+publicLanguages: en, th
 lastReviewed: pending
 -->
 
-This is an outline, not a public lesson. It should become a prototype only after English and Thai MDX, route wrappers, relationship records, visual work, and safety/source review are ready.
+Implementation status: promoted to a bilingual prototype on 2026-07-02. Public content now lives in `electrical-atlas-site/src/content/lessons/en/switches-contacts.mdx` and `electrical-atlas-site/src/content/lessons/th/switches-contacts.mdx`; route wrappers and the interactive visual are in the Astro site. This outline remains as production history and scope control.
+
+Source status is still `draft`. The public prototype uses conservative conceptual safety wording and avoids exact Thai standard numbers or installation rules until a dedicated source-review pass.
 
 ## 1. A useful definition
 
@@ -307,12 +312,12 @@ Good next lessons/topics:
 - Arc and Spark: what happens when a circuit opens under energy.
 - Electrical Safety and Isolation: practical boundaries and qualified work.
 
-Relationship records to add when the lesson becomes a prototype:
+Relationship records seeded with the prototype:
 
-- prerequisite from voltage/current/resistance/ohms-law/power-energy/battery;
-- successor to capacitor, diode, relay, fuse/breaker;
-- related topic to `ea.circuit.element.switch.ideal` if/when used in generated topics;
-- safety relation to short circuit, arc flash, and isolation topics when those topic IDs are available.
+- prerequisite/context links from current, resistance, ohms-law, series-parallel, power-energy, and battery;
+- topic links to `ea.component.switch`, `ea.circuit.element.switch-ideal`, `ea.transport.contact`, and `ea.material.contact`;
+- safety/energy links to Joule heating, fuse, capacitor stored energy, and diode flyback path;
+- future safety relations to short circuit, arc flash, isolation, relay, contactor, and emergency-stop topics when those topic IDs and lessons are available.
 
 ## 14. Reference direction for review
 
