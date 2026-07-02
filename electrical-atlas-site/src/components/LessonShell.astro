@@ -1,4 +1,11 @@
 ---
+import {
+  getLessonById,
+  getLessonStatusLabel,
+  getSafetyLevelLabel,
+  getSourceStatusLabel,
+} from "../lib/lessonRegistry";
+
 interface Props {
   locale?: "en" | "th";
   eyebrow: string;
@@ -8,6 +15,25 @@ interface Props {
 }
 
 const { locale = "en", eyebrow, title, subtitle, lessonId } = Astro.props;
+const lesson = getLessonById(lessonId);
+const metadataLabel = locale === "th" ? "ข้อมูลบทเรียน" : "Lesson metadata";
+const metaItems = lesson
+  ? [
+      lesson.lessonId,
+      `${locale === "th" ? "สถานะ" : "status"}: ${getLessonStatusLabel(lesson.status, locale)}`,
+      `${locale === "th" ? "ความปลอดภัย" : "safety"}: ${getSafetyLevelLabel(lesson.safetyLevel, locale)}`,
+      `${locale === "th" ? "แหล่งอ้างอิง" : "sources"}: ${getSourceStatusLabel(lesson.sourceStatus, locale)}`,
+      lesson.requiresThailandContext
+        ? locale === "th"
+          ? "บริบทไทย: ต้องตรวจแหล่งอ้างอิงเมื่อกล่าวถึงมาตรฐาน/การใช้งานจริง"
+          : "Thailand context: verify local references before standards/practice claims"
+        : "",
+    ].filter(Boolean)
+  : [
+      lessonId,
+      `${locale === "th" ? "สถานะ" : "status"}: ${locale === "th" ? "ต้นแบบ" : "prototype"}`,
+      `${locale === "th" ? "ระดับ" : "depth"}: ${locale === "th" ? "เริ่มต้น → เทคนิค" : "beginner → technical"}`,
+    ];
 ---
 
 <article class="lesson-shell">
@@ -16,13 +42,12 @@ const { locale = "en", eyebrow, title, subtitle, lessonId } = Astro.props;
       <p class="eyebrow">{eyebrow}</p>
       <h1>{title}</h1>
       <p class="hero-subtitle">{subtitle}</p>
-      <div class="lesson-meta" aria-label={locale === "th" ? "ข้อมูลบทเรียน" : "Lesson metadata"}>
-        <span>{lessonId}</span>
-        <span>{locale === "th" ? "สถานะ: ต้นแบบ" : "status: prototype"}</span>
-        <span>{locale === "th" ? "ระดับ: เริ่มต้น → เทคนิค" : "depth: beginner → technical"}</span>
+      <div class="lesson-meta" aria-label={metadataLabel}>
+        {metaItems.map((item) => <span>{item}</span>)}
       </div>
     </div>
   </header>
 
   <slot />
 </article>
+

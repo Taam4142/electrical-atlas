@@ -25,6 +25,7 @@ export interface LessonRegistryEntry {
   order: number;
   navGroup: NavGroup;
   titles: Record<Locale, string>;
+  navLabels: Record<Locale, string>;
   summaries: Record<Locale, string>;
   paths: Record<Locale, string>;
   hasPage: Record<Locale, boolean>;
@@ -46,6 +47,10 @@ export const lessonRegistry = [
     titles: {
       en: "What Is Electricity?",
       th: "ไฟฟ้าคืออะไร?",
+    },
+    navLabels: {
+      en: "First lesson",
+      th: "บทแรก",
     },
     summaries: {
       en: "Charge, fields, voltage, current, energy, and why a battery can light a lamp.",
@@ -76,6 +81,10 @@ export const lessonRegistry = [
       en: "What Is Voltage?",
       th: "แรงดันไฟฟ้าคืออะไร?",
     },
+    navLabels: {
+      en: "Voltage",
+      th: "แรงดัน",
+    },
     summaries: {
       en: "Electric potential difference explained as energy per unit charge between two points.",
       th: "แรงดันหรือความต่างศักย์ อธิบายเป็นพลังงานต่อประจุระหว่างสองจุด",
@@ -104,6 +113,10 @@ export const lessonRegistry = [
     titles: {
       en: "What Is Electric Current?",
       th: "กระแสไฟฟ้าคืออะไร?",
+    },
+    navLabels: {
+      en: "Current",
+      th: "กระแส",
     },
     summaries: {
       en: "Electric current explained as charge flow rate: how much charge crosses a point per second.",
@@ -134,6 +147,10 @@ export const lessonRegistry = [
       en: "Resistance and Conductance",
       th: "ความต้านทานและความนำไฟฟ้า",
     },
+    navLabels: {
+      en: "Resistance",
+      th: "ความต้านทาน",
+    },
     summaries: {
       en: "Resistance and conductance explained as opposite views of how a path limits or allows current.",
       th: "ความต้านทานและความนำไฟฟ้า คือสองมุมมองของเส้นทางที่จำกัดหรือยอมให้กระแสผ่าน",
@@ -160,6 +177,10 @@ export const lessonRegistry = [
     order: 5,
     navGroup: "circuit",
     titles: {
+      en: "Ohm's Law",
+      th: "กฎของโอห์ม",
+    },
+    navLabels: {
       en: "Ohm's Law",
       th: "กฎของโอห์ม",
     },
@@ -192,6 +213,10 @@ export const lessonRegistry = [
       en: "Series and Parallel Circuits",
       th: "วงจรอนุกรมและขนาน",
     },
+    navLabels: {
+      en: "Series/Parallel",
+      th: "อนุกรม/ขนาน",
+    },
     summaries: {
       en: "How circuit paths combine: shared current in series, shared voltage in parallel, equivalent resistance, and current/voltage division.",
       th: "การรวมเส้นทางวงจร: กระแสร่วมกันในอนุกรม แรงดันร่วมกันในขนาน ความต้านทานเทียบเท่า และการแบ่งกระแส/แรงดัน",
@@ -221,6 +246,10 @@ export const lessonRegistry = [
       en: "Electrical Power and Energy",
       th: "กำลังและพลังงานไฟฟ้า",
     },
+    navLabels: {
+      en: "Power/Energy",
+      th: "กำลัง/พลังงาน",
+    },
     summaries: {
       en: "Watts, joules, watt-hours, heat, batteries, and why time matters in every circuit.",
       th: "วัตต์ จูล วัตต์-ชั่วโมง ความร้อน แบตเตอรี่ และเหตุผลที่เวลาสำคัญในทุกวงจร",
@@ -247,6 +276,10 @@ export const lessonRegistry = [
     order: 8,
     navGroup: "power",
     titles: {
+      en: "Battery",
+      th: "แบตเตอรี่",
+    },
+    navLabels: {
       en: "Battery",
       th: "แบตเตอรี่",
     },
@@ -279,6 +312,10 @@ export const lessonRegistry = [
       en: "What Is a MOSFET?",
       th: "MOSFET คืออะไร?",
     },
+    navLabels: {
+      en: "MOSFET",
+      th: "MOSFET",
+    },
     summaries: {
       en: "A field-controlled transistor, its structure, channel formation, switching behavior, and applications.",
       th: "ทรานซิสเตอร์ที่ควบคุมด้วยสนามไฟฟ้า โครงสร้าง การสร้างช่องนำกระแส การสวิตช์ และการใช้งาน",
@@ -308,6 +345,10 @@ export const lessonRegistry = [
       en: "Switches and Contacts",
       th: "สวิตช์และหน้าสัมผัส",
     },
+    navLabels: {
+      en: "Switches",
+      th: "สวิตช์",
+    },
     summaries: {
       en: "Open and closed paths, contact resistance, arcing, bounce, ratings, and safe switching boundaries.",
       th: "เส้นทางเปิด/ปิด ความต้านทานหน้าสัมผัส อาร์ก bounce พิกัด และขอบเขตการสวิตช์อย่างปลอดภัย",
@@ -333,6 +374,10 @@ export const lessonRegistry = [
     order: 11,
     navGroup: "component",
     titles: {
+      en: "Capacitor",
+      th: "ตัวเก็บประจุ",
+    },
+    navLabels: {
       en: "Capacitor",
       th: "ตัวเก็บประจุ",
     },
@@ -364,6 +409,10 @@ export const lessonRegistry = [
       en: "Diode",
       th: "ไดโอด",
     },
+    navLabels: {
+      en: "Diode",
+      th: "ไดโอด",
+    },
     summaries: {
       en: "One-way semiconductor conduction, polarity, forward drop, reverse blocking, rectification, and LED prerequisites.",
       th: "การนำกระแสทางเดียวของสารกึ่งตัวนำ ขั้ว แรงดันตกคร่อมทางตรง การบล็อกทางกลับ การเรียงกระแส และพื้นฐานก่อนเรียน LED",
@@ -388,6 +437,9 @@ export const implementedLessons = lessonRegistry.filter((lesson) => lesson.hasPa
 const lessonBySlug = new Map<string, LessonRegistryItem>(
   lessonRegistry.map((lesson) => [lesson.slug, lesson]),
 );
+const lessonById = new Map<string, LessonRegistryItem>(
+  lessonRegistry.map((lesson) => [lesson.lessonId, lesson]),
+);
 
 export function isLessonKey(slug: string): slug is LessonKey {
   return lessonBySlug.has(slug);
@@ -395,6 +447,16 @@ export function isLessonKey(slug: string): slug is LessonKey {
 
 export function getLessonBySlug(slug: string): LessonRegistryItem | undefined {
   return lessonBySlug.get(slug);
+}
+
+export function getLessonById(lessonId: string): LessonRegistryItem | undefined {
+  return lessonById.get(lessonId);
+}
+
+export function getImplementedLessons(locale: Locale): LessonRegistryItem[] {
+  return lessonRegistry
+    .filter((lesson) => lesson.hasPage[locale])
+    .sort((a, b) => a.order - b.order);
 }
 
 export function getLessonSuggestionFields(slug: string, locale: Locale) {
@@ -415,4 +477,124 @@ export function getLessonForCoveredTopic(topicId: string, locale: Locale): Lesso
   return lessonRegistry
     .filter((lesson) => lesson.hasPage[locale] && (lesson.coveredTopicIds as readonly string[]).includes(topicId))
     .sort((a, b) => a.order - b.order)[0];
+}
+
+const statusLabels: Record<LessonStatus, Record<Locale, string>> = {
+  candidate: {
+    en: "candidate",
+    th: "รอพิจารณา",
+  },
+  planned: {
+    en: "planned",
+    th: "วางแผนแล้ว",
+  },
+  outlined: {
+    en: "outlined",
+    th: "มีโครงร่างแล้ว",
+  },
+  prototype: {
+    en: "prototype",
+    th: "ต้นแบบ",
+  },
+  "review-ready": {
+    en: "review-ready",
+    th: "พร้อมตรวจทาน",
+  },
+  published: {
+    en: "published",
+    th: "เผยแพร่แล้ว",
+  },
+  "revision-needed": {
+    en: "revision needed",
+    th: "ต้องปรับปรุง",
+  },
+};
+
+const safetyLabels: Record<SafetyLevel, Record<Locale, string>> = {
+  none: {
+    en: "none",
+    th: "ไม่มี",
+  },
+  low: {
+    en: "low",
+    th: "ต่ำ",
+  },
+  moderate: {
+    en: "moderate",
+    th: "ปานกลาง",
+  },
+  high: {
+    en: "high",
+    th: "สูง",
+  },
+};
+
+const sourceStatusLabels: Record<SourceStatus, Record<Locale, string>> = {
+  "not-needed": {
+    en: "not needed",
+    th: "ไม่จำเป็น",
+  },
+  needed: {
+    en: "needs source review",
+    th: "ต้องตรวจแหล่งอ้างอิง",
+  },
+  draft: {
+    en: "draft sources",
+    th: "แหล่งอ้างอิงฉบับร่าง",
+  },
+  verified: {
+    en: "verified",
+    th: "ตรวจแล้ว",
+  },
+  "needs-update": {
+    en: "needs update",
+    th: "ต้องอัปเดต",
+  },
+};
+
+export function getLessonStatusLabel(status: LessonStatus, locale: Locale) {
+  return statusLabels[status][locale];
+}
+
+export function getSafetyLevelLabel(level: SafetyLevel, locale: Locale) {
+  return safetyLabels[level][locale];
+}
+
+export function getSourceStatusLabel(status: SourceStatus, locale: Locale) {
+  return sourceStatusLabels[status][locale];
+}
+
+const homeGroupLabels: Record<NavGroup, Record<Locale, string>> = {
+  foundation: {
+    en: "Foundation lesson",
+    th: "บทพื้นฐาน",
+  },
+  component: {
+    en: "Component lesson",
+    th: "บทชิ้นส่วน",
+  },
+  circuit: {
+    en: "Circuit lesson",
+    th: "บทวงจร",
+  },
+  power: {
+    en: "Power lesson",
+    th: "บทพลังงาน",
+  },
+  safety: {
+    en: "Safety lesson",
+    th: "บทความปลอดภัย",
+  },
+  application: {
+    en: "Application lesson",
+    th: "บทการใช้งาน",
+  },
+};
+
+export function getLessonHomeLabel(lesson: LessonRegistryItem, locale: Locale) {
+  if (lesson.slug === "what-is-electricity") {
+    return locale === "th" ? `เริ่มบทแรก: ${lesson.titles[locale]}` : `Start: ${lesson.titles[locale]}`;
+  }
+
+  return `${homeGroupLabels[lesson.navGroup][locale]}: ${lesson.navLabels[locale]}`;
 }

@@ -2,6 +2,10 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import HeroCircuit from "../../components/HeroCircuit.astro";
 import SubjectMapPreview from "../../components/SubjectMapPreview.astro";
+import { getImplementedLessons, getLessonHomeLabel } from "../../lib/lessonRegistry";
+
+const locale = "en";
+const homeLessons = getImplementedLessons(locale);
 ---
 
 <BaseLayout
@@ -21,15 +25,11 @@ import SubjectMapPreview from "../../components/SubjectMapPreview.astro";
       </p>
       <div class="hero-actions">
         <a class="button" href="/en/guide/">Start here: How to use this site</a>
-        <a class="button" href="/en/lessons/what-is-electricity/">Start: What Is Electricity?</a>
-        <a class="button-secondary" href="/en/lessons/voltage/">Foundation lesson: Voltage</a>
-        <a class="button-secondary" href="/en/lessons/current/">Foundation lesson: Current</a>
-        <a class="button-secondary" href="/en/lessons/resistance/">Foundation lesson: Resistance</a>
-        <a class="button-secondary" href="/en/lessons/ohms-law/">Foundation lesson: Ohm's Law</a>
-        <a class="button-secondary" href="/en/lessons/series-parallel/">Foundation lesson: Series/Parallel</a>
-        <a class="button-secondary" href="/en/lessons/power-energy/">Foundation lesson: Power/Energy</a>
-        <a class="button-secondary" href="/en/lessons/battery/">Foundation lesson: Battery</a>
-        <a class="button-secondary" href="/en/lessons/mosfet/">Component lesson: MOSFET</a>
+        {homeLessons.map((lesson) => (
+          <a class={lesson.slug === "what-is-electricity" ? "button" : "button-secondary"} href={lesson.paths.en}>
+            {getLessonHomeLabel(lesson, locale)}
+          </a>
+        ))}
         <a class="button-secondary" href="/en/map/">Open the knowledge map</a>
       </div>
     </div>

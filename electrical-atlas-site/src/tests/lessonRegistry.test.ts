@@ -1,7 +1,9 @@
 import { describe, expect, it } from "vitest";
 import { atlasTopics } from "../lib/generated/atlasTopics";
 import {
+  getImplementedLessons,
   getLessonForCoveredTopic,
+  getLessonHomeLabel,
   lessonRegistry,
   type LessonRegistryEntry,
   type Locale,
@@ -55,6 +57,33 @@ describe("lesson registry", () => {
     );
 
     expect(missingRoutes).toEqual([]);
+  });
+
+  it("keeps implemented lesson navigation labels available in every locale", () => {
+    const missingLabels = registryEntries.flatMap((lesson) =>
+      locales
+        .filter((locale) => lesson.hasPage[locale])
+        .filter((locale) => lesson.navLabels[locale].trim().length === 0)
+        .map((locale) => `${locale}:${lesson.slug}`),
+    );
+
+    expect(missingLabels).toEqual([]);
+  });
+
+  it("returns implemented lessons in registry order for homepage and header navigation", () => {
+    expect(getImplementedLessons("en").map((lesson) => lesson.slug)).toEqual([
+      "what-is-electricity",
+      "voltage",
+      "current",
+      "resistance",
+      "ohms-law",
+      "series-parallel",
+      "power-energy",
+      "battery",
+      "mosfet",
+    ]);
+
+    expect(getLessonHomeLabel(getImplementedLessons("th")[0], "th")).toBe("เริ่มบทแรก: ไฟฟ้าคืออะไร?");
   });
 
   it("allows planned lessons without creating empty public pages", () => {

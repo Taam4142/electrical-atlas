@@ -2,6 +2,10 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import HeroCircuit from "../../components/HeroCircuit.astro";
 import SubjectMapPreview from "../../components/SubjectMapPreview.astro";
+import { getImplementedLessons, getLessonHomeLabel } from "../../lib/lessonRegistry";
+
+const locale = "th";
+const homeLessons = getImplementedLessons(locale);
 ---
 
 <BaseLayout
@@ -20,16 +24,12 @@ import SubjectMapPreview from "../../components/SubjectMapPreview.astro";
         ระบบไฟฟ้ากำลัง อิเล็กทรอนิกส์ และบริบทมาตรฐานไทย
       </p>
       <div class="hero-actions">
-        <a class="button-secondary" href="/th/lessons/voltage/">บทพื้นฐาน: แรงดันไฟฟ้า</a>
-        <a class="button-secondary" href="/th/lessons/current/">บทพื้นฐาน: กระแสไฟฟ้า</a>
-        <a class="button-secondary" href="/th/lessons/resistance/">บทพื้นฐาน: ความต้านทาน</a>
-        <a class="button-secondary" href="/th/lessons/ohms-law/">บทพื้นฐาน: กฎของโอห์ม</a>
-        <a class="button-secondary" href="/th/lessons/series-parallel/">บทพื้นฐาน: อนุกรม/ขนาน</a>
-        <a class="button-secondary" href="/th/lessons/power-energy/">บทพื้นฐาน: กำลัง/พลังงาน</a>
-        <a class="button-secondary" href="/th/lessons/battery/">บทพื้นฐาน: แบตเตอรี่</a>
         <a class="button" href="/th/guide/">เริ่มตรงนี้: วิธีใช้เว็บ</a>
-        <a class="button" href="/th/lessons/what-is-electricity/">เริ่มบทแรก: ไฟฟ้าคืออะไร?</a>
-        <a class="button-secondary" href="/th/lessons/mosfet/">บทชิ้นส่วน: MOSFET</a>
+        {homeLessons.map((lesson) => (
+          <a class={lesson.slug === "what-is-electricity" ? "button" : "button-secondary"} href={lesson.paths.th}>
+            {getLessonHomeLabel(lesson, locale)}
+          </a>
+        ))}
         <a class="button-secondary" href="/th/map/">เปิดแผนที่ความรู้</a>
       </div>
     </div>
