@@ -12,6 +12,7 @@ export type LessonKey =
   | "current"
   | "resistance"
   | "ohms-law"
+  | "series-parallel"
   | "power-energy"
   | "battery"
   | "mosfet";
@@ -85,6 +86,18 @@ const lessonLabels: Record<LessonKey, Record<Locale, { title: string; summary: s
       title: "กฎของโอห์ม",
       summary: "แรงดัน กระแส และความต้านทานที่เชื่อมกันด้วย V = IR พร้อมกำลังและข้อจำกัดของอุปกรณ์ non-ohmic",
       href: "/th/lessons/ohms-law/",
+    },
+  },
+  "series-parallel": {
+    en: {
+      title: "Series and Parallel Circuits",
+      summary: "How circuit paths combine: shared current in series, shared voltage in parallel, equivalent resistance, and current/voltage division.",
+      href: "/en/lessons/series-parallel/",
+    },
+    th: {
+      title: "วงจรอนุกรมและขนาน",
+      summary: "การรวมเส้นทางวงจร: กระแสใช้ร่วมกันในอนุกรม แรงดันใช้ร่วมกันในขนาน ความต้านทานเทียบเท่า และการแบ่งกระแส/แรงดัน",
+      href: "/th/lessons/series-parallel/",
     },
   },
   "power-energy": {

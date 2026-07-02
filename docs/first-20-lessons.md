@@ -24,7 +24,7 @@ The sequence is not purely academic. It is designed for the website experience: 
 | 5 | Resistance and Conductance | `ea.fundamentals.resistance` | P1 | prototype | Turns material behavior into circuit behavior. |
 | 6 | Ohm's Law | `ea.circuit.law.ohm` | P1 | prototype | First quantitative law most learners will use. |
 | 7 | Electrical Power and Energy | `ea.fundamentals.power` / `ea.fundamentals.energy` | P1 | prototype | Connects electricity to heat, work, battery life, and safety. |
-| 8 | Series and Parallel Circuits | `ea.circuit.topology.series-parallel` | P1 | planned | Needed for almost every beginner circuit explanation. |
+| 8 | Series and Parallel Circuits | `ea.circuit.topology.series-parallel` | P1 | prototype | Needed for almost every beginner circuit explanation. |
 | 9 | Battery | `ea.storage.electrochemistry` | P1 | prototype | Gives a real source of voltage and energy; supports the lamp lesson. |
 | 10 | Switches and Contacts | `ea.component.switch` | P2 | planned | Bridges everyday switching to ideal/real circuit behavior. |
 | 11 | Capacitor | `ea.component.capacitor` | P2 | planned | Storage, filtering, timing, coupling, inrush, and safety. |
@@ -77,8 +77,8 @@ This batch prepares the way for power electronics, embedded outputs, protection,
 
 Recommended immediate order:
 
-1. **Series and Parallel Circuits** - teaches how simple parts combine before larger circuit examples.
-2. **Switches and Contacts** - bridges everyday on/off behavior to ideal and real circuit switching.
-3. **Capacitor** - introduces stored electric field energy, filtering, timing, and transients.
+1. **Switches and Contacts** - bridges everyday on/off behavior to ideal and real circuit switching.
+2. **Capacitor** - introduces stored electric field energy, filtering, timing, and transients.
+3. **Diode** - introduces one-way conduction, polarity, rectification, and LED prerequisites.
 
 After those, the original "battery lights a lamp" lesson can become a strong integrated beginner mini-project rather than a lonely one-off.

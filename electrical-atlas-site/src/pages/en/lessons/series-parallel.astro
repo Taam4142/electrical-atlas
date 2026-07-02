@@ -1,0 +1,35 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import LessonShell from "../../../components/LessonShell.astro";
+import LessonModeToggle from "../../../components/LessonModeToggle";
+import SeriesParallelDemo from "../../../components/SeriesParallelDemo";
+import SuggestionSection from "../../../components/SuggestionSection.astro";
+import Content from "../../../content/lessons/en/series-parallel.mdx";
+import { atlasTopics } from "../../../lib/generated/atlasTopics";
+import { getLessonSuggestions } from "../../../lib/suggestions";
+
+const suggestions = getLessonSuggestions("series-parallel", "en", atlasTopics);
+---
+
+<BaseLayout
+  title="Series and Parallel Circuits"
+  description="A visual foundation lesson explaining series and parallel circuit connections, shared current, shared voltage, equivalent resistance, open circuits, short circuits, and measurement habits."
+  lang="en"
+  counterpartPath="/th/lessons/series-parallel/"
+  counterpartLabel="ไทย"
+>
+  <LessonShell
+    locale="en"
+    eyebrow="foundation lesson"
+    title="Series and Parallel Circuits"
+    subtitle="Series and parallel connections decide whether current is shared, voltage is shared, or both are split through a larger network."
+    lessonId="ea.lesson.series-parallel.v0.1"
+  >
+    <LessonModeToggle client:load locale="en" />
+    <SeriesParallelDemo client:load locale="en" />
+    <div class="lesson-content">
+      <Content />
+    </div>
+    <SuggestionSection locale="en" items={suggestions} />
+  </LessonShell>
+</BaseLayout>

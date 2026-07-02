@@ -71,6 +71,26 @@ export type BatteryLoadEstimate = {
   stressLevel: number;
 };
 
+export type SeriesParallelTopology = "series" | "parallel";
+
+export type SeriesParallelBranchEstimate = {
+  resistanceOhms: number;
+  voltage: number;
+  currentAmps: number;
+  powerWatts: number;
+};
+
+export type SeriesParallelEstimate = {
+  topology: SeriesParallelTopology;
+  sourceVoltage: number;
+  equivalentResistanceOhms: number;
+  totalCurrentAmps: number;
+  totalPowerWatts: number;
+  branches: [SeriesParallelBranchEstimate, SeriesParallelBranchEstimate];
+  currentSplitRatio: number;
+  voltageSplitRatio: number;
+};
+
 export function clamp(value: number, min = 0, max = 1): number {
   if (Number.isNaN(value)) {
     return min;
@@ -229,6 +249,100 @@ export function estimateBatteryLoad(params: {
     runtimeHours,
     cRate,
     stressLevel,
+  };
+}
+
+function validatePositiveResistance(resistanceOhms: number, label: string) {
+  if (!Number.isFinite(resistanceOhms) || resistanceOhms <= 0) {
+    throw new Error(`${label} must be a positive finite resistance.`);
+  }
+}
+
+export function calculateSeriesResistance(resistancesOhms: number[]): number {
+  if (resistancesOhms.length === 0) {
+    throw new Error("At least one resistance is required.");
+  }
+
+  resistancesOhms.forEach((resistance, index) => validatePositiveResistance(resistance, `Resistance ${index + 1}`));
+  return resistancesOhms.reduce((total, resistance) => total + resistance, 0);
+}
+
+export function calculateParallelResistance(resistancesOhms: number[]): number {
+  if (resistancesOhms.length === 0) {
+    throw new Error("At least one resistance is required.");
+  }
+
+  resistancesOhms.forEach((resistance, index) => validatePositiveResistance(resistance, `Resistance ${index + 1}`));
+  return 1 / resistancesOhms.reduce((conductance, resistance) => conductance + 1 / resistance, 0);
+}
+
+export function estimateSeriesParallelCircuit(params: {
+  topology: SeriesParallelTopology;
+  sourceVoltage: number;
+  firstResistanceOhms: number;
+  secondResistanceOhms: number;
+}): SeriesParallelEstimate {
+  const { topology, sourceVoltage, firstResistanceOhms, secondResistanceOhms } = params;
+  const resistances = [firstResistanceOhms, secondResistanceOhms];
+
+  if (!Number.isFinite(sourceVoltage) || sourceVoltage < 0) {
+    throw new Error("Source voltage must be a non-negative finite number.");
+  }
+
+  if (topology !== "series" && topology !== "parallel") {
+    throw new Error("Topology must be either series or parallel.");
+  }
+
+  const equivalentResistanceOhms =
+    topology === "series" ? calculateSeriesResistance(resistances) : calculateParallelResistance(resistances);
+  const totalCurrentAmps = sourceVoltage / equivalentResistanceOhms;
+  const totalPowerWatts = sourceVoltage * totalCurrentAmps;
+
+  if (topology === "series") {
+    const branches = resistances.map((resistanceOhms) => {
+      const voltage = totalCurrentAmps * resistanceOhms;
+
+      return {
+        resistanceOhms,
+        voltage,
+        currentAmps: totalCurrentAmps,
+        powerWatts: voltage * totalCurrentAmps,
+      };
+    }) as [SeriesParallelBranchEstimate, SeriesParallelBranchEstimate];
+
+    return {
+      topology,
+      sourceVoltage,
+      equivalentResistanceOhms,
+      totalCurrentAmps,
+      totalPowerWatts,
+      branches,
+      currentSplitRatio: 0.5,
+      voltageSplitRatio: sourceVoltage > 0 ? branches[0].voltage / sourceVoltage : 0.5,
+    };
+  }
+
+  const branches = resistances.map((resistanceOhms) => {
+    const currentAmps = sourceVoltage / resistanceOhms;
+
+    return {
+      resistanceOhms,
+      voltage: sourceVoltage,
+      currentAmps,
+      powerWatts: sourceVoltage * currentAmps,
+    };
+  }) as [SeriesParallelBranchEstimate, SeriesParallelBranchEstimate];
+  const branchCurrentTotal = branches[0].currentAmps + branches[1].currentAmps;
+
+  return {
+    topology,
+    sourceVoltage,
+    equivalentResistanceOhms,
+    totalCurrentAmps,
+    totalPowerWatts,
+    branches,
+    currentSplitRatio: branchCurrentTotal > 0 ? branches[0].currentAmps / branchCurrentTotal : 0.5,
+    voltageSplitRatio: 0.5,
   };
 }
 

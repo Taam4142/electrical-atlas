@@ -1,0 +1,310 @@
+<section>
+
+## 1. The useful idea
+
+**Series and parallel** are two basic ways to connect parts in a circuit.
+
+They decide what is shared:
+
+- in **series**, parts are connected one after another, so the same current goes through each part,
+- in **parallel**, parts are connected across the same two nodes, so the same voltage appears across each branch.
+
+This one idea unlocks a lot of circuit behavior.
+
+<aside className="callout">
+
+**First mental model:** series is one road. Parallel is multiple roads between the same two places.
+
+</aside>
+
+</section>
+
+<section>
+
+## 2. What is a node?
+
+A **node** is a point, or connected group of points, that can be treated as having the same voltage.
+
+If two component terminals connect to the same two nodes, they are in parallel.
+
+If current must pass through one component and then the next with no branching path between them, they are in series.
+
+The shape of the drawing can fool beginners. The node connections matter more than how pretty the schematic looks.
+
+</section>
+
+<section>
+
+## 3. Series connection
+
+In a series path, there is only one route for charge flow.
+
+That means:
+
+- the same current passes through every part,
+- the source voltage is divided across the parts,
+- resistances add,
+- if one part opens, the whole path stops conducting.
+
+For resistors:
+
+`R_total = R1 + R2 + R3 + ...`
+
+Example:
+
+`100 Ω + 220 Ω = 320 Ω`
+
+With a `12 V` source:
+
+`I = V / R = 12 / 320 = 0.0375 A`
+
+So the same `37.5 mA` goes through both resistors.
+
+</section>
+
+<section>
+
+## 4. Parallel connection
+
+In a parallel network, each branch connects across the same two nodes.
+
+That means:
+
+- each branch sees the same voltage,
+- current splits between branches,
+- total current is the sum of branch currents,
+- adding another branch usually lowers equivalent resistance,
+- if one branch opens, other branches may still work.
+
+For resistors:
+
+`1 / R_total = 1 / R1 + 1 / R2 + 1 / R3 + ...`
+
+For two resistors:
+
+`R_total = (R1 × R2) / (R1 + R2)`
+
+Example:
+
+`R_total = (100 × 220) / (100 + 220) = 68.75 Ω`
+
+With a `12 V` source:
+
+- current in `100 Ω` branch: `12 / 100 = 0.12 A`,
+- current in `220 Ω` branch: `12 / 220 = 0.0545 A`,
+- total current: about `0.1745 A`.
+
+The parallel circuit draws much more current than the same resistors in series.
+
+</section>
+
+<section>
+
+## 5. Current and voltage rules
+
+Here is the beginner version:
+
+| Connection | Shared quantity | Divided quantity |
+| --- | --- | --- |
+| Series | current | voltage |
+| Parallel | voltage | current |
+
+That table is not just a memorization trick.
+
+It comes from two deeper conservation ideas:
+
+- charge cannot pile up forever at an ordinary circuit node,
+- energy gained from the source must be transferred around the loop.
+
+Those deeper ideas become Kirchhoff's Current Law and Kirchhoff's Voltage Law later.
+
+</section>
+
+<section>
+
+## 6. Why series resistance adds
+
+Resistance is opposition along the path.
+
+If current must go through one resistor and then another, each resistor adds more opposition to the same current path.
+
+So series resistance is like adding more narrow sections to the same road.
+
+More series resistance means:
+
+- lower total current for the same source voltage,
+- more voltage dropped across the total path,
+- each resistor gets a share of the source voltage.
+
+</section>
+
+<section>
+
+## 7. Why parallel resistance gets smaller
+
+Parallel branches create more available paths.
+
+If current has two paths instead of one, the overall circuit can conduct more current for the same voltage.
+
+That means the equivalent resistance is lower.
+
+This is also why a short circuit is dangerous: it is an extremely low-resistance path in parallel with the intended load.
+
+</section>
+
+<section>
+
+## 8. Common examples
+
+Series examples:
+
+- a switch in series with a lamp,
+- a resistor in series with an LED,
+- cells stacked in series to increase voltage,
+- fuse or breaker contacts in series with a protected load.
+
+Parallel examples:
+
+- multiple household loads connected to the same supply,
+- pull-up or pull-down paths around digital inputs,
+- cells in parallel to increase capacity,
+- sensor divider branches,
+- bypass capacitors placed across supply rails.
+
+Many real circuits mix both.
+
+A phone charger, power supply, amplifier, or embedded board is not "just series" or "just parallel"; it is a network of both.
+
+</section>
+
+<section>
+
+## 9. Open circuit and short circuit
+
+An **open circuit** means the path is broken.
+
+In series, one open part can stop the whole path.
+
+A **short circuit** means an unintended low-resistance path.
+
+In parallel, a short branch can steal most of the current because current prefers the easier path.
+
+<aside className="callout">
+
+**Safety note:** "low resistance" is not automatically good. Low resistance across a strong source can mean high current, hot wires, arcs, burns, fire, damaged batteries, or tripped protection.
+
+</aside>
+
+</section>
+
+<section>
+
+## 10. Measurement habits
+
+To measure voltage, connect the meter across two points.
+
+That is a parallel measurement.
+
+To measure current, the meter must become part of the current path.
+
+That is a series measurement.
+
+This is why accidentally putting an ammeter directly across a battery or power supply can be dangerous: the meter may behave like a low-resistance parallel path.
+
+</section>
+
+<section>
+
+## 11. Common mistakes
+
+- **"Current gets used up in the first resistor."** In a simple series path, the same current enters and leaves each component.
+- **"Parallel always means safer."** Parallel can draw more total current from the source.
+- **"The drawing shape decides series or parallel."** Node connections decide it.
+- **"Two parts touching one point are parallel."** They must share both nodes to be parallel.
+- **"A bigger resistor always gets more current."** In parallel, the smaller resistor gets more current.
+- **"All branches affect each other equally."** Real sources, wires, tolerances, heating, and protection limits matter.
+
+</section>
+
+<section>
+
+## 12. Safety and Thailand context
+
+Series and parallel ideas appear in small electronics, batteries, building wiring, protection systems, solar arrays, EV packs, and industrial panels.
+
+This lesson is safe as a conceptual low-voltage model.
+
+Do not use it alone to design mains wiring, protection coordination, battery packs, PV strings, EV systems, or building installations.
+
+For practical work in Thailand, future safety lessons must verify the latest applicable requirements from official Thai and international sources such as TISI/TIS, EIT, MEA, PEA, ERC, local authorities, product documentation, and relevant IEC/IEEE standards.
+
+</section>
+
+<section className="technical-only">
+
+## Technical track
+
+Series resistors:
+
+`R_eq = ΣR_i`
+
+`I_total = V_source / R_eq`
+
+`V_i = I_total × R_i`
+
+Parallel resistors:
+
+`G_eq = ΣG_i = Σ(1 / R_i)`
+
+`R_eq = 1 / G_eq`
+
+`I_i = V_source / R_i`
+
+`I_total = ΣI_i`
+
+For linear resistors, power in each part is:
+
+`P_i = V_i × I_i = I_i²R_i = V_i² / R_i`
+
+The general circuit-law version:
+
+- Kirchhoff's Current Law: sum of currents at a node is zero,
+- Kirchhoff's Voltage Law: sum of voltage changes around a loop is zero.
+
+These laws are usually the next serious step after beginner series and parallel circuits.
+
+</section>
+
+<section>
+
+## Where this connects next
+
+Series and parallel circuits connect directly to:
+
+- voltage dividers,
+- current dividers,
+- LED current limiting,
+- switches and contacts,
+- fuses and breakers,
+- battery cell stacks,
+- pull-up and pull-down resistors,
+- sensor circuits,
+- Kirchhoff analysis,
+- Thevenin and Norton equivalents.
+
+Good next lessons are Switches and Contacts, Capacitor, Diode, LED, Fuse/Breaker/Short Circuit, and Kirchhoff's Laws.
+
+</section>
+
+<section>
+
+## Reference direction
+
+When this lesson is reviewed, useful source families include:
+
+- introductory circuit theory texts for series/parallel networks, KCL, KVL, and equivalent resistance,
+- electronics lab manuals for safe voltage/current measurement,
+- standards and safety references for overcurrent, short circuits, conductor heating, protective devices, and low-voltage installations,
+- Thai authority and engineering references when the lesson moves from low-voltage concept models to practical installation guidance.
+
+</section>

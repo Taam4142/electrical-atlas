@@ -1,0 +1,35 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import LessonShell from "../../../components/LessonShell.astro";
+import LessonModeToggle from "../../../components/LessonModeToggle";
+import SeriesParallelDemo from "../../../components/SeriesParallelDemo";
+import SuggestionSection from "../../../components/SuggestionSection.astro";
+import Content from "../../../content/lessons/th/series-parallel.mdx";
+import { atlasTopics } from "../../../lib/generated/atlasTopics";
+import { getLessonSuggestions } from "../../../lib/suggestions";
+
+const suggestions = getLessonSuggestions("series-parallel", "th", atlasTopics);
+---
+
+<BaseLayout
+  title="วงจรอนุกรมและขนาน"
+  description="บทเรียนภาพอธิบายการต่อวงจรอนุกรมและขนาน กระแสที่ใช้ร่วมกัน แรงดันที่ใช้ร่วมกัน ความต้านทานเทียบเท่า open circuit, short circuit และวิธีคิดเรื่องการวัด"
+  lang="th"
+  counterpartPath="/en/lessons/series-parallel/"
+  counterpartLabel="English"
+>
+  <LessonShell
+    locale="th"
+    eyebrow="บทเรียนพื้นฐาน"
+    title="วงจรอนุกรมและขนาน"
+    subtitle="การต่ออนุกรมและขนานเป็นตัวกำหนดว่าในวงจร กระแสใช้ร่วมกัน แรงดันใช้ร่วมกัน หรือถูกแบ่งผ่าน network ที่ใหญ่ขึ้นอย่างไร"
+    lessonId="ea.lesson.series-parallel.v0.1"
+  >
+    <LessonModeToggle client:load locale="th" />
+    <SeriesParallelDemo client:load locale="th" />
+    <div class="lesson-content">
+      <Content />
+    </div>
+    <SuggestionSection locale="th" items={suggestions} />
+  </LessonShell>
+</BaseLayout>

@@ -7,7 +7,9 @@ import {
   calculateEnergyFromVoltageCharge,
   calculateEnergyFromPowerTime,
   calculateOhmsLaw,
+  calculateParallelResistance,
   calculateResistanceFromConductance,
+  calculateSeriesResistance,
   calculateVoltageFromEnergyCharge,
   convertJoulesToWattHours,
   estimateCurrentFlow,
@@ -17,6 +19,7 @@ import {
   estimateLampCircuit,
   estimatePowerEnergy,
   estimateResistanceConductance,
+  estimateSeriesParallelCircuit,
   estimateVoltageEnergy,
 } from "../lib/physics";
 
@@ -67,6 +70,41 @@ describe("physics helpers", () => {
     expect(estimate.runtimeHours).toBeCloseTo(7.4 / 2.667, 12);
     expect(estimate.cRate).toBeCloseTo(0.28, 12);
     expect(estimate.stressLevel).toBeGreaterThan(0);
+  });
+
+  it("calculates series and parallel equivalent resistance", () => {
+    expect(calculateSeriesResistance([100, 220])).toBeCloseTo(320, 12);
+    expect(calculateParallelResistance([100, 220])).toBeCloseTo(68.75, 12);
+  });
+
+  it("estimates series and parallel resistor networks", () => {
+    const series = estimateSeriesParallelCircuit({
+      topology: "series",
+      sourceVoltage: 12,
+      firstResistanceOhms: 100,
+      secondResistanceOhms: 220,
+    });
+    const parallel = estimateSeriesParallelCircuit({
+      topology: "parallel",
+      sourceVoltage: 12,
+      firstResistanceOhms: 100,
+      secondResistanceOhms: 220,
+    });
+
+    expect(series.equivalentResistanceOhms).toBeCloseTo(320, 12);
+    expect(series.totalCurrentAmps).toBeCloseTo(0.0375, 12);
+    expect(series.branches[0].currentAmps).toBeCloseTo(series.branches[1].currentAmps, 12);
+    expect(series.branches[0].voltage).toBeCloseTo(3.75, 12);
+    expect(series.branches[1].voltage).toBeCloseTo(8.25, 12);
+    expect(series.totalPowerWatts).toBeCloseTo(0.45, 12);
+
+    expect(parallel.equivalentResistanceOhms).toBeCloseTo(68.75, 12);
+    expect(parallel.totalCurrentAmps).toBeCloseTo(12 / 68.75, 12);
+    expect(parallel.branches[0].voltage).toBeCloseTo(12, 12);
+    expect(parallel.branches[1].voltage).toBeCloseTo(12, 12);
+    expect(parallel.branches[0].currentAmps).toBeCloseTo(0.12, 12);
+    expect(parallel.branches[1].currentAmps).toBeCloseTo(12 / 220, 12);
+    expect(parallel.totalPowerWatts).toBeGreaterThan(series.totalPowerWatts);
   });
 
   it("treats voltage as energy per charge", () => {

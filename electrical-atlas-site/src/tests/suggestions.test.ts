@@ -21,6 +21,7 @@ describe("suggestion system", () => {
     expect(suggestions.some((suggestion) => suggestion.href === "/th/lessons/current/")).toBe(true);
     expect(suggestions.some((suggestion) => suggestion.href === "/th/lessons/resistance/")).toBe(true);
     expect(suggestions.some((suggestion) => suggestion.href === "/th/lessons/ohms-law/")).toBe(true);
+    expect(suggestions.some((suggestion) => suggestion.href === "/th/lessons/series-parallel/")).toBe(true);
     expect(suggestions.some((suggestion) => suggestion.href === "/th/lessons/power-energy/")).toBe(true);
     expect(suggestions.some((suggestion) => suggestion.href === "/th/lessons/battery/")).toBe(true);
     expect(suggestions.some((suggestion) => suggestion.href === "/th/lessons/mosfet/")).toBe(true);
@@ -75,6 +76,7 @@ describe("suggestion system", () => {
     expect(hrefs).toContain("/en/lessons/current/");
     expect(hrefs).toContain("/en/lessons/resistance/");
     expect(hrefs).toContain("/en/lessons/power-energy/");
+    expect(hrefs).toContain("/en/lessons/series-parallel/");
     expect(hrefs).toContain("/en/topics/fundamentals-power/");
     expect(hrefs).toContain("/en/topics/circuit-topology-series-parallel/");
     expect(hrefs).toContain("/en/topics/photonics-led/");
@@ -96,6 +98,25 @@ describe("suggestion system", () => {
     expect(hrefs).toContain("/en/topics/storage-electrochemistry/");
     expect(hrefs).toContain("/en/topics/component-fuse/");
     expect(hrefs).toContain("/en/topics/circuit-ac-power/");
+  });
+
+  it("builds curated series and parallel lesson suggestions", () => {
+    const suggestions = getLessonSuggestions("series-parallel", "en", atlasTopics);
+    const hrefs = suggestions.map((suggestion) => suggestion.href);
+
+    expect(suggestions.length).toBeGreaterThanOrEqual(10);
+    expect(hrefs).toContain("/en/lessons/ohms-law/");
+    expect(hrefs).toContain("/en/lessons/voltage/");
+    expect(hrefs).toContain("/en/lessons/current/");
+    expect(hrefs).toContain("/en/lessons/resistance/");
+    expect(hrefs).toContain("/en/lessons/battery/");
+    expect(hrefs).toContain("/en/lessons/power-energy/");
+    expect(hrefs).toContain("/en/topics/circuit-topology-series-parallel/");
+    expect(hrefs).toContain("/en/topics/circuit-law-kcl/");
+    expect(hrefs).toContain("/en/topics/circuit-law-kvl/");
+    expect(hrefs).toContain("/en/topics/component-resistor/");
+    expect(hrefs).toContain("/en/topics/component-fuse/");
+    expect(hrefs).toContain("/en/topics/circuit-analysis-nodal/");
   });
 
   it("builds curated battery lesson suggestions", () => {
@@ -123,6 +144,7 @@ describe("suggestion system", () => {
       "current",
       "resistance",
       "ohms-law",
+      "series-parallel",
       "power-energy",
       "battery",
       "mosfet",

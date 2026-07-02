@@ -6,6 +6,7 @@ It turns the planning corpus in `../electrical-atlas/` into a small Astro app wi
 
 - bilingual English/Thai routes;
 - a bilingual guide page for using the prototype;
+- a foundation lesson: **Series and Parallel Circuits / วงจรอนุกรมและขนาน**;
 - a foundation lesson: **Voltage / แรงดันไฟฟ้า**;
 - a foundation lesson: **Electric Current / กระแสไฟฟ้า**;
 - a foundation lesson: **Resistance and Conductance / ความต้านทานและความนำไฟฟ้า**;
@@ -20,6 +21,7 @@ It turns the planning corpus in `../electrical-atlas/` into a small Astro app wi
 - one React interactive visual for current as charge flow;
 - one React interactive visual for resistance/conductance as current limiting and heat;
 - one React interactive visual for Ohm's Law as the voltage-current-resistance relationship;
+- one React interactive visual for series/parallel shared current, shared voltage, and equivalent resistance;
 - one React interactive visual for electrical power and energy accumulation;
 - one React interactive visual for battery state of charge, voltage sag, runtime, and internal heating;
 - one React interactive visual for MOSFET channel formation;
@@ -41,6 +43,9 @@ npm.cmd test
 ```
 
 ## Routes
+
+- `/en/lessons/series-parallel/` — English Series and Parallel Circuits foundation lesson
+- `/th/lessons/series-parallel/` — Thai Series and Parallel Circuits foundation lesson
 
 - `/en/lessons/voltage/` — English Voltage foundation lesson
 - `/th/lessons/voltage/` — Thai Voltage foundation lesson

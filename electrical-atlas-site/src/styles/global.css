@@ -1312,6 +1312,140 @@ p {
   font-weight: 800;
 }
 
+.series-parallel-demo-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.65fr);
+  gap: 1rem;
+  align-items: stretch;
+}
+
+.series-parallel-source {
+  fill: rgba(100, 244, 255, 0.08);
+  stroke: rgba(100, 244, 255, 0.58);
+  stroke-width: 4;
+  filter: url("#seriesParallelGlow");
+}
+
+.series-parallel-flow {
+  fill: none;
+  stroke: url("#seriesParallelGradient");
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: url("#seriesParallelGlow");
+  transition: stroke-width 180ms ease;
+}
+
+.series-parallel-flow.branch-one {
+  stroke: rgba(100, 244, 255, 0.92);
+}
+
+.series-parallel-flow.branch-two {
+  stroke: rgba(248, 214, 109, 0.92);
+}
+
+.series-parallel-return {
+  fill: none;
+  stroke: rgba(100, 244, 255, 0.22);
+  stroke-width: 7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.series-parallel-return.faint {
+  opacity: 0.35;
+}
+
+.series-parallel-resistor {
+  fill: rgba(248, 214, 109, 0.1);
+  stroke: rgba(248, 214, 109, 0.78);
+  stroke-width: 4;
+  filter: url("#seriesParallelGlow");
+}
+
+.series-parallel-resistor.r1 {
+  stroke: rgba(100, 244, 255, 0.82);
+}
+
+.series-parallel-resistor.r2 {
+  stroke: rgba(248, 214, 109, 0.82);
+}
+
+.series-parallel-resistor-label,
+.series-parallel-small-text {
+  fill: #fff4d2;
+  text-anchor: middle;
+}
+
+.series-parallel-resistor-label {
+  font-size: 28px;
+  font-weight: 950;
+}
+
+.series-parallel-small-text {
+  font-family: var(--font-mono);
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.series-parallel-node {
+  fill: #fff4d2;
+  stroke: rgba(100, 244, 255, 0.8);
+  stroke-width: 3;
+  filter: url("#seriesParallelGlow");
+}
+
+.series-parallel-toggle {
+  margin-bottom: 1rem;
+}
+
+.series-parallel-meter-bar {
+  height: 0.72rem;
+  overflow: hidden;
+  border: 1px solid rgba(100, 244, 255, 0.22);
+  border-radius: 999px;
+  background: rgba(4, 11, 23, 0.78);
+}
+
+.series-parallel-meter-bar span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, rgba(100, 244, 255, 0.85), rgba(158, 255, 110, 0.85));
+  transition: width 180ms ease;
+}
+
+.series-parallel-meter-bar.resistance-one-bar span {
+  background: linear-gradient(90deg, rgba(100, 244, 255, 0.85), rgba(248, 214, 109, 0.85));
+}
+
+.series-parallel-meter-bar.resistance-two-bar span {
+  background: linear-gradient(90deg, rgba(248, 214, 109, 0.82), rgba(255, 91, 91, 0.78));
+}
+
+.series-parallel-summary-bars {
+  display: grid;
+  gap: 0.55rem;
+  margin: 1rem 0;
+}
+
+.series-parallel-summary-bars div {
+  display: grid;
+  grid-template-columns: 7.5rem 1fr;
+  align-items: center;
+  gap: 0.7rem;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.series-parallel-summary-bars i {
+  display: block;
+  height: 0.65rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(100, 244, 255, 0.85), rgba(248, 214, 109, 0.82));
+  box-shadow: 0 0 18px rgba(100, 244, 255, 0.2);
+  transition: width 180ms ease;
+}
+
 .battery-demo-grid {
   display: grid;
   grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.65fr);
@@ -1724,6 +1858,7 @@ input[type="range"] {
   .resistance-demo-grid,
   .ohms-demo-grid,
   .power-energy-demo-grid,
+  .series-parallel-demo-grid,
   .battery-demo-grid {
     grid-template-columns: 1fr;
   }
