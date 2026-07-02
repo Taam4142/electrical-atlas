@@ -95,13 +95,15 @@ describe("lesson registry", () => {
     expect(getLessonHomeLabel(getImplementedLessons("th")[0], "th")).toBe("เริ่มบทแรก: ไฟฟ้าคืออะไร?");
   });
 
-  it("allows planned lessons without creating empty public pages", () => {
-    const plannedLessonsWithPages = registryEntries
-      .filter((lesson) => lesson.status === "planned")
+  it("allows roadmap and outline lessons without creating empty public pages", () => {
+    const nonPublicPlanningStatuses = ["candidate", "planned", "outlined"] as const;
+    const planningLessonsWithPages = registryEntries
+      .filter((lesson) => nonPublicPlanningStatuses.includes(lesson.status as (typeof nonPublicPlanningStatuses)[number]))
       .filter((lesson) => lesson.hasPage.en || lesson.hasPage.th)
       .map((lesson) => lesson.slug);
 
-    expect(plannedLessonsWithPages).toEqual([]);
+    expect(planningLessonsWithPages).toEqual([]);
+    expect(registryEntries.find((lesson) => lesson.slug === "switches-contacts")?.status).toBe("outlined");
   });
 
   it("derives published topic-record lesson links from coverage metadata", () => {

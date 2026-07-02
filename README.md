@@ -116,6 +116,7 @@ See [docs/deployment.md](docs/deployment.md).
 - [Project improvements and risk-reduction plan](docs/project-improvements-risk-reduction.md)
 - [Lesson registry plan](docs/lesson-registry-plan.md)
 - [Lesson template](docs/lesson-template.mdx)
+- [Lesson outlines](docs/lesson-outlines/README.md)
 - [First 20 lesson roadmap](docs/first-20-lessons.md)
 - [Lesson quality checklist](docs/lesson-quality-checklist.md)
 - [Suggestion and relationship system](docs/suggestion-relationship-system.md)
@@ -134,8 +135,8 @@ See [docs/deployment.md](docs/deployment.md).
 ## Near roadmap
 
 1. Keep CI and Vercel deployment green.
-2. Extend the lesson registry into navigation, homepage lesson cards, and visible lesson status/safety UI.
-3. Build the next foundation lessons: Switches and Contacts, Capacitor, and Diode.
+2. Turn the Switches and Contacts outline into a prototype lesson with bilingual MDX, visuals, routes, and source review.
+3. Build the next foundation lessons after that: Capacitor and Diode.
 4. Pin dependencies or add controlled dependency update tooling.
 5. Add explicit topic relationship fields: prerequisite, successor, part-of, used-in, made-of, alternative-to, and fails-by.
 6. Expand Thai standard references for Thailand-relevant electrical practice.

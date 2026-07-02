@@ -20,20 +20,38 @@ Use these statuses consistently:
 
 ## Production workflow
 
+Use this as the normal authoring pipeline. A lesson can pause at any stage, but its registry status must honestly reflect where it is.
+
+| Stage | Registry status | Main artifact | Exit gate |
+| --- | --- | --- | --- |
+| 0. Intake | `candidate` | candidate note or roadmap row | Topic has a reason to exist and a likely primary atlas node. |
+| 1. Scope | `planned` | registry entry | Slug, lesson ID, primary topic, prerequisites, safety level, source status, and language routes are known. |
+| 2. Outline | `outlined` | `docs/lesson-outlines/<slug>.md` | Section plan, visual plan, source plan, safety boundaries, Thai notes, and next-topic links are drafted. |
+| 3. Draft | `outlined` or `prototype` | English MDX draft | Physical intuition, core explanation, equations, mistakes, failure modes, and source notes are written. |
+| 4. Localize | `prototype` | Thai MDX draft | Thai wording is natural, not a stiff line-by-line translation, and Thai-context notes are explicit. |
+| 5. Implement | `prototype` | route wrappers, visuals, relationships | Public routes exist only for languages that have real content. Suggestions come from relationships/registry, not manual lists. |
+| 6. Review prep | `review-ready` | completed checklist | Technical, visual, safety, source, Thai, and accessibility checks are ready for review. |
+| 7. Publish | `published` | deployed lesson | Review is complete, source-sensitive claims are verified, tests/build pass, and the live page was checked. |
+| 8. Maintain | `revision-needed` or `needs-update` source status | issue/revision note | Corrections or source refreshes are tracked before republishing. |
+
+Detailed workflow:
+
 1. Choose the lesson from the roadmap or taxonomy.
 2. Assign the primary atlas node and secondary cross-links.
-3. Define the learner level and prerequisites.
-4. Create the English lesson outline.
+3. Define the learner level, prerequisites, non-goals, and publication boundary.
+4. Create the outline using [lesson-template.mdx](lesson-template.mdx), saved under `docs/lesson-outlines/` until it becomes real site content.
 5. Draft the physical intuition first.
-6. Add structure, operating modes, equations, limitations, and practical examples.
+6. Add structure, operating modes, equations, limitations, practical examples, common mistakes, and failure modes.
 7. Add visual requirements: diagram, interactive, animation, photo, table, or none.
 8. Add safety notes and standards/source notes where relevant.
 9. Implement the English MDX lesson.
-10. Implement the Thai MDX lesson or mark Thai as pending.
-11. Add or update the lesson registry entry, route wrappers, suggestions, and navigation links.
+10. Implement the Thai MDX lesson or keep the Thai page unpublic until it is ready.
+11. Add or update the lesson registry entry, route wrappers, relationship records, and any visual/test files.
 12. Run tests and build.
-13. Review in browser.
-14. Publish through GitHub/Vercel.
+13. Review in browser, including mobile width and language switch.
+14. Commit, push, and publish through GitHub/Vercel.
+
+Do not create an empty public route only because a lesson is planned or outlined. The registry can show roadmap intent without implying publication readiness.
 
 ## Standard lesson shape
 
@@ -137,6 +155,12 @@ Every lesson should declare or imply:
 
 The website can then suggest better next lessons over time.
 
+Active implementation rule:
+
+- lesson metadata lives in `electrical-atlas-site/src/lib/lessonRegistry.ts`;
+- lesson-to-topic and lesson-to-lesson relationships live in `electrical-atlas-site/src/lib/relationships.ts`;
+- the deprecated manual suggestion list is historical only and must not be used for new suggestions.
+
 ## Safety and standards rules
 
 Safety notes are required when a lesson touches:
@@ -159,6 +183,8 @@ Use clear wording:
 - "Check local regulations and qualified professionals" for installation topics.
 - "Thailand context requires current Thai standard verification" when relevant.
 
+Source-review details live in [lesson-quality-checklist.md](lesson-quality-checklist.md). A source family note is not the same as a verified claim. Before a lesson becomes `review-ready` or `published`, every safety, standard, legal/regulatory, installation, grid, medical, RF, or high-energy claim must be traced to an authoritative current source.
+
 ## Definition of done for a lesson
 
 A lesson is done enough for prototype publication when:
@@ -174,3 +200,17 @@ A lesson is done enough for prototype publication when:
 - The live page is checked after deployment.
 
 Use [lesson-quality-checklist.md](lesson-quality-checklist.md) before publishing.
+
+## Outline artifact requirements
+
+Every planned lesson should get an outline before implementation. The outline is allowed to be rough, but it must answer:
+
+- What is the learner supposed to understand after this lesson?
+- What is explicitly out of scope?
+- Which atlas topic is primary, and which topics are covered?
+- Which previous lessons are prerequisites?
+- Which visual explanation would make the concept easier?
+- What can be safely demonstrated as a conceptual low-voltage model?
+- What would become unsafe, standards-sensitive, or Thailand-context-sensitive?
+- Which source families should be checked before review?
+- Which next lessons or topic records should the suggestion system connect to?

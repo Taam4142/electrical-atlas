@@ -263,15 +263,15 @@ Add `lessonRegistry.ts` with entries for the current nine lessons:
 8. Battery
 9. MOSFET
 
-Add planned entries for the immediate next lessons if useful:
+Add roadmap entries for the immediate next lessons if useful:
 
-- Switches and Contacts
-- Capacitor
-- Diode
+- Switches and Contacts — now `outlined`
+- Capacitor — `planned`
+- Diode — `planned`
 
-Planned lessons should have `hasPage.en: false` and `hasPage.th: false` until route wrappers exist.
+Planned and outlined lessons should have `hasPage.en: false` and `hasPage.th: false` until real content and route wrappers exist.
 
-Current status: completed for the current nine lessons plus planned metadata entries for Switches and Contacts, Capacitor, and Diode.
+Current status: completed for the current nine lessons plus roadmap metadata for Switches and Contacts, Capacitor, and Diode. Switches and Contacts now has an outline in `docs/lesson-outlines/switches-contacts.md`.
 
 ### Phase 2: Replace lesson labels in suggestions
 

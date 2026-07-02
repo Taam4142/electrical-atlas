@@ -456,23 +456,23 @@ The taxonomy can be broad. Published lessons must stay reviewed, honest, and app
 
 Do not try to fix every risk at once. The next practical sequence should be:
 
-1. **Continue the lesson registry rollout.**  
-   Registry v0.1 exists. Next, use it for navigation, homepage cards, and visible lesson status/safety UI.
+1. **Keep the lesson registry rollout enforced.**  
+   Registry v0.1 now drives navigation, homepage lesson cards, visible lesson metadata, and the status board. Continue adding tests whenever registry behavior expands.
 
-2. **Add registry and relationship validation tests.**  
-   This catches missing routes, missing topic IDs, bad relationship targets, and duplicate metadata.
+2. **Expand registry and relationship validation tests.**  
+   The first validation tests exist. Continue expanding them for missing routes, missing topic IDs, bad relationship targets, duplicate metadata, and planned/outlined lessons that accidentally create empty public pages.
 
 3. **Pin dependencies or set up controlled dependency updates.**  
    This reduces surprise build failures from `latest`.
 
-4. **Add safety/source metadata to lessons.**  
-   This prepares the project for batteries, capacitors, transformers, mains, grid, and Thailand-specific content.
+4. **Use the lesson authoring workflow for all new lessons.**  
+   Create an outline first, then prototype only when scope, visuals, safety boundaries, Thai context, and source-review needs are clear.
 
 5. **Create a Thai terminology glossary and encoding sanity test.**  
    This protects the bilingual foundation before many more Thai pages are written.
 
 6. **Continue the next lessons.**  
-   Recommended next content lesson: Switches and Contacts, then Capacitor, then Diode.
+   Switches and Contacts is outlined. Next content step: turn it into a prototype lesson, then outline/build Capacitor and Diode.
 
 ## What not to do
 

@@ -26,7 +26,7 @@ The sequence is not purely academic. It is designed for the website experience: 
 | 7 | Electrical Power and Energy | `ea.fundamentals.power` / `ea.fundamentals.energy` | P1 | prototype | Connects electricity to heat, work, battery life, and safety. |
 | 8 | Series and Parallel Circuits | `ea.circuit.topology.series-parallel` | P1 | prototype | Needed for almost every beginner circuit explanation. |
 | 9 | Battery | `ea.storage.electrochemistry` | P1 | prototype | Gives a real source of voltage and energy; supports the lamp lesson. |
-| 10 | Switches and Contacts | `ea.component.switch` | P2 | planned | Bridges everyday switching to ideal/real circuit behavior. |
+| 10 | Switches and Contacts | `ea.component.switch` | P2 | outlined | Bridges everyday switching to ideal/real circuit behavior. |
 | 11 | Capacitor | `ea.component.capacitor` | P2 | planned | Storage, filtering, timing, coupling, inrush, and safety. |
 | 12 | Inductor | `ea.component.inductor` | P2 | planned | Magnetic storage, switching converters, motors, relays, EMI. |
 | 13 | Diode | `ea.device.diode.pn` | P2 | planned | First semiconductor one-way device; foundation for rectifiers and LEDs. |
@@ -77,7 +77,7 @@ This batch prepares the way for power electronics, embedded outputs, protection,
 
 Recommended immediate order:
 
-1. **Switches and Contacts** - bridges everyday on/off behavior to ideal and real circuit switching.
+1. **Switches and Contacts** - outlined; next step is prototype implementation with visual, bilingual MDX, routes, and source review.
 2. **Capacitor** - introduces stored electric field energy, filtering, timing, and transients.
 3. **Diode** - introduces one-way conduction, polarity, rectification, and LED prerequisites.
 

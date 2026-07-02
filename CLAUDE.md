@@ -31,7 +31,10 @@ Useful documentation:
 Before adding many more lessons, preserve the project structure described in:
 
 - `docs/project-improvements-risk-reduction.md`
+- `docs/lesson-production-system.md`
+- `docs/lesson-quality-checklist.md`
 - `docs/lesson-registry-plan.md`
+- `docs/lesson-template.mdx`
 
 The most important near-term risk reductions are:
 
@@ -41,6 +44,24 @@ The most important near-term risk reductions are:
 - avoid unverified Thailand-specific standards claims;
 - keep Thai terminology and UTF-8 rendering consistent;
 - keep dependency upgrades intentional rather than relying on `latest`.
+
+## Lesson authoring workflow
+
+Do not jump directly from an idea to a public route.
+
+Normal lesson flow:
+
+1. Add or update the lesson registry entry.
+2. Create an outline under `docs/lesson-outlines/` using `docs/lesson-template.mdx`.
+3. Keep the registry status honest: `planned` for scoped ideas, `outlined` for drafted outlines, `prototype` only after public content exists.
+4. Keep planned/outlined lessons out of public routes.
+5. Before `review-ready` or `published`, use `docs/lesson-quality-checklist.md` and verify safety/source-sensitive claims.
+
+The current next outlined lesson is:
+
+```text
+docs/lesson-outlines/switches-contacts.md
+```
 
 ## Deprecated manual suggestion list
 

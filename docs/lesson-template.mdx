@@ -1,8 +1,30 @@
 # Lesson template
 
-Copy this file when starting a new lesson. Replace every placeholder before publishing.
+Copy this file when starting a new lesson. First use it as an outline under `docs/lesson-outlines/<slug>.md`; later convert the same structure into MDX content when the lesson becomes a prototype.
+
+Replace every placeholder before publishing.
 
 ```mdx
+<!--
+Lesson control block
+
+slug: <slug>
+lessonId: ea.lesson.<slug>.v0.1
+registryStatus: planned | outlined | prototype | review-ready | published | revision-needed
+primaryTopicId: <ea.topic.id>
+coveredTopicIds:
+  - <ea.topic.id>
+prerequisiteLessons:
+  - <slug>
+successorLessons:
+  - <slug>
+safetyLevel: none | low | moderate | high
+sourceStatus: not-needed | needed | draft | verified | needs-update
+requiresThailandContext: true | false
+publicLanguages: none | en | th | en+th
+lastReviewed: <YYYY-MM-DD or pending>
+-->
+
 <section>
 
 ## 1. A useful definition
@@ -36,6 +58,12 @@ In plain language: <beginner-friendly meaning>.
 ## 3. Where you see it in real life
 
 <Connect the topic to familiar objects, tools, devices, systems, or measurements.>
+
+Out of scope for this lesson:
+
+- <Boundary 1>
+- <Boundary 2>
+- <Boundary 3>
 
 </section>
 
@@ -106,7 +134,20 @@ This equation means <plain-language meaning>.
 
 <section>
 
-## 8. Common mistakes
+## 8. Visual explanation plan
+
+<Describe the diagram, animation, interactive, table, or photo-style asset that would make the topic easier to understand.>
+
+- **Main visual:** <what it shows>.
+- **Learner control, if interactive:** <slider/button/input>.
+- **Avoid showing:** <unsafe or misleading visual implication>.
+- **Mobile/accessibility note:** <label, color, keyboard, reduced motion, alt text>.
+
+</section>
+
+<section>
+
+## 9. Common mistakes
 
 - **<Mistake>**: <correction>.
 - **<Mistake>**: <correction>.
@@ -116,7 +157,7 @@ This equation means <plain-language meaning>.
 
 <section>
 
-## 9. Failure modes and limits
+## 10. Failure modes and limits
 
 <For a component/system: list ways it can fail.>
 
@@ -130,11 +171,24 @@ This equation means <plain-language meaning>.
 
 <section>
 
-## 10. Safety notes
+## 11. Safety notes
 
 <State hazards if any. If none, say why safety relevance is low.>
 
 If this connects to mains power, batteries, high current, high voltage, vehicles, buildings, or industrial systems, add a stronger warning and source plan.
+
+</section>
+
+<section>
+
+## 12. Thai localization and Thailand context
+
+<State important Thai terms, English terms to preserve, and any Thailand-specific source checks.>
+
+- **Thai title:** <natural Thai title>.
+- **Useful Thai terms:** <term list>.
+- **Keep in English:** <terms Thai learners commonly expect>.
+- **Thailand-specific checks:** <TISI/EIT/MEA/PEA/ERC/NBTC/NIMT/etc. if relevant>.
 
 </section>
 
@@ -148,7 +202,7 @@ If this connects to mains power, batteries, high current, high voltage, vehicles
 
 <section>
 
-## Where this connects next
+## 13. Where this connects next
 
 Good next lessons:
 
@@ -160,7 +214,7 @@ Good next lessons:
 
 <section>
 
-## Reference direction for review
+## 14. Reference direction for review
 
 - <Textbook/source family>
 - <Standards/source family>
@@ -174,10 +228,16 @@ Good next lessons:
 
 Each published lesson also needs an Astro route wrapper:
 
-Before using a new `<lesson-key>`, add that key and its curated suggestions in:
+Before using a new `<lesson-key>`, declare or update the lesson in:
 
 ```text
-electrical-atlas-site/src/lib/suggestions.ts
+electrical-atlas-site/src/lib/lessonRegistry.ts
+```
+
+Then add relationship records for suggestions in:
+
+```text
+electrical-atlas-site/src/lib/relationships.ts
 ```
 
 ```astro
