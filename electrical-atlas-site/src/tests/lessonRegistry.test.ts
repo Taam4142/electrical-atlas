@@ -13,6 +13,7 @@ import { atlasRelationships } from "../lib/relationships";
 const locales: Locale[] = ["en", "th"];
 const registryEntries: readonly LessonRegistryEntry[] = lessonRegistry;
 const routeModules = import.meta.glob("../pages/*/lessons/*.astro");
+const registryRouteModules = import.meta.glob("../pages/*/registry.astro");
 
 function lessonRouteExists(locale: Locale, slug: string) {
   return `../pages/${locale}/lessons/${slug}.astro` in routeModules;
@@ -55,6 +56,14 @@ describe("lesson registry", () => {
         .filter((locale) => !lessonRouteExists(locale, lesson.slug))
         .map((locale) => `${locale}:${lesson.slug}`),
     );
+
+    expect(missingRoutes).toEqual([]);
+  });
+
+  it("keeps the lesson status board available in every locale", () => {
+    const missingRoutes = locales
+      .filter((locale) => !(`../pages/${locale}/registry.astro` in registryRouteModules))
+      .map((locale) => `${locale}:registry`);
 
     expect(missingRoutes).toEqual([]);
   });

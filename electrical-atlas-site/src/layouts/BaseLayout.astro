@@ -21,6 +21,7 @@ const {
 
 const homePath = lang === "th" ? "/th/" : "/en/";
 const guidePath = lang === "th" ? "/th/guide/" : "/en/guide/";
+const registryPath = lang === "th" ? "/th/registry/" : "/en/registry/";
 const navLessons = getImplementedLessons(lang);
 const mapPath = lang === "th" ? "/th/map/" : "/en/map/";
 const fullTitle = title === "Electrical Atlas" ? title : `${title} • Electrical Atlas`;
@@ -57,6 +58,7 @@ const fullTitle = title === "Electrical Atlas" ? title : `${title} • Electrica
 
       <nav class="site-nav" aria-label="Primary">
         <a href={guidePath}>{lang === "th" ? "วิธีใช้เว็บ" : "Guide"}</a>
+        <a href={registryPath}>{lang === "th" ? "สถานะ" : "Status"}</a>
         {navLessons.map((lesson) => <a href={lesson.paths[lang]}>{lesson.navLabels[lang]}</a>)}
         <a href={mapPath}>{lang === "th" ? "แผนที่วิชา" : "Subject map"}</a>
       </nav>

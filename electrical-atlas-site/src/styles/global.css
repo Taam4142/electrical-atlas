@@ -469,6 +469,170 @@ p {
   margin: 0;
 }
 
+.registry-hero {
+  max-width: 980px;
+  padding: clamp(3.8rem, 9vw, 7rem) 0 1.5rem;
+}
+
+.registry-hero h1 {
+  max-width: 12ch;
+}
+
+.registry-section {
+  margin: 1.5rem 0 4.5rem;
+}
+
+.registry-summary-grid,
+.registry-card-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.registry-summary-grid {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.registry-summary-card,
+.registry-card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--panel);
+  box-shadow: var(--shadow);
+}
+
+.registry-summary-card {
+  display: grid;
+  gap: 0.35rem;
+  padding: 1rem;
+}
+
+.registry-summary-card strong {
+  color: var(--cyan);
+  font-size: clamp(2rem, 5vw, 3rem);
+  line-height: 1;
+}
+
+.registry-summary-card span {
+  color: var(--muted);
+  font-size: 0.86rem;
+  font-weight: 800;
+  line-height: 1.4;
+}
+
+.registry-card-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.registry-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: clamp(1rem, 3vw, 1.25rem);
+  background:
+    radial-gradient(circle at top right, rgba(100, 244, 255, 0.08), transparent 20rem),
+    var(--panel);
+}
+
+.registry-card h3,
+.registry-card p {
+  margin: 0;
+}
+
+.registry-card p,
+.registry-detail-list dd,
+.registry-card-footer span {
+  color: var(--muted);
+}
+
+.registry-card-topline,
+.registry-badge-row,
+.registry-card-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.registry-card-topline {
+  justify-content: space-between;
+}
+
+.registry-badge {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  border: 1px solid rgba(100, 244, 255, 0.2);
+  border-radius: 999px;
+  padding: 0.28rem 0.58rem;
+  background: rgba(100, 244, 255, 0.07);
+  color: #d7fbff;
+  font-size: 0.76rem;
+  font-weight: 900;
+}
+
+.registry-badge-prototype,
+.registry-badge-review-ready,
+.registry-badge-published {
+  border-color: rgba(158, 255, 110, 0.28);
+  background: rgba(158, 255, 110, 0.08);
+  color: #d9ffc8;
+}
+
+.registry-badge-planned,
+.registry-badge-candidate,
+.registry-badge-outlined {
+  border-color: rgba(248, 214, 109, 0.3);
+  background: rgba(248, 214, 109, 0.08);
+  color: #fff0aa;
+}
+
+.registry-badge-revision-needed,
+.registry-badge-source-needed,
+.registry-badge-source-needs-update,
+.registry-badge-safety-high,
+.registry-badge-thailand {
+  border-color: rgba(255, 137, 125, 0.36);
+  background: rgba(255, 137, 125, 0.08);
+  color: #ffd0cb;
+}
+
+.registry-badge-safety-moderate,
+.registry-badge-source-draft {
+  border-color: rgba(248, 214, 109, 0.3);
+  background: rgba(248, 214, 109, 0.08);
+  color: #fff0aa;
+}
+
+.registry-detail-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.85rem;
+  margin: 0;
+}
+
+.registry-detail-list div {
+  min-width: 0;
+}
+
+.registry-detail-list dt {
+  color: var(--green);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.registry-detail-list dd {
+  margin: 0.28rem 0 0;
+  overflow-wrap: anywhere;
+  line-height: 1.5;
+}
+
+.registry-card-footer {
+  margin-top: auto;
+  justify-content: space-between;
+}
+
 .suggestion-section {
   margin: 2rem 0 5rem;
 }
@@ -1870,11 +2034,14 @@ input[type="range"] {
   .guide-step-grid,
   .guide-list-grid,
   .guide-two-column,
+  .registry-summary-grid,
+  .registry-card-grid,
   .suggestion-grid,
   .topic-record-grid,
   .topic-record-layout,
   .topic-controls,
-  .topic-result-grid {
+  .topic-result-grid,
+  .registry-detail-list {
     grid-template-columns: 1fr;
   }
 
