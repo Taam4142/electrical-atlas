@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { atlasTopics } from "../lib/generated/atlasTopics";
+import { lessonSlugs } from "../lib/lessonRegistry";
 import { atlasRelationships, relationshipLabels } from "../lib/relationships";
 import { getLessonSuggestions, getRelatedTopicSuggestions, getRelatedTopics } from "../lib/suggestions";
 
@@ -138,17 +139,7 @@ describe("suggestion system", () => {
 
   it("keeps structured relationship records pointed at real topic IDs", () => {
     const topicIds = new Set(atlasTopics.map((topic) => topic.id));
-    const lessonIds = new Set([
-      "what-is-electricity",
-      "voltage",
-      "current",
-      "resistance",
-      "ohms-law",
-      "series-parallel",
-      "power-energy",
-      "battery",
-      "mosfet",
-    ]);
+    const lessonIds = new Set<string>(lessonSlugs);
     const missingTopicIds = atlasRelationships.flatMap((relationship) =>
       [relationship.source, relationship.target]
         .filter((node) => node.kind === "topic" && !topicIds.has(node.id))

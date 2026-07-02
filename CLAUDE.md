@@ -26,6 +26,22 @@ Useful documentation:
 - `docs/suggestion-relationship-system.md`
 - `docs/deprecated-manual-lesson-suggestions.md`
 
+## Improvement and risk-reduction direction
+
+Before adding many more lessons, preserve the project structure described in:
+
+- `docs/project-improvements-risk-reduction.md`
+- `docs/lesson-registry-plan.md`
+
+The most important near-term risk reductions are:
+
+- keep lesson metadata centralized in `electrical-atlas-site/src/lib/lessonRegistry.ts`;
+- validate relationship targets, covered topic IDs, and language routes;
+- keep safety/source status explicit;
+- avoid unverified Thailand-specific standards claims;
+- keep Thai terminology and UTF-8 rendering consistent;
+- keep dependency upgrades intentional rather than relying on `latest`.
+
 ## Deprecated manual suggestion list
 
 The old hand-curated lesson suggestion list is archived in:

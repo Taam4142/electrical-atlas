@@ -1,21 +1,17 @@
 import type { AtlasTopic } from "./generated/atlasTopics";
 import {
+  getLessonSuggestionFields,
+  type LessonKey,
+  type Locale,
+} from "./lessonRegistry";
+import {
   getOutgoingRelationships,
   getRelationLabel,
   type RelationshipType,
 } from "./relationships";
 
-export type Locale = "en" | "th";
-export type LessonKey =
-  | "what-is-electricity"
-  | "voltage"
-  | "current"
-  | "resistance"
-  | "ohms-law"
-  | "series-parallel"
-  | "power-energy"
-  | "battery"
-  | "mosfet";
+export type { LessonKey, Locale } from "./lessonRegistry";
+
 export type SuggestionKind = "lesson" | "topic";
 
 export interface SuggestionItem {
@@ -25,121 +21,6 @@ export interface SuggestionItem {
   kind: SuggestionKind;
   relation: string;
   relationType?: RelationshipType | "metadata";
-}
-
-const lessonLabels: Record<LessonKey, Record<Locale, { title: string; summary: string; href: string }>> = {
-  "what-is-electricity": {
-    en: {
-      title: "What Is Electricity?",
-      summary: "Charge, fields, voltage, current, energy, and why a battery can light a lamp.",
-      href: "/en/lessons/what-is-electricity/",
-    },
-    th: {
-      title: "ไฟฟ้าคืออะไร?",
-      summary: "ประจุ สนามไฟฟ้า แรงดัน กระแส พลังงาน และเหตุผลที่แบตเตอรี่ทำให้หลอดไฟติด",
-      href: "/th/lessons/what-is-electricity/",
-    },
-  },
-  voltage: {
-    en: {
-      title: "What Is Voltage?",
-      summary: "Electric potential difference explained as energy per unit charge between two points.",
-      href: "/en/lessons/voltage/",
-    },
-    th: {
-      title: "แรงดันไฟฟ้าคืออะไร?",
-      summary: "แรงดันหรือความต่างศักย์ อธิบายเป็นพลังงานต่อประจุระหว่างสองจุด",
-      href: "/th/lessons/voltage/",
-    },
-  },
-  current: {
-    en: {
-      title: "What Is Electric Current?",
-      summary: "Electric current explained as charge flow rate: how much charge crosses a point per second.",
-      href: "/en/lessons/current/",
-    },
-    th: {
-      title: "กระแสไฟฟ้าคืออะไร?",
-      summary: "กระแสไฟฟ้าอธิบายเป็นอัตราการไหลของประจุ หรือประจุที่ผ่านจุดหนึ่งต่อวินาที",
-      href: "/th/lessons/current/",
-    },
-  },
-  resistance: {
-    en: {
-      title: "Resistance and Conductance",
-      summary: "Resistance and conductance explained as opposite views of how a path limits or allows current.",
-      href: "/en/lessons/resistance/",
-    },
-    th: {
-      title: "ความต้านทานและความนำไฟฟ้า",
-      summary: "ความต้านทานและความนำไฟฟ้า อธิบายเป็นสองมุมของเส้นทางที่จำกัดหรือยอมให้กระแสผ่าน",
-      href: "/th/lessons/resistance/",
-    },
-  },
-  "ohms-law": {
-    en: {
-      title: "Ohm's Law",
-      summary: "Voltage, current, and resistance linked by V = IR, with power and non-ohmic limits.",
-      href: "/en/lessons/ohms-law/",
-    },
-    th: {
-      title: "กฎของโอห์ม",
-      summary: "แรงดัน กระแส และความต้านทานที่เชื่อมกันด้วย V = IR พร้อมกำลังและข้อจำกัดของอุปกรณ์ non-ohmic",
-      href: "/th/lessons/ohms-law/",
-    },
-  },
-  "series-parallel": {
-    en: {
-      title: "Series and Parallel Circuits",
-      summary: "How circuit paths combine: shared current in series, shared voltage in parallel, equivalent resistance, and current/voltage division.",
-      href: "/en/lessons/series-parallel/",
-    },
-    th: {
-      title: "วงจรอนุกรมและขนาน",
-      summary: "การรวมเส้นทางวงจร: กระแสใช้ร่วมกันในอนุกรม แรงดันใช้ร่วมกันในขนาน ความต้านทานเทียบเท่า และการแบ่งกระแส/แรงดัน",
-      href: "/th/lessons/series-parallel/",
-    },
-  },
-  "power-energy": {
-    en: {
-      title: "Electrical Power and Energy",
-      summary: "Watts, joules, watt-hours, heat, batteries, and why time matters in every circuit.",
-      href: "/en/lessons/power-energy/",
-    },
-    th: {
-      title: "กำลังและพลังงานไฟฟ้า",
-      summary: "วัตต์ จูล วัตต์-ชั่วโมง ความร้อน แบตเตอรี่ และเหตุผลที่เวลาสำคัญในทุกวงจร",
-      href: "/th/lessons/power-energy/",
-    },
-  },
-  battery: {
-    en: {
-      title: "Battery",
-      summary: "Chemical energy storage, terminal voltage, capacity, watt-hours, internal resistance, C-rate, and safety.",
-      href: "/en/lessons/battery/",
-    },
-    th: {
-      title: "แบตเตอรี่",
-      summary: "การเก็บพลังงานเคมี แรงดันปลายขั้ว ความจุ watt-hour ความต้านทานภายใน C-rate และความปลอดภัย",
-      href: "/th/lessons/battery/",
-    },
-  },
-  mosfet: {
-    en: {
-      title: "What Is a MOSFET?",
-      summary: "A field-controlled transistor, its structure, channel formation, switching behavior, and applications.",
-      href: "/en/lessons/mosfet/",
-    },
-    th: {
-      title: "MOSFET คืออะไร?",
-      summary: "ทรานซิสเตอร์ที่ควบคุมด้วยสนามไฟฟ้า โครงสร้าง การสร้างช่องนำกระแส การสวิตช์ และการใช้งาน",
-      href: "/th/lessons/mosfet/",
-    },
-  },
-};
-
-function isLessonKey(id: string): id is LessonKey {
-  return Object.prototype.hasOwnProperty.call(lessonLabels, id);
 }
 
 function topicPath(locale: Locale, topic: AtlasTopic) {
@@ -174,16 +55,16 @@ export function getLessonSuggestions(
       const relation = getRelationLabel(relationship, locale);
 
       if (relationship.target.kind === "lesson") {
-        if (!isLessonKey(relationship.target.id)) {
-          return undefined;
-        }
+        const lesson = getLessonSuggestionFields(relationship.target.id, locale);
 
-        return {
-          ...lessonLabels[relationship.target.id][locale],
-          kind: "lesson",
-          relation,
-          relationType: relationship.type,
-        };
+        return lesson
+          ? {
+              ...lesson,
+              kind: "lesson",
+              relation,
+              relationType: relationship.type,
+            }
+          : undefined;
       }
 
       const topic = topicById.get(relationship.target.id);
@@ -326,3 +207,4 @@ export function getRelatedTopicSuggestions(
 
   return [...explicitSuggestions, ...fallbackSuggestions].slice(0, limit);
 }
+

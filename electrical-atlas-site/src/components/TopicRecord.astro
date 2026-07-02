@@ -1,6 +1,7 @@
 ---
 import SuggestionSection from "./SuggestionSection.astro";
 import type { AtlasTopic } from "../lib/generated/atlasTopics";
+import { getLessonForCoveredTopic } from "../lib/lessonRegistry";
 import { topicToSuggestion, type SuggestionItem } from "../lib/suggestions";
 
 interface Props {
@@ -112,57 +113,8 @@ const copy = {
 const mapPath = locale === "th" ? "/th/map/" : "/en/map/";
 const guidePath = locale === "th" ? "/th/guide/" : "/en/guide/";
 const firstLessonPath = locale === "th" ? "/th/lessons/what-is-electricity/" : "/en/lessons/what-is-electricity/";
-const publishedLessonPaths: Partial<Record<string, Record<"en" | "th", string>>> = {
-  "ea.fundamentals.electricity": {
-    en: "/en/lessons/what-is-electricity/",
-    th: "/th/lessons/what-is-electricity/",
-  },
-  "ea.fundamentals.voltage": {
-    en: "/en/lessons/voltage/",
-    th: "/th/lessons/voltage/",
-  },
-  "ea.fundamentals.current": {
-    en: "/en/lessons/current/",
-    th: "/th/lessons/current/",
-  },
-  "ea.fundamentals.resistance": {
-    en: "/en/lessons/resistance/",
-    th: "/th/lessons/resistance/",
-  },
-  "ea.fundamentals.conductance": {
-    en: "/en/lessons/resistance/",
-    th: "/th/lessons/resistance/",
-  },
-  "ea.circuit.law.ohm": {
-    en: "/en/lessons/ohms-law/",
-    th: "/th/lessons/ohms-law/",
-  },
-  "ea.circuit.topology.series-parallel": {
-    en: "/en/lessons/series-parallel/",
-    th: "/th/lessons/series-parallel/",
-  },
-  "ea.fundamentals.power": {
-    en: "/en/lessons/power-energy/",
-    th: "/th/lessons/power-energy/",
-  },
-  "ea.fundamentals.energy": {
-    en: "/en/lessons/power-energy/",
-    th: "/th/lessons/power-energy/",
-  },
-  "ea.storage.electrochemistry": {
-    en: "/en/lessons/battery/",
-    th: "/th/lessons/battery/",
-  },
-  "ea.storage.cell.metric": {
-    en: "/en/lessons/battery/",
-    th: "/th/lessons/battery/",
-  },
-  "ea.device.fet.mosfet": {
-    en: "/en/lessons/mosfet/",
-    th: "/th/lessons/mosfet/",
-  },
-};
-const publishedLessonPath = publishedLessonPaths[topic.id]?.[locale] || "";
+const coveredLesson = getLessonForCoveredTopic(topic.id, locale);
+const publishedLessonPath = coveredLesson?.paths[locale] || "";
 const metadataRelatedSuggestions = relatedTopics.map((relatedTopic) =>
   topicToSuggestion(
     relatedTopic,

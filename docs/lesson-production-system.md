@@ -30,7 +30,7 @@ Use these statuses consistently:
 8. Add safety notes and standards/source notes where relevant.
 9. Implement the English MDX lesson.
 10. Implement the Thai MDX lesson or mark Thai as pending.
-11. Add route wrappers, suggestions, and navigation links.
+11. Add or update the lesson registry entry, route wrappers, suggestions, and navigation links.
 12. Run tests and build.
 13. Review in browser.
 14. Publish through GitHub/Vercel.
@@ -79,6 +79,14 @@ If the lesson needs formulas, calculations, or reusable logic, add a small libra
 electrical-atlas-site/src/lib/<topic>.ts
 electrical-atlas-site/src/tests/<topic>.test.ts
 ```
+
+Stable lesson metadata is centralized in the active lesson registry:
+
+```text
+electrical-atlas-site/src/lib/lessonRegistry.ts
+```
+
+The registry plan is documented in [lesson-registry-plan.md](lesson-registry-plan.md). It explains why lesson titles, routes, primary topic IDs, safety status, language availability, and published-topic coverage should be declared once and reused by navigation, suggestions, topic records, and tests.
 
 ## English and Thai language workflow
 
