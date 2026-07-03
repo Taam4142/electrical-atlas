@@ -6,6 +6,7 @@ import { getImplementedLessons, getLessonHomeLabel } from "../../lib/lessonRegis
 
 const locale = "en";
 const homeLessons = getImplementedLessons(locale);
+const firstLesson = homeLessons[0];
 ---
 
 <BaseLayout
@@ -25,11 +26,8 @@ const homeLessons = getImplementedLessons(locale);
       </p>
       <div class="hero-actions">
         <a class="button" href="/en/guide/">Start here: How to use this site</a>
-        {homeLessons.map((lesson) => (
-          <a class={lesson.slug === "what-is-electricity" ? "button" : "button-secondary"} href={lesson.paths.en}>
-            {getLessonHomeLabel(lesson, locale)}
-          </a>
-        ))}
+        <a class="button-secondary" href="/en/lessons/">Browse all public lessons</a>
+        {firstLesson && <a class="button" href={firstLesson.paths.en}>{getLessonHomeLabel(firstLesson, locale)}</a>}
         <a class="button-secondary" href="/en/map/">Open the knowledge map</a>
       </div>
     </div>

@@ -1,0 +1,246 @@
+---
+import {
+  getImplementedLessons,
+  getLessonStatusLabel,
+  getSafetyLevelLabel,
+  getSourceStatusLabel,
+  lessonRegistry,
+  type Locale,
+  type NavGroup,
+} from "../lib/lessonRegistry";
+
+interface Props {
+  locale?: Locale;
+}
+
+const { locale = "en" } = Astro.props;
+
+const groupOrder: NavGroup[] = ["foundation", "circuit", "power", "component", "safety", "application"];
+
+const groupLabels: Record<NavGroup, Record<Locale, string>> = {
+  foundation: {
+    en: "Foundation",
+    th: "พื้นฐาน",
+  },
+  circuit: {
+    en: "Circuits",
+    th: "วงจร",
+  },
+  power: {
+    en: "Power and energy",
+    th: "กำลังและพลังงาน",
+  },
+  component: {
+    en: "Components",
+    th: "ชิ้นส่วน",
+  },
+  safety: {
+    en: "Safety",
+    th: "ความปลอดภัย",
+  },
+  application: {
+    en: "Applications",
+    th: "การใช้งาน",
+  },
+};
+
+const copy = {
+  en: {
+    eyebrow: "guided lessons",
+    title: "Lessons you can actually open",
+    subtitle:
+      "This is the calm reading list: public guided lessons only. The full roadmap still lives in Status, and the complete knowledge map still lives in Subject map.",
+    startLabel: "Open lesson",
+    comingSoonLabel: "not public yet",
+    summaryPublic: "public lessons",
+    summaryRoadmap: "registered roadmap items",
+    summaryGroups: "lesson groups active",
+    summaryThailand: "need Thailand context",
+    howTitle: "How this page is different",
+    howItems: [
+      "Lessons are written explanations with visuals, checks, and teaching flow.",
+      "Subject map topics are knowledge nodes; many are mapped before a full lesson exists.",
+      "Status is the project control board for source review, safety level, and Thailand-context work.",
+    ],
+    sequenceTitle: "Suggested beginner sequence",
+    sequenceBody:
+      "If you are new, follow the foundation lessons from top to bottom before jumping into components like MOSFETs or switches.",
+    publicGroupsTitle: "Public lessons by group",
+    roadmapTitle: "Roadmap queue",
+    roadmapBody:
+      "These are registered but intentionally not linked as empty pages. They become clickable only when the lesson is written and reviewed.",
+    status: "status",
+    safety: "safety",
+    sources: "sources",
+    thailandNeeded: "Thailand context needed",
+    thailandGeneral: "general context",
+    primaryTopic: "primary topic",
+  },
+  th: {
+    eyebrow: "บทเรียนแบบมีลำดับ",
+    title: "บทเรียนที่เปิดอ่านได้ตอนนี้",
+    subtitle:
+      "หน้านี้คือรายการอ่านแบบสงบ: แสดงเฉพาะบทเรียนที่เปิดอ่านได้แล้ว ส่วนแผนงานทั้งหมดอยู่ที่หน้า Status และแผนที่ความรู้ทั้งหมดอยู่ที่ Subject map",
+    startLabel: "เปิดบทเรียน",
+    comingSoonLabel: "ยังไม่เปิด public",
+    summaryPublic: "บทเรียนที่เปิดอ่านได้",
+    summaryRoadmap: "รายการในแผนงาน",
+    summaryGroups: "กลุ่มบทเรียนที่เริ่มแล้ว",
+    summaryThailand: "ต้องมีบริบทไทย",
+    howTitle: "หน้านี้ต่างจากหน้าอื่นอย่างไร",
+    howItems: [
+      "Lesson คือบทอธิบายที่มีภาพ ลำดับการสอน และจุดตรวจความเข้าใจ",
+      "Subject map คือหัวข้อความรู้ หลายหัวข้อถูกทำแผนที่ไว้ก่อนจะมีบทเรียนเต็ม",
+      "Status คือกระดานควบคุมงานสำหรับแหล่งอ้างอิง ความปลอดภัย และบริบทประเทศไทย",
+    ],
+    sequenceTitle: "ลำดับที่แนะนำสำหรับผู้เริ่มต้น",
+    sequenceBody:
+      "ถ้ายังใหม่ ให้ไล่บทพื้นฐานจากบนลงล่างก่อน แล้วค่อยข้ามไปชิ้นส่วนอย่าง MOSFET หรือสวิตช์",
+    publicGroupsTitle: "บทเรียน public แยกตามกลุ่ม",
+    roadmapTitle: "คิวบทเรียนถัดไป",
+    roadmapBody:
+      "รายการเหล่านี้ถูกลงทะเบียนไว้แล้ว แต่ตั้งใจไม่ทำลิงก์ไปหน้าเปล่า จะกดเข้าได้เมื่อเขียนและตรวจบทเรียนแล้วเท่านั้น",
+    status: "สถานะ",
+    safety: "ความปลอดภัย",
+    sources: "แหล่งอ้างอิง",
+    thailandNeeded: "ต้องตรวจบริบทไทย",
+    thailandGeneral: "บริบททั่วไป",
+    primaryTopic: "หัวข้อหลัก",
+  },
+}[locale];
+
+const publicLessons = getImplementedLessons(locale);
+const roadmapLessons = [...lessonRegistry]
+  .filter((lesson) => !lesson.hasPage[locale])
+  .sort((a, b) => a.order - b.order);
+const publicGroups = groupOrder
+  .map((group) => ({
+    group,
+    label: groupLabels[group][locale],
+    lessons: publicLessons.filter((lesson) => lesson.navGroup === group),
+  }))
+  .filter((group) => group.lessons.length > 0);
+const activeGroupCount = publicGroups.length;
+const thailandContextCount = lessonRegistry.filter((lesson) => lesson.requiresThailandContext).length;
+const summaryCards = [
+  { value: publicLessons.length, label: copy.summaryPublic },
+  { value: lessonRegistry.length, label: copy.summaryRoadmap },
+  { value: activeGroupCount, label: copy.summaryGroups },
+  { value: thailandContextCount, label: copy.summaryThailand },
+];
+---
+
+<section class="lesson-browser-hero">
+  <p class="eyebrow">{copy.eyebrow}</p>
+  <h1>{copy.title}</h1>
+  <p class="hero-subtitle">{copy.subtitle}</p>
+</section>
+
+<section class="lesson-browser-section">
+  <div class="lesson-browser-summary">
+    {summaryCards.map((item) => (
+      <article class="lesson-browser-summary-card">
+        <strong>{item.value}</strong>
+        <span>{item.label}</span>
+      </article>
+    ))}
+  </div>
+</section>
+
+<section class="lesson-browser-two-column">
+  <article class="lesson-browser-panel">
+    <p class="eyebrow">lessons ≠ map ≠ status</p>
+    <h2>{copy.howTitle}</h2>
+    <ul>
+      {copy.howItems.map((item) => <li>{item}</li>)}
+    </ul>
+  </article>
+
+  <article class="lesson-browser-panel lesson-browser-panel-note">
+    <p class="eyebrow">reading order</p>
+    <h2>{copy.sequenceTitle}</h2>
+    <p>{copy.sequenceBody}</p>
+  </article>
+</section>
+
+<section class="lesson-browser-section" aria-labelledby="public-lessons-title">
+  <div class="section-heading">
+    <p class="eyebrow">published reading list</p>
+    <h2 id="public-lessons-title">{copy.publicGroupsTitle}</h2>
+  </div>
+
+  <div class="lesson-group-stack">
+    {publicGroups.map((group) => (
+      <section class="lesson-group" aria-labelledby={`lesson-group-${group.group}`}>
+        <div class="lesson-group-heading">
+          <p class="eyebrow">{group.label}</p>
+          <h3 id={`lesson-group-${group.group}`}>{group.label}</h3>
+        </div>
+
+        <div class="lesson-card-grid">
+          {group.lessons.map((lesson) => (
+            <article class="lesson-browser-card">
+              <div class="lesson-browser-card-topline">
+                <code>{String(lesson.order).padStart(2, "0")}</code>
+                <span class={`registry-badge registry-badge-${lesson.status}`}>
+                  {getLessonStatusLabel(lesson.status, locale)}
+                </span>
+              </div>
+
+              <h4>{lesson.titles[locale]}</h4>
+              <p>{lesson.summaries[locale]}</p>
+
+              <dl class="lesson-browser-facts">
+                <div>
+                  <dt>{copy.primaryTopic}</dt>
+                  <dd><code>{lesson.primaryTopicId}</code></dd>
+                </div>
+                <div>
+                  <dt>{copy.safety}</dt>
+                  <dd>{getSafetyLevelLabel(lesson.safetyLevel, locale)}</dd>
+                </div>
+              </dl>
+
+              <div class="registry-badge-row" aria-label={copy.status}>
+                <span class={`registry-badge registry-badge-source-${lesson.sourceStatus}`}>
+                  {copy.sources}: {getSourceStatusLabel(lesson.sourceStatus, locale)}
+                </span>
+                <span class={lesson.requiresThailandContext ? "registry-badge registry-badge-thailand" : "registry-badge"}>
+                  {lesson.requiresThailandContext ? copy.thailandNeeded : copy.thailandGeneral}
+                </span>
+              </div>
+
+              <a class="text-link" href={lesson.paths[locale]}>{copy.startLabel}</a>
+            </article>
+          ))}
+        </div>
+      </section>
+    ))}
+  </div>
+</section>
+
+{roadmapLessons.length > 0 && (
+  <section class="lesson-browser-section" aria-labelledby="roadmap-lessons-title">
+    <div class="section-heading">
+      <p class="eyebrow">roadmap without empty pages</p>
+      <h2 id="roadmap-lessons-title">{copy.roadmapTitle}</h2>
+      <p>{copy.roadmapBody}</p>
+    </div>
+
+    <div class="lesson-roadmap-grid">
+      {roadmapLessons.map((lesson) => (
+        <article class="lesson-roadmap-card">
+          <div class="lesson-browser-card-topline">
+            <code>{String(lesson.order).padStart(2, "0")}</code>
+            <span class={`registry-badge registry-badge-${lesson.status}`}>
+              {getLessonStatusLabel(lesson.status, locale)}
+            </span>
+          </div>
+          <h3>{lesson.titles[locale]}</h3>
+          <p>{lesson.summaries[locale]}</p>
+          <span class="registry-badge">{copy.comingSoonLabel}</span>
+        </article>
+      ))}
+    </div>
+  </section>
+)}
