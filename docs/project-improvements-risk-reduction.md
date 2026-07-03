@@ -36,6 +36,8 @@ Electrical Atlas currently has three working layers:
 2. **Generated topic records**: 1,607 mapped topic pages generated from the inventory.
 3. **Hand-built lessons**: bilingual visual lessons with MDX content, Astro route wrappers, React demos, suggestions, and tests.
 
+The site also now has a dedicated public lesson browser at `/en/lessons/` and `/th/lessons/`. This keeps the header and homepage from turning into a long manual list as more lessons are added.
+
 This is a good shape. The key architectural principle should remain:
 
 **Mapped knowledge is not the same as published lesson content.**
@@ -452,12 +454,37 @@ The taxonomy can be broad. Published lessons must stay reviewed, honest, and app
 - Vercel build errors have documented fixes when encountered.
 - Generated topic files are deterministic.
 
+### 19. Navigation scalability and mobile header behavior
+
+**Priority:** P1/P2
+
+**Warning spot:** The header should stay calm as the lesson count grows. The project has already moved individual lesson links out of the top navigation and into the public lesson browser, but the small-screen header still uses a horizontal nav strip.
+
+**Current status, 2026-07-03:** The desktop header is now stable and no longer grows with every lesson. The homepage points to the lesson browser instead of rendering one button per lesson. Browser QA showed no page-level horizontal overflow on mobile, but the mobile nav still has a tiny internal horizontal scroll.
+
+**Why it matters:** A learning site should feel predictable and boring in the best way. If the header grows into a crowded control surface, learners spend attention on navigation instead of the lesson. On phones, even a small clipped nav item can make the site feel less polished.
+
+**Risk reduction:**
+
+- Keep the header limited to stable top-level destinations such as Guide, Lessons, Subject map, Status, and language.
+- Keep public lesson discovery inside the lesson browser, not in the header.
+- Keep planned lessons visible as roadmap items without linking to empty pages.
+- If navigation grows again, replace the mobile horizontal strip with a simple mobile menu or compact "Explore" pattern.
+- Re-check mobile layout whenever top-level nav labels change, especially Thai labels.
+
+**Acceptance checks:**
+
+- Header link count stays small when new lessons are added.
+- `/en/lessons/` and `/th/lessons/` remain the primary lesson list.
+- Mobile pages have no page-level horizontal overflow.
+- Planned lessons are visible without creating fake lesson pages.
+
 ## Recommended order of action
 
 Do not try to fix every risk at once. The next practical sequence should be:
 
 1. **Keep the lesson registry rollout enforced.**  
-   Registry v0.1 now drives navigation, homepage lesson cards, visible lesson metadata, and the status board. Continue adding tests whenever registry behavior expands.
+   Registry v0.1 now drives suggestions, visible lesson metadata, status board behavior, public lesson discovery, and route validation. Continue adding tests whenever registry behavior expands.
 
 2. **Expand registry and relationship validation tests.**  
    The first validation tests exist. Continue expanding them for missing routes, missing topic IDs, bad relationship targets, duplicate metadata, and planned/outlined lessons that accidentally create empty public pages.
@@ -471,7 +498,10 @@ Do not try to fix every risk at once. The next practical sequence should be:
 5. **Create a Thai terminology glossary and encoding sanity test.**  
    This protects the bilingual foundation before many more Thai pages are written.
 
-6. **Continue the next lessons.**  
+6. **Keep the mobile navigation reminder visible, but do not overbuild it yet.**
+   The current mobile nav is acceptable because it does not create page-level overflow. Revisit it when the top-level nav grows, Thai labels get longer, or mobile QA starts feeling cramped.
+
+7. **Continue the next lessons.**
    Switches and Contacts is now a bilingual prototype with a draft-source safety posture. Next content step: build Capacitor and Diode, while keeping Switches out of exact standards/installation claims until a source-review pass.
 
 ## What not to do
@@ -484,6 +514,7 @@ Avoid these shortcuts:
 - Do not copy visuals from explainer channels.
 - Do not let `latest` dependencies change silently.
 - Do not keep adding lesson metadata in five places forever.
+- Do not let the mobile header become a second lesson index.
 
 ## Definition of reduced risk
 
