@@ -101,6 +101,7 @@ code {
 }
 
 .brand {
+  flex: 0 0 auto;
   display: inline-flex;
   align-items: center;
   gap: 0.8rem;
@@ -129,18 +130,33 @@ code {
 }
 
 .site-nav {
+  flex: 1 1 36rem;
   display: flex;
   align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
   gap: 0.4rem;
+  min-width: 0;
+  overflow: visible;
 }
 
 .site-nav a,
 .language-switch {
+  flex: 0 0 auto;
   border: 1px solid transparent;
   border-radius: 999px;
   padding: 0.6rem 0.85rem;
   color: var(--muted);
   text-decoration: none;
+}
+
+.site-nav::-webkit-scrollbar {
+  height: 0.45rem;
+}
+
+.site-nav::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: rgba(47, 111, 159, 0.22);
 }
 
 .site-nav a:hover,
@@ -2537,6 +2553,10 @@ input[type="range"] {
     flex-wrap: wrap;
   }
 
+  .site-nav {
+    justify-content: flex-start;
+  }
+
   .hero,
   .circuit-demo-grid,
   .mosfet-demo-grid,
@@ -2582,7 +2602,12 @@ input[type="range"] {
   .site-nav {
     order: 3;
     width: 100%;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
     overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    padding-bottom: 0.25rem;
+    scrollbar-width: thin;
   }
 
   .mode-toggle {
