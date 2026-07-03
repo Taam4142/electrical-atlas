@@ -23,20 +23,21 @@ Already included:
 - A guide page for using the site.
 - A subject map and searchable topic browser.
 - 1,607 generated topic record pages from the Markdown inventory.
-- Nine starter lessons:
+- Ten starter lessons:
   - What Is Electricity?
   - Voltage
   - Electric Current
   - Resistance and Conductance
   - Ohm's Law
   - Series and Parallel Circuits
+  - Switches and Contacts
   - Electrical Power and Energy
   - Battery
   - MOSFET
-- Interactive visuals for the first electricity lesson, Voltage, Electric Current, Resistance and Conductance, Ohm's Law, Series and Parallel Circuits, Electrical Power and Energy, Battery, and MOSFET switching lesson.
+- Interactive visuals for the first electricity lesson, Voltage, Electric Current, Resistance and Conductance, Ohm's Law, Series and Parallel Circuits, Switches and Contacts, Electrical Power and Energy, Battery, and MOSFET switching lessons.
 - Suggested next lessons/topics at the end of lesson and topic pages, now backed by an explicit relationship seed graph plus metadata fallback.
 - A lesson registry v0.1 that centralizes lesson metadata, topic coverage, language routes, status, safety level, and source-review state.
-- Tests for physics helpers, interactions, generated topic data, and suggestions.
+- Tests for physics helpers, interactions, generated topic data, suggestions, and text-encoding guardrails.
 
 ## Repository layout
 
@@ -119,6 +120,7 @@ See [docs/deployment.md](docs/deployment.md).
 - [Lesson outlines](docs/lesson-outlines/README.md)
 - [First 20 lesson roadmap](docs/first-20-lessons.md)
 - [Lesson quality checklist](docs/lesson-quality-checklist.md)
+- [Thai terminology glossary](docs/thai-terminology-glossary.md)
 - [Engineering Notebook theme](docs/theme-engineering-notebook.md)
 - [Suggestion and relationship system](docs/suggestion-relationship-system.md)
 - [Deprecated manual lesson suggestions](docs/deprecated-manual-lesson-suggestions.md)
@@ -140,7 +142,7 @@ See [docs/deployment.md](docs/deployment.md).
 3. Build the next component lessons: Capacitor and Diode.
 4. Pin dependencies or add controlled dependency update tooling.
 5. Add explicit topic relationship fields: prerequisite, successor, part-of, used-in, made-of, alternative-to, and fails-by.
-6. Expand Thai standard references for Thailand-relevant electrical practice.
+6. Maintain the Thai terminology glossary and expand Thai standard references for Thailand-relevant electrical practice.
 7. Expand the explicit relationship graph beyond the first seed set and add validation for duplicate or missing edges.
 
 ## License

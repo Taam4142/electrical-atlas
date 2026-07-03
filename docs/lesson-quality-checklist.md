@@ -125,6 +125,7 @@ Last URL availability check for this directory: 2026-07-02.
 - [ ] Thai explanation is not a stiff word-for-word translation.
 - [ ] English technical terms are kept where useful.
 - [ ] Thai terminology is added where useful.
+- [ ] Thai terminology is checked against [Thai terminology glossary](thai-terminology-glossary.md).
 - [ ] Safety wording is especially clear in Thai.
 - [ ] Thai page describes the current content status, not a future translation promise.
 

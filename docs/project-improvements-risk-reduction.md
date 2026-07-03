@@ -223,14 +223,14 @@ The taxonomy can be broad. Published lessons must stay reviewed, honest, and app
 
 **Risk reduction:**
 
-- Add a Thai terminology glossary.
+- Maintain the [Thai terminology glossary](thai-terminology-glossary.md).
 - Track English canonical term, preferred Thai term, useful alternatives, and notes about when to keep English.
 - Include special notes for words like ground, earth, neutral, voltage, potential, charge, current, power, energy, conductor, insulation, breaker, and protection.
 - Let Thai pages be natural Thai, not word-for-word translation.
 
 **Acceptance checks:**
 
-- New Thai lessons consult the glossary.
+- New Thai lessons consult the [Thai terminology glossary](thai-terminology-glossary.md).
 - Thai titles are natural and consistent.
 - English terms are kept where Thai learners commonly expect them.
 
@@ -245,13 +245,13 @@ The taxonomy can be broad. Published lessons must stay reviewed, honest, and app
 **Risk reduction:**
 
 - Keep all source files UTF-8.
-- Add a small encoding sanity test that searches Thai-facing files for common mojibake sequences.
+- Keep the encoding sanity test in `electrical-atlas-site/src/tests/encoding.test.ts` searching Thai-facing files and docs for common mojibake sequences.
 - Review Thai pages in browser after deployment.
 - Avoid tools that silently rewrite UTF-8 text with another encoding.
 
 **Acceptance checks:**
 
-- CI fails on obvious mojibake patterns in Thai content.
+- CI fails on obvious mojibake patterns in Thai content, docs, generated data, and lesson source files.
 - Thai browser pages render correctly.
 - Generated topic JSON preserves valid UTF-8.
 
@@ -495,8 +495,8 @@ Do not try to fix every risk at once. The next practical sequence should be:
 4. **Use the lesson authoring workflow for all new lessons.**  
    Create an outline first, then prototype only when scope, visuals, safety boundaries, Thai context, and source-review needs are clear.
 
-5. **Create a Thai terminology glossary and encoding sanity test.**  
-   This protects the bilingual foundation before many more Thai pages are written.
+5. **Maintain the Thai terminology glossary and encoding sanity test.**
+   These guardrails now protect the bilingual foundation; keep extending them whenever new Thai terms, standards-sensitive words, or encoding risks appear.
 
 6. **Keep the mobile navigation reminder visible, but do not overbuild it yet.**
    The current mobile nav is acceptable because it does not create page-level overflow. Revisit it when the top-level nav grows, Thai labels get longer, or mobile QA starts feeling cramped.

@@ -28,7 +28,9 @@ describe("generated atlas topic index", () => {
   });
 
   it("normalizes depth labels for display", () => {
-    expect(atlasTopics.every((topic) => !topic.depth.includes("โ"))).toBe(true);
+    const thaiMojibakeMarker = "\u0e40\u0e19\u0082";
+
+    expect(atlasTopics.every((topic) => !topic.depth.includes(thaiMojibakeMarker))).toBe(true);
     expect(atlasTopics.some((topic) => topic.depth === "D0-D4")).toBe(true);
   });
 });
