@@ -5,24 +5,27 @@
   "type": "module",
   "scripts": {
     "generate:topics": "node ./scripts/generate-topic-index.mjs",
+    "check:generated": "node ./scripts/generate-topic-index.mjs --check",
     "pretest": "node ./scripts/generate-topic-index.mjs",
     "dev": "node ./scripts/task.mjs dev",
     "check": "node ./scripts/task.mjs check",
     "prebuild": "node ./scripts/generate-topic-index.mjs",
     "build": "node ./scripts/task.mjs build",
+    "prebuild:production": "node ./scripts/generate-topic-index.mjs --check",
+    "build:production": "node ./scripts/task.mjs production",
     "preview": "node ./scripts/task.mjs preview",
     "test": "node ./scripts/task.mjs test"
   },
   "dependencies": {
-    "@astrojs/mdx": "latest",
-    "@astrojs/react": "latest",
-    "astro": "latest",
-    "react": "latest",
-    "react-dom": "latest"
+    "@astrojs/mdx": "7.0.0",
+    "@astrojs/react": "6.0.0",
+    "astro": "7.0.4",
+    "react": "19.2.7",
+    "react-dom": "19.2.7"
   },
   "devDependencies": {
-    "@astrojs/check": "latest",
-    "typescript": "latest",
-    "vitest": "latest"
+    "@astrojs/check": "0.9.9",
+    "typescript": "6.0.3",
+    "vitest": "4.1.9"
   }
 }

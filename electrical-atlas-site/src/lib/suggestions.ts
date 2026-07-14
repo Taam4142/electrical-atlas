@@ -1,6 +1,8 @@
 import type { AtlasTopic } from "./generated/atlasTopics";
 import {
+  getLessonBySlug,
   getLessonSuggestionFields,
+  isLessonAvailable,
   type LessonKey,
   type Locale,
 } from "./lessonRegistry";
@@ -50,8 +52,17 @@ export function getLessonSuggestions(
   topics: AtlasTopic[],
 ): SuggestionItem[] {
   const topicById = new Map(topics.map((topic) => [topic.id, topic]));
+  const relationships = getOutgoingRelationships({ kind: "lesson", id: lessonKey });
+  const coveredBySuggestedLessons = new Set<string>(
+    relationships.flatMap((relationship) => {
+      if (relationship.target.kind !== "lesson") return [];
 
-  return getOutgoingRelationships({ kind: "lesson", id: lessonKey })
+      const lesson = getLessonBySlug(relationship.target.id);
+      return lesson && isLessonAvailable(lesson, locale) ? [...lesson.coveredTopicIds] : [];
+    }),
+  );
+
+  return relationships
     .map((relationship): SuggestionItem | undefined => {
       const relation = getRelationLabel(relationship, locale);
 
@@ -66,6 +77,10 @@ export function getLessonSuggestions(
               relationType: relationship.type,
             }
           : undefined;
+      }
+
+      if (coveredBySuggestedLessons.has(relationship.target.id)) {
+        return undefined;
       }
 
       const topic = topicById.get(relationship.target.id);

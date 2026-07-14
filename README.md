@@ -61,11 +61,10 @@ Already included:
 
 ## Run locally
 
-From the website folder:
+Use Node.js 22.12 or newer within the Node 22 release line and npm 10.x. Version 10.9.3 authored the current lockfile and is declared in `packageManager`; other npm 10 releases are supported by the engine contract. The repository root is the only supported install and build root; its workspace lockfile is authoritative.
 
 ```powershell
-cd electrical-atlas-site
-npm.cmd install
+npm.cmd ci
 npm.cmd run dev
 ```
 
@@ -75,11 +74,13 @@ Useful commands:
 
 ```powershell
 npm.cmd run generate:topics
+npm.cmd run check
 npm.cmd test
 npm.cmd run build
+npm.cmd run build:production
 ```
 
-You can also run these commands from the repository root because the root `package.json` forwards them into `electrical-atlas-site/`.
+`build:production` is the deployment gate: it rejects stale generated topic files without rewriting them, runs standalone parser/build-validator tests and Vitest, checks Astro/TypeScript, builds the static site, and validates representative bilingual output, robots policy, and root-relative links. Ordinary local `build` remains a quicker check-and-build command.
 
 The topic generator reads:
 
@@ -100,8 +101,10 @@ GitHub Actions runs the website checks on push and pull request:
 
 1. install dependencies with `npm ci`;
 2. generate the topic index;
-3. run tests;
-4. build the static Astro site.
+3. fail if generated files differ from the commit;
+4. run Astro/TypeScript checks;
+5. run parser and website tests;
+6. build the static Astro site.
 
 ## Deployment direction
 
@@ -114,6 +117,7 @@ See [docs/deployment.md](docs/deployment.md).
 ## Production docs
 
 - [Latest project review and next-phase plan (2026-07-14)](docs/project-review-2026-07-14.md)
+- [Build and release integrity](docs/build-release-integrity.md)
 - [Lesson production system](docs/lesson-production-system.md)
 - [Project improvements and risk-reduction plan](docs/project-improvements-risk-reduction.md)
 - [Lesson registry plan](docs/lesson-registry-plan.md)
@@ -138,9 +142,9 @@ See [docs/deployment.md](docs/deployment.md).
 
 ## Near roadmap
 
-The [project review and next-phase plan dated 2026-07-14](docs/project-review-2026-07-14.md) contains the latest evidence-backed phase sequence and implementation record. Phase A1 was approved and implemented on 2026-07-14; Phase A2 and later remain recommendations pending separate approval.
+The [project review and next-phase plan dated 2026-07-14](docs/project-review-2026-07-14.md) contains the latest evidence-backed phase sequence and implementation record. Phase A1 and Phase A2 were approved and implemented on 2026-07-14; later phases remain recommendations pending separate approval.
 
-Phase A1 corrected public status truth, invalid preview IDs, stale guidance, the root gateway, and unfinished-topic indexing behavior. The next recommended checkpoint is Phase A2 reproducibility and executable integrity. The Electric Charge versus Capacitor ordering remains an explicit curriculum decision rather than an approved change.
+Phase A1 corrected public status truth, invalid preview IDs, stale guidance, the root gateway, and unfinished-topic indexing behavior. Phase A2 established one reproducible root install path, strict inventory and relationship validation, generated-data drift checks, and a test-gated Vercel build. The next proposed checkpoint is the Voltage publication pilot, subject to confirming publication ownership; Electric Charge versus Capacitor ordering remains an explicit curriculum decision rather than an approved change.
 
 ## License
 

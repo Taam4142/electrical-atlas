@@ -19,11 +19,11 @@ ea.<domain>.<subdomain>.<topic>[.<specialization>]
 
 Examples:
 
-- `ea.fundamentals.electricity.charge`
-- `ea.device.semiconductor.mosfet`
-- `ea.device.semiconductor.mosfet.gate-charge`
-- `ea.power.protection.distance-relay`
-- `ea.computing.fpga.static-timing-analysis`
+- `ea.fundamentals.charge`
+- `ea.device.fet.mosfet`
+- `ea.device.fet.mosfet.gate-charge`
+- `ea.protection.distance`
+- `ea.digital.static-timing`
 
 Rules:
 
@@ -45,6 +45,7 @@ Rules:
 | `circuit` | Connected electrical topology | buck converter, differential pair |
 | `architecture` | Structural organization or design pattern | Harvard architecture, microgrid |
 | `system` | Interacting assembly with system-level behavior | inverter drive, cellular network |
+| `model` | Purposeful representation with stated assumptions and limits | small-signal model, magnetic circuit |
 | `method` | Analysis, design, fabrication, or operational procedure | nodal analysis, lockout/tagout |
 | `tool` | Instrument, software, language, or platform | oscilloscope, SPICE, VHDL |
 | `standard` | Normative specification or code family | IEC 61131, IEEE 802.3 |
@@ -138,18 +139,18 @@ Use `needs-correction`, `needs-rereview`, or `deprecated-page` as flags rather t
 ## 9. Full node template
 
 ```yaml
-id: ea.device.semiconductor.mosfet
+id: ea.device.fet.mosfet
 canonical_name: Metal–oxide–semiconductor field-effect transistor
 aliases: [MOSFET, MOS transistor]
 kind: component
 scope_role: core
 primary_path: Semiconductor devices > Field-effect transistors
 secondary_paths: [Digital electronics, Analog electronics, Power electronics]
-prerequisites: [ea.fundamentals.field.electric, ea.material.semiconductor.doping]
-successors: [ea.device.semiconductor.mosfet.gate-charge]
+prerequisites: [ea.em.field.electric, ea.semiconductor.doping]
+successors: [ea.device.fet.mosfet.gate-charge]
 relations:
-  made-of: [ea.material.semiconductor.silicon, ea.material.dielectric.silicon-dioxide]
-  used-in: [ea.circuit.power.buck-converter, ea.digital.logic.cmos]
+  made-of: [ea.material.semiconductor.silicon]
+  used-in: [ea.converter.dc.buck, ea.digital.cmos.inverter]
 maturity: [established, current]
 depth: [D0, D1, D2, D3, D4]
 math: [algebra, calculus]
@@ -190,4 +191,3 @@ Prefer sources in this order, adjusted for the claim:
 5. Reputable institutional tutorials for orientation only.
 
 Every lesson distinguishes normative requirements, empirical data, model assumptions, common practice, and pedagogical analogy.
-

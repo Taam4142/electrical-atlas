@@ -6,7 +6,7 @@ It is intentionally broader than a feature roadmap. A feature roadmap says what 
 
 Electrical Atlas has an unusually large ambition: explain electrical and electronic knowledge across fundamentals, components, circuits, power, embedded systems, standards, safety, manufacturing, applications, history, and future research. The goal is possible only if the project stays organized. The main danger is not one big failure. The main danger is many small inconsistencies accumulating until the site becomes hard to trust or hard to maintain.
 
-The latest evidence-backed plan and implementation record is [Project review and next-phase plan — 2026-07-14](project-review-2026-07-14.md). Phase A1 was approved and implemented on 2026-07-14. Phase A2 and later remain recommendations pending separate approval.
+The latest evidence-backed plan and implementation record is [Project review and next-phase plan — 2026-07-14](project-review-2026-07-14.md). Phase A1 and Phase A2 were approved and implemented on 2026-07-14. Later phases remain recommendations pending separate approval. The executable build/release contract is documented in [Build and release integrity](build-release-integrity.md).
 
 ## How to use this document
 
@@ -176,16 +176,17 @@ The taxonomy can be broad. Published lessons must stay reviewed, honest, and app
 
 **Priority:** P1
 
-**Warning spot:** The site currently uses `latest` package versions for Astro, React, TypeScript, and Vitest.
+**Current state:** Mitigated in Phase A2. Direct dependencies are exact, Node/npm intent is declared, the root workspace lockfile is authoritative, CI uses `npm ci`, and Vercel runs the production quality gate.
 
-**Why it matters:** The lockfile protects CI and Vercel for now, but future installs or lockfile updates can unexpectedly change major dependencies. That can break builds at the worst possible time.
+**Remaining warning spot:** Exact pins do not update themselves. Delaying upgrades indefinitely can accumulate security, compatibility, and maintenance debt.
+
+**Why it matters:** Reproducible installs prevent accidental upgrades, while deliberate review prevents stale packages from becoming a different class of risk.
 
 **Risk reduction:**
 
-- Pin exact dependency versions, or use intentional version ranges.
 - Add Dependabot or Renovate for controlled upgrade PRs.
 - Keep `npm ci` in CI.
-- Run tests and build after dependency updates.
+- Keep only the root lockfile and run the production gate after dependency updates.
 
 **Acceptance checks:**
 
@@ -197,6 +198,8 @@ The taxonomy can be broad. Published lessons must stay reviewed, honest, and app
 
 **Priority:** P1
 
+**Current state:** Core structural validation was added in Phase A2: endpoints, self-links, repeated destinations, weights, direction, prerequisite/successor cycles and curriculum order, reversed asymmetric edges, duplicate suggestion URLs, and self-recommendations now fail tests.
+
 **Warning spot:** The relationship system is currently a TypeScript seed graph. That is fine for the prototype, but the graph will grow quickly.
 
 **Why it matters:** Relationships are the backbone of suggestions and learning paths. If they become inconsistent, suggestions become noisy or misleading.
@@ -204,7 +207,7 @@ The taxonomy can be broad. Published lessons must stay reviewed, honest, and app
 **Risk reduction:**
 
 - Keep the current relationship-first approach.
-- Add validation for duplicate edges, self-links, missing node IDs, invalid lesson IDs, invalid relation types, and orphan relationship records.
+- Preserve and extend the executable graph validation as new relation types appear.
 - Eventually move relationship data to JSON/YAML or generated data if TypeScript becomes too bulky.
 - Distinguish prerequisite relationships from ordinary related-topic links.
 - Keep relationship labels short and human-readable.
@@ -261,17 +264,19 @@ The taxonomy can be broad. Published lessons must stay reviewed, honest, and app
 
 **Priority:** P1
 
+**Current state:** Phase A2 added a strict inventory parser, canonical-ID and route-slug validation, normative taxonomy-ID checks, relationship graph integrity tests, and generated-file drift failure in CI. Registry route/source checks from earlier work remain active.
+
 **Warning spot:** Current tests are useful, but as the project grows they need to validate more project structure, not only formulas and existing suggestions.
 
 **Why it matters:** The site has many generated and hand-wired connections. Broken internal links or mismatched language routes can appear without TypeScript noticing.
 
 **Risk reduction:**
 
-- Add tests for lesson registry completeness.
+- Keep tests for lesson registry completeness.
 - Add tests for broken internal links in generated routes.
 - Add tests for EN/TH counterpart paths.
-- Add tests for topic ID existence in lesson registry and relationship graph.
-- Add tests for generated topic slugs and duplicate paths.
+- Keep tests for topic ID existence in lesson registry and relationship graph.
+- Keep tests for generated topic slugs and duplicate paths.
 - Add tests that high-risk published lessons have safety/source metadata.
 
 **Acceptance checks:**

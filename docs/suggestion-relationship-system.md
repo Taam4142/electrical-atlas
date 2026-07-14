@@ -100,6 +100,22 @@ Metadata similarity currently considers:
 - shared canonical ID prefix;
 - shared words in the topic name and summary.
 
+## Executable graph rules
+
+The recommendation graph is checked during `npm test`:
+
+- endpoints must resolve to a lesson-registry entry or canonical topic;
+- self-links, repeated ordered source/target pairs, and invalid weights fail;
+- topic-to-lesson edges are not stored here because available lesson links are derived from registry coverage;
+- prerequisite and successor subgraphs must remain acyclic;
+- lesson prerequisites point to lower curriculum order and successors point higher, including topic targets covered by a lesson;
+- asymmetric relationship types cannot be duplicated in both directions;
+- generated lesson suggestions cannot repeat a URL or recommend the current lesson.
+
+Reverse-direction pairs are not banned globally. For example, one lesson may describe another as its prerequisite while the earlier lesson describes the later one as a successor. Symmetric recommendation roles such as `energy-link` and `combines-with` may also be useful in both directions.
+
+These are rules for the website recommendation graph. They do not replace the canonical taxonomy predicates in `electrical-atlas/01-taxonomy-model.md`; a future relationship record should preserve that distinction.
+
 ## Topic traits already available
 
 Generated topic records currently include:
@@ -108,6 +124,7 @@ Generated topic records currently include:
 - English name;
 - summary;
 - node type;
+- explicit scope role and maturity when the compact record overrides inherited defaults;
 - expected depth;
 - safety tag;
 - domain;
@@ -125,6 +142,6 @@ Likely next upgrades:
 
 1. Move relationships into a data file that can be generated/exported separately from TypeScript.
 2. Add prerequisite and successor fields to the Markdown inventory format.
-3. Add relationship validation for duplicate edges and missing lesson IDs.
-4. Add visible relation filters, such as "show prerequisites," "show applications," or "show safety links."
-5. Add Thai topic labels when each topic enters the publishing pipeline.
+3. Add visible relation filters, such as "show prerequisites," "show applications," or "show safety links."
+4. Add Thai topic labels when each topic enters the publishing pipeline.
+5. Decide whether a full lesson and its covered topic record should both appear when they represent the same concept at different depths.

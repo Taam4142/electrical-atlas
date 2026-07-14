@@ -77,7 +77,7 @@ This batch prepares the way for power electronics, embedded outputs, protection,
 
 ## Next lessons to build
 
-Phase A1 truth/current-state stabilization from the [Project review and next-phase plan — 2026-07-14](project-review-2026-07-14.md) was approved and implemented. Phase A2 and the Voltage publication pilot remain recommendations pending separate approval before more lesson prototypes are added.
+Phase A1 truth/current-state stabilization and Phase A2 executable integrity from the [Project review and next-phase plan — 2026-07-14](project-review-2026-07-14.md) were approved and implemented. The Voltage publication pilot remains the next proposal and requires separate approval plus named publication-review ownership before more lesson prototypes are added.
 
 Preferred content order after that checkpoint, pending a curriculum decision:
 

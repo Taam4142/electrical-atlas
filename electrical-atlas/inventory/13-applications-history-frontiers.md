@@ -143,7 +143,6 @@ Section defaults: `application` for application domains, `core` for history/fron
 - `ea.frontier.autonomous-laboratory` **Autonomous engineering laboratory** — robotics, measurement, optimization, AI and reproducibility. [system; experimental; D2–D4; S2]
 - `ea.frontier.ai-eda` **AI-assisted electronic design automation** — search, optimization, generation, verification and trust. [method; emerging; D2–D4]
 - `ea.frontier.digital-twin` **High-fidelity digital twins** — multiphysics, online estimation, uncertainty and lifecycle decisions. [architecture; emerging; D2–D4]
-- `ea.frontier.quantum` **Quantum technology frontier** — computation, communication, sensing, materials and control electronics. [system; experimental+emerging; D3–D4; S3]
+- `ea.frontier.quantum` **Quantum technology frontier** — computation, communication, sensing, materials and control electronics. [system; emerging+experimental; D3–D4; S3]
 - `ea.frontier.fusion-electrical` **Fusion electrical engineering frontier** — pulsed power, superconducting magnets, power conversion and remote maintenance. [system; experimental; D3–D4; S3]
 - `ea.frontier.space-power` **Advanced space power and propulsion** — high-voltage solar, nuclear sources, electric propulsion and radiation. [system; emerging; D3–D4; S3]
-

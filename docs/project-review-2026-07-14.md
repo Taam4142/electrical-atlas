@@ -1,6 +1,6 @@
 # Project review and next-phase plan — 2026-07-14
 
-Status: Phase A1 was approved and implemented on 2026-07-14. Phases A2 and later remain recommendations pending separate approval. Automated and built-output verification is complete; the visual browser matrix still needs a clean rerun because the in-app browser automation connection failed during initialization.
+Status: Phase A1 and Phase A2 were approved and implemented on 2026-07-14. Later phases remain recommendations pending separate approval. Automated and built-output verification is complete; the visual browser matrix still needs a clean rerun because the in-app browser automation connection failed during initialization.
 
 This document preserves the project retrospective performed on 2026-07-14. It records the current evidence, the main risks, and the recommended sequence of work so future sessions do not have to reconstruct the reasoning from chat history.
 
@@ -163,7 +163,7 @@ This ledger should begin with the first Thailand-sensitive lesson rather than at
 
 ### Phase A — Truth and integrity stabilization
 
-Phase A1 of this reconfiguration was approved on 2026-07-14. Later phases remain recommendations until separately approved.
+Phase A1 and Phase A2 of this reconfiguration were approved on 2026-07-14. Later phases remain recommendations until separately approved.
 
 #### Phase A1: public truth and current-state cleanup
 
@@ -232,6 +232,38 @@ Exit criteria:
 - malformed inventory data cannot silently disappear;
 - stale generated files and invalid cross-references fail CI;
 - the deployed commit cannot bypass the agreed tests unnoticed.
+
+#### Phase A2 implementation record — 2026-07-14
+
+Completed work:
+
+- replaced every `latest` direct dependency with the exact version already selected by the authoritative root dependency graph;
+- declared Node.js `>=22.12.0 <23` and npm `10.x` support, with npm `10.9.3` recorded as the lockfile-authoring version;
+- removed the site lockfile and documented the repository root as the only supported install/build/Vercel root;
+- added a Vercel production build that rejects stale generated topics without rewriting, runs parser tests, Vitest and Astro/TypeScript checks, builds, and validates representative bilingual output, robots policy, and internal links;
+- added an explicit Astro check stage plus tracked-and-current generated-output failure to GitHub Actions;
+- replaced the permissive topic parser with a location-aware validator for every numbered-inventory bullet, canonical ID, node kind, scope role, maturity, field order, depth, safety, route slug, H2 context, encoding, domain file, duplicate ID, and slug collision;
+- formally added `model` as a canonical node kind, corrected two `enabling` kind/scope collisions, and normalized one maturity-order record;
+- preserved explicit scope role and maturity in generated data while leaving inherited fields absent rather than guessing or bloating the client payload;
+- corrected the taxonomy model's normative example IDs and made those references executable tests;
+- added relationship tests for endpoints, self-links, duplicate destinations, weights, direction, curriculum order, cycles, reversed asymmetric edges, duplicate suggestion URLs, and self-recommendations;
+- corrected six recommendation edges whose prerequisite/successor labels contradicted curriculum direction;
+- updated deployment, maintenance, inventory grammar, relationship, and risk documentation; the durable contract is [Build and release integrity](build-release-integrity.md).
+
+Verification evidence:
+
+| Check | Result |
+| --- | --- |
+| Root `npm ci` with the final lockfile | 463 packages installed; audit reported 0 vulnerabilities |
+| Standalone Node fixtures | 9 inventory/parser tests and 3 built-site validator tests passed |
+| Vitest within the production gate | 10 files; 62 tests passed |
+| Astro check within the production gate | 88 files; 0 errors, warnings, or hints |
+| `npm.cmd run build:production` | 3,245 static pages built; 3,214 topic robots policies and 3,246 unique root-relative references validated |
+| Direct dependency intent | exact versions; no `latest` declarations |
+| Lockfile ownership | one tracked root `package-lock.json` |
+| Production dependency audit | 0 production vulnerabilities; compatible transitive language-server update removed the initial development-only advisories |
+
+Repository-enforced acceptance is complete. Two external-state checks remain operational rather than source-controlled: GitHub should require the `Website checks` job before merging, and Vercel must keep Root Directory blank/repository-root with `main` as the production branch. The Phase A1 visual browser matrix also remains open until browser automation is healthy.
 
 ### Phase B — Prove the publication workflow
 
@@ -308,6 +340,7 @@ After content resumes, reduce at least one structural risk after every two subst
 | `electrical-atlas-site/src/lib/lessonRegistry.ts` | Operational lesson availability, status, safety, source state, and active queue |
 | `docs/first-20-lessons.md` | Strategic beginner curriculum and intended teaching order |
 | `docs/project-improvements-risk-reduction.md` | Long-lived risk register and mitigation principles |
+| `docs/build-release-integrity.md` | Authoritative install, generator, CI, and deployment contract |
 | This dated review | Evidence and phase recommendation at the 2026-07-14 checkpoint |
 | Public guide | Current learner instructions only; no internal development roadmap |
 | Status page | Current operational state derived from the registry |
@@ -344,6 +377,6 @@ Do not silently decide these during unrelated implementation work.
 
 ## 8. Immediate next checkpoint
 
-Phase A1 is implemented. The next recommended checkpoint is **Phase A2: reproducibility and executable integrity**, pending separate user approval. Before or during that checkpoint, rerun the visual browser matrix recorded above when the browser connection is healthy.
+Phase A1 and Phase A2 are implemented. The next proposed checkpoint is **Phase B: use Voltage to prove the publication workflow**, but it must begin by confirming who can approve technical accuracy, Thai-language quality, and standards-sensitive publication. Rerun the outstanding visual browser matrix when the browser connection is healthy; it remains an acceptance check from Phase A1 rather than a reason to undo the completed integrity work.
 
-The remaining proposed sequence is A2, the Voltage publication pilot, and then the curriculum decision that controls Electric Charge and Capacitor ordering.
+The remaining proposed sequence is the Voltage publication pilot and then the curriculum decision that controls Electric Charge and Capacitor ordering.

@@ -34,6 +34,29 @@ export interface AtlasRelationship {
   label?: Partial<Record<RelationshipLocale, string>>;
 }
 
+export type RelationshipDirectionality = "directed" | "symmetric";
+
+export const relationshipDirectionality: Record<RelationshipType, RelationshipDirectionality> = {
+  prerequisite: "directed",
+  successor: "directed",
+  "paired-foundation": "symmetric",
+  "technical-definition": "directed",
+  "physical-mechanism": "directed",
+  "mathematical-law": "directed",
+  reciprocal: "symmetric",
+  component: "directed",
+  application: "directed",
+  measurement: "directed",
+  safety: "symmetric",
+  "failure-mode": "directed",
+  "implementation-detail": "directed",
+  "energy-source": "directed",
+  "energy-link": "symmetric",
+  "material-view": "directed",
+  "combines-with": "symmetric",
+  "layout-practice": "directed",
+};
+
 export const relationshipLabels: Record<RelationshipType, Record<RelationshipLocale, string>> = {
   prerequisite: {
     en: "prerequisite",
@@ -169,13 +192,13 @@ export const atlasRelationships: AtlasRelationship[] = [
   {
     source: { kind: "lesson", id: "what-is-electricity" },
     target: { kind: "topic", id: "ea.fundamentals.voltage" },
-    type: "prerequisite",
+    type: "successor",
     weight: 80,
   },
   {
     source: { kind: "lesson", id: "what-is-electricity" },
     target: { kind: "topic", id: "ea.fundamentals.current" },
-    type: "prerequisite",
+    type: "successor",
     weight: 78,
   },
   {
@@ -259,7 +282,7 @@ export const atlasRelationships: AtlasRelationship[] = [
   {
     source: { kind: "lesson", id: "voltage" },
     target: { kind: "topic", id: "ea.fundamentals.resistance" },
-    type: "prerequisite",
+    type: "successor",
     weight: 76,
     label: { en: "needed for Ohm's law" },
   },
@@ -600,7 +623,7 @@ export const atlasRelationships: AtlasRelationship[] = [
   {
     source: { kind: "lesson", id: "power-energy" },
     target: { kind: "lesson", id: "series-parallel" },
-    type: "successor",
+    type: "combines-with",
     weight: 66,
     label: { en: "power distribution in networks" },
   },
@@ -635,9 +658,9 @@ export const atlasRelationships: AtlasRelationship[] = [
   {
     source: { kind: "lesson", id: "power-energy" },
     target: { kind: "topic", id: "ea.circuit.topology.series-parallel" },
-    type: "successor",
+    type: "combines-with",
     weight: 58,
-    label: { en: "next circuit skill" },
+    label: { en: "power distribution in circuit networks" },
   },
 
   {
@@ -667,7 +690,7 @@ export const atlasRelationships: AtlasRelationship[] = [
   {
     source: { kind: "lesson", id: "battery" },
     target: { kind: "lesson", id: "series-parallel" },
-    type: "successor",
+    type: "combines-with",
     weight: 84,
     label: { en: "cell and load networks" },
   },

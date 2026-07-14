@@ -35,7 +35,8 @@ describe("suggestion system", () => {
 
     expect(suggestions.length).toBeGreaterThanOrEqual(6);
     expect(hrefs).toContain("/en/lessons/what-is-electricity/");
-    expect(hrefs).toContain("/en/topics/fundamentals-current/");
+    expect(hrefs).toContain("/en/lessons/current/");
+    expect(hrefs).not.toContain("/en/topics/fundamentals-current/");
     expect(hrefs).toContain("/en/topics/em-potential-electric/");
     expect(hrefs).toContain("/en/topics/component-capacitor/");
   });
@@ -46,8 +47,10 @@ describe("suggestion system", () => {
 
     expect(suggestions.length).toBeGreaterThanOrEqual(7);
     expect(hrefs).toContain("/en/lessons/voltage/");
-    expect(hrefs).toContain("/en/topics/fundamentals-resistance/");
-    expect(hrefs).toContain("/en/topics/circuit-law-ohm/");
+    expect(hrefs).toContain("/en/lessons/resistance/");
+    expect(hrefs).toContain("/en/lessons/ohms-law/");
+    expect(hrefs).not.toContain("/en/topics/fundamentals-resistance/");
+    expect(hrefs).not.toContain("/en/topics/circuit-law-ohm/");
     expect(hrefs).toContain("/en/topics/transport-current-density/");
     expect(hrefs).toContain("/en/topics/component-fuse/");
   });
@@ -55,14 +58,14 @@ describe("suggestion system", () => {
   it("builds curated resistance lesson suggestions", () => {
     const suggestions = getLessonSuggestions("resistance", "en", atlasTopics);
     const hrefs = suggestions.map((suggestion) => suggestion.href);
-    const ohmsLaw = suggestions.find((suggestion) => suggestion.href === "/en/topics/circuit-law-ohm/");
+    const ohmsLaw = suggestions.find((suggestion) => suggestion.href === "/en/lessons/ohms-law/");
 
     expect(suggestions.length).toBeGreaterThanOrEqual(8);
     expect(hrefs).toContain("/en/lessons/voltage/");
     expect(hrefs).toContain("/en/lessons/current/");
     expect(hrefs).toContain("/en/lessons/ohms-law/");
     expect(hrefs).toContain("/en/lessons/power-energy/");
-    expect(hrefs).toContain("/en/topics/circuit-law-ohm/");
+    expect(hrefs).not.toContain("/en/topics/circuit-law-ohm/");
     expect(hrefs).toContain("/en/topics/component-resistor/");
     expect(hrefs).toContain("/en/topics/transport-ohm-microscopic/");
     expect(ohmsLaw?.relationType).toBe("mathematical-law");
@@ -78,8 +81,8 @@ describe("suggestion system", () => {
     expect(hrefs).toContain("/en/lessons/resistance/");
     expect(hrefs).toContain("/en/lessons/power-energy/");
     expect(hrefs).toContain("/en/lessons/series-parallel/");
-    expect(hrefs).toContain("/en/topics/fundamentals-power/");
-    expect(hrefs).toContain("/en/topics/circuit-topology-series-parallel/");
+    expect(hrefs).not.toContain("/en/topics/fundamentals-power/");
+    expect(hrefs).not.toContain("/en/topics/circuit-topology-series-parallel/");
     expect(hrefs).toContain("/en/topics/photonics-led/");
     expect(hrefs).toContain("/en/topics/device-diode-pn/");
   });
@@ -96,7 +99,7 @@ describe("suggestion system", () => {
     expect(hrefs).toContain("/en/lessons/battery/");
     expect(hrefs).toContain("/en/topics/fundamentals-energy/");
     expect(hrefs).toContain("/en/topics/transport-joule-heating/");
-    expect(hrefs).toContain("/en/topics/storage-electrochemistry/");
+    expect(hrefs).not.toContain("/en/topics/storage-electrochemistry/");
     expect(hrefs).toContain("/en/topics/component-fuse/");
     expect(hrefs).toContain("/en/topics/circuit-ac-power/");
   });

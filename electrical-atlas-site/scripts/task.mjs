@@ -1,7 +1,11 @@
 import { spawn } from "node:child_process";
 import { existsSync } from "node:fs";
-import { dirname, join, parse } from "node:path";
-import { cwd, env, exit, platform } from "node:process";
+import { dirname, join, resolve } from "node:path";
+import { env, execPath, exit, platform } from "node:process";
+import { fileURLToPath } from "node:url";
+
+const siteRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
+const workspaceRoot = resolve(siteRoot, "..");
 
 const task = process.argv[2];
 const extraArgs = process.argv.slice(3);
@@ -12,8 +16,28 @@ const taskMap = {
     ["astro", "check"],
     ["astro", "build"],
   ],
+  production: [
+    [
+      "node",
+      "--test",
+      "./scripts/topic-inventory-checks.mjs",
+      "./scripts/check-built-site-checks.mjs",
+    ],
+    ["vitest", "run"],
+    ["astro", "check"],
+    ["astro", "build"],
+    ["node", "./scripts/check-built-site.mjs"],
+  ],
   preview: [["astro", "preview"]],
-  test: [["vitest", "run"]],
+  test: [
+    [
+      "node",
+      "--test",
+      "./scripts/topic-inventory-checks.mjs",
+      "./scripts/check-built-site-checks.mjs",
+    ],
+    ["vitest", "run"],
+  ],
 };
 
 if (!task || !taskMap[task]) {
@@ -22,30 +46,24 @@ if (!task || !taskMap[task]) {
 }
 
 function localBin(name) {
-  const executable = `${name}${platform === "win32" ? ".cmd" : ""}`;
-  let current = cwd();
-  const root = parse(current).root;
-  const candidates = [];
-
-  while (true) {
-    const candidate = join(current, "node_modules", ".bin", executable);
-    if (existsSync(candidate)) {
-      candidates.push(candidate);
-    }
-
-    if (current === root) {
-      return candidates.at(-1) ?? executable;
-    }
-
-    current = dirname(current);
+  if (name === "node") {
+    return execPath;
   }
+
+  const executable = `${name}${platform === "win32" ? ".cmd" : ""}`;
+  const candidates = [
+    join(workspaceRoot, "node_modules", ".bin", executable),
+    join(siteRoot, "node_modules", ".bin", executable),
+  ];
+  return candidates.find((candidate) => existsSync(candidate)) ?? executable;
 }
 
 function run([binName, ...args]) {
   return new Promise((resolve, reject) => {
     const child = spawn(localBin(binName), args, {
+      cwd: siteRoot,
       stdio: "inherit",
-      shell: platform === "win32",
+      shell: platform === "win32" && binName !== "node",
       env: {
         ...env,
         ASTRO_TELEMETRY_DISABLED: "1",

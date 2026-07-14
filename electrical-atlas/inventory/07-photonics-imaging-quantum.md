@@ -90,7 +90,7 @@ Section defaults: `core`; `established+current`; `mapped`. Lasers, high-intensit
 - `ea.quantum.spin` **Spin and two-level systems** — Bloch sphere, control and readout. [concept; D3–D4]
 - `ea.quantum.tunneling` **Quantum tunneling** — barriers, rates and device manifestations. [phenomenon; D3–D4]
 - `ea.quantum.decoherence` **Decoherence and relaxation** — T1/T2, noise channels and error. [phenomenon; D3–D4]
-- `ea.quantum.cryogenics` **Cryogenic electrical engineering** — refrigeration, wiring, thermalization, filtering and low-noise measurement. [enabling; current+emerging; D3–D4; S3]
+- `ea.quantum.cryogenics` **Cryogenic electrical engineering** — refrigeration, wiring, thermalization, filtering and low-noise measurement. [method; enabling; current+emerging; D3–D4; S3]
 
 ## Quantum devices and systems
 
@@ -103,4 +103,3 @@ Section defaults: `core`; `established+current`; `mapped`. Lasers, high-intensit
 - `ea.quantum.sensing` **Quantum sensing** — atomic clocks, magnetometers, gravimeters and quantum-enhanced measurement. [system; current+emerging; D3–D4]
 - `ea.quantum.communication` **Quantum communication** — QKD, repeaters, networks and implementation security. [system; emerging; D3–D4]
 - `ea.quantum.computing` **Quantum computing architecture** — gates/annealing, control, compilation and error budget. [system; experimental; D3–D4]
-

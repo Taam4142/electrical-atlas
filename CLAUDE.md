@@ -31,7 +31,13 @@ The latest dated review is:
 docs/project-review-2026-07-14.md
 ```
 
-Phase A1 was approved and implemented on 2026-07-14. Phase A2 and later remain recommendations pending separate approval. The Phase A1 visual browser matrix still needs a clean rerun; see the implementation record in the dated review.
+Phase A1 and Phase A2 were approved and implemented on 2026-07-14. Later phases remain recommendations pending separate approval. The Phase A1 visual browser matrix still needs a clean rerun; see the implementation record in the dated review.
+
+Build, generator, CI, and deployment decisions live in:
+
+```text
+docs/build-release-integrity.md
+```
 
 ## Suggestion system
 
@@ -54,19 +60,19 @@ Before adding many more lessons, preserve the project structure described in:
 
 - `docs/project-review-2026-07-14.md`
 - `docs/project-improvements-risk-reduction.md`
+- `docs/build-release-integrity.md`
 - `docs/lesson-production-system.md`
 - `docs/lesson-quality-checklist.md`
 - `docs/lesson-registry-plan.md`
 - `docs/lesson-template.mdx`
 
-Phase A1 completed the public-truth, canonical-preview-ID, stale-guidance, minimal-root-gateway, and mapped-topic indexing work. The most important remaining proposed near-term risk reductions are:
+Phase A1 completed the public-truth, canonical-preview-ID, stale-guidance, minimal-root-gateway, and mapped-topic indexing work. Phase A2 completed dependency/runtime pinning, the single root lockfile path, strict inventory and relationship validation, generated-output drift checks, and a test-gated deployment build. The most important remaining near-term risk reductions are:
 
 - keep lesson metadata centralized in `electrical-atlas-site/src/lib/lessonRegistry.ts`;
-- make taxonomy parsing, relationship targets, covered topic IDs, and language routes fail validation when invalid;
 - keep safety/source status explicit;
 - avoid unverified Thailand-specific standards claims;
 - keep Thai terminology and UTF-8 rendering consistent;
-- keep dependency upgrades and the Node/npm toolchain reproducible rather than relying on `latest`;
+- keep future dependency upgrades deliberate and commit the root lockfile with exact package changes;
 - prove the complete source-review and publication workflow on one lesson before accumulating many more prototypes.
 
 ## Lesson authoring workflow
@@ -107,11 +113,12 @@ If the current relationship graph disagrees with the archive, prefer the relatio
 For website changes, run:
 
 ```powershell
+npm.cmd run generate:topics
 npm.cmd run check
 npm.cmd test
 npm.cmd run build
 ```
 
-From the repository root, these commands forward into `electrical-atlas-site/`.
+For a release or deployment-sensitive change, run `npm.cmd run build:production`. Run every command from the repository root; it owns the only lockfile and forwards tasks into `electrical-atlas-site/`.
 
 On Windows PowerShell, use `npm.cmd` rather than `npm`.

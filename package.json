@@ -3,14 +3,21 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
+  "packageManager": "npm@10.9.3",
+  "engines": {
+    "node": ">=22.12.0 <23",
+    "npm": "10.x"
+  },
   "workspaces": [
     "electrical-atlas-site"
   ],
   "scripts": {
     "generate:topics": "npm --workspace electrical-atlas-site run generate:topics",
+    "check:generated": "npm --workspace electrical-atlas-site run check:generated",
     "dev": "npm --workspace electrical-atlas-site run dev",
     "check": "npm --workspace electrical-atlas-site run check",
     "build": "npm --workspace electrical-atlas-site run build",
+    "build:production": "npm --workspace electrical-atlas-site run build:production",
     "preview": "npm --workspace electrical-atlas-site run preview",
     "test": "npm --workspace electrical-atlas-site test"
   }

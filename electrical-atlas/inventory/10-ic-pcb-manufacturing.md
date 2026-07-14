@@ -148,8 +148,7 @@ Section defaults: `core` or `enabling`; `established+current`; `mapped`. Fabrica
 - `ea.manufacturing.spc` **Statistical process control** — control charts, variation, reactions and traceability. [method; D1–D4]
 - `ea.manufacturing.quality-system` **Quality-management system** — controlled processes, audits, nonconformance and corrective action. [system; D1–D3]
 - `ea.manufacturing.traceability` **Product/material traceability** — lots, serialization, genealogy and records. [system; D1–D3]
-- `ea.manufacturing.supply-chain` **Electronic supply-chain engineering** — sourcing, lead time, allocation, geopolitics and risk. [enabling; current; D1–D4]
+- `ea.manufacturing.supply-chain` **Electronic supply-chain engineering** — sourcing, lead time, allocation, geopolitics and risk. [method; enabling; current; D1–D4]
 - `ea.manufacturing.obsolescence` **Component obsolescence management** — lifecycle status, redesign, last-time buy and qualification. [method; D1–D4]
 - `ea.manufacturing.counterfeit` **Counterfeit mitigation** — authorized sourcing, inspection, testing and reporting. [method; D1–D4]
 - `ea.manufacturing.change-control` **Engineering change control** — baselines, impact, approval, configuration and release. [method; D1–D3]
-

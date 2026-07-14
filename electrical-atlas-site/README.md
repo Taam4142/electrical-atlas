@@ -18,16 +18,19 @@ The live lesson list comes from `src/lib/lessonRegistry.ts`; do not maintain ano
 
 ## Local commands
 
-On this Windows machine, use `npm.cmd` instead of `npm` because PowerShell script execution blocks `npm.ps1`.
+Run commands from the repository root, not this folder. The root workspace lockfile is the single authoritative dependency state. On this Windows machine, use `npm.cmd` instead of `npm` because PowerShell script execution blocks `npm.ps1`.
 
 ```powershell
-npm.cmd install
+npm.cmd ci
 npm.cmd run generate:topics
 npm.cmd run check
 npm.cmd run dev
 npm.cmd run build
 npm.cmd test
+npm.cmd run build:production
 ```
+
+Required tooling is Node.js 22.12 or newer within the Node 22 release line, with npm 10.x. Version 10.9.3 authored the current lockfile and is declared in `packageManager`. `build:production` checks generated-file drift without rewriting, runs the complete test/check/build gate, and validates the built bilingual routes, robots policy, and root-relative links.
 
 ## Route families
 
@@ -49,6 +52,8 @@ npm.cmd test
 - `public/data/atlas-topics.json` — client-loaded searchable topic payload
 
 The build and test scripts run this generator automatically.
+
+Every bullet in a numbered inventory file is validated as a record. Malformed syntax, invalid schema tags, duplicate IDs/slugs, stray canonical IDs, and common encoding corruption fail before generated files are written.
 
 ## Design intent
 
