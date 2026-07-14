@@ -4,6 +4,7 @@ import {
   getLessonStatusLabel,
   getSafetyLevelLabel,
   getSourceStatusLabel,
+  isLessonAvailable,
   lessonRegistry,
   type Locale,
   type NavGroup,
@@ -49,11 +50,11 @@ const copy = {
     eyebrow: "guided lessons",
     title: "Lessons you can actually open",
     subtitle:
-      "This is the calm reading list: public guided lessons only. The full roadmap still lives in Status, and the complete knowledge map still lives in Subject map.",
+      "This is the calm reading list: lesson pages available now, with their actual maturity shown on each card. The active lesson queue lives in Status, and the complete knowledge map lives in Subject map.",
     startLabel: "Open lesson",
-    comingSoonLabel: "not public yet",
-    summaryPublic: "public lessons",
-    summaryRoadmap: "registered roadmap items",
+    comingSoonLabel: "no lesson page yet",
+    summaryAvailable: "available lessons",
+    summaryRegistered: "registered lessons",
     summaryGroups: "lesson groups active",
     summaryThailand: "need Thailand context",
     howTitle: "How this page is different",
@@ -65,10 +66,14 @@ const copy = {
     sequenceTitle: "Suggested beginner sequence",
     sequenceBody:
       "If you are new, follow the foundation lessons from top to bottom before jumping into components like MOSFETs or switches.",
-    publicGroupsTitle: "Public lessons by group",
-    roadmapTitle: "Roadmap queue",
-    roadmapBody:
-      "These are registered but intentionally not linked as empty pages. They become clickable only when the lesson is written and reviewed.",
+    differenceEyebrow: "lessons ≠ map ≠ status",
+    sequenceEyebrow: "reading order",
+    availableEyebrow: "available reading list",
+    queueEyebrow: "registry queue without empty pages",
+    availableGroupsTitle: "Available lessons by group",
+    queueTitle: "Registered lessons without pages",
+    queueBody:
+      "These are registered but intentionally not linked as empty pages. A link appears when a lesson page exists; its separate maturity badge still shows whether it is a prototype, review-ready, or published.",
     status: "status",
     safety: "safety",
     sources: "sources",
@@ -80,11 +85,11 @@ const copy = {
     eyebrow: "บทเรียนแบบมีลำดับ",
     title: "บทเรียนที่เปิดอ่านได้ตอนนี้",
     subtitle:
-      "หน้านี้คือรายการอ่านแบบสงบ: แสดงเฉพาะบทเรียนที่เปิดอ่านได้แล้ว ส่วนแผนงานทั้งหมดอยู่ที่หน้า Status และแผนที่ความรู้ทั้งหมดอยู่ที่ Subject map",
+      "หน้านี้คือรายการอ่านแบบสงบ: แสดงหน้าบทเรียนที่เปิดอ่านได้ตอนนี้ พร้อมสถานะจริงของแต่ละบท คิวงานระยะใกล้อยู่ที่หน้า Status และแผนที่ความรู้ทั้งหมดอยู่ที่ Subject map",
     startLabel: "เปิดบทเรียน",
-    comingSoonLabel: "ยังไม่เปิด public",
-    summaryPublic: "บทเรียนที่เปิดอ่านได้",
-    summaryRoadmap: "รายการในแผนงาน",
+    comingSoonLabel: "ยังไม่มีหน้าบทเรียน",
+    summaryAvailable: "บทเรียนที่เปิดอ่านได้",
+    summaryRegistered: "บทเรียนในทะเบียน",
     summaryGroups: "กลุ่มบทเรียนที่เริ่มแล้ว",
     summaryThailand: "ต้องมีบริบทไทย",
     howTitle: "หน้านี้ต่างจากหน้าอื่นอย่างไร",
@@ -96,10 +101,14 @@ const copy = {
     sequenceTitle: "ลำดับที่แนะนำสำหรับผู้เริ่มต้น",
     sequenceBody:
       "ถ้ายังใหม่ ให้ไล่บทพื้นฐานจากบนลงล่างก่อน แล้วค่อยข้ามไปชิ้นส่วนอย่าง MOSFET หรือสวิตช์",
-    publicGroupsTitle: "บทเรียน public แยกตามกลุ่ม",
-    roadmapTitle: "คิวบทเรียนถัดไป",
-    roadmapBody:
-      "รายการเหล่านี้ถูกลงทะเบียนไว้แล้ว แต่ตั้งใจไม่ทำลิงก์ไปหน้าเปล่า จะกดเข้าได้เมื่อเขียนและตรวจบทเรียนแล้วเท่านั้น",
+    differenceEyebrow: "บทเรียน ≠ แผนที่ ≠ สถานะ",
+    sequenceEyebrow: "ลำดับการอ่าน",
+    availableEyebrow: "รายการที่เปิดอ่านได้",
+    queueEyebrow: "คิวในทะเบียนที่ไม่สร้างหน้าเปล่า",
+    availableGroupsTitle: "บทเรียนที่เปิดอ่านได้ แยกตามกลุ่ม",
+    queueTitle: "บทเรียนในทะเบียนที่ยังไม่มีหน้า",
+    queueBody:
+      "รายการเหล่านี้ถูกลงทะเบียนไว้แล้ว แต่ตั้งใจไม่ทำลิงก์ไปหน้าเปล่า ลิงก์จะปรากฏเมื่อมีหน้าบทเรียน ส่วนป้ายสถานะจะแสดงแยกว่าบทนั้นเป็นต้นแบบ พร้อมตรวจทาน หรือเผยแพร่แล้ว",
     status: "สถานะ",
     safety: "ความปลอดภัย",
     sources: "แหล่งอ้างอิง",
@@ -109,22 +118,22 @@ const copy = {
   },
 }[locale];
 
-const publicLessons = getImplementedLessons(locale);
+const availableLessons = getImplementedLessons(locale);
 const roadmapLessons = [...lessonRegistry]
-  .filter((lesson) => !lesson.hasPage[locale])
+  .filter((lesson) => !isLessonAvailable(lesson, locale))
   .sort((a, b) => a.order - b.order);
-const publicGroups = groupOrder
+const availableGroups = groupOrder
   .map((group) => ({
     group,
     label: groupLabels[group][locale],
-    lessons: publicLessons.filter((lesson) => lesson.navGroup === group),
+    lessons: availableLessons.filter((lesson) => lesson.navGroup === group),
   }))
   .filter((group) => group.lessons.length > 0);
-const activeGroupCount = publicGroups.length;
+const activeGroupCount = availableGroups.length;
 const thailandContextCount = lessonRegistry.filter((lesson) => lesson.requiresThailandContext).length;
 const summaryCards = [
-  { value: publicLessons.length, label: copy.summaryPublic },
-  { value: lessonRegistry.length, label: copy.summaryRoadmap },
+  { value: availableLessons.length, label: copy.summaryAvailable },
+  { value: lessonRegistry.length, label: copy.summaryRegistered },
   { value: activeGroupCount, label: copy.summaryGroups },
   { value: thailandContextCount, label: copy.summaryThailand },
 ];
@@ -149,7 +158,7 @@ const summaryCards = [
 
 <section class="lesson-browser-two-column">
   <article class="lesson-browser-panel">
-    <p class="eyebrow">lessons ≠ map ≠ status</p>
+    <p class="eyebrow">{copy.differenceEyebrow}</p>
     <h2>{copy.howTitle}</h2>
     <ul>
       {copy.howItems.map((item) => <li>{item}</li>)}
@@ -157,20 +166,20 @@ const summaryCards = [
   </article>
 
   <article class="lesson-browser-panel lesson-browser-panel-note">
-    <p class="eyebrow">reading order</p>
+    <p class="eyebrow">{copy.sequenceEyebrow}</p>
     <h2>{copy.sequenceTitle}</h2>
     <p>{copy.sequenceBody}</p>
   </article>
 </section>
 
-<section class="lesson-browser-section" aria-labelledby="public-lessons-title">
+<section class="lesson-browser-section" aria-labelledby="available-lessons-title">
   <div class="section-heading">
-    <p class="eyebrow">published reading list</p>
-    <h2 id="public-lessons-title">{copy.publicGroupsTitle}</h2>
+    <p class="eyebrow">{copy.availableEyebrow}</p>
+    <h2 id="available-lessons-title">{copy.availableGroupsTitle}</h2>
   </div>
 
   <div class="lesson-group-stack">
-    {publicGroups.map((group) => (
+    {availableGroups.map((group) => (
       <section class="lesson-group" aria-labelledby={`lesson-group-${group.group}`}>
         <div class="lesson-group-heading">
           <p class="eyebrow">{group.label}</p>
@@ -222,9 +231,9 @@ const summaryCards = [
 {roadmapLessons.length > 0 && (
   <section class="lesson-browser-section" aria-labelledby="roadmap-lessons-title">
     <div class="section-heading">
-      <p class="eyebrow">roadmap without empty pages</p>
-      <h2 id="roadmap-lessons-title">{copy.roadmapTitle}</h2>
-      <p>{copy.roadmapBody}</p>
+      <p class="eyebrow">{copy.queueEyebrow}</p>
+      <h2 id="roadmap-lessons-title">{copy.queueTitle}</h2>
+      <p>{copy.queueBody}</p>
     </div>
 
     <div class="lesson-roadmap-grid">

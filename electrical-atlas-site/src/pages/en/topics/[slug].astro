@@ -24,6 +24,7 @@ const { topic, relatedSuggestions } = Astro.props;
   title={`${topic.name} Topic Record`}
   description={`Mapped Electrical Atlas topic record for ${topic.name}: ${topic.summary}`}
   lang="en"
+  noindex
   counterpartPath={`/th/topics/${topic.slug}/`}
   counterpartLabel="ไทย"
 >

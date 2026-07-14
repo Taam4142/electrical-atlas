@@ -26,12 +26,12 @@ const firstLesson = homeLessons[0];
       </p>
       <div class="hero-actions">
         <a class="button" href="/en/guide/">Start here: How to use this site</a>
-        <a class="button-secondary" href="/en/lessons/">Browse all public lessons</a>
+        <a class="button-secondary" href="/en/lessons/">Browse available lessons</a>
         {firstLesson && <a class="button" href={firstLesson.paths.en}>{getLessonHomeLabel(firstLesson, locale)}</a>}
         <a class="button-secondary" href="/en/map/">Open the knowledge map</a>
       </div>
     </div>
-    <HeroCircuit />
+    <HeroCircuit locale="en" />
   </section>
 
   <section class="path-grid" aria-label="Learning paths">

@@ -138,9 +138,9 @@ See [docs/deployment.md](docs/deployment.md).
 
 ## Near roadmap
 
-The [project review and next-phase plan dated 2026-07-14](docs/project-review-2026-07-14.md) contains the latest evidence-backed reconfiguration proposal. It is pending user confirmation and is the only document that should carry the detailed proposed phase sequence.
+The [project review and next-phase plan dated 2026-07-14](docs/project-review-2026-07-14.md) contains the latest evidence-backed phase sequence and implementation record. Phase A1 was approved and implemented on 2026-07-14; Phase A2 and later remain recommendations pending separate approval.
 
-Its recommended immediate checkpoint is Phase A1: correct public status truth, invalid preview IDs, stale guidance, and unfinished-topic indexing behavior. The Electric Charge versus Capacitor ordering remains an explicit curriculum decision rather than an approved change.
+Phase A1 corrected public status truth, invalid preview IDs, stale guidance, the root gateway, and unfinished-topic indexing behavior. The next recommended checkpoint is Phase A2 reproducibility and executable integrity. The Electric Charge versus Capacitor ordering remains an explicit curriculum decision rather than an approved change.
 
 ## License
 

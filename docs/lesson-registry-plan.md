@@ -1,8 +1,8 @@
 # Lesson registry plan
 
-This document describes the proposed central lesson registry for Electrical Atlas.
+This document describes the central lesson registry for Electrical Atlas and preserves the reasoning behind it.
 
-Status: v0.1 is implemented in `electrical-atlas-site/src/lib/lessonRegistry.ts`. The registry is now used by lesson suggestions, topic-record published-lesson links, and validation tests. Navigation, homepage cards, and visible lesson status/safety UI are still future rollout areas.
+Status: v0.1 is implemented in `electrical-atlas-site/src/lib/lessonRegistry.ts`. It drives lesson suggestions, topic-record availability links, home-page lesson actions, lesson browsing, the status board, lesson maturity/safety/source UI, and validation tests.
 
 The short version: as the site grows, every lesson should be described once in a structured registry, then reused by navigation, suggestions, topic records, tests, status labels, and future tooling.
 
@@ -15,7 +15,7 @@ Electrical Atlas has moved past the "one or two demo pages" stage. It now has:
 - bilingual English and Thai lesson routes;
 - generated topic records;
 - a relationship-based suggestion system;
-- topic pages that can point to published lessons;
+- topic pages that can point to available lesson pages while showing their actual maturity;
 - navigation links;
 - tests that verify lesson suggestions and topic IDs;
 - safety and Thailand-context notes.
@@ -23,10 +23,9 @@ Electrical Atlas has moved past the "one or two demo pages" stage. It now has:
 That is healthy, but it creates a maintenance problem. Lesson metadata is currently repeated in multiple places:
 
 - lesson route wrappers under `electrical-atlas-site/src/pages/en/lessons/` and `electrical-atlas-site/src/pages/th/lessons/`;
-- lesson labels and summaries in `electrical-atlas-site/src/lib/suggestions.ts`;
-- top navigation links in `electrical-atlas-site/src/layouts/BaseLayout.astro`;
-- homepage lesson cards in `electrical-atlas-site/src/pages/en/index.astro` and `electrical-atlas-site/src/pages/th/index.astro`;
-- published topic-to-lesson links in `electrical-atlas-site/src/components/TopicRecord.astro`;
+- lesson labels and summaries in suggestions;
+- lesson discovery and homepage actions;
+- topic-to-lesson availability links in `electrical-atlas-site/src/components/TopicRecord.astro`;
 - expected lesson IDs inside tests;
 - roadmap/status notes in Markdown docs.
 
@@ -39,7 +38,7 @@ The likely failure modes are:
 - publishing a lesson without connecting its primary atlas topic;
 - missing a safety warning or source-review status;
 - creating suggestions to a lesson that does not actually have a page;
-- letting topic records say "published lesson available" for the wrong route;
+- confusing route availability with the separate `published` maturity status;
 - making future refactors slow because every lesson is wired by hand.
 
 The registry reduces those risks by making each lesson a single structured object.
@@ -60,7 +59,7 @@ It should answer questions like:
 - What safety level does the lesson have?
 - Does it need Thailand-specific standards verification?
 - Which visual/demo component is associated with it?
-- Which topics should be treated as published lesson coverage?
+- Which topics are covered by an available lesson page?
 
 It should not contain long lesson text, equations, diagrams, or interactive demo implementation. Those stay in MDX and component files.
 
@@ -197,12 +196,12 @@ This gives us one source of truth:
 
 ### Topic records
 
-`TopicRecord.astro` currently keeps a manual map from topic IDs to published lesson paths. That mapping should come from the registry.
+`TopicRecord.astro` derives topic-to-lesson links from registry coverage rather than a manual path map.
 
 The registry can expose:
 
 ```ts
-getPublishedLessonForTopic(topicId, locale)
+getAvailableLessonForCoveredTopic(topicId, locale)
 getLessonsCoveringTopic(topicId)
 ```
 
@@ -243,7 +242,8 @@ Suggested tests:
 - every lesson with `status === "published"` has `sourceStatus === "verified"` or `sourceStatus === "not-needed"`;
 - every `moderate` or `high` safety lesson has visible safety notes;
 - every relationship pointing to a lesson points to a real registry slug;
-- every published topic-to-lesson link is derived from registry coverage.
+- every available topic-to-lesson link is derived from registry coverage;
+- route availability does not imply `status: published`.
 
 ## Implementation path
 
@@ -287,15 +287,15 @@ it should look up `battery` in the registry and build the suggestion card from t
 
 Current status: completed. `suggestions.ts` now reads lesson target title, summary, and route metadata from the registry.
 
-### Phase 3: Replace published-topic mapping
+### Phase 3: Replace manual topic-to-lesson mapping
 
-Replace the manual `publishedLessonPaths` object in `TopicRecord.astro`.
+Replace the manual lesson-path object in `TopicRecord.astro`.
 
-Use `coveredTopicIds` from the registry to decide whether a topic has a full lesson.
+Use `coveredTopicIds` and locale page availability from the registry to decide whether a topic has a lesson link.
 
 This makes topic records more honest and easier to maintain.
 
-Current status: completed. `TopicRecord.astro` now derives full-lesson links from registry `coveredTopicIds`.
+Current status: completed. `TopicRecord.astro` now derives available-lesson links from registry `coveredTopicIds`, and displays registry maturity separately.
 
 ### Phase 4: Replace navigation and homepage cards
 
@@ -306,6 +306,8 @@ Use the registry for:
 - guide page examples if appropriate.
 
 The goal is not to make the UI generic and lifeless. The goal is to avoid duplicate lesson metadata. Custom page layout can remain custom.
+
+Current status: completed for homepage lesson actions, lesson browsing, and the status board. The root route is deliberately a minimal language gateway rather than a second lesson catalog.
 
 ### Phase 5: Add registry validation tests
 
@@ -324,6 +326,8 @@ Current status: first validation test file added as `electrical-atlas-site/src/t
 Once the registry is trusted, use it to show lesson status and safety/source-review hints in `LessonShell.astro`.
 
 This should be gentle for foundation lessons and stronger for risky topics.
+
+Current status: completed. Lesson pages, the lesson browser, and the status board display registry maturity, safety, source state, and Thailand-context requirements.
 
 ## Rules for adding a new lesson after the registry exists
 
@@ -423,14 +427,14 @@ Keeping these separate avoids mixing two different kinds of knowledge.
 
 The first registry implementation is successful when:
 
-- the current nine lessons are represented in one registry;
+- the current ten available prototypes and two planned lessons are represented in one registry;
 - suggestion lesson cards use registry metadata;
-- topic records derive "published lesson available" links from registry coverage;
+- topic records derive lesson availability links from registry coverage and show maturity separately;
 - tests fail if a relationship points to a missing lesson slug;
 - tests fail if a lesson covers a missing atlas topic ID;
 - tests fail if a page is marked as existing but its route wrapper is missing;
-- planned lessons can exist in the registry without creating empty public pages;
-- safety/source status can be read by lesson UI later.
+- planned lessons can exist in the registry without creating empty lesson pages;
+- safety/source status is visible in lesson and registry UI.
 
 ## Long-term direction
 

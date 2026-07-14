@@ -1159,7 +1159,7 @@ p {
     var(--panel);
 }
 
-.topic-published-pill {
+.topic-lesson-available-pill {
   display: inline-flex;
   margin: 0.7rem 0 0;
 }

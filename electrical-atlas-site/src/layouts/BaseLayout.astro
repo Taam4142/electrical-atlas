@@ -8,6 +8,7 @@ interface Props {
   lang?: "en" | "th";
   counterpartPath?: string;
   counterpartLabel?: string;
+  noindex?: boolean;
 }
 
 const {
@@ -16,6 +17,7 @@ const {
   lang = "en",
   counterpartPath,
   counterpartLabel,
+  noindex = false,
 } = Astro.props;
 
 const homePath = lang === "th" ? "/th/" : "/en/";
@@ -32,6 +34,7 @@ const fullTitle = title === "Electrical Atlas" ? title : `${title} • Electrica
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
+    {noindex ? <meta name="robots" content="noindex,follow" /> : null}
     <meta name="theme-color" content="#07111f" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <title>{fullTitle}</title>
@@ -45,9 +48,9 @@ const fullTitle = title === "Electrical Atlas" ? title : `${title} • Electrica
     </script>
   </head>
   <body>
-    <a class="skip-link" href="#main">Skip to content</a>
+    <a class="skip-link" href="#main">{lang === "th" ? "ข้ามไปยังเนื้อหา" : "Skip to content"}</a>
     <header class="site-header">
-      <a class="brand" href={homePath} aria-label="Electrical Atlas home">
+      <a class="brand" href={homePath} aria-label={lang === "th" ? "หน้าแรก Electrical Atlas" : "Electrical Atlas home"}>
         <span class="brand-mark" aria-hidden="true">⚡</span>
         <span>
           <strong>Electrical Atlas</strong>
@@ -55,7 +58,7 @@ const fullTitle = title === "Electrical Atlas" ? title : `${title} • Electrica
         </span>
       </a>
 
-      <nav class="site-nav" aria-label="Primary">
+      <nav class="site-nav" aria-label={lang === "th" ? "เมนูหลัก" : "Primary"}>
         <a href={guidePath}>{lang === "th" ? "วิธีใช้เว็บ" : "Guide"}</a>
         <a href={registryPath}>{lang === "th" ? "สถานะ" : "Status"}</a>
         <a href={lessonsPath}>{lang === "th" ? "บทเรียน" : "Lessons"}</a>
@@ -72,13 +75,13 @@ const fullTitle = title === "Electrical Atlas" ? title : `${title} • Electrica
     <footer class="site-footer">
       <p>
         {lang === "th"
-          ? "ต้นแบบ v0.1 — เนื้อหาไทย/อังกฤษ, ภาพอธิบายเชิงแนวคิด, และหมายเหตุความปลอดภัยจะถูกตรวจเพิ่มทีละบท"
-          : "Prototype v0.1 — bilingual content, conceptual visuals, and safety notes will be reviewed lesson by lesson"}
+          ? "ต้นแบบ v0.1 — แต่ละบทแสดงระดับการทบทวนของตน ภาพอธิบายและหมายเหตุความปลอดภัยยังอยู่ระหว่างการตรวจทีละบท"
+          : "Prototype v0.1 — each lesson shows its review maturity; conceptual visuals and safety notes remain under ongoing review"}
       </p>
       <p>
         {lang === "th"
-          ? "บริบทประเทศไทย: มอก., วสท., กฟน., กฟภ., กกพ., กสทช. และ มว. จะถูกอ้างอิงเมื่อเข้าสู่บทมาตรฐาน/ความปลอดภัย"
-          : "Thailand context: TISI/TIS, EIT, MEA, PEA, ERC, NBTC, and NIMT references will be verified when standards and safety lessons are published"}
+          ? "บริบทประเทศไทย: แต่ละบทแสดงสถานะแหล่งอ้างอิง ข้อความด้านมาตรฐานและความปลอดภัยต้องผ่านการยืนยันจาก มอก., วสท., กฟน., กฟภ., กกพ., กสทช. หรือ มว. ก่อนนำไปใช้"
+          : "Thailand context: source status is shown per lesson; standards and safety claims require TISI/TIS, EIT, MEA, PEA, ERC, NBTC, or NIMT verification before use"}
       </p>
     </footer>
   </body>

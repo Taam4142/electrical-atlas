@@ -1,9 +1,11 @@
 import { describe, expect, it } from "vitest";
 import { atlasTopics } from "../lib/generated/atlasTopics";
 import {
+  getAvailableLessonForCoveredTopic,
   getImplementedLessons,
-  getLessonForCoveredTopic,
   getLessonHomeLabel,
+  isLessonAvailable,
+  isLessonPublished,
   lessonRegistry,
   type LessonRegistryEntry,
   type Locale,
@@ -105,7 +107,7 @@ describe("lesson registry", () => {
     expect(getLessonHomeLabel(getImplementedLessons("th")[0], "th")).toBe("เริ่มบทแรก: ไฟฟ้าคืออะไร?");
   });
 
-  it("allows roadmap and outline lessons without creating empty public pages", () => {
+  it("allows roadmap and outline lessons without creating empty lesson pages", () => {
     const nonPublicPlanningStatuses = ["candidate", "planned", "outlined"] as const;
     const planningLessonsWithPages = registryEntries
       .filter((lesson) => nonPublicPlanningStatuses.includes(lesson.status as (typeof nonPublicPlanningStatuses)[number]))
@@ -116,19 +118,29 @@ describe("lesson registry", () => {
     expect(registryEntries.find((lesson) => lesson.slug === "capacitor")?.status).toBe("planned");
   });
 
-  it("derives published topic-record lesson links from coverage metadata", () => {
-    expect(getLessonForCoveredTopic("ea.fundamentals.voltage", "en")?.paths.en).toBe("/en/lessons/voltage/");
-    expect(getLessonForCoveredTopic("ea.fundamentals.conductance", "en")?.paths.en).toBe(
+  it("derives available topic-record lesson links from coverage metadata", () => {
+    expect(getAvailableLessonForCoveredTopic("ea.fundamentals.voltage", "en")?.paths.en).toBe("/en/lessons/voltage/");
+    expect(getAvailableLessonForCoveredTopic("ea.fundamentals.conductance", "en")?.paths.en).toBe(
       "/en/lessons/resistance/",
     );
-    expect(getLessonForCoveredTopic("ea.storage.cell.metric", "th")?.paths.th).toBe("/th/lessons/battery/");
-    expect(getLessonForCoveredTopic("ea.circuit.element.switch-ideal", "en")?.paths.en).toBe(
+    expect(getAvailableLessonForCoveredTopic("ea.storage.cell.metric", "th")?.paths.th).toBe("/th/lessons/battery/");
+    expect(getAvailableLessonForCoveredTopic("ea.circuit.element.switch-ideal", "en")?.paths.en).toBe(
       "/en/lessons/switches-contacts/",
     );
-    expect(getLessonForCoveredTopic("ea.transport.contact", "th")?.paths.th).toBe(
+    expect(getAvailableLessonForCoveredTopic("ea.transport.contact", "th")?.paths.th).toBe(
       "/th/lessons/switches-contacts/",
     );
-    expect(getLessonForCoveredTopic("ea.component.capacitor", "en")).toBeUndefined();
+    expect(getAvailableLessonForCoveredTopic("ea.component.capacitor", "en")).toBeUndefined();
+  });
+
+  it("keeps route availability separate from publication maturity", () => {
+    const voltage = registryEntries.find((lesson) => lesson.slug === "voltage");
+    const capacitor = registryEntries.find((lesson) => lesson.slug === "capacitor");
+
+    expect(voltage && isLessonAvailable(voltage, "en")).toBe(true);
+    expect(voltage && isLessonPublished(voltage)).toBe(false);
+    expect(capacitor && isLessonAvailable(capacitor, "en")).toBe(false);
+    expect(capacitor && isLessonPublished(capacitor)).toBe(false);
   });
 
   it("tracks Switches and Contacts as a bilingual source-sensitive prototype", () => {
@@ -154,7 +166,7 @@ describe("lesson registry", () => {
 
   it("does not mark source-sensitive lessons as published without source verification", () => {
     const unverifiedPublishedLessons = registryEntries
-      .filter((lesson) => lesson.status === "published")
+      .filter(isLessonPublished)
       .filter((lesson) => !["not-needed", "verified"].includes(lesson.sourceStatus))
       .map((lesson) => lesson.slug);
 

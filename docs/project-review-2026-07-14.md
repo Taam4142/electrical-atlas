@@ -1,6 +1,6 @@
 # Project review and next-phase plan — 2026-07-14
 
-Status: recommended planning checkpoint; implementation is pending user confirmation.
+Status: Phase A1 was approved and implemented on 2026-07-14. Phases A2 and later remain recommendations pending separate approval. Automated and built-output verification is complete; the visual browser matrix still needs a clean rerun because the in-app browser automation connection failed during initialization.
 
 This document preserves the project retrospective performed on 2026-07-14. It records the current evidence, the main risks, and the recommended sequence of work so future sessions do not have to reconstruct the reasoning from chat history.
 
@@ -163,7 +163,7 @@ This ledger should begin with the first Thailand-sensitive lesson rather than at
 
 ### Phase A — Truth and integrity stabilization
 
-This is the recommended next implementation phase if the user confirms this reconfiguration.
+Phase A1 of this reconfiguration was approved on 2026-07-14. Later phases remain recommendations until separately approved.
 
 #### Phase A1: public truth and current-state cleanup
 
@@ -181,6 +181,38 @@ Exit criteria:
 - every displayed canonical ID exists or is explicitly marked provisional;
 - no public guide recommends already-completed development work;
 - mapped records cannot be mistaken for reviewed lessons or indexed as finished reference pages.
+
+#### Phase A1 implementation record — 2026-07-14
+
+Completed work:
+
+- separated route availability from editorial maturity with explicit registry helpers;
+- changed topic records, lesson discovery, and the status board to show availability and the actual maturity badge separately;
+- reserved `published` / `เผยแพร่แล้ว` for registry `status: published`;
+- corrected the Charge, Electric Field, Voltage, and Electric Current preview IDs;
+- removed the unresolved Incandescent Lamp preview rather than assigning it a misleading broader canonical ID;
+- added regression tests for preview ID, canonical-name, and node-type integrity;
+- replaced the stale root lesson catalog with a minimal equal English/Thai language gateway;
+- replaced obsolete development-roadmap copy in the public guide with current learner guidance;
+- improved current-state Thai interface labels and added centralized Thai topic type/status formatting;
+- added `noindex,follow` to mapped topic records without applying it to lessons, guide, map, status, or root pages;
+- reconciled the registry plan and nearby production documentation with the availability-versus-maturity model.
+
+Verification evidence:
+
+| Check | Result |
+| --- | --- |
+| `npm.cmd run check` | 83 files; 0 errors, warnings, or hints |
+| `npm.cmd test` | 9 test files; 55 tests passed |
+| `npm.cmd run build` | 3,245 static pages built |
+| Internal root-relative links | 3,246 unique targets checked; 0 missing |
+| Topic robots metadata | exactly one `noindex,follow` tag in sampled EN/TH Voltage and Capacitor topic output |
+| Non-topic robots metadata | no `noindex` tag in sampled lesson, guide, map, status, or root output |
+| Stale public identifiers/copy scan | no matches for the removed invalid IDs or obsolete published/next-build phrases |
+
+Remaining acceptance check:
+
+- rerun the desktop/mobile browser matrix when the in-app browser automation connection is healthy. The 2026-07-14 attempt failed during browser-runtime initialization before page interaction, so no visual-layout claim is recorded from that attempt.
 
 #### Phase A2: reproducibility and executable integrity
 
@@ -312,6 +344,6 @@ Do not silently decide these during unrelated implementation work.
 
 ## 8. Immediate next checkpoint
 
-If the user confirms this reconfiguration, start with **Phase A1: public truth and current-state cleanup**. It is small enough to complete and verify as one commit, reduces the most visible trust risks, and prepares the repository for the stricter Phase A2 toolchain work.
+Phase A1 is implemented. The next recommended checkpoint is **Phase A2: reproducibility and executable integrity**, pending separate user approval. Before or during that checkpoint, rerun the visual browser matrix recorded above when the browser connection is healthy.
 
-The proposed sequence is A1, A2, the Voltage publication pilot, and then the curriculum decision that controls Electric Charge and Capacitor ordering.
+The remaining proposed sequence is A2, the Voltage publication pilot, and then the curriculum decision that controls Electric Charge and Capacitor ordering.

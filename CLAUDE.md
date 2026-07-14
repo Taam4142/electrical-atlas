@@ -31,7 +31,7 @@ The latest dated review is:
 docs/project-review-2026-07-14.md
 ```
 
-Its phase reconfiguration is a recommendation pending user confirmation.
+Phase A1 was approved and implemented on 2026-07-14. Phase A2 and later remain recommendations pending separate approval. The Phase A1 visual browser matrix still needs a clean rerun; see the implementation record in the dated review.
 
 ## Suggestion system
 
@@ -59,10 +59,8 @@ Before adding many more lessons, preserve the project structure described in:
 - `docs/lesson-registry-plan.md`
 - `docs/lesson-template.mdx`
 
-The most important proposed near-term risk reductions are:
+Phase A1 completed the public-truth, canonical-preview-ID, stale-guidance, minimal-root-gateway, and mapped-topic indexing work. The most important remaining proposed near-term risk reductions are:
 
-- describe route availability and lesson maturity truthfully; reserve `published` for reviewed lessons;
-- fix invalid public canonical IDs and stale public guidance;
 - keep lesson metadata centralized in `electrical-atlas-site/src/lib/lessonRegistry.ts`;
 - make taxonomy parsing, relationship targets, covered topic IDs, and language routes fail validation when invalid;
 - keep safety/source status explicit;
@@ -109,6 +107,7 @@ If the current relationship graph disagrees with the archive, prefer the relatio
 For website changes, run:
 
 ```powershell
+npm.cmd run check
 npm.cmd test
 npm.cmd run build
 ```

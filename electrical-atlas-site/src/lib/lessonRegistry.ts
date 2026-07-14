@@ -459,16 +459,24 @@ export function getLessonById(lessonId: string): LessonRegistryItem | undefined 
   return lessonById.get(lessonId);
 }
 
+export function isLessonAvailable(lesson: LessonRegistryEntry, locale: Locale): boolean {
+  return lesson.hasPage[locale];
+}
+
+export function isLessonPublished(lesson: LessonRegistryEntry): boolean {
+  return lesson.status === "published";
+}
+
 export function getImplementedLessons(locale: Locale): LessonRegistryItem[] {
   return lessonRegistry
-    .filter((lesson) => lesson.hasPage[locale])
+    .filter((lesson) => isLessonAvailable(lesson, locale))
     .sort((a, b) => a.order - b.order);
 }
 
 export function getLessonSuggestionFields(slug: string, locale: Locale) {
   const lesson = getLessonBySlug(slug);
 
-  if (!lesson || !lesson.hasPage[locale]) {
+  if (!lesson || !isLessonAvailable(lesson, locale)) {
     return undefined;
   }
 
@@ -479,9 +487,12 @@ export function getLessonSuggestionFields(slug: string, locale: Locale) {
   };
 }
 
-export function getLessonForCoveredTopic(topicId: string, locale: Locale): LessonRegistryItem | undefined {
+export function getAvailableLessonForCoveredTopic(topicId: string, locale: Locale): LessonRegistryItem | undefined {
   return lessonRegistry
-    .filter((lesson) => lesson.hasPage[locale] && (lesson.coveredTopicIds as readonly string[]).includes(topicId))
+    .filter(
+      (lesson) =>
+        isLessonAvailable(lesson, locale) && (lesson.coveredTopicIds as readonly string[]).includes(topicId),
+    )
     .sort((a, b) => a.order - b.order)[0];
 }
 

@@ -53,7 +53,7 @@ Each relationship connects a source node to a target node:
 
 Node kinds:
 
-- `lesson` — a published or planned lesson page, such as `voltage` or `mosfet`.
+- `lesson` — a lesson-registry entry, which may be planned or have an available page at prototype, review-ready, or published maturity, such as `voltage` or `mosfet`.
 - `topic` — a canonical atlas topic ID, such as `ea.circuit.law.ohm`.
 
 ## Current relationship types

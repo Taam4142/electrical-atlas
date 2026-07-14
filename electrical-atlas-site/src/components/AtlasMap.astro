@@ -12,9 +12,11 @@ const t = {
     eyebrow: "atlas browser v0.1",
     title: "Browse the electrical knowledge map",
     intro:
-      "This is the first web version of the big Markdown atlas. It is not yet a full database, but it gives every future lesson a visible home.",
+      "This is the first web version of the big Markdown atlas. It is not yet a full database, but every mapped topic has a visible home.",
     modesTitle: "Browse by",
     groupsTitle: "Subject backbone",
+    navigationEyebrow: "navigation model",
+    taxonomyEyebrow: "taxonomy backbone",
     statusLabel: "status",
     scopeLabel: "scope",
     examplesLabel: "example nodes",
@@ -26,15 +28,17 @@ const t = {
     engineering: "engineering",
     application: "application",
     note:
-      "Taxonomy presence does not mean a finished lesson exists. A node becomes public only after research, review, localization, visual QA, and accessibility checks.",
+      "A mapped topic record is available for navigation, but it is not a reviewed lesson. Lesson pages show their separate maturity, source-review, and safety status.",
   },
   th: {
-    eyebrow: "atlas browser v0.1",
+    eyebrow: "ตัวสำรวจ atlas v0.1",
     title: "เลือกดูแผนที่ความรู้ไฟฟ้า",
     intro:
-      "นี่คือเวอร์ชันเว็บแรกของแผนที่ Markdown ขนาดใหญ่ ยังไม่ใช่ฐานข้อมูลเต็มรูปแบบ แต่ทำให้บทเรียนในอนาคตมีบ้านที่เห็นได้ชัด",
+      "นี่คือเวอร์ชันเว็บแรกของแผนที่ Markdown ขนาดใหญ่ ยังไม่ใช่ฐานข้อมูลเต็มรูปแบบ แต่ทุกหัวข้อที่ทำแผนที่แล้วมีบ้านที่เห็นได้ชัด",
     modesTitle: "เลือกดูได้ตาม",
     groupsTitle: "แกนสาขาหลัก",
+    navigationEyebrow: "รูปแบบการนำทาง",
+    taxonomyEyebrow: "โครงสร้างหลักของหมวดความรู้",
     statusLabel: "สถานะ",
     scopeLabel: "ขอบเขต",
     examplesLabel: "ตัวอย่างโหนด",
@@ -46,7 +50,7 @@ const t = {
     engineering: "วิศวกรรมสนับสนุน",
     application: "งานประยุกต์",
     note:
-      "การมีอยู่ใน taxonomy ไม่ได้แปลว่ามีบทเรียนสมบูรณ์แล้ว โหนดจะเผยแพร่จริงหลังผ่านการค้นคว้า ตรวจทาน แปล/ปรับภาษา QA ภาพ และตรวจการเข้าถึง",
+      "บันทึกหัวข้อที่ทำแผนที่แล้วเปิดใช้เพื่อนำทางได้ แต่ยังไม่ใช่บทเรียนที่ผ่านการทบทวน หน้าบทเรียนจะแสดงระดับการทบทวน สถานะแหล่งอ้างอิง และความปลอดภัยแยกกัน",
   },
 }[locale];
 ---
@@ -61,7 +65,7 @@ const t = {
 
 <section class="map-browser-panel" aria-labelledby="browse-modes-title">
   <div class="section-heading">
-    <p class="eyebrow">navigation model</p>
+    <p class="eyebrow">{t.navigationEyebrow}</p>
     <h2 id="browse-modes-title">{t.modesTitle}</h2>
   </div>
   <div class="browse-mode-row">
@@ -73,7 +77,7 @@ const t = {
 
 <section class="map-browser-panel" aria-labelledby="atlas-groups-title">
   <div class="section-heading">
-    <p class="eyebrow">taxonomy backbone</p>
+    <p class="eyebrow">{t.taxonomyEyebrow}</p>
     <h2 id="atlas-groups-title">{t.groupsTitle}</h2>
     <p>{t.note}</p>
   </div>

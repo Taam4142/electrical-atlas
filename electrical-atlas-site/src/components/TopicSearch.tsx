@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { atlasTopicMeta } from "../lib/generated/atlasTopicMeta";
+import { getTopicStatusLabel, getTopicTypeLabel } from "../lib/topicLabels";
 
 type Locale = "en" | "th";
 type AtlasTopic = {
@@ -26,7 +27,7 @@ const copy = {
     eyebrow: "topic index",
     title: "Search mapped topics",
     intro:
-      "This search reads the 1,607-topic Markdown inventory. These are mapped knowledge nodes, not finished public lessons yet.",
+      `This search reads the ${atlasTopicMeta.topicCount.toLocaleString("en-US")}-topic Markdown inventory. These are mapped knowledge nodes, not lesson pages, and they do not imply publication maturity.`,
     searchLabel: "Search topics",
     searchPlaceholder: "Try MOSFET, battery, FPGA, grounding, medical imaging...",
     typeLabel: "Type",
@@ -45,13 +46,13 @@ const copy = {
     depth: "depth",
     openTopic: "Open topic record",
     source: "source",
-    languageNote: "Canonical topic names are English for now. Thai labels will be added when each topic enters the publishing pipeline.",
+    languageNote: "Canonical topic names and summaries are currently English. Thai pages localize the interface; most mapped records do not yet have Thai topic copy.",
   },
   th: {
     eyebrow: "ดัชนีหัวข้อ",
     title: "ค้นหาโหนดความรู้ที่ทำแผนที่แล้ว",
     intro:
-      "ช่องค้นหานี้อ่าน inventory Markdown จำนวน 1,607 หัวข้อ สิ่งเหล่านี้คือโหนดที่ทำแผนที่แล้ว ยังไม่ใช่บทเรียนสาธารณะที่เขียนเสร็จทั้งหมด",
+      `ช่องค้นหานี้อ่าน inventory Markdown จำนวน ${atlasTopicMeta.topicCount.toLocaleString("th-TH")} หัวข้อ สิ่งเหล่านี้คือโหนดที่ทำแผนที่แล้ว ไม่ใช่หน้าบทเรียน และไม่ได้หมายความว่าผ่านการทบทวนเพื่อเผยแพร่แล้ว`,
     searchLabel: "ค้นหาหัวข้อ",
     searchPlaceholder: "ลอง MOSFET, battery, FPGA, grounding, medical imaging...",
     typeLabel: "ประเภท",
@@ -70,7 +71,7 @@ const copy = {
     depth: "ระดับ",
     openTopic: "เปิดบันทึกหัวข้อ",
     source: "แหล่งไฟล์",
-    languageNote: "ชื่อหัวข้อ canonical ยังเป็นภาษาอังกฤษก่อน ป้ายภาษาไทยจะเพิ่มเมื่อแต่ละหัวข้อเข้าสู่ pipeline การเผยแพร่",
+    languageNote: "ขณะนี้ชื่อและสรุปมาตรฐานของหัวข้อส่วนใหญ่ยังเป็นภาษาอังกฤษ หน้าไทยแปลส่วนติดต่อแล้ว แต่หัวข้อที่ทำแผนที่ส่วนใหญ่ยังไม่มีชื่อและสรุปภาษาไทย",
   },
 } satisfies Record<Locale, Record<string, string>>;
 
@@ -176,7 +177,7 @@ export default function TopicSearch({ locale = "en" }: { locale?: Locale }) {
             <option value="all">{text.allTypes}</option>
             {topicTypes.map((topicType) => (
               <option key={topicType} value={topicType}>
-                {topicType} ({atlasTopicMeta.byType[topicType as keyof typeof atlasTopicMeta.byType] ?? 0})
+                {getTopicTypeLabel(topicType, locale)} ({atlasTopicMeta.byType[topicType as keyof typeof atlasTopicMeta.byType] ?? 0})
               </option>
             ))}
           </select>
@@ -219,7 +220,7 @@ export default function TopicSearch({ locale = "en" }: { locale?: Locale }) {
           {visibleTopics.map((topic) => (
             <article className="topic-result-card" key={topic.id}>
               <div className="topic-card-topline">
-                <span>{topic.type}</span>
+                <span>{getTopicTypeLabel(topic.type, locale)}</span>
                 {topic.depth ? <span>{topic.depth}</span> : null}
               </div>
               <h3>{topic.name}</h3>
@@ -241,7 +242,7 @@ export default function TopicSearch({ locale = "en" }: { locale?: Locale }) {
                 </div>
                 <div>
                   <dt>{text.status}</dt>
-                  <dd>{topic.status}</dd>
+                  <dd>{getTopicStatusLabel(topic.status, locale)}</dd>
                 </div>
               </dl>
               <a className="topic-card-link" href={`/${locale}/topics/${topic.slug}/`}>

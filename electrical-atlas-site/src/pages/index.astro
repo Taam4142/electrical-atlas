@@ -18,54 +18,20 @@ import HeroCircuit from "../components/HeroCircuit.astro";
         A visual, bilingual knowledge map for electricity and electronics — starting with the deceptively simple
         question: what is electricity?
       </p>
-      <div class="hero-actions">
-        <a class="button" href="/en/">English</a>
-        <a class="button-secondary" href="/th/" lang="th">ภาษาไทย</a>
-      </div>
     </div>
-    <HeroCircuit />
+    <HeroCircuit locale="en" />
   </section>
 
-  <section class="choice-grid" aria-label="Prototype routes">
-    <a class="choice-card" href="/en/lessons/what-is-electricity/">
-      <h2>First lesson</h2>
-      <p>What Is Electricity? with guided and technical modes.</p>
+  <section class="choice-grid" aria-label="Choose your language">
+    <a class="choice-card" href="/en/" lang="en">
+      <p class="eyebrow">English</p>
+      <h2>Open the English atlas</h2>
+      <p>Start with the guide, browse available lessons, or explore the complete subject map.</p>
     </a>
-    <a class="choice-card" href="/en/lessons/voltage/">
-      <h2>Voltage lesson</h2>
-      <p>Electric potential difference explained as energy per unit charge.</p>
-    </a>
-    <a class="choice-card" href="/en/lessons/current/">
-      <h2>Current lesson</h2>
-      <p>Electric current explained as charge crossing a point per second.</p>
-    </a>
-    <a class="choice-card" href="/en/lessons/resistance/">
-      <h2>Resistance lesson</h2>
-      <p>Resistance and conductance explained through current limiting and heat.</p>
-    </a>
-    <a class="choice-card" href="/en/lessons/ohms-law/">
-      <h2>Ohm's Law lesson</h2>
-      <p>Voltage, current, and resistance linked by the first practical circuit law.</p>
-    </a>
-    <a class="choice-card" href="/en/lessons/series-parallel/">
-      <h2>Series and Parallel lesson</h2>
-      <p>Shared current, shared voltage, equivalent resistance, and circuit path thinking.</p>
-    </a>
-    <a class="choice-card" href="/en/lessons/power-energy/">
-      <h2>Power and Energy lesson</h2>
-      <p>Watts, joules, watt-hours, heat, batteries, and why time matters.</p>
-    </a>
-    <a class="choice-card" href="/en/lessons/battery/">
-      <h2>Battery lesson</h2>
-      <p>Chemical energy, terminal voltage, capacity, internal resistance, C-rate, and safety.</p>
-    </a>
-    <a class="choice-card" href="/en/lessons/mosfet/">
-      <h2>MOSFET lesson</h2>
-      <p>The first full component lesson: structure, channel formation, switching, and applications.</p>
-    </a>
-    <a class="choice-card" href="/en/map/">
-      <h2>Knowledge map</h2>
-      <p>Browse the first web version of the larger atlas backbone.</p>
+    <a class="choice-card" href="/th/" lang="th">
+      <p class="eyebrow">ภาษาไทย</p>
+      <h2>เปิดแผนที่ความรู้ภาษาไทย</h2>
+      <p>เริ่มจากคู่มือ เลือกบทเรียนที่เปิดอ่านได้ หรือสำรวจแผนที่วิชาทั้งหมด</p>
     </a>
   </section>
 </BaseLayout>

@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { atlasTopicMeta, atlasTopics } from "../lib/generated/atlasTopics";
+import { subjectPreview } from "../lib/navigation";
 
 describe("generated atlas topic index", () => {
   it("contains the full mapped inventory seed", () => {
@@ -32,5 +33,19 @@ describe("generated atlas topic index", () => {
 
     expect(atlasTopics.every((topic) => !topic.depth.includes(thaiMojibakeMarker))).toBe(true);
     expect(atlasTopics.some((topic) => topic.depth === "D0-D4")).toBe(true);
+  });
+
+  it("keeps every subject preview aligned with a canonical topic", () => {
+    const topicsById = new Map(atlasTopics.map((topic) => [topic.id, topic]));
+    const missingTopics = subjectPreview.filter((preview) => !topicsById.has(preview.id));
+    const mismatchedTopics = subjectPreview
+      .filter((preview) => {
+        const topic = topicsById.get(preview.id);
+        return topic && (preview.en !== topic.name || preview.kind !== topic.type);
+      })
+      .map((preview) => preview.id);
+
+    expect(missingTopics).toEqual([]);
+    expect(mismatchedTopics).toEqual([]);
   });
 });

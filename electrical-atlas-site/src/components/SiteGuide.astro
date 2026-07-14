@@ -10,7 +10,14 @@ const copy = {
     eyebrow: "site guide",
     title: "How to use Electrical Atlas",
     subtitle:
-      "Think of this prototype as a learning map, not a finished textbook. Start with one guided lesson, then use the subject map to see where every future topic will live.",
+      "Think of this prototype as a learning map, not a finished textbook. Start with the available lesson list, then use the subject map to see how the wider field is organized.",
+    startEyebrow: "start here",
+    partsEyebrow: "atlas navigation",
+    lessonEyebrow: "lesson mode",
+    mapEyebrow: "map mode",
+    statusEyebrow: "mapped ≠ available ≠ published",
+    pathsEyebrow: "navigation recipes",
+    nextEyebrow: "continue learning",
     quickStartTitle: "Quick start",
     quickStartIntro: "If you are not sure what to click, use this order:",
     quickStart: [
@@ -22,7 +29,7 @@ const copy = {
       },
       {
         title: "2. Browse the lesson list",
-        body: "Use Lessons when you want only pages that are actually published, grouped by foundation, circuit, power, and component topics.",
+        body: "Use Lessons when you want pages that are available now. Each card shows its separate maturity, source-review, safety, and Thailand-context status.",
         href: "/en/lessons/",
         label: "Open lessons",
       },
@@ -47,23 +54,23 @@ const copy = {
       },
       {
         name: "First lesson",
-        body: "A finished prototype lesson about charge, fields, voltage, current, and a battery lighting a lamp.",
+        body: "An available prototype lesson about charge, fields, voltage, current, and a battery lighting a lamp.",
       },
       {
         name: "Lessons",
-        body: "A calm browser for public guided lessons. Planned lessons are shown as roadmap items but do not link to empty pages.",
+        body: "A calm browser for available guided lessons. Planned lessons are shown separately and do not link to empty pages.",
       },
       {
         name: "MOSFET lesson",
-        body: "The first full component lesson. It explains structure, gate field control, switching behavior, gate charge, and application areas.",
+        body: "An available component prototype explaining structure, gate field control, switching behavior, gate charge, and application areas.",
       },
       {
         name: "Subject map",
-        body: "The big atlas index. It currently exposes 1,607 mapped topics from the Markdown knowledge inventory.",
+        body: "The large atlas index, generated from the mapped Markdown knowledge inventory rather than maintained as a manual article list.",
       },
       {
         name: "Lesson status",
-        body: "A project board showing public, planned, source-sensitive, and Thailand-context-needed lessons.",
+        body: "The active registry queue, showing page availability separately from maturity, sources, safety, and Thailand-context work.",
       },
       {
         name: "Search",
@@ -90,11 +97,11 @@ const copy = {
       "Browse the subject backbone to understand the big structure.",
       "Use search for a specific word like MOSFET, battery, Coulomb, transformer, or IEC.",
       "Open a topic record to learn its primary home, type, domain, and summary.",
-      "If the record exists but no lesson exists yet, that means the topic is mapped but not published.",
+      "If a record exists but no lesson link appears, the topic is mapped but no lesson page is available for it.",
     ],
     statusTitle: "Important status rule",
     statusBody:
-      "Mapped does not mean published. The atlas can know where MOSFET gate charge belongs before the MOSFET lesson is fully written, illustrated, reviewed, translated, and tested.",
+      "Mapped means a topic has a place in the atlas. Available means a lesson page can be opened. Published is a maturity status reserved for content that has completed its required review; an available page may still be a prototype.",
     pathsTitle: "Choose your path",
     paths: [
       {
@@ -107,18 +114,25 @@ const copy = {
       },
       {
         label: "I want Thai engineering context",
-        route: "Thai pages → Safety/standards topics → verified TISI, EIT, MEA, PEA, ERC, NBTC, NIMT references later",
+        route: "Thai pages → Safety/standards topics → Check source status and review warnings before using TISI, EIT, MEA, PEA, ERC, NBTC, or NIMT claims",
       },
     ],
-    nextTitle: "What I recommend next",
+    nextTitle: "Where to go next",
     nextBody:
-      "Now that the MOSFET component lesson exists, the next build step should be topic-to-lesson relationships: prerequisites, successor topics, and related component/circuit links.",
+      "If you are new, open Lessons and follow the foundation sequence. Use the Subject map to explore a specific component, system, or application, and use Status to check review maturity.",
   },
   th: {
     eyebrow: "คู่มือใช้งานเว็บ",
     title: "วิธีใช้ Electrical Atlas",
     subtitle:
-      "ให้คิดว่าเว็บนี้เป็นแผนที่การเรียนรู้ ไม่ใช่ตำราที่ทำเสร็จทั้งเล่มแล้ว เริ่มจากบทเรียนตัวอย่างหนึ่งบท แล้วใช้แผนที่วิชาเพื่อดูว่าแต่ละหัวข้อจะอยู่ตรงไหนในอนาคต",
+      "ให้คิดว่าเว็บนี้เป็นแผนที่การเรียนรู้ ไม่ใช่ตำราที่ทำเสร็จทั้งเล่มแล้ว เริ่มจากรายการบทเรียนที่เปิดอ่านได้ แล้วใช้แผนที่วิชาเพื่อดูว่าสาขาต่าง ๆ เชื่อมโยงกันอย่างไร",
+    startEyebrow: "เริ่มตรงนี้",
+    partsEyebrow: "ส่วนต่าง ๆ ของ atlas",
+    lessonEyebrow: "โหมดบทเรียน",
+    mapEyebrow: "โหมดแผนที่",
+    statusEyebrow: "ทำแผนที่แล้ว ≠ เปิดอ่านได้ ≠ เผยแพร่แล้ว",
+    pathsEyebrow: "ตัวอย่างเส้นทาง",
+    nextEyebrow: "เรียนต่อ",
     quickStartTitle: "เริ่มเร็วแบบไม่หลง",
     quickStartIntro: "ถ้าไม่แน่ใจว่าควรกดอะไร ให้เริ่มตามลำดับนี้:",
     quickStart: [
@@ -129,13 +143,19 @@ const copy = {
         label: "อยู่หน้านี้",
       },
       {
-        title: "2. เริ่มจากบทเรียนแรก",
+        title: "2. ดูรายการบทเรียน",
+        body: "ใช้หน้าบทเรียนเพื่อดูเฉพาะหน้าที่เปิดอ่านได้ พร้อมสถานะการทบทวน แหล่งอ้างอิง ความปลอดภัย และบริบทไทยของแต่ละบท",
+        href: "/th/lessons/",
+        label: "เปิดรายการบทเรียน",
+      },
+      {
+        title: "3. เริ่มจากบทเรียนแรก",
         body: "ใช้บท “ไฟฟ้าคืออะไร?” เพื่อดูแนวทางการสอนของเว็บ: เริ่มจากภาพรวมและภาพอธิบาย แล้วค่อยเพิ่มความละเอียดทางเทคนิค",
         href: "/th/lessons/what-is-electricity/",
         label: "เปิดบทแรก",
       },
       {
-        title: "3. เปิดแผนที่ความรู้",
+        title: "4. เปิดแผนที่ความรู้",
         body: "ใช้แผนที่เมื่ออยากดูตามวิชา ชิ้นส่วน ระบบ งานประยุกต์ หรือเส้นทางความรู้พื้นฐาน",
         href: "/th/map/",
         label: "เปิดแผนที่",
@@ -149,19 +169,23 @@ const copy = {
       },
       {
         name: "บทเรียนแรก",
-        body: "บทต้นแบบเรื่องประจุ สนามไฟฟ้า แรงดัน กระแส และแบตเตอรี่ที่ทำให้หลอดไฟติด",
+        body: "บทเรียนต้นแบบที่เปิดอ่านได้ เรื่องประจุ สนามไฟฟ้า แรงดัน กระแส และแบตเตอรี่ที่ทำให้หลอดไฟติด",
+      },
+      {
+        name: "บทเรียน",
+        body: "รายการอ่านแบบสงบที่แสดงหน้าบทเรียนซึ่งเปิดได้ตอนนี้ ส่วนบทที่วางแผนไว้จะแสดงแยกและไม่ลิงก์ไปหน้าเปล่า",
       },
       {
         name: "บทเรียน MOSFET",
-        body: "บทเรียนชิ้นส่วนเต็มบทแรก อธิบายโครงสร้าง การควบคุมด้วยสนามที่ gate การสวิตช์ gate charge และงานที่ใช้ MOSFET",
+        body: "บทเรียนชิ้นส่วนสถานะต้นแบบที่เปิดอ่านได้ อธิบายโครงสร้าง การควบคุมด้วยสนามที่ gate การสวิตช์ gate charge และงานที่ใช้ MOSFET",
       },
       {
         name: "แผนที่วิชา",
-        body: "ดัชนีใหญ่ของ atlas ตอนนี้ดึงหัวข้อที่ทำแผนที่ไว้แล้ว 1,607 หัวข้อจากชุด Markdown",
+        body: "ดัชนีใหญ่ของ atlas ที่สร้างจาก inventory ความรู้ใน Markdown ไม่ใช่รายการบทความที่ต้องแก้ด้วยมือ",
       },
       {
         name: "สถานะบทเรียน",
-        body: "กระดานคุมโปรเจกต์ที่แสดงบทเรียนที่เปิดอ่านได้ วางแผนไว้ ต้องตรวจแหล่งอ้างอิง และต้องตรวจบริบทไทย",
+        body: "คิวงานของ registry ที่แยกการมีหน้าเว็บออกจากระดับการทบทวน แหล่งอ้างอิง ความปลอดภัย และงานบริบทไทย",
       },
       {
         name: "ค้นหา",
@@ -188,16 +212,16 @@ const copy = {
       "ดูแกนสาขาหลักเพื่อเข้าใจภาพใหญ่ก่อน",
       "ใช้ช่องค้นหาถ้าต้องการคำเฉพาะ เช่น MOSFET, battery, Coulomb, transformer หรือ IEC",
       "เปิดบันทึกหัวข้อเพื่อดูบ้านหลักของหัวข้อนั้น ชนิดของหัวข้อ โดเมน และสรุปสั้น",
-      "ถ้าหัวข้อมีบันทึกแต่ยังไม่มีบทเรียน แปลว่าหัวข้อนั้นถูกทำแผนที่แล้วแต่ยังไม่ได้เผยแพร่เป็นบทเรียน",
+      "ถ้าหัวข้อมีบันทึกแต่ไม่มีลิงก์บทเรียน แปลว่าหัวข้อนั้นถูกทำแผนที่แล้ว แต่ยังไม่มีหน้าบทเรียนที่เปิดอ่านได้",
     ],
     statusTitle: "กฎสำคัญเรื่องสถานะ",
     statusBody:
-      "Mapped ไม่ได้แปลว่า Published ทันที ตัว atlas อาจรู้แล้วว่า MOSFET gate charge ควรอยู่ตรงไหน ก่อนที่บท MOSFET จะถูกเขียน วาดภาพ ตรวจทาน แปล และทดสอบจนพร้อมเผยแพร่",
+      "ทำแผนที่แล้ว หมายถึงหัวข้อนั้นมีตำแหน่งใน atlas เปิดอ่านได้ หมายถึงมีหน้าบทเรียนให้เข้าใช้ ส่วน เผยแพร่แล้ว เป็นระดับความพร้อมที่สงวนไว้สำหรับเนื้อหาซึ่งผ่านการทบทวนตามที่กำหนด ดังนั้นหน้าที่เปิดได้อาจยังเป็นต้นแบบ",
     pathsTitle: "เลือกเส้นทางของคุณ",
     paths: [
       {
         label: "ผม/ฉันเป็นมือใหม่",
-        route: "คู่มือ → บทเรียนแรก → แผนที่วิชา → ค้นหาชิ้นส่วนง่าย ๆ",
+        route: "คู่มือ → รายการบทเรียน → บทเรียนแรก → แผนที่วิชา → ค้นหาชิ้นส่วนง่าย ๆ",
       },
       {
         label: "อยากเรียนชิ้นส่วนเฉพาะ",
@@ -205,12 +229,12 @@ const copy = {
       },
       {
         label: "อยากได้บริบทมาตรฐานไทย",
-        route: "หน้าไทย → หัวข้อความปลอดภัย/มาตรฐาน → อ้างอิง มอก., วสท., กฟน., กฟภ., กกพ., กสทช., มว. ที่ตรวจแล้วในอนาคต",
+        route: "หน้าไทย → หัวข้อความปลอดภัย/มาตรฐาน → ตรวจสถานะแหล่งอ้างอิงและคำเตือนก่อนใช้ข้อมูลจาก มอก., วสท., กฟน., กฟภ., กกพ., กสทช. หรือ มว.",
       },
     ],
-    nextTitle: "สิ่งที่ผมแนะนำให้ทำต่อ",
+    nextTitle: "ไปต่ออย่างไร",
     nextBody:
-      "ตอนนี้บทเรียน MOSFET มีแล้ว ขั้นถัดไปควรทำความสัมพันธ์ระหว่างหัวข้อกับบทเรียน เช่น prerequisite, successor topic และลิงก์หัวข้อ/วงจรที่เกี่ยวข้อง",
+      "ถ้าเพิ่งเริ่ม ให้เปิดหน้าบทเรียนและเรียนตามลำดับพื้นฐาน ใช้แผนที่วิชาเมื่ออยากสำรวจชิ้นส่วน ระบบ หรืองานประยุกต์เฉพาะเรื่อง และใช้หน้าสถานะเมื่อต้องการตรวจระดับการทบทวนเนื้อหา",
   },
 }[locale];
 ---
@@ -223,7 +247,7 @@ const copy = {
 
 <section class="guide-section" aria-labelledby="quick-start-title">
   <div class="section-heading">
-    <p class="eyebrow">start here</p>
+    <p class="eyebrow">{copy.startEyebrow}</p>
     <h2 id="quick-start-title">{copy.quickStartTitle}</h2>
     <p>{copy.quickStartIntro}</p>
   </div>
@@ -241,7 +265,7 @@ const copy = {
 
 <section class="guide-section" aria-labelledby="current-parts-title">
   <div class="section-heading">
-    <p class="eyebrow">prototype map</p>
+    <p class="eyebrow">{copy.partsEyebrow}</p>
     <h2 id="current-parts-title">{copy.currentPartsTitle}</h2>
   </div>
 
@@ -257,7 +281,7 @@ const copy = {
 
 <section class="guide-two-column">
   <article class="guide-panel">
-    <p class="eyebrow">lesson mode</p>
+    <p class="eyebrow">{copy.lessonEyebrow}</p>
     <h2>{copy.lessonTitle}</h2>
     <ol>
       {copy.lessonSteps.map((step) => <li>{step}</li>)}
@@ -265,7 +289,7 @@ const copy = {
   </article>
 
   <article class="guide-panel">
-    <p class="eyebrow">map mode</p>
+    <p class="eyebrow">{copy.mapEyebrow}</p>
     <h2>{copy.mapTitle}</h2>
     <ol>
       {copy.mapSteps.map((step) => <li>{step}</li>)}
@@ -274,14 +298,14 @@ const copy = {
 </section>
 
 <section class="guide-status-card" aria-labelledby="status-rule-title">
-  <p class="eyebrow">mapped ≠ published</p>
+  <p class="eyebrow">{copy.statusEyebrow}</p>
   <h2 id="status-rule-title">{copy.statusTitle}</h2>
   <p>{copy.statusBody}</p>
 </section>
 
 <section class="guide-section" aria-labelledby="choose-path-title">
   <div class="section-heading">
-    <p class="eyebrow">navigation recipes</p>
+    <p class="eyebrow">{copy.pathsEyebrow}</p>
     <h2 id="choose-path-title">{copy.pathsTitle}</h2>
   </div>
 
@@ -296,7 +320,7 @@ const copy = {
 </section>
 
 <section class="guide-status-card guide-next-card">
-  <p class="eyebrow">next build step</p>
+  <p class="eyebrow">{copy.nextEyebrow}</p>
   <h2>{copy.nextTitle}</h2>
   <p>{copy.nextBody}</p>
 </section>

@@ -1,8 +1,9 @@
 ---
 import SuggestionSection from "./SuggestionSection.astro";
 import type { AtlasTopic } from "../lib/generated/atlasTopics";
-import { getLessonForCoveredTopic } from "../lib/lessonRegistry";
+import { getAvailableLessonForCoveredTopic, getLessonStatusLabel } from "../lib/lessonRegistry";
 import { topicToSuggestion, type SuggestionItem } from "../lib/suggestions";
+import { getTopicStatusLabel, getTopicTypeLabel } from "../lib/topicLabels";
 
 interface Props {
   topic: AtlasTopic;
@@ -16,9 +17,14 @@ const { topic, locale = "en", relatedTopics = [], relatedSuggestions: providedRe
 const copy = {
   en: {
     eyebrow: "topic record",
+    recordStatusEyebrow: "record status",
+    notLessonEyebrow: "record ≠ lesson",
+    metadataEyebrow: "metadata",
+    workflowEyebrow: "workflow",
+    usageEyebrow: "usage",
     statusLabel: "Mapped, not a full lesson yet",
     canonicalNote:
-      "Canonical topic names are English for now. Thai labels and Thai-specific wording will be added when each topic enters the publishing pipeline.",
+      "Canonical topic names and summaries are currently English. Thai pages localize the interface; most mapped records do not yet have Thai topic copy.",
     primaryHome: "Primary home",
     whatThisIsTitle: "What this page is",
     whatThisIs:
@@ -56,16 +62,21 @@ const copy = {
     map: "Back to knowledge map",
     guide: "How to use this site",
     firstLesson: "Read the first lesson",
-    publishedLesson: "Published lesson available",
-    openPublishedLesson: "Open full lesson",
+    availableLesson: "Lesson available",
+    openAvailableLesson: "Open lesson",
     mapped: "mapped",
     noSafetyTag: "No explicit safety tag yet",
   },
   th: {
     eyebrow: "บันทึกหัวข้อ",
+    recordStatusEyebrow: "สถานะบันทึก",
+    notLessonEyebrow: "บันทึก ≠ บทเรียน",
+    metadataEyebrow: "ข้อมูลกำกับ",
+    workflowEyebrow: "ขั้นตอนการทำงาน",
+    usageEyebrow: "วิธีใช้งาน",
     statusLabel: "ทำแผนที่แล้ว แต่ยังไม่ใช่บทเรียนเต็ม",
     canonicalNote:
-      "ชื่อหัวข้อ canonical ยังเป็นภาษาอังกฤษก่อน ป้ายภาษาไทยและถ้อยคำเฉพาะบริบทไทยจะเพิ่มเมื่อแต่ละหัวข้อเข้าสู่ pipeline การเผยแพร่",
+      "ขณะนี้ชื่อและสรุปมาตรฐานของหัวข้อส่วนใหญ่ยังเป็นภาษาอังกฤษ หน้าไทยแปลส่วนติดต่อแล้ว แต่หัวข้อที่ทำแผนที่ส่วนใหญ่ยังไม่มีชื่อและสรุปภาษาไทย",
     primaryHome: "บ้านหลักของหัวข้อ",
     whatThisIsTitle: "หน้านี้คืออะไร",
     whatThisIs:
@@ -103,8 +114,8 @@ const copy = {
     map: "กลับไปแผนที่ความรู้",
     guide: "วิธีใช้เว็บนี้",
     firstLesson: "อ่านบทเรียนแรก",
-    publishedLesson: "มีบทเรียนเผยแพร่แล้ว",
-    openPublishedLesson: "เปิดบทเรียน MOSFET",
+    availableLesson: "มีบทเรียนให้อ่าน",
+    openAvailableLesson: "เปิดบทเรียน",
     mapped: "ทำแผนที่แล้ว",
     noSafetyTag: "ยังไม่มีแท็กความปลอดภัยเฉพาะ",
   },
@@ -113,13 +124,19 @@ const copy = {
 const mapPath = locale === "th" ? "/th/map/" : "/en/map/";
 const guidePath = locale === "th" ? "/th/guide/" : "/en/guide/";
 const firstLessonPath = locale === "th" ? "/th/lessons/what-is-electricity/" : "/en/lessons/what-is-electricity/";
-const coveredLesson = getLessonForCoveredTopic(topic.id, locale);
-const publishedLessonPath = coveredLesson?.paths[locale] || "";
+const availableLesson = getAvailableLessonForCoveredTopic(topic.id, locale);
+const availableLessonPath = availableLesson?.paths[locale] || "";
+const availableLessonMaturity = availableLesson ? getLessonStatusLabel(availableLesson.status, locale) : "";
+const availableLessonLabel = availableLesson
+  ? `${copy.availableLesson} · ${availableLessonMaturity}`
+  : "";
 const metadataRelatedSuggestions = relatedTopics.map((relatedTopic) =>
   topicToSuggestion(
     relatedTopic,
     locale,
-    locale === "th" ? relatedTopic.type : `${relatedTopic.type} · ${relatedTopic.section || relatedTopic.domain}`,
+    locale === "th"
+      ? getTopicTypeLabel(relatedTopic.type, locale)
+      : `${relatedTopic.type} · ${relatedTopic.section || relatedTopic.domain}`,
   ),
 );
 const relatedSuggestions = providedRelatedSuggestions ?? metadataRelatedSuggestions;
@@ -140,10 +157,10 @@ const relationAwareSuggestionIntro = {
 
 const facts = [
   { label: copy.canonicalId, value: topic.id, code: true },
-  { label: copy.type, value: topic.type },
+  { label: copy.type, value: getTopicTypeLabel(topic.type, locale) },
   { label: copy.depth, value: topic.depth },
   { label: copy.safety, value: topic.safety || copy.noSafetyTag },
-  { label: copy.status, value: locale === "th" ? copy.mapped : topic.status },
+  { label: copy.status, value: getTopicStatusLabel(topic.status, locale) },
   { label: copy.domain, value: topic.domain },
   { label: copy.section, value: topic.section },
   { label: copy.subsection, value: topic.subsection },
@@ -156,13 +173,13 @@ const facts = [
   <h1>{topic.name}</h1>
   <p class="hero-subtitle">{topic.summary}</p>
   <div class="topic-record-pills" aria-label={copy.primaryHome}>
-    <span>{topic.type}</span>
+    <span>{getTopicTypeLabel(topic.type, locale)}</span>
     {topic.depth ? <span>{topic.depth}</span> : null}
     <span>{copy.statusLabel}</span>
   </div>
   <p class="topic-language-note">{copy.canonicalNote}</p>
   <div class="hero-actions">
-    {publishedLessonPath ? <a class="button" href={publishedLessonPath}>{locale === "th" ? "เปิดบทเรียนเต็ม" : copy.openPublishedLesson}</a> : null}
+    {availableLessonPath ? <a class="button" href={availableLessonPath}>{copy.openAvailableLesson}</a> : null}
     <a class="button" href={mapPath}>{copy.map}</a>
     <a class="button-secondary" href={guidePath}>{copy.guide}</a>
     <a class="button-secondary" href={firstLessonPath}>{copy.firstLesson}</a>
@@ -171,14 +188,14 @@ const facts = [
 
 <section class="topic-record-grid" aria-label={copy.factsTitle}>
   <article class="topic-record-panel">
-    <p class="eyebrow">status</p>
+    <p class="eyebrow">{copy.recordStatusEyebrow}</p>
     <h2>{copy.whatThisIsTitle}</h2>
-    {publishedLessonPath ? <p class="state-pill topic-published-pill">{copy.publishedLesson}</p> : null}
+    {availableLessonPath ? <p class="state-pill topic-lesson-available-pill">{availableLessonLabel}</p> : null}
     <p>{copy.whatThisIs}</p>
   </article>
 
   <article class="topic-record-panel warning-panel">
-    <p class="eyebrow">not published yet</p>
+    <p class="eyebrow">{copy.notLessonEyebrow}</p>
     <h2>{copy.notLessonTitle}</h2>
     <p>{copy.notLesson}</p>
   </article>
@@ -186,7 +203,7 @@ const facts = [
 
 <section class="topic-record-layout">
   <article class="topic-record-panel">
-    <p class="eyebrow">metadata</p>
+    <p class="eyebrow">{copy.metadataEyebrow}</p>
     <h2>{copy.factsTitle}</h2>
     <dl class="topic-fact-list">
       {facts.map((fact) => (
@@ -200,7 +217,7 @@ const facts = [
 
   <div class="topic-record-stack">
     <article class="topic-record-panel">
-      <p class="eyebrow">workflow</p>
+      <p class="eyebrow">{copy.workflowEyebrow}</p>
       <h2>{copy.pipelineTitle}</h2>
       <ol class="topic-pipeline-list">
         {copy.pipeline.map((step) => <li>{step}</li>)}
@@ -208,7 +225,7 @@ const facts = [
     </article>
 
     <article class="topic-record-panel">
-      <p class="eyebrow">usage</p>
+      <p class="eyebrow">{copy.usageEyebrow}</p>
       <h2>{copy.useTitle}</h2>
       <ul class="topic-usage-list">
         {copy.useItems.map((item) => <li>{item}</li>)}

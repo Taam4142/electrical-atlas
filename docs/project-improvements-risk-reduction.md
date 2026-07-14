@@ -6,7 +6,7 @@ It is intentionally broader than a feature roadmap. A feature roadmap says what 
 
 Electrical Atlas has an unusually large ambition: explain electrical and electronic knowledge across fundamentals, components, circuits, power, embedded systems, standards, safety, manufacturing, applications, history, and future research. The goal is possible only if the project stays organized. The main danger is not one big failure. The main danger is many small inconsistencies accumulating until the site becomes hard to trust or hard to maintain.
 
-The latest evidence-backed proposal is [Project review and next-phase plan — 2026-07-14](project-review-2026-07-14.md). It is pending user confirmation. That review keeps this long-lived risk register but proposes reordering the immediate work around public truth, executable integrity, and proving one complete publication lifecycle.
+The latest evidence-backed plan and implementation record is [Project review and next-phase plan — 2026-07-14](project-review-2026-07-14.md). Phase A1 was approved and implemented on 2026-07-14. Phase A2 and later remain recommendations pending separate approval.
 
 ## How to use this document
 
@@ -74,13 +74,13 @@ The taxonomy can be broad. Published lessons must stay reviewed, honest, and app
 
 **Priority:** P0
 
-**Warning spot:** Lesson slugs, titles, summaries, routes, status, and primary topic links are currently repeated across route wrappers, suggestions, navigation, homepage cards, topic records, and tests.
+**Warning spot:** The registry now centralizes lesson identity, titles, routes, status, coverage, safety, and source state for suggestions, home actions, lesson browsing, topic links, lesson UI, and tests. Remaining drift can still occur in route wrappers, strategic documents, and manually repeated explanatory copy.
 
 **Why it matters:** At 10 prototypes this is manageable. At 20+ lessons, one forgotten edit can break a route, a language counterpart, a suggestion, or an available-topic link.
 
 **Risk reduction:**
 
-- Implement a central lesson registry.
+- Maintain the central lesson registry as the operational source of truth.
 - Store each lesson's slug, stable ID, primary topic, covered topics, language routes, status, safety level, source status, title, summary, and ordering in one place.
 - Use that registry for navigation, suggestions, topic-record available-lesson links, and tests.
 
@@ -485,9 +485,9 @@ The taxonomy can be broad. Published lessons must stay reviewed, honest, and app
 
 ## Recommended order of action
 
-Do not try to fix every risk at once. The detailed proposed sequence is maintained only in the [2026-07-14 project review](project-review-2026-07-14.md) and is pending user confirmation. This risk register intentionally avoids duplicating that phase plan.
+Do not try to fix every risk at once. The detailed sequence and approval state are maintained only in the [2026-07-14 project review](project-review-2026-07-14.md). Phase A1 is implemented; later phases still need separate approval. This risk register intentionally avoids duplicating that phase plan.
 
-Until a reconfiguration is confirmed, continue applying the standing rules in this document: keep checks and deployment healthy, describe content status truthfully, do not publish unverified safety or standards claims, preserve Thai terminology and encoding quality, and record newly discovered structural risks.
+Continue applying the standing rules in this document: keep checks and deployment healthy, describe content status truthfully, do not publish unverified safety or standards claims, preserve Thai terminology and encoding quality, and record newly discovered structural risks.
 
 ## What not to do
 
@@ -507,7 +507,7 @@ The project is safer to scale when:
 
 - every lesson is declared once in a registry;
 - every suggestion target points to a real lesson or topic;
-- every topic record clearly shows whether it is mapped or published;
+- every topic record clearly separates mapped-record status, lesson-page availability, and lesson maturity;
 - every moderate/high safety lesson has visible warnings and source status;
 - Thai terms are consistent and UTF-8-safe;
 - dependency upgrades are intentional;

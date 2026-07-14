@@ -1,6 +1,29 @@
+---
+interface Props {
+  locale?: "en" | "th";
+}
+
+const { locale = "en" } = Astro.props;
+const copy = {
+  en: {
+    title: "Conceptual battery, field, wire, and lamp diagram",
+    switch: "switch",
+    lamp: "lamp",
+    caption:
+      "A teaching diagram: the electric field establishes the circuit condition quickly, while charge carriers drift slowly.",
+  },
+  th: {
+    title: "แผนภาพแนวคิดของแบตเตอรี่ สนามไฟฟ้า สายไฟ และหลอดไฟ",
+    switch: "สวิตช์",
+    lamp: "หลอดไฟ",
+    caption: "ภาพเพื่อการสอน: สนามไฟฟ้าสร้างเงื่อนไขของวงจรได้อย่างรวดเร็ว ขณะที่ตัวพาประจุลอยเลื่อนช้า",
+  },
+}[locale];
+---
+
 <figure class="hero-circuit" aria-labelledby="hero-circuit-title">
   <svg viewBox="0 0 760 420" role="img">
-    <title id="hero-circuit-title">Conceptual battery, field, wire, and lamp diagram</title>
+    <title id="hero-circuit-title">{copy.title}</title>
     <defs>
       <linearGradient id="wireGlow" x1="0" x2="1">
         <stop offset="0" stop-color="#64f4ff" />
@@ -30,14 +53,14 @@
       <circle cx="0" cy="26" r="9" fill="#64f4ff" />
       <circle cx="150" cy="26" r="9" fill="#64f4ff" />
       <line x1="6" y1="20" x2="132" y2="-8" stroke="#f8d66d" stroke-width="7" stroke-linecap="round" />
-      <text x="44" y="72" fill="#d8ecff" font-size="18">switch</text>
+      <text x="44" y="72" fill="#d8ecff" font-size="18">{copy.switch}</text>
     </g>
 
     <g class="lamp" transform="translate(574 158)">
       <circle cx="36" cy="52" r="44" fill="#251d0a" stroke="#f8d66d" stroke-width="4" />
       <path d="M17 54c11-22 27 22 38 0" fill="none" stroke="#ffd875" stroke-width="5" stroke-linecap="round" />
       <path class="lamp-glow" d="M36 8a44 44 0 1 1 0 88a44 44 0 0 1 0-88Z" />
-      <text x="-5" y="124" fill="#d8ecff" font-size="18">lamp</text>
+      <text x="-5" y="124" fill="#d8ecff" font-size="18">{copy.lamp}</text>
     </g>
 
     <g class="charges">
@@ -49,7 +72,5 @@
       <circle cx="560" cy="310" r="5" />
     </g>
   </svg>
-  <figcaption>
-    A teaching diagram: the electric field establishes the circuit condition quickly, while charge carriers drift slowly.
-  </figcaption>
+  <figcaption>{copy.caption}</figcaption>
 </figure>

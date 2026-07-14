@@ -9,6 +9,7 @@ import {
   getRelationLabel,
   type RelationshipType,
 } from "./relationships";
+import { getTopicTypeLabel } from "./topicLabels";
 
 export type { LessonKey, Locale } from "./lessonRegistry";
 
@@ -38,7 +39,7 @@ export function topicToSuggestion(
     summary: topic.summary,
     href: topicPath(locale, topic),
     kind: "topic",
-    relation: relation || topic.type,
+    relation: relation || getTopicTypeLabel(topic.type, locale),
     relationType,
   };
 }
@@ -138,7 +139,7 @@ function topicSimilarityScore(current: AtlasTopic, candidate: AtlasTopic) {
 
 function metadataRelationLabel(current: AtlasTopic, candidate: AtlasTopic, locale: Locale) {
   if (locale === "th") {
-    return candidate.type;
+    return getTopicTypeLabel(candidate.type, locale);
   }
 
   if (current.subsection && current.subsection === candidate.subsection) {
@@ -207,4 +208,3 @@ export function getRelatedTopicSuggestions(
 
   return [...explicitSuggestions, ...fallbackSuggestions].slice(0, limit);
 }
-

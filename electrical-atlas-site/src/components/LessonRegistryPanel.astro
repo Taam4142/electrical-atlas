@@ -3,6 +3,7 @@ import {
   getSafetyLevelLabel,
   getSourceStatusLabel,
   getLessonStatusLabel,
+  isLessonAvailable,
   lessonRegistry,
   type Locale,
   type NavGroup,
@@ -46,23 +47,25 @@ const copy = {
     eyebrow: "lesson registry v0.1",
     title: "Lesson status board",
     subtitle:
-      "This page shows which lessons are public, planned, source-sensitive, or waiting for Thailand-context review. It is a project control surface, not a finished curriculum page.",
+      "This page separates lesson-page availability from editorial maturity, source review, and Thailand-context work. It is an active registry queue, not a finished curriculum page.",
+    controlEyebrow: "project control",
+    registryEyebrow: "availability ≠ maturity",
     summaryTitle: "Snapshot",
     total: "total registered lessons",
-    publicLessons: "public lessons",
+    availableLessons: "available lesson pages",
     plannedLessons: "planned lessons",
     sourceNeeded: "need source review",
     thailandContext: "need Thailand context",
     registryTitle: "Registered lessons",
     registryNote:
-      "A lesson may be listed here before it has a public page. That is intentional: the registry tracks the roadmap separately from publication readiness.",
+      "A lesson may be registered before it has a page. Page availability and editorial maturity are tracked separately: an available lesson may still be a prototype.",
     status: "status",
     group: "group",
     safety: "safety",
     sources: "sources",
     page: "page",
-    publicPage: "open lesson",
-    notPublic: "not public yet",
+    openLesson: "open lesson",
+    noPage: "no lesson page yet",
     thailandYes: "Thailand context required",
     thailandNo: "general context",
     id: "ID",
@@ -70,26 +73,28 @@ const copy = {
     coveredTopics: "covered topics",
   },
   th: {
-    eyebrow: "lesson registry v0.1",
+    eyebrow: "ทะเบียนบทเรียน v0.1",
     title: "กระดานสถานะบทเรียน",
     subtitle:
-      "หน้านี้แสดงว่าบทเรียนไหนเผยแพร่แล้ว วางแผนไว้ ต้องตรวจแหล่งอ้างอิง หรือต้องมีบริบทมาตรฐาน/การใช้งานในประเทศไทย เป็นหน้าคุมโปรเจกต์ ไม่ใช่บทเรียนเต็ม",
+      "หน้านี้แยกการมีหน้าบทเรียนออกจากระดับการทบทวน สถานะแหล่งอ้างอิง และงานบริบทประเทศไทย เป็นคิวงานของ registry ไม่ใช่หน้าหลักสูตรที่เสร็จสมบูรณ์",
+    controlEyebrow: "การควบคุมโปรเจกต์",
+    registryEyebrow: "เปิดอ่านได้ ≠ เผยแพร่แล้ว",
     summaryTitle: "ภาพรวมตอนนี้",
     total: "บทเรียนในทะเบียนทั้งหมด",
-    publicLessons: "บทเรียนที่เปิดอ่านได้",
+    availableLessons: "หน้าบทเรียนที่เปิดอ่านได้",
     plannedLessons: "บทเรียนที่วางแผนไว้",
     sourceNeeded: "ต้องตรวจแหล่งอ้างอิง",
     thailandContext: "ต้องตรวจบริบทไทย",
     registryTitle: "รายการบทเรียนในทะเบียน",
     registryNote:
-      "บทเรียนอาจอยู่ในหน้านี้ก่อนมีหน้า public ได้โดยตั้งใจ เพราะ registry แยก roadmap ออกจากความพร้อมเผยแพร่",
+      "บทเรียนอาจอยู่ใน registry ก่อนมีหน้าเว็บได้โดยตั้งใจ การเปิดอ่านได้และระดับการทบทวนเป็นคนละสถานะกัน ดังนั้นบทเรียนที่เปิดได้อาจยังเป็นต้นแบบ",
     status: "สถานะ",
     group: "กลุ่ม",
     safety: "ความปลอดภัย",
     sources: "แหล่งอ้างอิง",
     page: "หน้าเว็บ",
-    publicPage: "เปิดบทเรียน",
-    notPublic: "ยังไม่เปิด public",
+    openLesson: "เปิดบทเรียน",
+    noPage: "ยังไม่มีหน้าบทเรียน",
     thailandYes: "ต้องมีบริบทไทย",
     thailandNo: "บริบททั่วไป",
     id: "ID",
@@ -100,13 +105,13 @@ const copy = {
 
 const lessons = [...lessonRegistry].sort((a, b) => a.order - b.order);
 const totalLessons = lessons.length;
-const publicLessons = lessons.filter((lesson) => lesson.hasPage[locale]).length;
+const availableLessons = lessons.filter((lesson) => isLessonAvailable(lesson, locale)).length;
 const plannedLessons = lessons.filter((lesson) => lesson.status === "planned").length;
 const sourceNeededLessons = lessons.filter((lesson) => lesson.sourceStatus === "needed").length;
 const thailandContextLessons = lessons.filter((lesson) => lesson.requiresThailandContext).length;
 const summaries = [
   { value: totalLessons, label: copy.total },
-  { value: publicLessons, label: copy.publicLessons },
+  { value: availableLessons, label: copy.availableLessons },
   { value: plannedLessons, label: copy.plannedLessons },
   { value: sourceNeededLessons, label: copy.sourceNeeded },
   { value: thailandContextLessons, label: copy.thailandContext },
@@ -121,7 +126,7 @@ const summaries = [
 
 <section class="registry-section" aria-labelledby="registry-summary-title">
   <div class="section-heading">
-    <p class="eyebrow">project control</p>
+    <p class="eyebrow">{copy.controlEyebrow}</p>
     <h2 id="registry-summary-title">{copy.summaryTitle}</h2>
   </div>
 
@@ -137,14 +142,14 @@ const summaries = [
 
 <section class="registry-section" aria-labelledby="registry-list-title">
   <div class="section-heading">
-    <p class="eyebrow">roadmap ≠ publication</p>
+    <p class="eyebrow">{copy.registryEyebrow}</p>
     <h2 id="registry-list-title">{copy.registryTitle}</h2>
     <p>{copy.registryNote}</p>
   </div>
 
   <div class="registry-card-grid">
     {lessons.map((lesson) => {
-      const hasPublicPage = lesson.hasPage[locale];
+      const hasAvailablePage = isLessonAvailable(lesson, locale);
       return (
         <article class="registry-card">
           <div class="registry-card-topline">
@@ -197,10 +202,10 @@ const summaries = [
           </div>
 
           <div class="registry-card-footer">
-            {hasPublicPage ? (
-              <a class="text-link" href={lesson.paths[locale]}>{copy.publicPage}</a>
+            {hasAvailablePage ? (
+              <a class="text-link" href={lesson.paths[locale]}>{copy.openLesson}</a>
             ) : (
-              <span>{copy.notPublic}</span>
+              <span>{copy.noPage}</span>
             )}
           </div>
         </article>

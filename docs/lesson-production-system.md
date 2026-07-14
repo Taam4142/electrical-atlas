@@ -104,7 +104,7 @@ Stable lesson metadata is centralized in the active lesson registry:
 electrical-atlas-site/src/lib/lessonRegistry.ts
 ```
 
-The registry plan is documented in [lesson-registry-plan.md](lesson-registry-plan.md). It explains why lesson titles, routes, primary topic IDs, safety status, language availability, and published-topic coverage should be declared once and reused by navigation, suggestions, topic records, and tests.
+The registry plan is documented in [lesson-registry-plan.md](lesson-registry-plan.md). It explains why lesson titles, routes, primary topic IDs, safety status, language availability, and topic coverage should be declared once and reused by navigation, suggestions, topic records, and tests.
 
 ## English and Thai language workflow
 
@@ -187,11 +187,11 @@ Source-review details live in [lesson-quality-checklist.md](lesson-quality-check
 
 ## Definition of done for a lesson
 
-A lesson is done enough for prototype publication when:
+A lesson is done enough for an available prototype page when:
 
 - English MDX exists.
 - Thai MDX exists or Thai is explicitly marked pending.
-- Page wrapper exists for each published language.
+- A page wrapper exists for each language marked available.
 - Primary atlas node is known.
 - At least 3 suggested next topics are meaningful.
 - Safety relevance has been considered.

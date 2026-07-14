@@ -1,5 +1,6 @@
 ---
 import { subjectPreview } from "../lib/navigation";
+import { getTopicTypeLabel } from "../lib/topicLabels";
 
 interface Props {
   locale?: "en" | "th";
@@ -16,15 +17,15 @@ const { locale = "en" } = Astro.props;
     </h2>
     <p>
       {locale === "th"
-        ? "เว็บนี้จะไม่เป็นแค่บทความแยกกัน แต่เป็นกราฟความรู้: แนวคิด ชิ้นส่วน ระบบ และงานประยุกต์เชื่อมกันด้วยความสัมพันธ์ที่ชัดเจน"
-        : "This site will not be isolated articles. It is a knowledge graph: concepts, components, systems, and applications linked by explicit relationships."}
+        ? "เว็บนี้เป็นกราฟความรู้ ไม่ใช่เพียงบทความแยกจากกัน: แนวคิด ชิ้นส่วน ระบบ และงานประยุกต์เชื่อมกันด้วยความสัมพันธ์ที่ชัดเจน"
+        : "This site is a knowledge graph rather than a collection of isolated articles: concepts, components, systems, and applications are linked by explicit relationships."}
     </p>
   </div>
 
   <div class="node-grid">
     {subjectPreview.map((node) => (
       <article class="node-card">
-        <p>{node.kind}</p>
+        <p>{getTopicTypeLabel(node.kind, locale)}</p>
         <h3>{locale === "th" ? node.th : node.en}</h3>
         <code>{node.id}</code>
       </article>

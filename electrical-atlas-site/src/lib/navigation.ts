@@ -25,34 +25,28 @@ export const mapPaths: Record<Locale, string> = {
 
 export const subjectPreview = [
   {
-    id: "ea.concept.charge",
+    id: "ea.fundamentals.charge",
     en: "Electric charge",
     th: "ประจุไฟฟ้า",
-    kind: "concept",
+    kind: "quantity",
   },
   {
-    id: "ea.phenomenon.electric-field",
+    id: "ea.em.field.electric",
     en: "Electric field",
     th: "สนามไฟฟ้า",
-    kind: "phenomenon",
+    kind: "quantity",
   },
   {
-    id: "ea.quantity.voltage",
+    id: "ea.fundamentals.voltage",
     en: "Voltage",
     th: "แรงดันไฟฟ้า",
     kind: "quantity",
   },
   {
-    id: "ea.quantity.current",
-    en: "Current",
+    id: "ea.fundamentals.current",
+    en: "Electric current",
     th: "กระแสไฟฟ้า",
     kind: "quantity",
-  },
-  {
-    id: "ea.component.lamp.incandescent",
-    en: "Incandescent lamp",
-    th: "หลอดไส้",
-    kind: "component",
   },
   {
     id: "ea.device.fet.mosfet",
