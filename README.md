@@ -113,6 +113,7 @@ See [docs/deployment.md](docs/deployment.md).
 
 ## Production docs
 
+- [Latest project review and next-phase plan (2026-07-14)](docs/project-review-2026-07-14.md)
 - [Lesson production system](docs/lesson-production-system.md)
 - [Project improvements and risk-reduction plan](docs/project-improvements-risk-reduction.md)
 - [Lesson registry plan](docs/lesson-registry-plan.md)
@@ -137,13 +138,9 @@ See [docs/deployment.md](docs/deployment.md).
 
 ## Near roadmap
 
-1. Keep CI and Vercel deployment green.
-2. Source-review the Switches and Contacts prototype only where exact safety, installation, or standards claims are added.
-3. Build the next component lessons: Capacitor and Diode.
-4. Pin dependencies or add controlled dependency update tooling.
-5. Add explicit topic relationship fields: prerequisite, successor, part-of, used-in, made-of, alternative-to, and fails-by.
-6. Maintain the Thai terminology glossary and expand Thai standard references for Thailand-relevant electrical practice.
-7. Expand the explicit relationship graph beyond the first seed set and add validation for duplicate or missing edges.
+The [project review and next-phase plan dated 2026-07-14](docs/project-review-2026-07-14.md) contains the latest evidence-backed reconfiguration proposal. It is pending user confirmation and is the only document that should carry the detailed proposed phase sequence.
+
+Its recommended immediate checkpoint is Phase A1: correct public status truth, invalid preview IDs, stale guidance, and unfinished-topic indexing behavior. The Electric Charge versus Capacitor ordering remains an explicit curriculum decision rather than an approved change.
 
 ## License
 

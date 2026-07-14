@@ -6,6 +6,8 @@ It is intentionally broader than a feature roadmap. A feature roadmap says what 
 
 Electrical Atlas has an unusually large ambition: explain electrical and electronic knowledge across fundamentals, components, circuits, power, embedded systems, standards, safety, manufacturing, applications, history, and future research. The goal is possible only if the project stays organized. The main danger is not one big failure. The main danger is many small inconsistencies accumulating until the site becomes hard to trust or hard to maintain.
 
+The latest evidence-backed proposal is [Project review and next-phase plan — 2026-07-14](project-review-2026-07-14.md). It is pending user confirmation. That review keeps this long-lived risk register but proposes reordering the immediate work around public truth, executable integrity, and proving one complete publication lifecycle.
+
 ## How to use this document
 
 Use this document when deciding what to improve before adding more lessons.
@@ -74,13 +76,13 @@ The taxonomy can be broad. Published lessons must stay reviewed, honest, and app
 
 **Warning spot:** Lesson slugs, titles, summaries, routes, status, and primary topic links are currently repeated across route wrappers, suggestions, navigation, homepage cards, topic records, and tests.
 
-**Why it matters:** At 9 lessons this is manageable. At 20+ lessons, one forgotten edit can break a route, a language counterpart, a suggestion, or a published-topic link.
+**Why it matters:** At 10 prototypes this is manageable. At 20+ lessons, one forgotten edit can break a route, a language counterpart, a suggestion, or an available-topic link.
 
 **Risk reduction:**
 
 - Implement a central lesson registry.
 - Store each lesson's slug, stable ID, primary topic, covered topics, language routes, status, safety level, source status, title, summary, and ordering in one place.
-- Use that registry for navigation, suggestions, topic-record published links, and tests.
+- Use that registry for navigation, suggestions, topic-record available-lesson links, and tests.
 
 **Deep-dive plan:** See [lesson-registry-plan.md](lesson-registry-plan.md).
 
@@ -88,7 +90,7 @@ The taxonomy can be broad. Published lessons must stay reviewed, honest, and app
 
 - A lesson is declared once in the registry.
 - Suggestions read lesson labels from the registry.
-- Topic records derive "published lesson available" from registry coverage.
+- Topic records derive lesson availability and actual maturity status from registry coverage.
 - Tests fail when a registry page claims a route exists but the route wrapper is missing.
 
 ### 3. Technical accuracy and source review
@@ -327,6 +329,8 @@ The taxonomy can be broad. Published lessons must stay reviewed, honest, and app
 
 **Priority:** P2
 
+**Current escalation:** The [2026-07-14 project review](project-review-2026-07-14.md) raises unfinished-topic indexing policy to P1 while the public deployment exposes more than 3,200 mapped record pages. Broader SEO work remains P2.
+
 **Warning spot:** The project will eventually have thousands of pages. Search engines and users need clear signals about what is a finished lesson and what is a mapped topic record.
 
 **Why it matters:** Poor metadata can make the site appear lower quality than it is. Search engines may index many thin mapped records before the best lessons.
@@ -481,28 +485,9 @@ The taxonomy can be broad. Published lessons must stay reviewed, honest, and app
 
 ## Recommended order of action
 
-Do not try to fix every risk at once. The next practical sequence should be:
+Do not try to fix every risk at once. The detailed proposed sequence is maintained only in the [2026-07-14 project review](project-review-2026-07-14.md) and is pending user confirmation. This risk register intentionally avoids duplicating that phase plan.
 
-1. **Keep the lesson registry rollout enforced.**  
-   Registry v0.1 now drives suggestions, visible lesson metadata, status board behavior, public lesson discovery, and route validation. Continue adding tests whenever registry behavior expands.
-
-2. **Expand registry and relationship validation tests.**  
-   The first validation tests exist. Continue expanding them for missing routes, missing topic IDs, bad relationship targets, duplicate metadata, and planned/outlined lessons that accidentally create empty public pages.
-
-3. **Pin dependencies or set up controlled dependency updates.**  
-   This reduces surprise build failures from `latest`.
-
-4. **Use the lesson authoring workflow for all new lessons.**  
-   Create an outline first, then prototype only when scope, visuals, safety boundaries, Thai context, and source-review needs are clear.
-
-5. **Maintain the Thai terminology glossary and encoding sanity test.**
-   These guardrails now protect the bilingual foundation; keep extending them whenever new Thai terms, standards-sensitive words, or encoding risks appear.
-
-6. **Keep the mobile navigation reminder visible, but do not overbuild it yet.**
-   The current mobile nav is acceptable because it does not create page-level overflow. Revisit it when the top-level nav grows, Thai labels get longer, or mobile QA starts feeling cramped.
-
-7. **Continue the next lessons.**
-   Switches and Contacts is now a bilingual prototype with a draft-source safety posture. Next content step: build Capacitor and Diode, while keeping Switches out of exact standards/installation claims until a source-review pass.
+Until a reconfiguration is confirmed, continue applying the standing rules in this document: keep checks and deployment healthy, describe content status truthfully, do not publish unverified safety or standards claims, preserve Thai terminology and encoding quality, and record newly discovered structural risks.
 
 ## What not to do
 
