@@ -284,7 +284,7 @@ Required work:
 4. Review the English lesson for teaching clarity. **Completed for the bound candidate revision.**
 5. Review the Thai lesson for natural language and glossary consistency. **Maintainer preparation is complete; project-owner Thai approval is pending.**
 6. Complete desktop, mobile, keyboard, reduced-motion, and screen-reader-oriented checks. **Source/code review is complete; rendered browser and assistive-technology checks remain pending.**
-7. Check the deployed English and Thai pages. **Pending after the candidate commit is deployed.**
+7. Check the deployed English and Thai pages. **HTTP/content-integrity verification passed on 2026-07-15; rendered review remains part of step 6.**
 8. Record reviewer, review date, source status, limitations, and revision. **Completed in the versioned review record; later decisions must be appended, not inferred.**
 9. Mark the lesson `published` only after every required gate passes. **Pending; the registry correctly remains `prototype`.**
 

@@ -14,7 +14,6 @@
   "blockers": [
     "owner-thai-language-approval",
     "visual-accessibility-review",
-    "preview-deployment-review",
     "owner-publication-approval"
   ],
   "reviewedFiles": {
@@ -78,11 +77,11 @@
       "note": "Twelve Node checks, 73 Vitest tests across 11 files, Astro diagnostics for 90 files, the 3,245-page production build, 3,214 topic robots policies, and 3,246 internal references passed for the bound candidate files."
     },
     "previewDeployment": {
-      "status": "pending",
-      "reviewer": "Maintainer deployment review",
+      "status": "passed",
+      "reviewer": "Maintainer deployment verification",
       "reviewerAuthority": "maintainer",
-      "reviewedAt": null,
-      "note": "English and Thai review-ready pages must be checked after deployment."
+      "reviewedAt": "2026-07-15",
+      "note": "The deployed English and Thai Voltage routes returned HTTP 200 and exposed unique bound-candidate content markers after commit 764c7d3 reached production; rendered visual/accessibility review remains a separate gate."
     },
     "publication": {
       "status": "pending",
@@ -123,7 +122,7 @@ Status: evidence is in review; the lesson is not approved for publication.
 | English content | Codex-assisted maintainer content audit | Passed 2026-07-14 | No owner action required unless wording changes materially. |
 | Thai language | Project owner | Pending | Blocks publication. |
 | Visual/accessibility | Maintainer browser review | Pending | Blocks handoff as review-ready. |
-| Preview/live deployment | Maintainer deployment review | Pending | Blocks final publication decision. |
+| Preview/live deployment | Maintainer deployment verification | Passed 2026-07-15 at HTTP/content-integrity level | Rendered visual/accessibility review remains separate. |
 | Final publication | Project owner | Pending | Blocks `published`. |
 
 The project owner's acceptance of the governance model on 2026-07-14 approved these roles, not this lesson revision.
@@ -214,7 +213,7 @@ Final judgment of natural Thai wording belongs to the project owner and is still
 | Native keyboard controls and visible focus | Source/code review passed; rendered keyboard verification remains pending. |
 | Reduced-motion behavior | Source/code review passed; rendered reduced-motion verification remains pending. |
 | Screen-reader-oriented names, live output, and transcript | Source/code review passed; assistive-technology verification remains pending. |
-| Deployed English/Thai pages | Pending review-ready deployment |
+| Deployed English/Thai pages | Passed HTTP/content-integrity check: both routes returned 200 and exposed unique candidate markers after commit `764c7d3`; rendered review remains pending. |
 
 ## Known limitations and review triggers
 
@@ -232,10 +231,11 @@ Final judgment of natural Thai wording belongs to the project owner and is still
 | 2026-07-14 | Approve governance roles and begin Voltage pilot | Project owner | Approved process only; no lesson publication approval. |
 | 2026-07-14 | Source, technical, English, Thai-preparation, and demo audit | Codex-assisted maintainer review | Corrections implemented; owner Thai review and browser/deployment evidence remain. |
 | 2026-07-15 | Run revision-bound implementation gate | Maintainer automated verification | Tests, Astro diagnostics, production build, robots policy, and internal-reference validation passed; rendered browser review remains pending. |
+| 2026-07-15 | Verify deployed candidate routes | Maintainer deployment verification | English and Thai routes returned HTTP 200 with unique current-candidate markers; no visual/accessibility approval inferred. |
 
 ## Publication decision
 
-- Registry status after review preparation: Pending implementation/browser gates; must remain below `published`.
+- Registry status after review preparation: Implementation and deployment-integrity gates passed; rendered visual/accessibility and owner gates remain, so the lesson must stay below `published`.
 - Project-owner publication decision: Pending.
 - Thai-language decision: Pending.
 - Qualified-review decision: Not required for the current low-risk conceptual scope; reassess if scope changes.
