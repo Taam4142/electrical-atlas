@@ -6,7 +6,7 @@
   "lessonId": "ea.lesson.voltage.v0.1",
   "recordState": "in-review",
   "sourceStatus": "verified",
-  "reviewedRevision": "sha256:a157e3492aad3cc891569779826789b9a55456fc7efbf50966d01cd251414b7b",
+  "reviewedRevision": "sha256:9e665a0289c7dda9162c998b36b4403ff8acf2813b7a269cb95dea75a79799c8",
   "reviewedAt": "2026-07-15",
   "nextReviewAt": "2027-01-14",
   "qualifiedReviewRequired": false,
@@ -14,13 +14,15 @@
   "blockers": [
     "owner-thai-language-approval",
     "visual-accessibility-review",
+    "preview-deployment-review",
     "owner-publication-approval"
   ],
   "reviewedFiles": {
     "electrical-atlas-site/src/lib/lessonRegistry.ts": "e4cceaf27a952fde5d48d6c34cca262f75d69c2ef103d1d48f4871d40814d867",
     "electrical-atlas-site/src/content/lessons/en/voltage.mdx": "801061c892c21be084e18a73c09fe4dd202cf9cb95a849b319dbcd3a2587d883",
     "electrical-atlas-site/src/content/lessons/th/voltage.mdx": "7ff016ed44376d2c6979314d0ce8f45c296fe5a713466fb8a163e09af38c0e3c",
-    "electrical-atlas-site/src/components/VoltageEnergyDemo.tsx": "96df4ef23f85535664f471785bd2c9ae77f6bee1d7a1635ace5e8644b47afce6",
+    "electrical-atlas-site/src/components/VoltageEnergyDemo.tsx": "f930999e73155479264665de7a068bc04e05074b01206cddbdf2b229e9db668d",
+    "electrical-atlas-site/src/lib/numberFormatting.ts": "afe52e71cad5c75720046dc4ec6c9771ad67c1f937b36131fa99fd5b0a84df6c",
     "electrical-atlas-site/src/lib/physics.ts": "ddd14938b8f49a96f9221699263faeabeb9fa9d4b866bf5135581d0a6ade9c67",
     "electrical-atlas-site/src/pages/en/lessons/voltage.astro": "26c874054cdf863b1b4fa57c2fd8dcc037185b8ea7aa06f7bba2154192960f3d",
     "electrical-atlas-site/src/pages/th/lessons/voltage.astro": "4ea78b5255c6140b8e10321a3bf980876ca7e3c0c4b05b35a030776997df9583",
@@ -38,15 +40,15 @@
       "status": "passed",
       "reviewer": "Codex-assisted maintainer technical audit",
       "reviewerAuthority": "maintainer",
-      "reviewedAt": "2026-07-14",
-      "note": "Low-risk conceptual scope only; qualified review is required if practical or hazardous scope is added."
+      "reviewedAt": "2026-07-15",
+      "note": "The numeric model remains unchanged; the reviewed correction rounds only localized presentation text. Low-risk conceptual scope only; qualified review is required if practical or hazardous scope is added."
     },
     "englishContent": {
       "status": "passed",
       "reviewer": "Codex-assisted maintainer content audit",
       "reviewerAuthority": "maintainer",
-      "reviewedAt": "2026-07-14",
-      "note": "Definition, notation, sign convention, safety boundary, and source presentation corrected."
+      "reviewedAt": "2026-07-15",
+      "note": "Definition, notation, sign convention, safety boundary, source presentation, and the rounded spoken energy value were reviewed."
     },
     "thaiLanguage": {
       "status": "pending",
@@ -60,7 +62,7 @@
       "reviewer": "Maintainer browser review",
       "reviewerAuthority": "maintainer",
       "reviewedAt": null,
-      "note": "Revised demo still requires desktop/mobile and assistive-semantics verification."
+      "note": "English and Thai semantics, narrow layout, overflow, and touch targets were inspected on the prior deployed candidate. The corrected candidate still needs deployment recheck plus rendered keyboard focus/control and reduced-motion confirmation."
     },
     "qualifiedHuman": {
       "status": "not-required",
@@ -74,14 +76,14 @@
       "reviewer": "Maintainer automated verification",
       "reviewerAuthority": "maintainer",
       "reviewedAt": "2026-07-15",
-      "note": "Twelve Node checks, 73 Vitest tests across 11 files, Astro diagnostics for 90 files, the 3,245-page production build, 3,214 topic robots policies, and 3,246 internal references passed for the bound candidate files."
+      "note": "Twelve Node checks, 75 Vitest tests across 12 files, Astro diagnostics for 92 files, the 3,245-page production build, 3,214 topic robots policies, and 3,246 internal references passed for the bound candidate files."
     },
     "previewDeployment": {
-      "status": "passed",
+      "status": "pending",
       "reviewer": "Maintainer deployment verification",
       "reviewerAuthority": "maintainer",
-      "reviewedAt": "2026-07-15",
-      "note": "The deployed English and Thai Voltage routes returned HTTP 200 and exposed unique bound-candidate content markers after commit 764c7d3 reached production; rendered visual/accessibility review remains a separate gate."
+      "reviewedAt": null,
+      "note": "The new rounded-accessibility-output candidate must be committed, deployed, and checked on both English and Thai routes."
     },
     "publication": {
       "status": "pending",
@@ -118,11 +120,11 @@ Status: evidence is in review; the lesson is not approved for publication.
 | Gate | Owner/reviewer | Current result | Publication effect |
 | --- | --- | --- | --- |
 | Source review | Codex-assisted maintainer source audit | Passed 2026-07-14 | Supports `sourceStatus: verified`; does not grant publication. |
-| Low-risk technical accuracy | Codex-assisted maintainer technical audit | Passed 2026-07-14 for the current scope | Must be reassessed if hands-on, hazardous, or regulated practice is added. |
-| English content | Codex-assisted maintainer content audit | Passed 2026-07-14 | No owner action required unless wording changes materially. |
+| Low-risk technical accuracy | Codex-assisted maintainer technical audit | Passed 2026-07-15 for the current scope | Must be reassessed if hands-on, hazardous, or regulated practice is added. |
+| English content | Codex-assisted maintainer content audit | Passed 2026-07-15 | No owner action required unless wording changes materially. |
 | Thai language | Project owner | Pending | Blocks publication. |
 | Visual/accessibility | Maintainer browser review | Pending | Blocks handoff as review-ready. |
-| Preview/live deployment | Maintainer deployment verification | Passed 2026-07-15 at HTTP/content-integrity level | Rendered visual/accessibility review remains separate. |
+| Preview/live deployment | Maintainer deployment verification | Pending for the corrected candidate | The earlier deployment evidence was superseded when the bound demo implementation changed. |
 | Final publication | Project owner | Pending | Blocks `published`. |
 
 The project owner's acceptance of the governance model on 2026-07-14 approved these roles, not this lesson revision.
@@ -184,6 +186,7 @@ The project owner's acceptance of the governance model on 2026-07-14 approved th
 - Reworked the demo to hold the marker fixed while explicitly stating that motion is not simulated and that the displayed energy change is hypothetical across the full selected plate-to-plate difference.
 - Added equal-potential/zero-field behavior, the positive-charge sign, high-to-low field direction, the real energy-bar maximum, and light-theme diagram colors that keep essential strokes at useful contrast.
 - Added native range semantics, spoken value text with a meaningful live-output prefix, visible focus, touch-target sizing, localized interactive labels, scientific notation for electron count, and collision-resistant IDs.
+- Made the spoken and visible energy values reuse one localized, rounded string so assistive output no longer exposes a floating-point artifact such as `89.99999999999999` for the visible `90 µJ` result.
 - Corrected route metadata, removed the obsolete language-switch label prop, and aligned browser theme color with the current light theme.
 - Removed the manually named “good next lessons” sentence; the relationship-driven suggestion section remains authoritative.
 
@@ -204,16 +207,16 @@ Final judgment of natural Thai wording belongs to the project owner and is still
 
 | Gate | Result |
 | --- | --- |
-| Focused lifecycle and implementation tests | Passed 2026-07-15; included in the full results below. |
-| Full website test suite | Passed: 12 Node checks and 73 Vitest tests across 11 files. |
-| Astro/type check | Passed: 90 files, 0 errors, warnings, or hints. |
+| Focused localized-number regression | Passed: English and Thai formatting tests both convert the real default-model artifact to the shared `90` display/announcement value. |
+| Full website test suite | Passed: 12 Node checks and 75 Vitest tests across 12 files. |
+| Astro/type check | Passed: 92 files, 0 errors, warnings, or hints. |
 | Production build and internal-link validation | Passed: 3,245 pages, 3,214 topic robots policies, and 3,246 unique root-relative references validated. |
-| Desktop English/Thai visual check | Pending browser review |
-| Mobile English/Thai visual check | Pending browser review |
+| Desktop English/Thai visual check | Prior deployed candidate had no console errors and the English desktop layout had no horizontal overflow; corrected candidate recheck pending. |
+| Mobile English/Thai visual check | Prior deployed candidate passed narrow-layout overflow, single-column, language, title, and 44 px range-target checks; corrected candidate recheck pending. |
 | Native keyboard controls and visible focus | Source/code review passed; rendered keyboard verification remains pending. |
 | Reduced-motion behavior | Source/code review passed; rendered reduced-motion verification remains pending. |
-| Screen-reader-oriented names, live output, and transcript | Source/code review passed; assistive-technology verification remains pending. |
-| Deployed English/Thai pages | Passed HTTP/content-integrity check: both routes returned 200 and exposed unique candidate markers after commit `764c7d3`; rendered review remains pending. |
+| Screen-reader-oriented names, live output, and transcript | Browser inspection found a raw floating-point spoken value on the prior candidate. The implementation now shares its localized rounded value; focused tests and built EN/TH HTML confirm `90` in the spoken text and `90 µJ` visually with no `89.99999999999999`. Corrected deployment recheck and assistive-technology confirmation remain pending. |
+| Deployed English/Thai pages | Earlier commit `764c7d3` evidence is superseded by the bound implementation correction; new deployment verification is pending. |
 
 ## Known limitations and review triggers
 
@@ -232,10 +235,13 @@ Final judgment of natural Thai wording belongs to the project owner and is still
 | 2026-07-14 | Source, technical, English, Thai-preparation, and demo audit | Codex-assisted maintainer review | Corrections implemented; owner Thai review and browser/deployment evidence remain. |
 | 2026-07-15 | Run revision-bound implementation gate | Maintainer automated verification | Tests, Astro diagnostics, production build, robots policy, and internal-reference validation passed; rendered browser review remains pending. |
 | 2026-07-15 | Verify deployed candidate routes | Maintainer deployment verification | English and Thai routes returned HTTP 200 with unique current-candidate markers; no visual/accessibility approval inferred. |
+| 2026-07-15 | Inspect rendered English and Thai demo semantics and narrow layout | Maintainer browser review | Responsive layout, language metadata, semantic names, transcript, touch targets, and console state were acceptable, but the live output exposed a raw floating-point value to assistive text; visual/accessibility remained pending. |
+| 2026-07-15 | Correct localized assistive energy output | Codex-assisted maintainer implementation | Spoken and visible energy values now share one rounded localized string; focused regression verification added. Deployment and remaining manual rendered checks are still required. |
+| 2026-07-15 | Verify corrected bound candidate | Maintainer automated verification | Focused English/Thai regression, 12 Node checks, 75 Vitest tests, 92-file Astro diagnostics, the 3,245-page production build, robots policy, and internal-reference validation passed. |
 
 ## Publication decision
 
-- Registry status after review preparation: Implementation and deployment-integrity gates passed; rendered visual/accessibility and owner gates remain, so the lesson must stay below `published`.
+- Registry status after review preparation: Implementation verification passed for the corrected candidate. Corrected-candidate deployment, rendered visual/accessibility, and owner gates remain, so the lesson must stay below `published`.
 - Project-owner publication decision: Pending.
 - Thai-language decision: Pending.
 - Qualified-review decision: Not required for the current low-risk conceptual scope; reassess if scope changes.

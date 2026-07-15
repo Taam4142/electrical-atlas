@@ -1,4 +1,5 @@
 import { useId, useMemo, useState } from "react";
+import { formatLocalizedNumber } from "../lib/numberFormatting";
 import { estimateVoltageEnergy } from "../lib/physics";
 
 type Locale = "en" | "th";
@@ -20,7 +21,7 @@ type DemoCopy = {
   model: string;
   voltageValue: (value: number) => string;
   chargeValue: (value: number) => string;
-  energyAnnouncement: (value: number) => string;
+  energyAnnouncement: (value: string) => string;
   electronCountAnnouncement: (coefficient: number, exponent: number) => string;
 };
 
@@ -46,7 +47,7 @@ const copy = {
       "Conceptual model: the positive-charge marker and parallel plates are exaggerated. The displayed |ΔU| is the hypothetical change if the selected |q| moved across the full plate-to-plate |ΔV|; the marker itself stays fixed because this is not a motion simulation. These numbers are not safety thresholds for a real system.",
     voltageValue: (value: number) => `${value} volts of potential-difference magnitude`,
     chargeValue: (value: number) => `${value} microcoulombs of positive test charge`,
-    energyAnnouncement: (value: number) =>
+    energyAnnouncement: (value: string) =>
       `Potential-energy-change magnitude: ${value} microjoules`,
     electronCountAnnouncement: (coefficient: number, exponent: number) =>
       `${coefficient} times ten to the power of ${exponent} electrons`,
@@ -72,19 +73,12 @@ const copy = {
       "แบบจำลองนี้ขยายขนาดสัญลักษณ์แทนประจุทดสอบบวกและแผ่นคู่ให้เห็นชัด ค่า |ΔU| ที่แสดงคือการเปลี่ยนแปลงสมมุติหากประจุ |q| ที่เลือกเคลื่อนผ่านความต่างศักย์ |ΔV| เต็มช่วงระหว่างแผ่น แบบจำลองตรึงสัญลักษณ์ไว้เพราะไม่ได้จำลองการเคลื่อนที่ และค่าตัวเลขเหล่านี้ไม่ใช่เกณฑ์ความปลอดภัยของระบบจริง",
     voltageValue: (value: number) => `ขนาดความต่างศักย์ ${value} โวลต์`,
     chargeValue: (value: number) => `ประจุทดสอบบวก ${value} ไมโครคูลอมบ์`,
-    energyAnnouncement: (value: number) =>
+    energyAnnouncement: (value: string) =>
       `ขนาดการเปลี่ยนแปลงพลังงานศักย์ ${value} ไมโครจูล`,
     electronCountAnnouncement: (coefficient: number, exponent: number) =>
       `${coefficient} คูณสิบยกกำลัง ${exponent} อิเล็กตรอน`,
   },
 } satisfies Record<Locale, DemoCopy>;
-
-function format(value: number, locale: Locale, unit = "", maximumFractionDigits = 3) {
-  return `${new Intl.NumberFormat(locale === "th" ? "th-TH" : "en-US", {
-    maximumFractionDigits,
-    notation: Math.abs(value) >= 1e6 ? "compact" : "standard",
-  }).format(value)}${unit}`;
-}
 
 function clamp(value: number, min: number, max: number) {
   return Math.min(max, Math.max(min, value));
@@ -128,6 +122,7 @@ export default function VoltageEnergyDemo({ locale = "en" }: { locale?: Locale }
   const fieldStrokeWidth = 3 + voltageFraction * 3;
   const packetX = 410;
   const electronCount = scientificParts(estimate.electronCount, locale);
+  const formattedEnergyMicroJoules = formatLocalizedNumber(estimate.energyMicroJoules, locale, "", 2);
 
   function setVoltageFromControl(nextVoltage: number) {
     setVoltage(clamp(nextVoltage, 0, maximumVoltage));
@@ -218,7 +213,7 @@ export default function VoltageEnergyDemo({ locale = "en" }: { locale?: Locale }
               {hasPotentialDifference ? text.high : text.same}
             </text>
             <text x="286" y="78" className="svg-label">
-              {format(voltage, locale, " V", 1)}
+              {formatLocalizedNumber(voltage, locale, " V", 1)}
             </text>
             <text x="285" y="390" className="svg-label">
               {text.equation}
@@ -231,7 +226,7 @@ export default function VoltageEnergyDemo({ locale = "en" }: { locale?: Locale }
 
           <label className="range-label" htmlFor={voltageControlId}>
             <span>{text.voltage}</span>
-            <strong>{format(voltage, locale, " V", 1)}</strong>
+            <strong>{formatLocalizedNumber(voltage, locale, " V", 1)}</strong>
           </label>
           <input
             id={voltageControlId}
@@ -246,7 +241,7 @@ export default function VoltageEnergyDemo({ locale = "en" }: { locale?: Locale }
 
           <label className="range-label" htmlFor={chargeControlId}>
             <span>{text.charge}</span>
-            <strong>{format(chargeMicroCoulombs, locale, " µC", 1)}</strong>
+            <strong>{formatLocalizedNumber(chargeMicroCoulombs, locale, " µC", 1)}</strong>
           </label>
           <input
             id={chargeControlId}
@@ -262,18 +257,18 @@ export default function VoltageEnergyDemo({ locale = "en" }: { locale?: Locale }
           <dl className="metric-grid">
             <div>
               <dt>{text.voltage}</dt>
-              <dd>{format(estimate.voltage, locale, " V", 1)}</dd>
+              <dd>{formatLocalizedNumber(estimate.voltage, locale, " V", 1)}</dd>
             </div>
             <div>
               <dt>{text.charge}</dt>
-              <dd>{format(chargeMicroCoulombs, locale, " µC", 1)}</dd>
+              <dd>{formatLocalizedNumber(chargeMicroCoulombs, locale, " µC", 1)}</dd>
             </div>
             <div>
               <dt>{text.energy}</dt>
               <dd>
                 <output htmlFor={`${voltageControlId} ${chargeControlId}`} aria-live="polite" aria-atomic="true">
-                  <span className="visually-hidden">{text.energyAnnouncement(estimate.energyMicroJoules)}</span>
-                  <span aria-hidden="true">{format(estimate.energyMicroJoules, locale, " µJ", 2)}</span>
+                  <span className="visually-hidden">{text.energyAnnouncement(formattedEnergyMicroJoules)}</span>
+                  <span aria-hidden="true">{formattedEnergyMicroJoules} µJ</span>
                 </output>
               </dd>
             </div>
