@@ -14,7 +14,6 @@
   "blockers": [
     "owner-thai-language-approval",
     "visual-accessibility-review",
-    "preview-deployment-review",
     "owner-publication-approval"
   ],
   "reviewedFiles": {
@@ -79,11 +78,11 @@
       "note": "Twelve Node checks, 75 Vitest tests across 12 files, Astro diagnostics for 92 files, the 3,245-page production build, 3,214 topic robots policies, and 3,246 internal references passed for the bound candidate files."
     },
     "previewDeployment": {
-      "status": "pending",
+      "status": "passed",
       "reviewer": "Maintainer deployment verification",
       "reviewerAuthority": "maintainer",
-      "reviewedAt": null,
-      "note": "The new rounded-accessibility-output candidate must be committed, deployed, and checked on both English and Thai routes."
+      "reviewedAt": "2026-07-15",
+      "note": "Commit c581949 reached production. English and Thai routes served the corrected VoltageEnergyDemo.DB_zTtMO.js bundle, returned the localized rounded 90-microjoule spoken value, omitted the raw floating-point artifact, and produced no browser-console errors."
     },
     "publication": {
       "status": "pending",
@@ -124,7 +123,7 @@ Status: evidence is in review; the lesson is not approved for publication.
 | English content | Codex-assisted maintainer content audit | Passed 2026-07-15 | No owner action required unless wording changes materially. |
 | Thai language | Project owner | Pending | Blocks publication. |
 | Visual/accessibility | Maintainer browser review | Pending | Blocks handoff as review-ready. |
-| Preview/live deployment | Maintainer deployment verification | Pending for the corrected candidate | The earlier deployment evidence was superseded when the bound demo implementation changed. |
+| Preview/live deployment | Maintainer deployment verification | Passed 2026-07-15 for corrected commit `c581949` | Both localized routes served the corrected bundle and output; rendered keyboard/focus and reduced-motion checks remain separate. |
 | Final publication | Project owner | Pending | Blocks `published`. |
 
 The project owner's acceptance of the governance model on 2026-07-14 approved these roles, not this lesson revision.
@@ -212,11 +211,11 @@ Final judgment of natural Thai wording belongs to the project owner and is still
 | Astro/type check | Passed: 92 files, 0 errors, warnings, or hints. |
 | Production build and internal-link validation | Passed: 3,245 pages, 3,214 topic robots policies, and 3,246 unique root-relative references validated. |
 | Desktop English/Thai visual check | Prior deployed candidate had no console errors and the English desktop layout had no horizontal overflow; corrected candidate recheck pending. |
-| Mobile English/Thai visual check | Prior deployed candidate passed narrow-layout overflow, single-column, language, title, and 44 px range-target checks; corrected candidate recheck pending. |
+| Mobile English/Thai visual check | Corrected deployed candidate passed narrow-layout overflow, single-column, language, title, 44 px range-target, and console checks in the 639 px browser viewport; manual visual confirmation remains part of the accessibility gate. |
 | Native keyboard controls and visible focus | Source/code review passed; rendered keyboard verification remains pending. |
 | Reduced-motion behavior | Source/code review passed; rendered reduced-motion verification remains pending. |
-| Screen-reader-oriented names, live output, and transcript | Browser inspection found a raw floating-point spoken value on the prior candidate. The implementation now shares its localized rounded value; focused tests and built EN/TH HTML confirm `90` in the spoken text and `90 µJ` visually with no `89.99999999999999`. Corrected deployment recheck and assistive-technology confirmation remain pending. |
-| Deployed English/Thai pages | Earlier commit `764c7d3` evidence is superseded by the bound implementation correction; new deployment verification is pending. |
+| Screen-reader-oriented names, live output, and transcript | Browser inspection found a raw floating-point spoken value on the prior candidate. Focused tests, built EN/TH HTML, and the corrected deployment now confirm `90` in the spoken text and `90 µJ` visually with no `89.99999999999999`; assistive-technology confirmation remains pending. |
+| Deployed English/Thai pages | Passed for commit `c581949`: both routes served `VoltageEnergyDemo.DB_zTtMO.js`, the corrected localized output, no raw artifact, and no console errors. |
 
 ## Known limitations and review triggers
 
@@ -238,10 +237,11 @@ Final judgment of natural Thai wording belongs to the project owner and is still
 | 2026-07-15 | Inspect rendered English and Thai demo semantics and narrow layout | Maintainer browser review | Responsive layout, language metadata, semantic names, transcript, touch targets, and console state were acceptable, but the live output exposed a raw floating-point value to assistive text; visual/accessibility remained pending. |
 | 2026-07-15 | Correct localized assistive energy output | Codex-assisted maintainer implementation | Spoken and visible energy values now share one rounded localized string; focused regression verification added. Deployment and remaining manual rendered checks are still required. |
 | 2026-07-15 | Verify corrected bound candidate | Maintainer automated verification | Focused English/Thai regression, 12 Node checks, 75 Vitest tests, 92-file Astro diagnostics, the 3,245-page production build, robots policy, and internal-reference validation passed. |
+| 2026-07-15 | Verify corrected production deployment | Maintainer deployment verification | English and Thai routes served the corrected bundle and localized rounded output with no raw artifact, horizontal overflow at the narrow viewport, or console errors; no visual/accessibility or owner approval was inferred. |
 
 ## Publication decision
 
-- Registry status after review preparation: Implementation verification passed for the corrected candidate. Corrected-candidate deployment, rendered visual/accessibility, and owner gates remain, so the lesson must stay below `published`.
+- Registry status after review preparation: Implementation and corrected-candidate deployment verification passed. Rendered visual/accessibility and owner gates remain, so the lesson must stay below `published`.
 - Project-owner publication decision: Pending.
 - Thai-language decision: Pending.
 - Qualified-review decision: Not required for the current low-risk conceptual scope; reassess if scope changes.
