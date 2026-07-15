@@ -2,6 +2,8 @@
 
 Use this checklist before marking a lesson `review-ready` or `published`.
 
+Apply the approval roles and risk-based review rules in [Publication governance](publication-governance.md), and save the completed evidence as a versioned record under [lesson-reviews/](lesson-reviews/README.md). `review-ready` means the evidence is ready for a decision; it is not itself final publication approval.
+
 For early planning, use the same checklist lightly: unanswered boxes become outline tasks, not blockers. For publication, unanswered boxes are blockers.
 
 ## Metadata and structure
@@ -13,6 +15,7 @@ For early planning, use the same checklist lightly: unanswered boxes become outl
 - [ ] Registry entry exists in `electrical-atlas-site/src/lib/lessonRegistry.ts`.
 - [ ] Registry status matches the real state: `planned`, `outlined`, `prototype`, `review-ready`, or `published`.
 - [ ] Safety level, source status, and Thailand-context flag are set.
+- [ ] A versioned `reviewRecord` exists for every `review-ready` or `published` lesson.
 - [ ] English page route exists.
 - [ ] Thai page route exists, or Thai is clearly marked pending.
 - [ ] Language switch points to the correct counterpart page.
@@ -96,7 +99,7 @@ Do not copy standards text, paid-book content, or third-party diagrams. Use sour
 | --- | --- |
 | `not-needed` | Only low-risk original explanation; no external factual dependency beyond common foundations. Use rarely. |
 | `needed` | Source review is required and no usable source plan exists yet. |
-| `draft` | Source families or candidate sources are listed, but exact claims are not verified. |
+| `draft` | Usable exact candidate sources are mapped to claims, but source review is incomplete. A generic source-family list alone remains `needed`. |
 | `verified` | Claims needed for the current lesson status are checked and recorded. |
 | `needs-update` | Previously checked sources may be stale or incomplete for current content. |
 
@@ -132,7 +135,7 @@ Last URL availability check for this directory: 2026-07-02.
 ## Website quality
 
 - [ ] `npm test` passes.
-- [ ] `npm run build` passes.
+- [ ] `npm run build:production` passes from the repository root.
 - [ ] Page loads locally.
 - [ ] Page loads after Vercel deployment.
 - [ ] No broken internal links.
@@ -160,6 +163,7 @@ Only mark `published` when all required boxes are complete or explicitly not app
 Decision record:
 
 - Lesson slug:
+- Review record:
 - Registry status before review:
 - Registry status after review:
 - Reviewer:
@@ -167,4 +171,7 @@ Decision record:
 - Source status:
 - Safety level:
 - Thailand-context result:
+- Project-owner lesson decision:
+- Thai-language decision:
+- Qualified-review decision or not-applicable reason:
 - Remaining known limitations:

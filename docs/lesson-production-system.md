@@ -30,7 +30,7 @@ Use this as the normal authoring pipeline. A lesson can pause at any stage, but 
 | 3. Draft | `outlined` or `prototype` | English MDX draft | Physical intuition, core explanation, equations, mistakes, failure modes, and source notes are written. |
 | 4. Localize | `prototype` | Thai MDX draft | Thai wording is natural, not a stiff line-by-line translation, and Thai-context notes are explicit. |
 | 5. Implement | `prototype` | route wrappers, visuals, relationships | Public routes exist only for languages that have real content. Suggestions come from relationships/registry, not manual lists. |
-| 6. Review prep | `review-ready` | completed checklist | Technical, visual, safety, source, Thai, and accessibility checks are ready for review. |
+| 6. Review prep | `review-ready` | completed checklist and versioned lesson-review record | Technical, visual, safety, source, Thai, and accessibility evidence is complete enough for the named approvers. |
 | 7. Publish | `published` | deployed lesson | Review is complete, source-sensitive claims are verified, tests/build pass, and the live page was checked. |
 | 8. Maintain | `revision-needed` or `needs-update` source status | issue/revision note | Corrections or source refreshes are tracked before republishing. |
 
@@ -49,7 +49,9 @@ Detailed workflow:
 11. Add or update the lesson registry entry, route wrappers, relationship records, and any visual/test files.
 12. Run tests and build.
 13. Review in browser, including mobile width and language switch.
-14. Commit, push, and publish through GitHub/Vercel.
+14. Deploy the review-ready revision, inspect the English and Thai pages, and record the result.
+15. Obtain the project owner's lesson-level and Thai-language decisions, then mark `published` only if every required gate passes.
+16. Commit and push the completed decision record through GitHub/Vercel.
 
 Do not create an empty public route only because a lesson is planned or outlined. The registry can show roadmap intent without implying publication readiness.
 
@@ -103,6 +105,14 @@ Stable lesson metadata is centralized in the active lesson registry:
 ```text
 electrical-atlas-site/src/lib/lessonRegistry.ts
 ```
+
+Versioned claim evidence and approval decisions live outside the registry:
+
+```text
+docs/lesson-reviews/<slug>-v<major>.<minor>.md
+```
+
+The registry stores only the optional `reviewRecord` pointer. The record schema and lifecycle invariants are documented in [lesson-reviews/README.md](lesson-reviews/README.md).
 
 The registry plan is documented in [lesson-registry-plan.md](lesson-registry-plan.md). It explains why lesson titles, routes, primary topic IDs, safety status, language availability, and topic coverage should be declared once and reused by navigation, suggestions, topic records, and tests.
 
@@ -185,6 +195,8 @@ Use clear wording:
 
 Source-review details live in [lesson-quality-checklist.md](lesson-quality-checklist.md). A source family note is not the same as a verified claim. Before a lesson becomes `review-ready` or `published`, every safety, standard, legal/regulatory, installation, grid, medical, RF, or high-energy claim must be traced to an authoritative current source.
 
+Approval ownership, qualified-review boundaries, and the distinction between review preparation and final publication are defined in [publication-governance.md](publication-governance.md). Preserve exact claim evidence and lesson-level decisions under [lesson-reviews/](lesson-reviews/README.md). Automated checks and assistant review may prepare a lesson for approval, but they do not grant the project owner's final approval.
+
 ## Definition of done for a lesson
 
 A lesson is done enough for an available prototype page when:
@@ -196,7 +208,7 @@ A lesson is done enough for an available prototype page when:
 - At least 3 suggested next topics are meaningful.
 - Safety relevance has been considered.
 - `npm test` passes.
-- `npm run build` passes.
+- `npm run build:production` passes from the repository root.
 - The live page is checked after deployment.
 
 Use [lesson-quality-checklist.md](lesson-quality-checklist.md) before publishing.

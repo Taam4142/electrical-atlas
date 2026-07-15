@@ -29,6 +29,7 @@ export interface LessonRegistryEntry {
   summaries: Record<Locale, string>;
   paths: Record<Locale, string>;
   hasPage: Record<Locale, boolean>;
+  reviewRecord?: string;
   demoComponent?: string;
 }
 
@@ -73,8 +74,8 @@ export const lessonRegistry = [
     coveredTopicIds: ["ea.fundamentals.voltage"],
     status: "prototype",
     safetyLevel: "low",
-    sourceStatus: "needed",
-    requiresThailandContext: false,
+    sourceStatus: "verified",
+    requiresThailandContext: true,
     order: 2,
     navGroup: "foundation",
     titles: {
@@ -86,8 +87,8 @@ export const lessonRegistry = [
       th: "แรงดัน",
     },
     summaries: {
-      en: "Electric potential difference explained as energy per unit charge between two points.",
-      th: "แรงดันหรือความต่างศักย์ อธิบายเป็นพลังงานต่อประจุระหว่างสองจุด",
+      en: "Electric potential difference explained through changes in electric potential energy per unit charge.",
+      th: "แรงดันหรือความต่างศักย์ อธิบายผ่านการเปลี่ยนแปลงพลังงานศักย์ไฟฟ้าต่อประจุ",
     },
     paths: {
       en: "/en/lessons/voltage/",
@@ -97,6 +98,7 @@ export const lessonRegistry = [
       en: true,
       th: true,
     },
+    reviewRecord: "docs/lesson-reviews/voltage-v0.1.md",
     demoComponent: "VoltageEnergyDemo",
   },
   {

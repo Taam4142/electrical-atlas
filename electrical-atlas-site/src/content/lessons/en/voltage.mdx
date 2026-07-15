@@ -2,17 +2,17 @@
 
 ## 1. A useful definition
 
-**Voltage** is electric potential difference: the difference in electric energy per unit charge between two points.
+**Voltage**, or **electric potential difference**, is the change in electric potential energy per unit charge between two points.
 
 The unit is the **volt**. One volt means **one joule per coulomb**:
 
 `1 V = 1 J/C`
 
-In plain language: voltage tells you how much energy each bit of charge could give or receive when it moves between two points.
+In plain language: voltage tells you how much the electric potential energy per unit charge changes from one point to another.
 
 <aside className="callout">
 
-**First mental model:** voltage is like height for electric energy. A charge at a higher electric potential has more energy available relative to a chosen lower point, just like water higher up can release energy as it moves downward.
+**First mental model:** electric potential is like height, and voltage is like the height difference between two places. This comparison follows the convention of a **positive test charge**. An electron is negatively charged, so the sign of its potential-energy change is reversed for the same voltage change.
 
 </aside>
 
@@ -22,25 +22,32 @@ In plain language: voltage tells you how much energy each bit of charge could gi
 
 ## 2. Why voltage matters
 
-Voltage is one of the first quantities you meet because it appears everywhere:
+Voltage appears on sources, components, signals, and warning labels:
 
-- A AA cell is about `1.5 V`.
-- A USB supply is commonly `5 V`.
-- A car battery is called `12 V`, even though the exact value changes.
-- Many microcontrollers use `3.3 V` or `5 V` logic.
-- Thai household mains is nominally around `230 V AC`, but mains topics need proper safety treatment.
+- An alkaline AA cell may be labelled `1.5 V`; its operating voltage changes with load and condition.
+- Vehicle batteries and power adapters have nominal voltage labels, but their exact terminal voltage can vary.
+- Logic pins have allowed voltage ranges that must match the device datasheet.
+- Capacitors, cables, switches, and insulation have voltage limits.
 
-Voltage is not the whole story. A high voltage with almost no available charge may only make a small static spark. A lower-voltage battery can still deliver dangerous current if it can supply a lot of energy. Voltage tells us the energy per charge; current, resistance, power, and source capability tell the rest.
+Voltage is not the whole safety or performance story. A static-electric source may reach a high voltage while storing little energy. A source with substantial stored energy and available current can cause severe short-circuit heating, burns, or fire. Shock and thermal/fire risks depend on the whole source, path, contact, environment, and exposure—not on one number alone.
+
+<aside className="callout">
+
+**Thailand context:** the [Energy Regulatory Commission residential tariff page](https://www.erc.or.th/th/tariff/1288) describes some residential meter categories as `230 V`, single-phase, two-wire service. That is a scoped tariff/service example, not a universal installation rule. Exact service conditions must be checked with the current authority and serving utility.
+
+</aside>
 
 </section>
 
 <section>
 
-## 3. Where you see voltage in real life
+## 3. Where you see voltage
 
-You see voltage printed on batteries, power adapters, solar panels, phone chargers, multimeters, motor drivers, logic pins, capacitors, and warning labels.
+You see voltage on batteries, adapters, solar panels, chargers, multimeters, motor drivers, logic pins, capacitors, and hazard labels.
 
-When someone says "this point is 5 volts," the hidden question is: **5 volts relative to what?** Usually the reference is ground, the negative terminal of a supply, chassis, earth, or another named node.
+When someone says “this point is 5 volts,” the hidden question is: **5 volts relative to what?** The reference might be a circuit ground or reference node, a supply terminal, a chassis, or another named point.
+
+These references are not automatically interchangeable. Circuit ground does not necessarily connect to Earth, and neither “ground” nor chassis is guaranteed to be safe in every system.
 
 Voltage is always a comparison between two points.
 
@@ -52,13 +59,13 @@ Voltage is always a comparison between two points.
 
 Voltage involves:
 
-- **Two points**: voltage is measured between them.
-- **Charge**: the thing that can gain or lose electric potential energy.
-- **Energy**: the ability to do work, make heat, create light, move a motor, or carry information.
-- **Electric field**: the field that pushes or pulls charge when a path exists.
-- **Reference point**: the "zero" chosen for a circuit or measurement.
+- **Two points**: a potential difference compares them.
+- **Electric charge**: a physical property and quantity carried by particles and objects.
+- **Electric potential energy**: energy associated with charge and position in an electric field.
+- **Electric field**: a field that can exert force on charge; it can exist without a closed conducting path.
+- **Reference point**: the point assigned a convenient potential, often `0 V`, for analysis or measurement.
 
-A battery creates chemical separation of charge. That separation establishes an electric field around the circuit when a conducting path is connected. The field is what guides energy transfer through the circuit.
+A battery uses chemistry to maintain a potential difference between its terminals, including when the external circuit is open. Closing a conducting path allows sustained carrier motion and energy transfer through a load.
 
 </section>
 
@@ -66,17 +73,17 @@ A battery creates chemical separation of charge. That separation establishes an 
 
 ## 5. How voltage works physically
 
-Imagine a battery that has separated charge internally. The positive terminal is at a higher electric potential than the negative terminal. If a complete path connects the terminals through a load, the electric field in and around the conductors pushes mobile charge carriers.
+Imagine a battery maintaining separated charge internally. Its positive terminal is at a higher electric potential than its negative terminal.
 
-Step by step:
+When a load and a closed conducting path connect the terminals:
 
-1. A source separates charge and creates a potential difference.
-2. The circuit geometry and materials establish an electric field.
-3. Charge carriers respond to the field.
-4. Energy is transferred from the source to the load.
-5. The load converts that energy into heat, light, motion, sound, computation, or stored energy.
+1. The source maintains a potential difference.
+2. Connecting the circuit establishes an operating electric-field pattern in and around it.
+3. Mobile charge carriers respond to the field.
+4. Electromagnetic fields mediate energy transfer from the source toward the load.
+5. The load changes that energy into heat, light, motion, sound, stored energy, or the energy used to process and signal information.
 
-The charges in the wire do not have to travel from the battery all the way to the lamp before the lamp can respond. The field pattern spreads through the circuit quickly, while individual electrons drift slowly.
+Mobile charge carriers are already present throughout a metal conductor. They respond to the circuit's electric field; the load does not wait for one particular electron to travel all the way from the battery.
 
 </section>
 
@@ -86,26 +93,24 @@ The charges in the wire do not have to travel from the battery all the way to th
 
 Common symbols:
 
-- `V`: voltage or potential difference, measured in volts.
-- `q`: charge, measured in coulombs.
-- `E`: energy, measured in joules.
-- `ΔV`: voltage difference between two points.
+- `V_A`, `V_B`: electric potential at points A and B, measured in volts.
+- `ΔV`: the change in electric potential when going from A to B, measured in volts and defined here as `V_B - V_A`.
+- `q`: electric charge, measured in coulombs.
+- `ΔU`: change in electric potential energy, measured in joules.
 
-The beginner equation is:
+The signed relationships are:
 
-`E = Vq`
+`ΔV = V_B - V_A = ΔU / q`
 
-So a `9 V` battery gives `9 J` of energy for every `1 C` of charge that moves through the full battery-to-load path in the ideal picture.
+`ΔU = qΔV`
 
-Another way to say the same thing:
+Here, “from A to B” means **final minus initial**, so `ΔV = V_B - V_A`. The two-subscript notation `V_AB`, meaning “A relative to B,” uses `V_A - V_B` instead. These conventions therefore have opposite signs; always check how the notation is defined.
 
-`V = E / q`
-
-Voltage is energy per charge.
+If a charge with magnitude `1 C` crosses a potential difference with magnitude `9 V`, the **magnitude** of its potential-energy change is `9 J`. The sign depends on the charge sign and the chosen direction. A positive test charge moved from lower to higher potential gains potential energy; an electron behaves oppositely for the same movement.
 
 <aside className="callout">
 
-**Simplification warning:** real sources have internal resistance, limits, chemistry, temperature effects, and safety constraints. A voltage label does not tell you all available power or energy.
+**Simplification warning:** real sources have internal impedance, current and energy limits, temperature effects, and—in batteries—chemistry. A voltage label alone does not tell you the available power, stored energy, or safety level.
 
 </aside>
 
@@ -113,18 +118,23 @@ Voltage is energy per charge.
 
 <section>
 
-## 7. Practical use
+## 7. Practical use and measurement
 
-Engineers and technicians use voltage to ask practical questions:
+Engineers and technicians use voltage to ask questions such as:
 
-- Is this supply high enough for the circuit?
-- Is this GPIO level safe for the chip?
-- Is this capacitor voltage rating high enough?
-- Is this battery full, empty, or under load?
-- Is this node at the expected value relative to ground?
-- Is there dangerous voltage present before touching or repairing equipment?
+- Is this supply within the circuit's allowed range?
+- Is this logic level valid for the chip?
+- Is this component's voltage rating sufficient?
+- How much does a source's terminal voltage change under load?
+- Is this circuit point at the expected potential relative to its named reference?
 
-Voltage is measured with a voltmeter or multimeter **across two points**. In a circuit, the meter is usually connected in parallel with the part or nodes being compared.
+A voltmeter compares **two points**. Conceptually, it is connected in parallel across the component or points being compared, and a real meter affects the circuit slightly because its input resistance is finite.
+
+<aside className="callout safety-callout">
+
+**Measurement boundary:** this connection fact is not an instruction to probe household mains or another high-energy circuit. Safe work on such circuits depends on task-specific training, procedures, and controls. Do not use this lesson as a live-measurement guide.
+
+</aside>
 
 </section>
 
@@ -132,11 +142,11 @@ Voltage is measured with a voltmeter or multimeter **across two points**. In a c
 
 ## 8. Common mistakes
 
-- **"Voltage flows."** Current flows. Voltage is a difference between two points.
-- **"A point has voltage by itself."** A point has voltage only relative to a reference.
-- **"More voltage always means more danger."** Higher voltage is often more dangerous, but danger also depends on available current, energy, path through the body, time, frequency, and environment.
-- **"Battery voltage is battery capacity."** Voltage is not capacity. Capacity is usually expressed in amp-hours or watt-hours.
-- **"Ground is always zero and always safe."** Ground is a chosen reference. In real systems, grounding and earthing require careful design.
+- **“Voltage flows.”** Current describes charge flow rate. Voltage is a difference between two points.
+- **“A point has voltage by itself.”** A quoted voltage always uses an explicit or implied reference.
+- **“One voltage number tells me the danger.”** It does not. Shock and thermal/fire hazards involve different mechanisms and depend on the complete situation.
+- **“Battery voltage is battery capacity.”** Voltage is not capacity or stored energy. Capacity and energy need other quantities, such as amp-hours and watt-hours.
+- **“Ground is always Earth, zero, and safe.”** Circuit ground may only be a chosen reference. Earth, protective earth, chassis, signal return, and circuit common have different roles.
 
 </section>
 
@@ -144,24 +154,24 @@ Voltage is measured with a voltmeter or multimeter **across two points**. In a c
 
 ## 9. Failure modes and limits
 
-Voltage becomes a problem when insulation, components, or people are exposed to more electric stress than they can tolerate.
+Voltage becomes a problem when the electric field or resulting current and energy exceed what materials, components, or people can tolerate.
 
-- Too much voltage can break down insulation.
-- Capacitors can store energy after power is removed.
-- Wrong voltage can destroy electronics.
-- Long wires and fast switching can create voltage spikes.
-- Floating circuits can sit at unexpected voltages.
-- Mains and high-energy systems need qualified safety practice.
+- Excess electric field can cause insulation to undergo electrical breakdown.
+- Capacitors and other equipment can retain hazardous stored energy after disconnection.
+- Applying voltage outside a component's rating can damage it.
+- Parasitic inductance and capacitance during fast switching can create transient voltage spikes.
+- A floating, weakly referenced conductor can show an unexpected potential through capacitive coupling.
+- Electrical work on or near exposed energized parts requires task-appropriate qualification and workplace safety controls.
 
 </section>
 
 <section>
 
-## 10. Safety notes
+## 10. Safety scope
 
-This lesson is conceptual. Do not use it as instructions for working on mains wiring, switchboards, EV chargers, solar inverters, or industrial panels.
+This lesson is conceptual. It is not a guide for working on household wiring, switchboards, EV chargers, solar inverters, industrial panels, or energized equipment.
 
-For Thailand-specific electrical installation or safety content, exact Thai standards and authority guidance should be checked from current official sources before publication, including relevant TISI/TIS, EIT, MEA, PEA, ERC, and IEC/IEEE source families where applicable.
+Only people qualified for the specific task should perform electrical work on or near exposed energized parts, using the procedures and protective equipment required by their workplace. This is a general U.S. occupational-safety boundary from CDC/NIOSH, not a definition of who is legally qualified in Thailand; Thai law, employer rules, and site procedures must be checked separately. Turning equipment off or disconnecting a source does not prove that every part is de-energized or free of stored energy.
 
 </section>
 
@@ -169,21 +179,23 @@ For Thailand-specific electrical installation or safety content, exact Thai stan
 
 ## Technical track
 
-Electric potential is often written as `φ` or `V`. The voltage from point `b` to point `a` can be written:
+The voltage at point `a` relative to point `b` can be written:
 
-`Vab = Va - Vb`
+`V_ab = V_a - V_b`
 
-In electrostatics, electric field and potential are related by:
+This is the “`a` relative to `b`” convention. It is the negative of the change defined for going from `a` to `b`: `V_ab = -(V_b - V_a)`.
 
-`E = -∇V`
+For an electrostatic field, the electric-field vector and scalar potential are related by:
 
-That means the electric field points in the direction where potential decreases most rapidly for positive test charge convention.
+`𝐄 = -∇V`
 
-For a path in an electric field:
+The vector `𝐄` points toward the most rapid decrease of potential under the positive-test-charge convention. Between two points in an electrostatic, conservative field:
 
-`Vab = -∫ E · dl`
+`V_a - V_b = -∫_b^a 𝐄 · d𝐥`
 
-In circuit theory, ideal wires are often treated as equipotential nodes. That assumption works when wire resistance, inductance, time delay, and high-frequency effects are small enough to ignore. At high speed, high current, RF, or power-switching edges, voltage is no longer just a neat number at a node; layout, return path, inductance, capacitance, and electromagnetic fields become part of the story.
+This path-independent scalar-potential relation is not generally valid for a nonconservative electric field induced by changing magnetic flux.
+
+In lumped circuit theory, ideal wires are often treated as equipotential nodes. This is an approximation: real interconnections have resistance, inductance, and capacitance. When those effects are not negligible for the circuit being studied, the interconnection needs a more detailed model.
 
 </section>
 
@@ -191,31 +203,31 @@ In circuit theory, ideal wires are often treated as equipotential nodes. That as
 
 ## Where this connects next
 
-Voltage connects directly to:
-
-- electric charge,
-- electric field,
-- electric current,
-- resistance,
-- Ohm's law,
-- power and energy,
-- batteries and sources,
-- capacitors,
-- grounding and references,
-- safe measurement.
-
-Good next lessons are Electric Current, Resistance and Conductance, Ohm's Law, Battery, Capacitor, and Grounding.
+Voltage connects directly to electric charge, electric field, current, resistance, power, sources, capacitors, grounding, and measurement. Use the relationship-driven suggestions below to continue toward whichever idea you want to explore next.
 
 </section>
 
 <section>
 
-## Reference direction for review
+## Sources and scope
 
-- Introductory circuit theory references for voltage, current, node reference, and measurement.
-- Electromagnetism references for electric potential and electric field.
-- Practical electronics references for multimeter measurement and voltage ratings.
-- Safety and installation references for mains/high-energy systems.
-- Thai context: verify current TISI/TIS, EIT, MEA, PEA, ERC, and related IEC/IEEE references before making installation or legal claims.
+- [OpenStax University Physics, Electric Potential and Potential Difference](https://openstax.org/books/university-physics-volume-2/pages/7-2-electric-potential-and-potential-difference) — definition, signs, equations, reference potential, and `1 V = 1 J/C`.
+- [BIPM SI Brochure](https://www.bipm.org/en/publications/si-brochure/) — current SI unit and symbol framework.
+- [OpenStax, Determining Field from Potential](https://openstax.org/books/university-physics-volume-2/pages/7-4-determining-field-from-potential) — the electrostatic field–potential relationship.
+- [OpenStax, Induced Electric Fields](https://openstax.org/books/university-physics-volume-2/pages/13-4-induced-electric-fields) — why a scalar-potential path relation cannot be applied generally to induced nonconservative fields.
+- [OpenStax, Electrical Current](https://openstax.org/books/university-physics-volume-2/pages/9-1-electrical-current) — carrier response and the closed-path/current foundation used in the physical explanation.
+- [MIT OpenCourseWare, Electromagnetic Fields and Energy, Chapter 11](https://ocw.mit.edu/courses/res-6-001-electromagnetic-fields-and-energy-spring-2008/pages/chapter-11/) — advanced support for the field-based energy-transfer wording.
+- [OpenStax, DC Voltmeters and Ammeters](https://openstax.org/books/college-physics-2e/pages/21-4-dc-voltmeters-and-ammeters) — conceptual parallel voltmeter connection and meter loading.
+- [CDC/NIOSH Electrical Safety in the Workplace](https://www.cdc.gov/niosh/electrical-safety/about/index.html) — general U.S. occupational guidance for qualified work and electrical hazards; it is not a Thai legal definition.
+- [NIOSH/CPWR, Electrical Safety: Power](https://www.cdc.gov/niosh/docs/2022-141/default.html) — de-energization and stored-energy caution in an occupational context, not a complete work procedure.
+- [Energizer E91 AA alkaline datasheet](https://data.energizer.com/pdfs/e91.pdf) — the scoped `1.5 V` alkaline-AA example; it does not describe every AA chemistry.
+- [IEC Electropedia, IEV 195-01-01 “reference earth”](https://www.electropedia.org/iev/iev.nsF/IEVref_xref/en%3A195-01-01) — terminology support for distinguishing a reference from Earth.
+- [IEC Electropedia, IEV 195-02-09 “protective conductor”](https://www.electropedia.org/iev/iev.nsf/display?ievref=195-02-09&openform=) — identifies a protective conductor as a conductor provided for electrical-safety purposes, a role distinct from an arbitrary circuit reference.
+- [Texas Instruments SNVA559C, Application Hints for Switching Regulators](https://www.ti.com/lit/an/snva559c/snva559c.pdf) — engineering examples of parasitic inductance, voltage spikes, and non-equipotential real interconnections.
+- [Fluke, Dual Impedance Digital Multimeters](https://www.fluke.com/en-us/learn/blog/digital-multimeters/dual-impedance-digital-multimeters) — capacitively coupled readings on floating/open conductors; it is not permission to troubleshoot live mains.
+- [OpenStax, Electric Field](https://openstax.org/books/physics/pages/18-3-electric-field) — electric-field foundations and a bounded breakdown example, not a universal insulation threshold.
+- [Thailand Energy Regulatory Commission residential tariff page](https://www.erc.or.th/th/tariff/1288) — the narrowly scoped Thai service example above.
+
+Sources were reviewed on 2026-07-14. This page does not provide installation, legal, or live-measurement guidance.
 
 </section>

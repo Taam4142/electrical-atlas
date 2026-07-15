@@ -31,6 +31,18 @@
   box-sizing: border-box;
 }
 
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -1263,43 +1275,43 @@ p {
 
 .voltage-plate {
   stroke-width: 4;
-  filter: url("#voltageGlow");
 }
 
 .voltage-plate.low {
-  fill: rgba(100, 244, 255, 0.18);
-  stroke: rgba(100, 244, 255, 0.65);
+  fill: rgba(47, 111, 159, 0.12);
+  stroke: #2f6f9f;
 }
 
 .voltage-plate.high {
-  fill: rgba(248, 214, 109, 0.2);
-  stroke: rgba(248, 214, 109, 0.78);
+  fill: rgba(185, 120, 36, 0.12);
+  stroke: #b97824;
+}
+
+.voltage-plate.equal {
+  fill: rgba(91, 105, 120, 0.1);
+  stroke: #5b6978;
 }
 
 .voltage-field-line,
 .voltage-field-arc {
   fill: none;
-  stroke: url("#voltageGradient");
   stroke-linecap: round;
-  filter: url("#voltageGlow");
+  transition: opacity 180ms ease, stroke-width 180ms ease;
 }
 
 .voltage-field-line {
   stroke-width: 6;
-  opacity: 0.75;
 }
 
 .voltage-field-arc {
   stroke-width: 4;
-  opacity: 0.45;
 }
 
 .charge-packet {
-  fill: rgba(158, 255, 110, 0.88);
-  stroke: #dbffd0;
+  fill: #e4f1df;
+  stroke: #3f7440;
   stroke-width: 4;
-  filter: url("#voltageGlow");
-  transition: all 180ms ease;
+  transition: opacity 180ms ease;
 }
 
 .charge-symbol {
@@ -1309,12 +1321,10 @@ p {
 }
 
 .energy-bar-track {
-  fill: rgba(100, 244, 255, 0.12);
+  fill: rgba(91, 105, 120, 0.18);
 }
 
 .energy-bar-fill {
-  fill: url("#voltageGradient");
-  filter: url("#voltageGlow");
   transition: width 180ms ease;
 }
 
@@ -2249,7 +2259,14 @@ p {
 
 input[type="range"] {
   width: 100%;
+  min-height: 44px;
   accent-color: var(--cyan);
+}
+
+input[type="range"]:focus-visible {
+  outline: 3px solid var(--cyan);
+  outline-offset: 3px;
+  border-radius: 0.5rem;
 }
 
 .metric-grid {

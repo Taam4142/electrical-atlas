@@ -107,9 +107,23 @@ describe("physics helpers", () => {
     expect(parallel.totalPowerWatts).toBeGreaterThan(series.totalPowerWatts);
   });
 
-  it("treats voltage as energy per charge", () => {
+  it("preserves the sign of potential-energy changes", () => {
     expect(calculateEnergyFromVoltageCharge(9, 2)).toBe(18);
     expect(calculateVoltageFromEnergyCharge(18, 2)).toBe(9);
+    expect(calculateEnergyFromVoltageCharge(9, -2)).toBe(-18);
+    expect(calculateEnergyFromVoltageCharge(-9, 2)).toBe(-18);
+    expect(calculateVoltageFromEnergyCharge(-18, -2)).toBe(9);
+
+    expect(() => calculateVoltageFromEnergyCharge(1, 0)).toThrow("non-zero");
+  });
+
+  it("estimates non-negative voltage and charge magnitudes for the teaching demo", () => {
+    const zeroDifference = estimateVoltageEnergy({
+      voltage: 0,
+      chargeMicroCoulombs: 25,
+    });
+
+    expect(zeroDifference.energyMicroJoules).toBe(0);
 
     const estimate = estimateVoltageEnergy({
       voltage: 9,
@@ -119,6 +133,16 @@ describe("physics helpers", () => {
     expect(estimate.chargeCoulombs).toBeCloseTo(10e-6, 14);
     expect(estimate.energyMicroJoules).toBeCloseTo(90, 10);
     expect(estimate.electronCount).toBeGreaterThan(6e13);
+
+    const maximumDemoEstimate = estimateVoltageEnergy({
+      voltage: 24,
+      chargeMicroCoulombs: 25,
+    });
+
+    expect(maximumDemoEstimate.energyMicroJoules).toBeCloseTo(600, 10);
+    expect(() => estimateVoltageEnergy({ voltage: -1, chargeMicroCoulombs: 1 })).toThrow(
+      "Potential-difference magnitude",
+    );
   });
 
   it("treats current as charge per time", () => {

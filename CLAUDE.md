@@ -31,12 +31,19 @@ The latest dated review is:
 docs/project-review-2026-07-14.md
 ```
 
-Phase A1 and Phase A2 were approved and implemented on 2026-07-14. Later phases remain recommendations pending separate approval. The Phase A1 visual browser matrix still needs a clean rerun; see the implementation record in the dated review.
+Phase A1 and Phase A2 were implemented on 2026-07-14. Phase B was approved on 2026-07-14 and is using Voltage as the publication pilot. Later phases remain recommendations pending separate approval. The Phase A1 visual browser matrix still needs a clean rerun; see the implementation record in the dated review.
 
 Build, generator, CI, and deployment decisions live in:
 
 ```text
 docs/build-release-integrity.md
+```
+
+Publication approval roles and lesson evidence live in:
+
+```text
+docs/publication-governance.md
+docs/lesson-reviews/
 ```
 
 ## Suggestion system
@@ -85,7 +92,8 @@ Normal lesson flow:
 2. Create an outline under `docs/lesson-outlines/` using `docs/lesson-template.mdx`.
 3. Keep the registry status honest: `planned` for scoped ideas, `outlined` for drafted outlines, `prototype` only after public content exists.
 4. Keep planned/outlined lessons out of public routes.
-5. Before `review-ready` or `published`, use `docs/lesson-quality-checklist.md` and verify safety/source-sensitive claims.
+5. Before `review-ready` or `published`, use `docs/lesson-quality-checklist.md`, apply `docs/publication-governance.md`, and preserve a versioned record under `docs/lesson-reviews/`.
+6. Never treat assistant review or passing automation as the project owner's final Thai-language or publication approval.
 
 Current content candidates and unresolved sequence decisions live in:
 

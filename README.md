@@ -125,6 +125,8 @@ See [docs/deployment.md](docs/deployment.md).
 - [Lesson outlines](docs/lesson-outlines/README.md)
 - [First 20 lesson roadmap](docs/first-20-lessons.md)
 - [Lesson quality checklist](docs/lesson-quality-checklist.md)
+- [Publication governance](docs/publication-governance.md)
+- [Lesson review records](docs/lesson-reviews/README.md)
 - [Thai terminology glossary](docs/thai-terminology-glossary.md)
 - [Engineering Notebook theme](docs/theme-engineering-notebook.md)
 - [Suggestion and relationship system](docs/suggestion-relationship-system.md)
@@ -142,9 +144,9 @@ See [docs/deployment.md](docs/deployment.md).
 
 ## Near roadmap
 
-The [project review and next-phase plan dated 2026-07-14](docs/project-review-2026-07-14.md) contains the latest evidence-backed phase sequence and implementation record. Phase A1 and Phase A2 were approved and implemented on 2026-07-14; later phases remain recommendations pending separate approval.
+The [project review and next-phase plan dated 2026-07-14](docs/project-review-2026-07-14.md) contains the latest evidence-backed phase sequence and implementation record. Phase A1 and Phase A2 were implemented on 2026-07-14. Phase B is approved and in progress; later phases remain recommendations pending separate approval.
 
-Phase A1 corrected public status truth, invalid preview IDs, stale guidance, the root gateway, and unfinished-topic indexing behavior. Phase A2 established one reproducible root install path, strict inventory and relationship validation, generated-data drift checks, and a test-gated Vercel build. The next proposed checkpoint is the Voltage publication pilot, subject to confirming publication ownership; Electric Charge versus Capacitor ordering remains an explicit curriculum decision rather than an approved change.
+Phase A1 corrected public status truth, invalid preview IDs, stale guidance, the root gateway, and unfinished-topic indexing behavior. Phase A2 established one reproducible root install path, strict inventory and relationship validation, generated-data drift checks, and a test-gated Vercel build. Phase B is using Voltage to prove the publication workflow. Publication ownership is now recorded in [Publication governance](docs/publication-governance.md); final Thai-language and lesson-level publication approval are still pending. Electric Charge versus Capacitor ordering remains an explicit curriculum decision rather than an approved change.
 
 ## License
 

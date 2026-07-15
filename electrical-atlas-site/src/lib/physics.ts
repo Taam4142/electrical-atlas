@@ -386,36 +386,40 @@ export function estimateResistanceConductance(params: {
   };
 }
 
-export function calculateEnergyFromVoltageCharge(voltage: number, chargeCoulombs: number): number {
-  if (!Number.isFinite(voltage)) {
-    throw new Error("Voltage must be a finite number.");
+export function calculateEnergyFromVoltageCharge(deltaVoltage: number, chargeCoulombs: number): number {
+  if (!Number.isFinite(deltaVoltage)) {
+    throw new Error("Potential difference must be a finite number.");
   }
 
-  if (!Number.isFinite(chargeCoulombs) || chargeCoulombs < 0) {
-    throw new Error("Charge must be a non-negative finite number.");
+  if (!Number.isFinite(chargeCoulombs)) {
+    throw new Error("Charge must be a finite number.");
   }
 
-  return voltage * chargeCoulombs;
+  return deltaVoltage * chargeCoulombs;
 }
 
-export function calculateVoltageFromEnergyCharge(energyJoules: number, chargeCoulombs: number): number {
-  if (!Number.isFinite(energyJoules)) {
-    throw new Error("Energy must be a finite number.");
+export function calculateVoltageFromEnergyCharge(deltaEnergyJoules: number, chargeCoulombs: number): number {
+  if (!Number.isFinite(deltaEnergyJoules)) {
+    throw new Error("Potential-energy change must be a finite number.");
   }
 
-  if (!Number.isFinite(chargeCoulombs) || chargeCoulombs <= 0) {
-    throw new Error("Charge must be a positive finite number.");
+  if (!Number.isFinite(chargeCoulombs) || chargeCoulombs === 0) {
+    throw new Error("Charge must be a non-zero finite number.");
   }
 
-  return energyJoules / chargeCoulombs;
+  return deltaEnergyJoules / chargeCoulombs;
 }
 
 export function estimateVoltageEnergy(params: {
   voltage: number;
   chargeMicroCoulombs: number;
 }): VoltageEnergyEstimate {
+  if (!Number.isFinite(params.voltage) || params.voltage < 0) {
+    throw new Error("Potential-difference magnitude must be a non-negative finite number.");
+  }
+
   if (!Number.isFinite(params.chargeMicroCoulombs) || params.chargeMicroCoulombs < 0) {
-    throw new Error("Charge must be a non-negative finite number.");
+    throw new Error("Charge magnitude must be a non-negative finite number.");
   }
 
   const chargeCoulombs = params.chargeMicroCoulombs * 1e-6;

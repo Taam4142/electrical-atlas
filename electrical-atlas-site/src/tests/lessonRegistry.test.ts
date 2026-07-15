@@ -134,11 +134,13 @@ describe("lesson registry", () => {
   });
 
   it("keeps route availability separate from publication maturity", () => {
-    const voltage = registryEntries.find((lesson) => lesson.slug === "voltage");
+    const availablePrototype = registryEntries.find(
+      (lesson) => lesson.hasPage.en && lesson.status === "prototype",
+    );
     const capacitor = registryEntries.find((lesson) => lesson.slug === "capacitor");
 
-    expect(voltage && isLessonAvailable(voltage, "en")).toBe(true);
-    expect(voltage && isLessonPublished(voltage)).toBe(false);
+    expect(availablePrototype && isLessonAvailable(availablePrototype, "en")).toBe(true);
+    expect(availablePrototype && isLessonPublished(availablePrototype)).toBe(false);
     expect(capacitor && isLessonAvailable(capacitor, "en")).toBe(false);
     expect(capacitor && isLessonPublished(capacitor)).toBe(false);
   });

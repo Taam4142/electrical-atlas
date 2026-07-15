@@ -1,6 +1,6 @@
 # Project review and next-phase plan — 2026-07-14
 
-Status: Phase A1 and Phase A2 were approved and implemented on 2026-07-14. Later phases remain recommendations pending separate approval. Automated and built-output verification is complete; the visual browser matrix still needs a clean rerun because the in-app browser automation connection failed during initialization.
+Status: Phase A1 and Phase A2 were implemented on 2026-07-14. Phase B was approved on 2026-07-14 and the Voltage publication pilot is in progress. Later phases remain recommendations pending separate approval. Automated and built-output verification for Phase A is complete; the visual browser matrix remains part of the Phase B review work.
 
 This document preserves the project retrospective performed on 2026-07-14. It records the current evidence, the main risks, and the recommended sequence of work so future sessions do not have to reconstruct the reasoning from chat history.
 
@@ -267,7 +267,7 @@ Repository-enforced acceptance is complete. Two external-state checks remain ope
 
 ### Phase B — Prove the publication workflow
 
-Use **Voltage** as the first publication pilot after Phase A and confirmation of publication ownership.
+Use **Voltage** as the first publication pilot after Phase A. Publication ownership was confirmed on 2026-07-14 and is recorded in [Publication governance](publication-governance.md).
 
 Why Voltage:
 
@@ -278,15 +278,15 @@ Why Voltage:
 
 Required work:
 
-1. Define and record who may approve technical accuracy, Thai-language quality, and standards-sensitive publication.
-2. Create an exact source and claim-review record.
-3. Verify the physical explanation, equations, units, simplifications, and misconceptions.
-4. Review the English lesson for teaching clarity.
-5. Review the Thai lesson for natural language and glossary consistency.
-6. Complete desktop, mobile, keyboard, reduced-motion, and screen-reader-oriented checks.
-7. Check the deployed English and Thai pages.
-8. Record reviewer, review date, source status, limitations, and revision.
-9. Mark the lesson `published` only after every required gate passes.
+1. Define and record who may approve technical accuracy, Thai-language quality, and standards-sensitive publication. **Completed 2026-07-14.**
+2. Create an exact source and claim-review record. **Implemented for review in `lesson-reviews/voltage-v0.1.md`.**
+3. Verify the physical explanation, equations, units, simplifications, and misconceptions. **Completed for the bound candidate revision.**
+4. Review the English lesson for teaching clarity. **Completed for the bound candidate revision.**
+5. Review the Thai lesson for natural language and glossary consistency. **Maintainer preparation is complete; project-owner Thai approval is pending.**
+6. Complete desktop, mobile, keyboard, reduced-motion, and screen-reader-oriented checks. **Source/code review is complete; rendered browser and assistive-technology checks remain pending.**
+7. Check the deployed English and Thai pages. **Pending after the candidate commit is deployed.**
+8. Record reviewer, review date, source status, limitations, and revision. **Completed in the versioned review record; later decisions must be appended, not inferred.**
+9. Mark the lesson `published` only after every required gate passes. **Pending; the registry correctly remains `prototype`.**
 
 After the pilot, apply the proven workflow to What Is Electricity and Electric Current.
 
@@ -368,7 +368,6 @@ These decisions matter but do not block Phase A:
 - license choice for code, written content, and original visuals;
 - stable custom domain and final canonical URL;
 - whether outside contributions will be accepted;
-- who can approve technical, Thai-language, and standards-sensitive publication; this must be resolved before Phase B can mark a lesson `published`;
 - whether the long-term topic platform remains fully static or moves to server/on-demand generation;
 - whether Incandescent Lamp becomes its own canonical component node;
 - whether the standalone Electric Charge lesson comes before Capacitor or later after Capacitor introduces a prerequisite charge-and-field capsule.
@@ -377,6 +376,6 @@ Do not silently decide these during unrelated implementation work.
 
 ## 8. Immediate next checkpoint
 
-Phase A1 and Phase A2 are implemented. The next proposed checkpoint is **Phase B: use Voltage to prove the publication workflow**, but it must begin by confirming who can approve technical accuracy, Thai-language quality, and standards-sensitive publication. Rerun the outstanding visual browser matrix when the browser connection is healthy; it remains an acceptance check from Phase A1 rather than a reason to undo the completed integrity work.
+Phase A1 and Phase A2 are implemented. **Phase B: use Voltage to prove the publication workflow** is approved and in progress. Source, technical, English, and revision-bound automated verification are complete for the current candidate. The immediate next checkpoint is a deployed EN/TH rendered review, followed by the project owner's Thai-language and final lesson decisions. Voltage remains `prototype` until those gates are completed.
 
 The remaining proposed sequence is the Voltage publication pilot and then the curriculum decision that controls Electric Charge and Capacitor ordering.

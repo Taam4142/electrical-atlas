@@ -6,7 +6,7 @@ It is intentionally broader than a feature roadmap. A feature roadmap says what 
 
 Electrical Atlas has an unusually large ambition: explain electrical and electronic knowledge across fundamentals, components, circuits, power, embedded systems, standards, safety, manufacturing, applications, history, and future research. The goal is possible only if the project stays organized. The main danger is not one big failure. The main danger is many small inconsistencies accumulating until the site becomes hard to trust or hard to maintain.
 
-The latest evidence-backed plan and implementation record is [Project review and next-phase plan — 2026-07-14](project-review-2026-07-14.md). Phase A1 and Phase A2 were approved and implemented on 2026-07-14. Later phases remain recommendations pending separate approval. The executable build/release contract is documented in [Build and release integrity](build-release-integrity.md).
+The latest evidence-backed plan and implementation record is [Project review and next-phase plan — 2026-07-14](project-review-2026-07-14.md). Phase A1 and Phase A2 were implemented on 2026-07-14. Phase B is approved and using Voltage to prove the publication workflow; later phases remain recommendations pending separate approval. The executable build/release contract is documented in [Build and release integrity](build-release-integrity.md), and approval boundaries are documented in [Publication governance](publication-governance.md).
 
 ## How to use this document
 
@@ -490,7 +490,7 @@ The taxonomy can be broad. Published lessons must stay reviewed, honest, and app
 
 ## Recommended order of action
 
-Do not try to fix every risk at once. The detailed sequence and approval state are maintained only in the [2026-07-14 project review](project-review-2026-07-14.md). Phase A1 is implemented; later phases still need separate approval. This risk register intentionally avoids duplicating that phase plan.
+Do not try to fix every risk at once. The detailed sequence and approval state are maintained only in the [2026-07-14 project review](project-review-2026-07-14.md). Phase A1 and Phase A2 are implemented, and Phase B is in progress; later phases still need separate approval. This risk register intentionally avoids duplicating that phase plan.
 
 Continue applying the standing rules in this document: keep checks and deployment healthy, describe content status truthfully, do not publish unverified safety or standards claims, preserve Thai terminology and encoding quality, and record newly discovered structural risks.
 

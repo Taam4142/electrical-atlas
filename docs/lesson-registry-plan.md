@@ -113,6 +113,7 @@ export interface LessonRegistryEntry {
   summaries: Record<Locale, string>;
   paths: Record<Locale, string>;
   hasPage: Record<Locale, boolean>;
+  reviewRecord?: string;
   demoComponent?: string;
 }
 ```
@@ -349,6 +350,7 @@ Minimum required fields:
 - `summaries`
 - `paths`
 - `hasPage`
+- `reviewRecord` when a versioned review record exists
 
 Then add or update:
 
@@ -446,7 +448,7 @@ Possible future upgrades:
 - generate route wrappers from the registry;
 - generate lesson index pages by domain, component type, safety level, and status;
 - add Thai glossary links per lesson;
-- add source/reviewer metadata;
+- keep detailed source/reviewer metadata in versioned `docs/lesson-reviews/` records and store only the optional registry pointer;
 - add revision history per lesson;
 - support multiple lesson depths for the same topic;
 - export lesson metadata for search, sitemap, or external tools.

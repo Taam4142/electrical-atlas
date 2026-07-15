@@ -7,7 +7,6 @@ interface Props {
   description: string;
   lang?: "en" | "th";
   counterpartPath?: string;
-  counterpartLabel?: string;
   noindex?: boolean;
 }
 
@@ -16,7 +15,6 @@ const {
   description,
   lang = "en",
   counterpartPath,
-  counterpartLabel,
   noindex = false,
 } = Astro.props;
 
@@ -35,7 +33,7 @@ const fullTitle = title === "Electrical Atlas" ? title : `${title} • Electrica
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     {noindex ? <meta name="robots" content="noindex,follow" /> : null}
-    <meta name="theme-color" content="#07111f" />
+    <meta name="theme-color" content="#f7f3e8" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <title>{fullTitle}</title>
     <script is:inline>
@@ -65,7 +63,7 @@ const fullTitle = title === "Electrical Atlas" ? title : `${title} • Electrica
         <a href={mapPath}>{lang === "th" ? "แผนที่วิชา" : "Subject map"}</a>
       </nav>
 
-      <LanguageSwitch locale={lang} counterpartPath={counterpartPath} counterpartLabel={counterpartLabel} />
+      <LanguageSwitch locale={lang} counterpartPath={counterpartPath} />
     </header>
 
     <main id="main">

@@ -26,7 +26,6 @@ const { topic, relatedSuggestions } = Astro.props;
   lang="th"
   noindex
   counterpartPath={`/en/topics/${topic.slug}/`}
-  counterpartLabel="English"
 >
   <TopicRecord topic={topic} relatedSuggestions={relatedSuggestions} locale="th" />
 </BaseLayout>

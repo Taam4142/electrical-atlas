@@ -145,7 +145,7 @@ These terms must be handled more carefully than ordinary concept words. They oft
 
 | English / acronym | Thai name / label | Status | Notes |
 | --- | --- | --- | --- |
-| TISI / TIS | มอก. / สมอ. | needs source review | Thai Industrial Standards Institute and Thai Industrial Standards. Verify exact standard number and edition. |
+| TISI / TIS | สมอ. / มอก. | needs source review | TISI is the Thai Industrial Standards Institute (สมอ.); TIS identifies a Thai Industrial Standard (มาตรฐาน มอก.). Verify the exact standard number and edition. |
 | EIT | วสท. | needs source review | Engineering Institute of Thailand. Useful for Thai professional guidance. |
 | MEA | กฟน. | needs source review | Metropolitan Electricity Authority. Use for Bangkok/Nonthaburi/Samut Prakan utility context. |
 | PEA | กฟภ. | needs source review | Provincial Electricity Authority. Use for provincial utility context. |
