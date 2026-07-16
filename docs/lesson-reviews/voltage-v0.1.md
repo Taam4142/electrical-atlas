@@ -6,21 +6,23 @@
   "lessonId": "ea.lesson.voltage.v0.1",
   "recordState": "in-review",
   "sourceStatus": "verified",
-  "reviewedRevision": "sha256:9e665a0289c7dda9162c998b36b4403ff8acf2813b7a269cb95dea75a79799c8",
-  "reviewedAt": "2026-07-15",
+  "reviewedRevision": "sha256:380dcbd52246db4d72970f5001c247626d65396e8aa7d34b87b61ead0fe9e5a4",
+  "reviewedAt": "2026-07-16",
   "nextReviewAt": "2027-01-14",
   "qualifiedReviewRequired": false,
   "qualifiedReviewReason": "The reviewed revision is a low-risk conceptual lesson with general safety boundaries, no live-work procedure, no installation instruction, and no claim that an exact Thai rule applies universally.",
   "blockers": [
     "owner-thai-language-approval",
     "visual-accessibility-review",
+    "preview-deployment-review",
     "owner-publication-approval"
   ],
   "reviewedFiles": {
     "electrical-atlas-site/src/lib/lessonRegistry.ts": "e4cceaf27a952fde5d48d6c34cca262f75d69c2ef103d1d48f4871d40814d867",
     "electrical-atlas-site/src/content/lessons/en/voltage.mdx": "801061c892c21be084e18a73c09fe4dd202cf9cb95a849b319dbcd3a2587d883",
     "electrical-atlas-site/src/content/lessons/th/voltage.mdx": "7ff016ed44376d2c6979314d0ce8f45c296fe5a713466fb8a163e09af38c0e3c",
-    "electrical-atlas-site/src/components/VoltageEnergyDemo.tsx": "f930999e73155479264665de7a068bc04e05074b01206cddbdf2b229e9db668d",
+    "electrical-atlas-site/src/components/VoltageEnergyDemo.tsx": "df37130d9eba89fddb523d0da5ff56ffa013538ebd2bfe3a7f9706034d32a5e7",
+    "electrical-atlas-site/src/lib/interaction.ts": "d76cac73cace1f61231aea7c3fc6bca60da10538a0f9a77c206134aa28792269",
     "electrical-atlas-site/src/lib/numberFormatting.ts": "afe52e71cad5c75720046dc4ec6c9771ad67c1f937b36131fa99fd5b0a84df6c",
     "electrical-atlas-site/src/lib/physics.ts": "ddd14938b8f49a96f9221699263faeabeb9fa9d4b866bf5135581d0a6ade9c67",
     "electrical-atlas-site/src/pages/en/lessons/voltage.astro": "26c874054cdf863b1b4fa57c2fd8dcc037185b8ea7aa06f7bba2154192960f3d",
@@ -39,8 +41,8 @@
       "status": "passed",
       "reviewer": "Codex-assisted maintainer technical audit",
       "reviewerAuthority": "maintainer",
-      "reviewedAt": "2026-07-15",
-      "note": "The numeric model remains unchanged; the reviewed correction rounds only localized presentation text. Low-risk conceptual scope only; qualified review is required if practical or hazardous scope is added."
+      "reviewedAt": "2026-07-16",
+      "note": "The numeric model remains unchanged; the reviewed interaction correction adds bounded keyboard/input handling without changing lesson claims. Low-risk conceptual scope only; qualified review is required if practical or hazardous scope is added."
     },
     "englishContent": {
       "status": "passed",
@@ -61,7 +63,7 @@
       "reviewer": "Maintainer browser review",
       "reviewerAuthority": "maintainer",
       "reviewedAt": null,
-      "note": "English and Thai semantics, narrow layout, overflow, and touch targets were inspected on the prior deployed candidate. The corrected candidate still needs deployment recheck plus rendered keyboard focus/control and reduced-motion confirmation."
+      "note": "Rendered review found that the deployed sliders received visible focus but did not respond to Arrow/Home/End input. Explicit bounded keyboard and input handling is implemented and requires deployment verification; reduced-motion evidence also remains."
     },
     "qualifiedHuman": {
       "status": "not-required",
@@ -74,15 +76,15 @@
       "status": "passed",
       "reviewer": "Maintainer automated verification",
       "reviewerAuthority": "maintainer",
-      "reviewedAt": "2026-07-15",
-      "note": "Twelve Node checks, 75 Vitest tests across 12 files, Astro diagnostics for 92 files, the 3,245-page production build, 3,214 topic robots policies, and 3,246 internal references passed for the bound candidate files."
+      "reviewedAt": "2026-07-16",
+      "note": "Twelve Node checks, 76 Vitest tests across 12 files, Astro diagnostics for 92 files, the 3,245-page production build, 3,214 topic robots policies, and 3,246 internal references passed for the keyboard-corrected bound candidate files."
     },
     "previewDeployment": {
-      "status": "passed",
+      "status": "pending",
       "reviewer": "Maintainer deployment verification",
       "reviewerAuthority": "maintainer",
-      "reviewedAt": "2026-07-15",
-      "note": "Commit c581949 reached production. English and Thai routes served the corrected VoltageEnergyDemo.DB_zTtMO.js bundle, returned the localized rounded 90-microjoule spoken value, omitted the raw floating-point artifact, and produced no browser-console errors."
+      "reviewedAt": null,
+      "note": "The keyboard/input correction must be committed, deployed, and checked on both English and Thai routes before this gate can pass again."
     },
     "publication": {
       "status": "pending",
@@ -111,7 +113,7 @@ Status: evidence is in review; the lesson is not approved for publication.
 | Source status | `verified` for this reviewed conceptual scope |
 | Safety level | `low` — conceptual lesson with explicit live-measurement and mains boundaries |
 | Thailand context | Required for one narrowly scoped ERC tariff/service example; no installation rule is given |
-| Evidence review date | 2026-07-15 (source review completed 2026-07-14) |
+| Evidence review date | 2026-07-16 (source review completed 2026-07-14) |
 | Next Thai-source currency check | 2027-01-14, or sooner if the ERC page changes |
 
 ## Approval ownership and gates
@@ -119,11 +121,11 @@ Status: evidence is in review; the lesson is not approved for publication.
 | Gate | Owner/reviewer | Current result | Publication effect |
 | --- | --- | --- | --- |
 | Source review | Codex-assisted maintainer source audit | Passed 2026-07-14 | Supports `sourceStatus: verified`; does not grant publication. |
-| Low-risk technical accuracy | Codex-assisted maintainer technical audit | Passed 2026-07-15 for the current scope | Must be reassessed if hands-on, hazardous, or regulated practice is added. |
+| Low-risk technical accuracy | Codex-assisted maintainer technical audit | Passed 2026-07-16 for the current scope | Must be reassessed if hands-on, hazardous, or regulated practice is added. |
 | English content | Codex-assisted maintainer content audit | Passed 2026-07-15 | No owner action required unless wording changes materially. |
 | Thai language | Project owner | Pending | Blocks publication. |
-| Visual/accessibility | Maintainer browser review | Pending | Blocks handoff as review-ready. |
-| Preview/live deployment | Maintainer deployment verification | Passed 2026-07-15 for corrected commit `c581949` | Both localized routes served the corrected bundle and output; rendered keyboard/focus and reduced-motion checks remain separate. |
+| Visual/accessibility | Maintainer browser review | Pending after keyboard defect discovery | Blocks handoff as review-ready until the corrected controls and reduced-motion boundary are verified. |
+| Preview/live deployment | Maintainer deployment verification | Pending for the keyboard-corrected candidate | Earlier deployment evidence was superseded when the bound interaction changed. |
 | Final publication | Project owner | Pending | Blocks `published`. |
 
 The project owner's acceptance of the governance model on 2026-07-14 approved these roles, not this lesson revision.
@@ -207,15 +209,16 @@ Final judgment of natural Thai wording belongs to the project owner and is still
 | Gate | Result |
 | --- | --- |
 | Focused localized-number regression | Passed: English and Thai formatting tests both convert the real default-model artifact to the shared `90` display/announcement value. |
-| Full website test suite | Passed: 12 Node checks and 75 Vitest tests across 12 files. |
+| Focused keyboard-value regression | Passed: Arrow, Home, End, Page, boundary, and unrelated-key cases cover the bounded range-value helper used by both Voltage sliders. |
+| Full website test suite | Passed: 12 Node checks and 76 Vitest tests across 12 files. |
 | Astro/type check | Passed: 92 files, 0 errors, warnings, or hints. |
 | Production build and internal-link validation | Passed: 3,245 pages, 3,214 topic robots policies, and 3,246 unique root-relative references validated. |
 | Desktop English/Thai visual check | Prior deployed candidate had no console errors and the English desktop layout had no horizontal overflow; corrected candidate recheck pending. |
 | Mobile English/Thai visual check | Corrected deployed candidate passed narrow-layout overflow, single-column, language, title, 44 px range-target, and console checks in the 639 px browser viewport; manual visual confirmation remains part of the accessibility gate. |
-| Native keyboard controls and visible focus | Source/code review passed; rendered keyboard verification remains pending. |
+| Native keyboard controls and visible focus | Corrected production candidate showed a visible focus outline, but Arrow/Home/End did not update either slider. Explicit bounded keyboard handling and `input` event support now pass focused tests; corrected deployment verification is pending. |
 | Reduced-motion behavior | Source/code review passed; rendered reduced-motion verification remains pending. |
 | Screen-reader-oriented names, live output, and transcript | Browser inspection found a raw floating-point spoken value on the prior candidate. Focused tests, built EN/TH HTML, and the corrected deployment now confirm `90` in the spoken text and `90 µJ` visually with no `89.99999999999999`; assistive-technology confirmation remains pending. |
-| Deployed English/Thai pages | Passed for commit `c581949`: both routes served `VoltageEnergyDemo.DB_zTtMO.js`, the corrected localized output, no raw artifact, and no console errors. |
+| Deployed English/Thai pages | Commit `c581949` passed localized-output checks but is superseded by the keyboard/input correction; corrected deployment verification is pending. |
 
 ## Known limitations and review triggers
 
@@ -238,10 +241,12 @@ Final judgment of natural Thai wording belongs to the project owner and is still
 | 2026-07-15 | Correct localized assistive energy output | Codex-assisted maintainer implementation | Spoken and visible energy values now share one rounded localized string; focused regression verification added. Deployment and remaining manual rendered checks are still required. |
 | 2026-07-15 | Verify corrected bound candidate | Maintainer automated verification | Focused English/Thai regression, 12 Node checks, 75 Vitest tests, 92-file Astro diagnostics, the 3,245-page production build, robots policy, and internal-reference validation passed. |
 | 2026-07-15 | Verify corrected production deployment | Maintainer deployment verification | English and Thai routes served the corrected bundle and localized rounded output with no raw artifact, horizontal overflow at the narrow viewport, or console errors; no visual/accessibility or owner approval was inferred. |
+| 2026-07-16 | Reproduce and correct slider keyboard defect | Maintainer browser and implementation review | Focus styling worked, but native Arrow/Home/End input did not change the deployed sliders. Added explicit bounded keyboard stepping plus `input` handling and focused regression coverage; deployment verification remains pending. |
+| 2026-07-16 | Verify keyboard-corrected bound candidate | Maintainer automated verification | Focused interaction tests, 12 Node checks, 76 Vitest tests, 92-file Astro diagnostics, the 3,245-page production build, robots policy, and internal-reference validation passed. |
 
 ## Publication decision
 
-- Registry status after review preparation: Implementation and corrected-candidate deployment verification passed. Rendered visual/accessibility and owner gates remain, so the lesson must stay below `published`.
+- Registry status after review preparation: Implementation verification passed for the keyboard-corrected candidate. Deployment, rendered visual/accessibility, and owner gates remain, so the lesson must stay below `published`.
 - Project-owner publication decision: Pending.
 - Thai-language decision: Pending.
 - Qualified-review decision: Not required for the current low-risk conceptual scope; reassess if scope changes.

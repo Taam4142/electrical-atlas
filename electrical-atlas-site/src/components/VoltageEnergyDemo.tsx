@@ -1,4 +1,5 @@
 import { useId, useMemo, useState } from "react";
+import { rangeValueForKey } from "../lib/interaction";
 import { formatLocalizedNumber } from "../lib/numberFormatting";
 import { estimateVoltageEnergy } from "../lib/physics";
 
@@ -111,7 +112,9 @@ export default function VoltageEnergyDemo({ locale = "en" }: { locale?: Locale }
     () => estimateVoltageEnergy({ voltage, chargeMicroCoulombs }),
     [voltage, chargeMicroCoulombs],
   );
+  const minimumVoltage = 0;
   const maximumVoltage = 24;
+  const minimumChargeMicroCoulombs = 1;
   const maximumChargeMicroCoulombs = 25;
   const maximumEnergyMicroJoules = maximumVoltage * maximumChargeMicroCoulombs;
   const voltageFraction = voltage / maximumVoltage;
@@ -125,11 +128,11 @@ export default function VoltageEnergyDemo({ locale = "en" }: { locale?: Locale }
   const formattedEnergyMicroJoules = formatLocalizedNumber(estimate.energyMicroJoules, locale, "", 2);
 
   function setVoltageFromControl(nextVoltage: number) {
-    setVoltage(clamp(nextVoltage, 0, maximumVoltage));
+    setVoltage(clamp(nextVoltage, minimumVoltage, maximumVoltage));
   }
 
   function setChargeFromControl(nextCharge: number) {
-    setChargeMicroCoulombs(clamp(nextCharge, 1, maximumChargeMicroCoulombs));
+    setChargeMicroCoulombs(clamp(nextCharge, minimumChargeMicroCoulombs, maximumChargeMicroCoulombs));
   }
 
   return (
@@ -231,12 +234,26 @@ export default function VoltageEnergyDemo({ locale = "en" }: { locale?: Locale }
           <input
             id={voltageControlId}
             type="range"
-            min="0"
+            min={minimumVoltage}
             max={maximumVoltage}
             step="0.5"
             value={voltage}
             aria-valuetext={text.voltageValue(voltage)}
+            onInput={(event) => setVoltageFromControl(Number(event.currentTarget.value))}
             onChange={(event) => setVoltageFromControl(Number(event.currentTarget.value))}
+            onKeyDown={(event) => {
+              const nextVoltage = rangeValueForKey(
+                voltage,
+                event.key,
+                event.shiftKey ? 2 : 0.5,
+                minimumVoltage,
+                maximumVoltage,
+              );
+              if (nextVoltage !== undefined) {
+                event.preventDefault();
+                setVoltageFromControl(nextVoltage);
+              }
+            }}
           />
 
           <label className="range-label" htmlFor={chargeControlId}>
@@ -246,12 +263,26 @@ export default function VoltageEnergyDemo({ locale = "en" }: { locale?: Locale }
           <input
             id={chargeControlId}
             type="range"
-            min="1"
+            min={minimumChargeMicroCoulombs}
             max={maximumChargeMicroCoulombs}
             step="1"
             value={chargeMicroCoulombs}
             aria-valuetext={text.chargeValue(chargeMicroCoulombs)}
+            onInput={(event) => setChargeFromControl(Number(event.currentTarget.value))}
             onChange={(event) => setChargeFromControl(Number(event.currentTarget.value))}
+            onKeyDown={(event) => {
+              const nextCharge = rangeValueForKey(
+                chargeMicroCoulombs,
+                event.key,
+                event.shiftKey ? 5 : 1,
+                minimumChargeMicroCoulombs,
+                maximumChargeMicroCoulombs,
+              );
+              if (nextCharge !== undefined) {
+                event.preventDefault();
+                setChargeFromControl(nextCharge);
+              }
+            }}
           />
 
           <dl className="metric-grid">

@@ -284,7 +284,7 @@ Required work:
 4. Review the English lesson for teaching clarity. **Completed for the bound candidate revision.**
 5. Review the Thai lesson for natural language and glossary consistency. **Maintainer preparation is complete; project-owner Thai approval is pending.**
 6. Complete desktop, mobile, keyboard, reduced-motion, and screen-reader-oriented checks. **Source/code review is complete; rendered browser and assistive-technology checks remain pending.**
-7. Check the deployed English and Thai pages. **Corrected commit `c581949` passed English/Thai bundle, localized-output, narrow-layout, and console verification on 2026-07-15; rendered keyboard/focus, reduced-motion, and owner review remain part of step 6.**
+7. Check the deployed English and Thai pages. **Commit `c581949` passed English/Thai bundle, localized-output, narrow-layout, and console verification, but the 2026-07-16 browser review found missing slider keyboard behavior. The keyboard-corrected candidate now requires deployment verification; reduced-motion and owner review remain part of step 6.**
 8. Record reviewer, review date, source status, limitations, and revision. **Completed in the versioned review record; later decisions must be appended, not inferred.**
 9. Mark the lesson `published` only after every required gate passes. **Pending; the registry correctly remains `prototype`.**
 

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { normalizeProgress, progressForKey } from "../lib/interaction";
+import { normalizeProgress, progressForKey, rangeValueForKey } from "../lib/interaction";
 import { estimateMosfetSwitch } from "../lib/mosfet";
 
 describe("interaction helpers", () => {
@@ -22,6 +22,18 @@ describe("interaction helpers", () => {
 
   it("ignores unrelated keys", () => {
     expect(progressForKey(62, "Tab")).toBeUndefined();
+  });
+
+  it("maps keyboard controls to bounded range values", () => {
+    expect(rangeValueForKey(9, "Home", 0.5, 0, 24)).toBe(0);
+    expect(rangeValueForKey(9, "End", 0.5, 0, 24)).toBe(24);
+    expect(rangeValueForKey(9, "ArrowLeft", 0.5, 0, 24)).toBe(8.5);
+    expect(rangeValueForKey(9, "ArrowRight", 0.5, 0, 24)).toBe(9.5);
+    expect(rangeValueForKey(9, "PageDown", 0.5, 0, 24)).toBe(6.5);
+    expect(rangeValueForKey(9, "PageUp", 0.5, 0, 24)).toBe(11.5);
+    expect(rangeValueForKey(0, "ArrowDown", 0.5, 0, 24)).toBe(0);
+    expect(rangeValueForKey(24, "ArrowUp", 0.5, 0, 24)).toBe(24);
+    expect(rangeValueForKey(9, "Tab", 0.5, 0, 24)).toBeUndefined();
   });
 });
 

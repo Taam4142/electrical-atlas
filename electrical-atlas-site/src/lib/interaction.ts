@@ -39,3 +39,32 @@ export function progressForKey(currentProgress: number, key: string, shiftKey = 
       return undefined;
   }
 }
+
+export function rangeValueForKey(
+  currentValue: number,
+  key: string,
+  step: number,
+  min: number,
+  max: number,
+): number | undefined {
+  const clampValue = (value: number) => Math.max(min, Math.min(max, value));
+
+  switch (key satisfies string) {
+    case "Home":
+      return min;
+    case "End":
+      return max;
+    case "ArrowLeft":
+    case "ArrowDown":
+      return clampValue(currentValue - step);
+    case "ArrowRight":
+    case "ArrowUp":
+      return clampValue(currentValue + step);
+    case "PageDown":
+      return clampValue(currentValue - step * 5);
+    case "PageUp":
+      return clampValue(currentValue + step * 5);
+    default:
+      return undefined;
+  }
+}
