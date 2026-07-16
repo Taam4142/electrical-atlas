@@ -13,7 +13,6 @@
   "qualifiedReviewReason": "The reviewed revision is a low-risk conceptual lesson with general safety boundaries, no live-work procedure, no installation instruction, and no claim that an exact Thai rule applies universally.",
   "blockers": [
     "owner-thai-language-approval",
-    "preview-deployment-review",
     "owner-publication-approval"
   ],
   "reviewedFiles": {
@@ -79,11 +78,11 @@
       "note": "Twelve Node checks, 76 Vitest tests across 12 files, Astro diagnostics for 92 files, the 3,245-page production build, 3,214 topic robots policies, and 3,246 internal references passed for the keyboard-corrected bound candidate files."
     },
     "previewDeployment": {
-      "status": "pending",
+      "status": "passed",
       "reviewer": "Maintainer deployment verification",
       "reviewerAuthority": "maintainer",
-      "reviewedAt": null,
-      "note": "Commit bc12ec1 passed English and Thai deployment checks for the corrected interaction. The registry promotion changes the bound candidate revision, so the promoted review-ready deployment must be checked before this gate can pass."
+      "reviewedAt": "2026-07-16",
+      "note": "Deployed commit 7414277 showed review-ready on the English lesson and registry and พร้อมตรวจทาน on the Thai lesson and registry. Real Arrow-key input still updated the localized slider value, aria-valuetext, and live output on both lesson routes; the document stayed within the 390 px viewport."
     },
     "publication": {
       "status": "pending",
@@ -125,7 +124,7 @@ Status: review preparation is complete; the lesson is `review-ready`, not approv
 | English content | Codex-assisted maintainer content audit | Passed 2026-07-15 | No owner action required unless wording changes materially. |
 | Thai language | Project owner | Pending | Blocks publication. |
 | Visual/accessibility | Maintainer browser review | Passed 2026-07-16 with documented emulation boundaries | Supports `review-ready`; does not grant Thai-language or publication approval. |
-| Preview/live deployment | Maintainer deployment verification | Pending only for the registry-promoted candidate | Commit `bc12ec1` passed the corrected interaction; the registry-only status promotion still needs a live EN/TH check. |
+| Preview/live deployment | Maintainer deployment verification | Passed 2026-07-16 on commit `7414277` | English and Thai lesson and registry status displays agree with the promoted bound revision. |
 | Final publication | Project owner | Pending | Blocks `published`. |
 
 The project owner's acceptance of the governance model on 2026-07-14 approved these roles, not this lesson revision.
@@ -218,7 +217,7 @@ Final judgment of natural Thai wording belongs to the project owner and is still
 | Native keyboard controls and visible focus | Passed for control behavior: actual Arrow, Home, End, and Page input changed both sliders, localized `aria-valuetext`, the live result, and the zero/maximum visual states. CSS inspection confirmed the range control's 3 px `:focus-visible` outline; the browser backend could not synthesize keyboard-only focus modality, so no rendered Tab-modality claim is made. |
 | Reduced-motion behavior | Passed by CSSOM and information-path inspection: the parsed `prefers-reduced-motion: reduce` rule reduces animation and transition duration to `0.01ms`; the demo has no animations and only three nonessential 0.18 s visual transitions, while all changing information is also present as text/live output and in the transcript. OS preference emulation was unavailable. |
 | Screen-reader-oriented names, live output, and transcript | Passed browser-semantic inspection: both native ranges have associated labels and localized `aria-valuetext`; the result is an `output` with `aria-live="polite"` and `aria-atomic="true"`; the diagram is hidden by an `aria-hidden="true"` stage and has a text transcript. The rounded spoken/visible result contains no raw floating artifact. No named platform screen reader was tested. |
-| Deployed English/Thai pages | Commit `bc12ec1` passed corrected bundle, interaction, localization, responsive geometry, semantic-output, and console checks. The subsequent registry-only promotion still requires a final deployed status check. |
+| Deployed English/Thai pages | Passed on commit `7414277`: both lesson and registry routes showed the localized `review-ready` status, and real Arrow-key input still updated localized values and live output on both lesson routes at 390 px. |
 
 ## Known limitations and review triggers
 
@@ -245,10 +244,11 @@ Final judgment of natural Thai wording belongs to the project owner and is still
 | 2026-07-16 | Verify keyboard-corrected bound candidate | Maintainer automated verification | Focused interaction tests, 12 Node checks, 76 Vitest tests, 92-file Astro diagnostics, the 3,245-page production build, robots policy, and internal-reference validation passed. |
 | 2026-07-16 | Verify deployed keyboard-corrected candidate | Maintainer browser review | English and Thai desktop and 390 px checks passed responsive, semantic, 44 px target, console, localized input, and actual keyboard behavior checks. Focus-modality, reduced-motion preference, and named screen-reader emulation were unavailable and are recorded as evidence boundaries rather than silently inferred results. |
 | 2026-07-16 | Complete maintainer review preparation | Codex-assisted maintainer review | The required maintainer-controlled gates passed and the lesson moved from `prototype` to `review-ready`. Thai-language approval, promoted-deployment verification, and final publication approval remain separate blockers. |
+| 2026-07-16 | Verify promoted production deployment | Maintainer deployment verification | Commit `7414277` displayed the promoted status consistently on English and Thai lesson and registry routes; live localized Arrow-key interaction also passed. The deployment blocker was removed, leaving only project-owner Thai-language and final-publication decisions. |
 
 ## Publication decision
 
-- Registry status after review preparation: `review-ready`. Technical, English, implementation, visual/accessibility, and source preparation gates passed; the promoted deployment and both project-owner decisions remain pending, so the lesson must stay below `published`.
+- Registry status after review preparation: `review-ready`. Technical, English, implementation, visual/accessibility, source, and promoted-deployment gates passed; both project-owner decisions remain pending, so the lesson must stay below `published`.
 - Project-owner publication decision: Pending.
 - Thai-language decision: Pending.
 - Qualified-review decision: Not required for the current low-risk conceptual scope; reassess if scope changes.
