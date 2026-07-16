@@ -6,19 +6,18 @@
   "lessonId": "ea.lesson.voltage.v0.1",
   "recordState": "in-review",
   "sourceStatus": "verified",
-  "reviewedRevision": "sha256:380dcbd52246db4d72970f5001c247626d65396e8aa7d34b87b61ead0fe9e5a4",
+  "reviewedRevision": "sha256:b27f76bd12c83afeb478fc2f9a80fbfb01d6ad8087a3d9494451c78da5963b5f",
   "reviewedAt": "2026-07-16",
   "nextReviewAt": "2027-01-14",
   "qualifiedReviewRequired": false,
   "qualifiedReviewReason": "The reviewed revision is a low-risk conceptual lesson with general safety boundaries, no live-work procedure, no installation instruction, and no claim that an exact Thai rule applies universally.",
   "blockers": [
     "owner-thai-language-approval",
-    "visual-accessibility-review",
     "preview-deployment-review",
     "owner-publication-approval"
   ],
   "reviewedFiles": {
-    "electrical-atlas-site/src/lib/lessonRegistry.ts": "e4cceaf27a952fde5d48d6c34cca262f75d69c2ef103d1d48f4871d40814d867",
+    "electrical-atlas-site/src/lib/lessonRegistry.ts": "050959b305556b7fa8b3f506fb17ab31f8eae9e24231af4ba9c3f5e426f4d3a8",
     "electrical-atlas-site/src/content/lessons/en/voltage.mdx": "801061c892c21be084e18a73c09fe4dd202cf9cb95a849b319dbcd3a2587d883",
     "electrical-atlas-site/src/content/lessons/th/voltage.mdx": "7ff016ed44376d2c6979314d0ce8f45c296fe5a713466fb8a163e09af38c0e3c",
     "electrical-atlas-site/src/components/VoltageEnergyDemo.tsx": "df37130d9eba89fddb523d0da5ff56ffa013538ebd2bfe3a7f9706034d32a5e7",
@@ -59,11 +58,11 @@
       "note": "Project-owner review of the prepared Thai wording is required."
     },
     "visualAccessibility": {
-      "status": "pending",
+      "status": "passed",
       "reviewer": "Maintainer browser review",
       "reviewerAuthority": "maintainer",
-      "reviewedAt": null,
-      "note": "Rendered review found that the deployed sliders received visible focus but did not respond to Arrow/Home/End input. Explicit bounded keyboard and input handling is implemented and requires deployment verification; reduced-motion evidence also remains."
+      "reviewedAt": "2026-07-16",
+      "note": "Deployed English and Thai desktop and 390 px checks passed responsive geometry, 44 px controls, localized semantic values, live output, transcript, console, and actual Arrow/Home/End/Page behavior including zero and maximum states. CSS inspection confirmed a 3 px focus-visible rule and a reduced-motion rule that collapses the demo's nonessential 0.18 s transitions; this browser backend could not emulate keyboard-only focus modality, the OS reduced-motion preference, or a named screen reader, so no platform assistive-technology result is claimed."
     },
     "qualifiedHuman": {
       "status": "not-required",
@@ -84,7 +83,7 @@
       "reviewer": "Maintainer deployment verification",
       "reviewerAuthority": "maintainer",
       "reviewedAt": null,
-      "note": "The keyboard/input correction must be committed, deployed, and checked on both English and Thai routes before this gate can pass again."
+      "note": "Commit bc12ec1 passed English and Thai deployment checks for the corrected interaction. The registry promotion changes the bound candidate revision, so the promoted review-ready deployment must be checked before this gate can pass."
     },
     "publication": {
       "status": "pending",
@@ -97,7 +96,7 @@
 }
 -->
 
-Status: evidence is in review; the lesson is not approved for publication.
+Status: review preparation is complete; the lesson is `review-ready`, not approved for publication.
 
 ## Control record
 
@@ -109,6 +108,7 @@ Status: evidence is in review; the lesson is not approved for publication.
 | Languages | English and Thai |
 | Registry status before review | `prototype` |
 | Target preparation status | `review-ready` |
+| Registry status after preparation | `review-ready` |
 | Publication status | Pending project-owner decision |
 | Source status | `verified` for this reviewed conceptual scope |
 | Safety level | `low` — conceptual lesson with explicit live-measurement and mains boundaries |
@@ -124,8 +124,8 @@ Status: evidence is in review; the lesson is not approved for publication.
 | Low-risk technical accuracy | Codex-assisted maintainer technical audit | Passed 2026-07-16 for the current scope | Must be reassessed if hands-on, hazardous, or regulated practice is added. |
 | English content | Codex-assisted maintainer content audit | Passed 2026-07-15 | No owner action required unless wording changes materially. |
 | Thai language | Project owner | Pending | Blocks publication. |
-| Visual/accessibility | Maintainer browser review | Pending after keyboard defect discovery | Blocks handoff as review-ready until the corrected controls and reduced-motion boundary are verified. |
-| Preview/live deployment | Maintainer deployment verification | Pending for the keyboard-corrected candidate | Earlier deployment evidence was superseded when the bound interaction changed. |
+| Visual/accessibility | Maintainer browser review | Passed 2026-07-16 with documented emulation boundaries | Supports `review-ready`; does not grant Thai-language or publication approval. |
+| Preview/live deployment | Maintainer deployment verification | Pending only for the registry-promoted candidate | Commit `bc12ec1` passed the corrected interaction; the registry-only status promotion still needs a live EN/TH check. |
 | Final publication | Project owner | Pending | Blocks `published`. |
 
 The project owner's acceptance of the governance model on 2026-07-14 approved these roles, not this lesson revision.
@@ -213,12 +213,12 @@ Final judgment of natural Thai wording belongs to the project owner and is still
 | Full website test suite | Passed: 12 Node checks and 76 Vitest tests across 12 files. |
 | Astro/type check | Passed: 92 files, 0 errors, warnings, or hints. |
 | Production build and internal-link validation | Passed: 3,245 pages, 3,214 topic robots policies, and 3,246 unique root-relative references validated. |
-| Desktop English/Thai visual check | Prior deployed candidate had no console errors and the English desktop layout had no horizontal overflow; corrected candidate recheck pending. |
-| Mobile English/Thai visual check | Corrected deployed candidate passed narrow-layout overflow, single-column, language, title, 44 px range-target, and console checks in the 639 px browser viewport; manual visual confirmation remains part of the accessibility gate. |
-| Native keyboard controls and visible focus | Corrected production candidate showed a visible focus outline, but Arrow/Home/End did not update either slider. Explicit bounded keyboard handling and `input` event support now pass focused tests; corrected deployment verification is pending. |
-| Reduced-motion behavior | Source/code review passed; rendered reduced-motion verification remains pending. |
-| Screen-reader-oriented names, live output, and transcript | Browser inspection found a raw floating-point spoken value on the prior candidate. Focused tests, built EN/TH HTML, and the corrected deployment now confirm `90` in the spoken text and `90 µJ` visually with no `89.99999999999999`; assistive-technology confirmation remains pending. |
-| Deployed English/Thai pages | Commit `c581949` passed localized-output checks but is superseded by the keyboard/input correction; corrected deployment verification is pending. |
+| Desktop English/Thai visual check | Passed on deployed commit `bc12ec1`: the demo retained its two-column desktop layout, 44 px controls, localized values, and no document-level horizontal overflow or console errors. |
+| Mobile English/Thai visual check | Passed at 390 × 844 on deployed commit `bc12ec1`: the demo used one column, its stage, controls, metrics, header, and document did not overflow, and both range targets remained 44 px. The navigation's three-pixel excess is contained by its intentional `overflow-x: auto` mobile rail rather than expanding the document. |
+| Native keyboard controls and visible focus | Passed for control behavior: actual Arrow, Home, End, and Page input changed both sliders, localized `aria-valuetext`, the live result, and the zero/maximum visual states. CSS inspection confirmed the range control's 3 px `:focus-visible` outline; the browser backend could not synthesize keyboard-only focus modality, so no rendered Tab-modality claim is made. |
+| Reduced-motion behavior | Passed by CSSOM and information-path inspection: the parsed `prefers-reduced-motion: reduce` rule reduces animation and transition duration to `0.01ms`; the demo has no animations and only three nonessential 0.18 s visual transitions, while all changing information is also present as text/live output and in the transcript. OS preference emulation was unavailable. |
+| Screen-reader-oriented names, live output, and transcript | Passed browser-semantic inspection: both native ranges have associated labels and localized `aria-valuetext`; the result is an `output` with `aria-live="polite"` and `aria-atomic="true"`; the diagram is hidden by an `aria-hidden="true"` stage and has a text transcript. The rounded spoken/visible result contains no raw floating artifact. No named platform screen reader was tested. |
+| Deployed English/Thai pages | Commit `bc12ec1` passed corrected bundle, interaction, localization, responsive geometry, semantic-output, and console checks. The subsequent registry-only promotion still requires a final deployed status check. |
 
 ## Known limitations and review triggers
 
@@ -243,10 +243,12 @@ Final judgment of natural Thai wording belongs to the project owner and is still
 | 2026-07-15 | Verify corrected production deployment | Maintainer deployment verification | English and Thai routes served the corrected bundle and localized rounded output with no raw artifact, horizontal overflow at the narrow viewport, or console errors; no visual/accessibility or owner approval was inferred. |
 | 2026-07-16 | Reproduce and correct slider keyboard defect | Maintainer browser and implementation review | Focus styling worked, but native Arrow/Home/End input did not change the deployed sliders. Added explicit bounded keyboard stepping plus `input` handling and focused regression coverage; deployment verification remains pending. |
 | 2026-07-16 | Verify keyboard-corrected bound candidate | Maintainer automated verification | Focused interaction tests, 12 Node checks, 76 Vitest tests, 92-file Astro diagnostics, the 3,245-page production build, robots policy, and internal-reference validation passed. |
+| 2026-07-16 | Verify deployed keyboard-corrected candidate | Maintainer browser review | English and Thai desktop and 390 px checks passed responsive, semantic, 44 px target, console, localized input, and actual keyboard behavior checks. Focus-modality, reduced-motion preference, and named screen-reader emulation were unavailable and are recorded as evidence boundaries rather than silently inferred results. |
+| 2026-07-16 | Complete maintainer review preparation | Codex-assisted maintainer review | The required maintainer-controlled gates passed and the lesson moved from `prototype` to `review-ready`. Thai-language approval, promoted-deployment verification, and final publication approval remain separate blockers. |
 
 ## Publication decision
 
-- Registry status after review preparation: Implementation verification passed for the keyboard-corrected candidate. Deployment, rendered visual/accessibility, and owner gates remain, so the lesson must stay below `published`.
+- Registry status after review preparation: `review-ready`. Technical, English, implementation, visual/accessibility, and source preparation gates passed; the promoted deployment and both project-owner decisions remain pending, so the lesson must stay below `published`.
 - Project-owner publication decision: Pending.
 - Thai-language decision: Pending.
 - Qualified-review decision: Not required for the current low-risk conceptual scope; reassess if scope changes.

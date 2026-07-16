@@ -21,7 +21,7 @@ In the status column, `candidate` means the lesson is part of this strategic cur
 | ---: | --- | --- | --- | --- | --- |
 | 1 | What Is Electricity? | `ea.fundamentals.electricity` | P0 | prototype | The gateway concept for the whole site. |
 | 2 | Electric Charge | `ea.fundamentals.charge` | P1 | candidate | Explains what is moving, stored, separated, and conserved. |
-| 3 | Voltage | `ea.fundamentals.voltage` | P1 | prototype | Learners need energy-per-charge before circuits make sense. |
+| 3 | Voltage | `ea.fundamentals.voltage` | P1 | review-ready | Learners need energy-per-charge before circuits make sense. |
 | 4 | Electric Current | `ea.fundamentals.current` | P1 | prototype | The core flow quantity behind circuits, signals, and power. |
 | 5 | Resistance and Conductance | `ea.fundamentals.resistance` | P1 | prototype | Turns material behavior into circuit behavior. |
 | 6 | Ohm's Law | `ea.circuit.law.ohm` | P1 | prototype | First quantitative law most learners will use. |

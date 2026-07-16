@@ -1,6 +1,6 @@
 # Project review and next-phase plan — 2026-07-14
 
-Status: Phase A1 and Phase A2 were implemented on 2026-07-14. Phase B was approved on 2026-07-14 and the Voltage publication pilot is in progress. Later phases remain recommendations pending separate approval. Automated and built-output verification for Phase A is complete; the visual browser matrix remains part of the Phase B review work.
+Status: Phase A1 and Phase A2 were implemented on 2026-07-14. Phase B was approved on 2026-07-14 and the Voltage publication pilot is in progress. Later phases remain recommendations pending separate approval. Automated, built-output, and maintainer browser checks are complete for the corrected Voltage interaction; the registry-only promotion deployment and project-owner decisions remain.
 
 This document preserves the project retrospective performed on 2026-07-14. It records the current evidence, the main risks, and the recommended sequence of work so future sessions do not have to reconstruct the reasoning from chat history.
 
@@ -283,10 +283,10 @@ Required work:
 3. Verify the physical explanation, equations, units, simplifications, and misconceptions. **Completed for the bound candidate revision.**
 4. Review the English lesson for teaching clarity. **Completed for the bound candidate revision.**
 5. Review the Thai lesson for natural language and glossary consistency. **Maintainer preparation is complete; project-owner Thai approval is pending.**
-6. Complete desktop, mobile, keyboard, reduced-motion, and screen-reader-oriented checks. **Source/code review is complete; rendered browser and assistive-technology checks remain pending.**
-7. Check the deployed English and Thai pages. **Commit `c581949` passed English/Thai bundle, localized-output, narrow-layout, and console verification, but the 2026-07-16 browser review found missing slider keyboard behavior. The keyboard-corrected candidate now requires deployment verification; reduced-motion and owner review remain part of step 6.**
+6. Complete desktop, mobile, keyboard, reduced-motion, and screen-reader-oriented checks. **Completed 2026-07-16 for the maintainer-controlled gate: English/Thai desktop and 390 px layout, 44 px targets, actual slider keyboard behavior, semantic names/live output/transcript, focus-visible CSS, and reduced-motion CSS/information paths passed. Keyboard-focus modality, OS reduced-motion preference, and a named screen reader could not be emulated by the browser backend, so the evidence record states those boundaries explicitly.**
+7. Check the deployed English and Thai pages. **Commit `bc12ec1` passed the corrected interaction, localization, responsive geometry, semantic-output, and console checks. A final deployment check remains for the registry-only `review-ready` promotion.**
 8. Record reviewer, review date, source status, limitations, and revision. **Completed in the versioned review record; later decisions must be appended, not inferred.**
-9. Mark the lesson `published` only after every required gate passes. **Pending; the registry correctly remains `prototype`.**
+9. Mark the lesson `published` only after every required gate passes. **Pending; the registry is now correctly `review-ready`, while project-owner Thai-language approval and final publication approval remain required.**
 
 After the pilot, apply the proven workflow to What Is Electricity and Electric Current.
 
@@ -376,6 +376,6 @@ Do not silently decide these during unrelated implementation work.
 
 ## 8. Immediate next checkpoint
 
-Phase A1 and Phase A2 are implemented. **Phase B: use Voltage to prove the publication workflow** is approved and in progress. Source, technical, English, and revision-bound automated verification are complete for the current candidate. The immediate next checkpoint is a deployed EN/TH rendered review, followed by the project owner's Thai-language and final lesson decisions. Voltage remains `prototype` until those gates are completed.
+Phase A1 and Phase A2 are implemented. **Phase B: use Voltage to prove the publication workflow** is approved and in progress. Source, technical, English, revision-bound automated verification, and the maintainer visual/accessibility gate are complete for the current candidate. Voltage is now `review-ready`. The immediate next checkpoint is an EN/TH deployment check of the registry-only promotion, followed by the project owner's Thai-language and final lesson decisions.
 
 The remaining proposed sequence is the Voltage publication pilot and then the curriculum decision that controls Electric Charge and Capacitor ordering.

@@ -72,7 +72,7 @@ export const lessonRegistry = [
     lessonId: "ea.lesson.voltage.v0.1",
     primaryTopicId: "ea.fundamentals.voltage",
     coveredTopicIds: ["ea.fundamentals.voltage"],
-    status: "prototype",
+    status: "review-ready",
     safetyLevel: "low",
     sourceStatus: "verified",
     requiresThailandContext: true,
