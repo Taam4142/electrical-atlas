@@ -9,8 +9,11 @@ export type OhmsLawResult = {
   power: number;
 };
 
-export type LampCircuitEstimate = OhmsLawResult & {
-  fieldArrivalFraction: number;
+export type LampCircuitEstimate = {
+  sourceVoltage: number;
+  loadResistanceOhms: number;
+  steadyCurrentAmps: number;
+  loadPowerWatts: number;
   driftSpeedMetersPerSecond: number;
   driftSpeedMillimetersPerSecond: number;
 };
@@ -553,20 +556,20 @@ export function estimateLampCircuit(params: {
   voltage: number;
   resistance: number;
   conductorAreaM2: number;
-  fieldProgressFraction: number;
+  circuitClosed: boolean;
 }): LampCircuitEstimate {
   const ohms = calculateOhmsLaw(params.voltage, params.resistance);
-  const activeCurrent = ohms.current * clamp(params.fieldProgressFraction);
+  const activeCurrent = params.circuitClosed ? ohms.current : 0;
   const driftSpeedMetersPerSecond = estimateElectronDriftSpeed({
     current: Math.abs(activeCurrent),
     conductorAreaM2: params.conductorAreaM2,
   });
 
   return {
-    ...ohms,
-    current: activeCurrent,
-    power: params.voltage * activeCurrent,
-    fieldArrivalFraction: clamp(params.fieldProgressFraction),
+    sourceVoltage: params.voltage,
+    loadResistanceOhms: params.resistance,
+    steadyCurrentAmps: activeCurrent,
+    loadPowerWatts: params.voltage * activeCurrent,
     driftSpeedMetersPerSecond,
     driftSpeedMillimetersPerSecond: driftSpeedMetersPerSecond * 1000,
   };

@@ -1,6 +1,6 @@
 # Project review and next-phase plan — 2026-07-14
 
-Status: Phase A1 and Phase A2 were implemented on 2026-07-14. Phase B was approved on 2026-07-14 and the Voltage publication pilot is in progress. Later phases remain recommendations pending separate approval. Automated, built-output, maintainer browser, and promoted-deployment checks are complete for Voltage; the project-owner Thai-language and final-publication decisions remain.
+Status: Phase A1 and Phase A2 were implemented on 2026-07-14. Phase B was approved on 2026-07-14; Voltage is `review-ready`, and the proven workflow was applied to What Is Electricity on 2026-07-16. Later phases remain recommendations pending separate approval. Project-owner Thai-language and final-publication decisions remain lesson-specific and pending.
 
 This document preserves the project retrospective performed on 2026-07-14. It records the current evidence, the main risks, and the recommended sequence of work so future sessions do not have to reconstruct the reasoning from chat history.
 
@@ -288,7 +288,21 @@ Required work:
 8. Record reviewer, review date, source status, limitations, and revision. **Completed in the versioned review record; later decisions must be appended, not inferred.**
 9. Mark the lesson `published` only after every required gate passes. **Pending; the registry is now correctly `review-ready`, while project-owner Thai-language approval and final publication approval remain required.**
 
-After the pilot, apply the proven workflow to What Is Electricity and Electric Current.
+After the pilot, apply the proven workflow to What Is Electricity and Electric Current. **What Is Electricity review preparation was completed on 2026-07-16; Electric Current remains the next workflow candidate after the curriculum checkpoint.**
+
+#### Phase B continuation — What Is Electricity
+
+The gateway review corrected a high-value teaching risk before promotion:
+
+- the former percentage slider mixed switch travel, field propagation, current buildup, lamp power, and electron drift into one scale;
+- the replacement compares only open circuit with idealized closed steady DC and discloses the unmodeled transient and filament warm-up;
+- the circuit drawing now inserts a true two-terminal source, keeps a field cue in the open gap, separates conventional-current and electron-drift direction, and keeps the lamp fully dark at zero power;
+- English and prepared Thai content now define charge, field, voltage, current, resistance, power, energy, equation symbols and units, and model limits;
+- exact sources and claim mappings are preserved in [What Is Electricity review — v0.1](lesson-reviews/what-is-electricity-v0.1.md);
+- the gateway relationship list now prioritizes charge and charge carriers and records DC/AC branches instead of jumping to lithium-ion chemistry;
+- maintainer browser review covered both languages at default desktop, 390 px, and 320 px, with localized live output, native controls, visible focus, no page-level overflow, English-language marking on canonical topic cards, and no console errors.
+
+This conceptual scope does not assert a Thai standard number, installation rule, utility requirement, or legal threshold. No standards-specific or qualified-human approval is needed for review preparation. Project-owner Thai-language and final-publication decisions remain pending and cannot be inferred from implementation approval.
 
 Exit criteria:
 
@@ -376,6 +390,6 @@ Do not silently decide these during unrelated implementation work.
 
 ## 8. Immediate next checkpoint
 
-Phase A1 and Phase A2 are implemented. **Phase B: use Voltage to prove the publication workflow** is approved and in progress. Source, technical, English, revision-bound automated verification, maintainer visual/accessibility, and promoted-deployment gates are complete for the current candidate. Voltage is `review-ready`. The immediate next checkpoint is the project owner's Thai-language and final lesson decisions.
+Phase A1 and Phase A2 are implemented. Phase B has produced a `review-ready` Voltage lesson and a review-prepared What Is Electricity gateway. The immediate content checkpoint is the curriculum decision that controls Electric Charge and Capacitor ordering; project-owner Thai-language and final-publication decisions for the two review-ready lessons may happen independently and do not block that planning work.
 
-The remaining proposed sequence is the Voltage publication pilot and then the curriculum decision that controls Electric Charge and Capacitor ordering.
+The remaining proposed sequence is the standalone Electric Charge decision, then the approved content choice, while applying the same review workflow to Electric Current when it becomes the active lesson candidate.

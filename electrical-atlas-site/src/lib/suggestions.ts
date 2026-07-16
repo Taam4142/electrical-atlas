@@ -22,6 +22,7 @@ export interface SuggestionItem {
   summary: string;
   href: string;
   kind: SuggestionKind;
+  contentLocale: Locale;
   relation: string;
   relationType?: RelationshipType | "metadata";
 }
@@ -41,6 +42,7 @@ export function topicToSuggestion(
     summary: topic.summary,
     href: topicPath(locale, topic),
     kind: "topic",
+    contentLocale: "en",
     relation: relation || getTopicTypeLabel(topic.type, locale),
     relationType,
   };
@@ -50,6 +52,7 @@ export function getLessonSuggestions(
   lessonKey: LessonKey,
   locale: Locale,
   topics: AtlasTopic[],
+  limit = Number.POSITIVE_INFINITY,
 ): SuggestionItem[] {
   const topicById = new Map(topics.map((topic) => [topic.id, topic]));
   const relationships = getOutgoingRelationships({ kind: "lesson", id: lessonKey });
@@ -73,6 +76,7 @@ export function getLessonSuggestions(
           ? {
               ...lesson,
               kind: "lesson",
+              contentLocale: locale,
               relation,
               relationType: relationship.type,
             }
@@ -86,7 +90,8 @@ export function getLessonSuggestions(
       const topic = topicById.get(relationship.target.id);
       return topic ? topicToSuggestion(topic, locale, relation, relationship.type) : undefined;
     })
-    .filter((item): item is SuggestionItem => Boolean(item));
+    .filter((item): item is SuggestionItem => Boolean(item))
+    .slice(0, Math.max(0, Math.floor(limit)));
 }
 
 function sharedTokenScore(a: string, b: string) {

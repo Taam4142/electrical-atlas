@@ -205,16 +205,28 @@ describe("physics helpers", () => {
     ).toBe(0);
   });
 
-  it("scales the conceptual lamp circuit by field progress", () => {
-    const estimate = estimateLampCircuit({
+  it("keeps the lamp model at coherent open and closed steady states", () => {
+    const openEstimate = estimateLampCircuit({
       voltage: 9,
       resistance: 30,
       conductorAreaM2: 0.5e-6,
-      fieldProgressFraction: 0.5,
+      circuitClosed: false,
+    });
+    const closedEstimate = estimateLampCircuit({
+      voltage: 9,
+      resistance: 30,
+      conductorAreaM2: 0.5e-6,
+      circuitClosed: true,
     });
 
-    expect(estimate.current).toBeCloseTo(0.15, 10);
-    expect(estimate.power).toBeCloseTo(1.35, 10);
-    expect(estimate.fieldArrivalFraction).toBe(0.5);
+    expect(openEstimate).toMatchObject({
+      sourceVoltage: 9,
+      loadResistanceOhms: 30,
+      steadyCurrentAmps: 0,
+      loadPowerWatts: 0,
+    });
+    expect(closedEstimate.steadyCurrentAmps).toBeCloseTo(0.3, 10);
+    expect(closedEstimate.loadPowerWatts).toBeCloseTo(2.7, 10);
+    expect(closedEstimate.driftSpeedMillimetersPerSecond).toBeCloseTo(0.044_058, 5);
   });
 });

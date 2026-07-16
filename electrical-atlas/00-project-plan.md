@@ -57,3 +57,17 @@ The optional technical track will introduce equations including \(q=ne\), Coulom
 - “Research-style depth” means rigorous derivations, citations, assumptions, and model limitations—not original research.
 - Visual inspiration may come from RealPars and The Engineering Mindset, but all text, graphics, models, and branding will be original.
 
+## Implementation alignment note — 2026-07-16
+
+The approved plan above remains the durable statement of intent. The implemented gateway now covers the planned beginner chain from charge and materials through fields, potential difference, current, resistance, power, energy, the battery–switch–lamp case, static electricity, DC, AC, magnetism, induction, and the wider atlas. The technical mode defines the main symbols, units, equation scopes, constitutive assumptions, charge continuity, Maxwell-level framing, and the Poynting vector.
+
+Review found that the original percentage-based lamp animation mixed three different processes: mechanical contact motion, electromagnetic propagation, and steady-state current. It could therefore display values that looked like one circuit state while violating `I = V/R`. The v0.1 interaction now compares only two physically coherent endpoints—open circuit and idealized closed steady DC. It explicitly states that switching transients, propagation geometry, cold-filament inrush, and thermal warm-up are not simulated. Future visuals for those mechanisms must use separate models and time scales.
+
+The present 2D SVG is the reviewed v0.1 visual. The proposed 3D material-lattice viewer remains deliberately deferred until it adds teaching value that cannot be delivered by a lighter diagram. The lesson works without any 3D asset, so this deferral does not create an empty public page or block the gateway.
+
+Two earlier implementation choices have been superseded by later project decisions without changing the educational purpose:
+
+- the site now uses the restrained long-reading theme documented in the current design system rather than the original technical-studio presentation;
+- production deployment uses Vercel rather than Cloudflare Pages.
+
+The current English and prepared Thai revisions are bound to [the versioned lesson review record](../docs/lesson-reviews/what-is-electricity-v0.1.md). Exact claims are mapped to authoritative sources there. This conceptual lesson does not assert a Thai installation code, standard number, utility rule, or legal threshold, so no Thai standards approval is required for review preparation. Project-owner Thai-language and final-publication approval remain separate and must not be inferred.

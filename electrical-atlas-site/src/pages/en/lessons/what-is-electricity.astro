@@ -2,13 +2,12 @@
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import LessonShell from "../../../components/LessonShell.astro";
 import LessonModeToggle from "../../../components/LessonModeToggle";
-import CircuitFieldDemo from "../../../components/CircuitFieldDemo";
 import SuggestionSection from "../../../components/SuggestionSection.astro";
 import Content from "../../../content/lessons/en/what-is-electricity.mdx";
 import { atlasTopics } from "../../../lib/generated/atlasTopics";
 import { getLessonSuggestions } from "../../../lib/suggestions";
 
-const suggestions = getLessonSuggestions("what-is-electricity", "en", atlasTopics);
+const suggestions = getLessonSuggestions("what-is-electricity", "en", atlasTopics, 10);
 ---
 
 <BaseLayout
@@ -25,7 +24,6 @@ const suggestions = getLessonSuggestions("what-is-electricity", "en", atlasTopic
     lessonId="ea.lesson.what-is-electricity.v0.1"
   >
     <LessonModeToggle client:load locale="en" />
-    <CircuitFieldDemo client:load locale="en" />
     <div class="lesson-content">
       <Content />
     </div>

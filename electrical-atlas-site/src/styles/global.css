@@ -2533,7 +2533,7 @@ h3 {
 .switch-wire,
 .series-parallel-return,
 .battery-return-flow {
-  stroke: rgba(47, 111, 159, 0.26);
+  stroke: rgba(47, 111, 159, 0.78);
 }
 
 .battery-shell,

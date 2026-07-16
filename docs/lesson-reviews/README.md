@@ -105,6 +105,8 @@ Extra project-specific gates are allowed if they use a lower-camel-case ID and t
 
 `reviewedFiles` prevents a review decision from remaining attached after the reviewed lesson or implementation silently changes. Include every file whose bytes materially determine the reviewed claims, interaction, equations, or presentation. Avoid broad unrelated files when a narrower lesson-specific file exists, but include a shared file when its behavior is part of the review.
 
+A passed `previewDeployment` gate must name or otherwise identify a deployed commit containing the exact bound revision. If the manifest is refreshed to include newer lesson or shared-runtime bytes, reset that gate to `pending` and restore the deployment blocker until the new commit is live-checked. Keep the former deployment event in decision history as historical evidence; do not present it as verification of the new fingerprint.
+
 The digest algorithm is:
 
 1. read the file as UTF-8 text;
@@ -155,3 +157,4 @@ Use a public review-ready deployment or Vercel preview for the live-page check. 
 ## Records
 
 - [Voltage v0.1](voltage-v0.1.md) — Phase B publication pilot; final owner and Thai-language approval pending.
+- [What Is Electricity v0.1](what-is-electricity-v0.1.md) — gateway review; final owner and Thai-language approval pending.

@@ -6,26 +6,37 @@
   "lessonId": "ea.lesson.voltage.v0.1",
   "recordState": "in-review",
   "sourceStatus": "verified",
-  "reviewedRevision": "sha256:b27f76bd12c83afeb478fc2f9a80fbfb01d6ad8087a3d9494451c78da5963b5f",
+  "reviewedRevision": "sha256:2cfc3a07987d6aeaaa487e216d349229da13772841199e503fccce9d46f43361",
   "reviewedAt": "2026-07-16",
   "nextReviewAt": "2027-01-14",
   "qualifiedReviewRequired": false,
   "qualifiedReviewReason": "The reviewed revision is a low-risk conceptual lesson with general safety boundaries, no live-work procedure, no installation instruction, and no claim that an exact Thai rule applies universally.",
   "blockers": [
+    "preview-deployment-verification",
     "owner-thai-language-approval",
     "owner-publication-approval"
   ],
   "reviewedFiles": {
-    "electrical-atlas-site/src/lib/lessonRegistry.ts": "050959b305556b7fa8b3f506fb17ab31f8eae9e24231af4ba9c3f5e426f4d3a8",
+    "electrical-atlas-site/src/lib/lessonRegistry.ts": "8a3606a4742d6c5a0e7bb9224a0603fb4365f99e01045acfeb7e8d4eb8a41593",
     "electrical-atlas-site/src/content/lessons/en/voltage.mdx": "801061c892c21be084e18a73c09fe4dd202cf9cb95a849b319dbcd3a2587d883",
     "electrical-atlas-site/src/content/lessons/th/voltage.mdx": "7ff016ed44376d2c6979314d0ce8f45c296fe5a713466fb8a163e09af38c0e3c",
     "electrical-atlas-site/src/components/VoltageEnergyDemo.tsx": "df37130d9eba89fddb523d0da5ff56ffa013538ebd2bfe3a7f9706034d32a5e7",
     "electrical-atlas-site/src/lib/interaction.ts": "d76cac73cace1f61231aea7c3fc6bca60da10538a0f9a77c206134aa28792269",
     "electrical-atlas-site/src/lib/numberFormatting.ts": "afe52e71cad5c75720046dc4ec6c9771ad67c1f937b36131fa99fd5b0a84df6c",
-    "electrical-atlas-site/src/lib/physics.ts": "ddd14938b8f49a96f9221699263faeabeb9fa9d4b866bf5135581d0a6ade9c67",
+    "electrical-atlas-site/src/lib/physics.ts": "9d981d77f41304211bd37e6f71f695499851e4e513a4e360b6a5d66a5adbaec7",
     "electrical-atlas-site/src/pages/en/lessons/voltage.astro": "26c874054cdf863b1b4fa57c2fd8dcc037185b8ea7aa06f7bba2154192960f3d",
     "electrical-atlas-site/src/pages/th/lessons/voltage.astro": "4ea78b5255c6140b8e10321a3bf980876ca7e3c0c4b05b35a030776997df9583",
-    "electrical-atlas-site/src/styles/global.css": "c16eed3e51a98d8faf0fb1a6ff22ee64a94a7dda08d819b6e71ab9eef2026355"
+    "electrical-atlas-site/src/styles/global.css": "a3d77fbdded3732744a7be81e825ae8b46c2d4c47ab5d71d6233e4ee51869613",
+    "electrical-atlas-site/src/layouts/BaseLayout.astro": "61bdf275bc02f1daef8f59c04246a50fa718b2085ba82d30a0d5bf537090d408",
+    "electrical-atlas-site/src/components/LanguageSwitch.astro": "8885360403db09c26c56775e6aa46bac334c44780cde3c988d234ad1921ea287",
+    "electrical-atlas-site/src/components/LessonShell.astro": "4f883c4196dc691e89e26fd17bb32ea4349984ed02bd2bbb9a62454ec8e77852",
+    "electrical-atlas-site/src/components/LessonModeToggle.tsx": "ad868979e1a10a369676c87306a3ba487e7114a8b339d4ed39841fdbb9366177",
+    "electrical-atlas-site/src/lib/generated/atlasTopics.ts": "97ebe07b32cec59b107bef8329e847eebc5aca081591d2092904127e837968ed",
+    "electrical-atlas-site/src/lib/topicLabels.ts": "aa8613f68e11228ebe9d793a06a141956cc81c8975df30dcb26830202a92cf69",
+    "electrical-atlas-site/src/lib/navigation.ts": "bf6f57be6e15bf4f98980885ce39f6f3b7732ab36f89cd5b62a828c0cfd6801f",
+    "electrical-atlas-site/src/lib/relationships.ts": "d5ae80218424add43359cf3c8408b7f28d18575519da1262cb53376700a50217",
+    "electrical-atlas-site/src/lib/suggestions.ts": "21c5c24f3c21fbedd83767123126c54620b20644a28ea85ff4d8f29054111024",
+    "electrical-atlas-site/src/components/SuggestionSection.astro": "68dcf8965bc3a612104f655cfca7852a482990ab217950288878eb6f864a321f"
   },
   "approvals": {
     "sourceReview": {
@@ -40,7 +51,7 @@
       "reviewer": "Codex-assisted maintainer technical audit",
       "reviewerAuthority": "maintainer",
       "reviewedAt": "2026-07-16",
-      "note": "The numeric model remains unchanged; the reviewed interaction correction adds bounded keyboard/input handling without changing lesson claims. Low-risk conceptual scope only; qualified review is required if practical or hazardous scope is added."
+      "note": "The Voltage numeric model remains unchanged. The shared physics-file diff affects only the separate lamp demo: it uses discrete open/closed states and explicit source-voltage, load-resistance, steady-current, and load-power fields. Voltage functions and claims were re-inspected. Low-risk conceptual scope only; qualified review is required if practical or hazardous scope is added."
     },
     "englishContent": {
       "status": "passed",
@@ -61,7 +72,7 @@
       "reviewer": "Maintainer browser review",
       "reviewerAuthority": "maintainer",
       "reviewedAt": "2026-07-16",
-      "note": "Deployed English and Thai desktop and 390 px checks passed responsive geometry, 44 px controls, localized semantic values, live output, transcript, console, and actual Arrow/Home/End/Page behavior including zero and maximum states. CSS inspection confirmed a 3 px focus-visible rule and a reduced-motion rule that collapses the demo's nonessential 0.18 s transitions; this browser backend could not emulate keyboard-only focus modality, the OS reduced-motion preference, or a named screen reader, so no platform assistive-technology result is claimed."
+      "note": "The established deployed English and Thai desktop and 390 px checks passed responsive geometry, 44 px controls, localized semantic values, live output, transcript, console, and actual Arrow/Home/End/Page behavior including zero and maximum states. The current rebound local candidate was rechecked at 390 px: Thai ArrowRight changed 9 V to 9.5 V and the localized live result to 95 microjoules; both languages retained ten suggestions, correct language metadata, review-ready status, and no document overflow. CSS inspection confirmed a 3 px focus-visible rule and a reduced-motion rule that collapses nonessential transitions; this browser backend could not emulate keyboard-only focus modality, the OS reduced-motion preference, or a named screen reader, so no platform assistive-technology result is claimed."
     },
     "qualifiedHuman": {
       "status": "not-required",
@@ -75,14 +86,14 @@
       "reviewer": "Maintainer automated verification",
       "reviewerAuthority": "maintainer",
       "reviewedAt": "2026-07-16",
-      "note": "Twelve Node checks, 76 Vitest tests across 12 files, Astro diagnostics for 92 files, the 3,245-page production build, 3,214 topic robots policies, and 3,246 internal references passed for the keyboard-corrected bound candidate files."
+      "note": "After inspecting the shared registry and lamp-helper diffs, 12 Node checks, 80 Vitest tests across 13 files, Astro diagnostics for 93 files, the 3,245-page production build, 3,214 topic robots policies, and 3,246 internal references passed. Voltage content and calculations remain unchanged."
     },
     "previewDeployment": {
-      "status": "passed",
+      "status": "pending",
       "reviewer": "Maintainer deployment verification",
       "reviewerAuthority": "maintainer",
-      "reviewedAt": "2026-07-16",
-      "note": "Deployed commit 7414277 showed review-ready on the English lesson and registry and พร้อมตรวจทาน on the Thai lesson and registry. Real Arrow-key input still updated the localized slider value, aria-valuetext, and live output on both lesson routes; the document stayed within the 390 px viewport."
+      "reviewedAt": null,
+      "note": "Commit 7414277 remains valid historical evidence for the earlier revision. The current manifest now binds updated shared physics, suggestion, layout, language, topic-data, and contrast dependencies, so the new promoted commit must be verified on both public lesson routes before this gate passes again."
     },
     "publication": {
       "status": "pending",
@@ -124,7 +135,7 @@ Status: review preparation is complete; the lesson is `review-ready`, not approv
 | English content | Codex-assisted maintainer content audit | Passed 2026-07-15 | No owner action required unless wording changes materially. |
 | Thai language | Project owner | Pending | Blocks publication. |
 | Visual/accessibility | Maintainer browser review | Passed 2026-07-16 with documented emulation boundaries | Supports `review-ready`; does not grant Thai-language or publication approval. |
-| Preview/live deployment | Maintainer deployment verification | Passed 2026-07-16 on commit `7414277` | English and Thai lesson and registry status displays agree with the promoted bound revision. |
+| Preview/live deployment | Maintainer deployment verification | Pending for the current manifest | Commit `7414277` is retained as historical evidence, but it predates the newly bound shared dependencies. |
 | Final publication | Project owner | Pending | Blocks `published`. |
 
 The project owner's acceptance of the governance model on 2026-07-14 approved these roles, not this lesson revision.
@@ -217,7 +228,8 @@ Final judgment of natural Thai wording belongs to the project owner and is still
 | Native keyboard controls and visible focus | Passed for control behavior: actual Arrow, Home, End, and Page input changed both sliders, localized `aria-valuetext`, the live result, and the zero/maximum visual states. CSS inspection confirmed the range control's 3 px `:focus-visible` outline; the browser backend could not synthesize keyboard-only focus modality, so no rendered Tab-modality claim is made. |
 | Reduced-motion behavior | Passed by CSSOM and information-path inspection: the parsed `prefers-reduced-motion: reduce` rule reduces animation and transition duration to `0.01ms`; the demo has no animations and only three nonessential 0.18 s visual transitions, while all changing information is also present as text/live output and in the transcript. OS preference emulation was unavailable. |
 | Screen-reader-oriented names, live output, and transcript | Passed browser-semantic inspection: both native ranges have associated labels and localized `aria-valuetext`; the result is an `output` with `aria-live="polite"` and `aria-atomic="true"`; the diagram is hidden by an `aria-hidden="true"` stage and has a text transcript. The rounded spoken/visible result contains no raw floating artifact. No named platform screen reader was tested. |
-| Deployed English/Thai pages | Passed on commit `7414277`: both lesson and registry routes showed the localized `review-ready` status, and real Arrow-key input still updated localized values and live output on both lesson routes at 390 px. |
+| Deployed English/Thai pages | Historical pass on commit `7414277`; pending for the current manifest, which now binds updated shared physics, suggestion, layout, language, topic-data, and contrast dependencies. |
+| Current rebound local candidate | Passed at 390 px in English and Thai: review-ready/source metadata, language switch, ten suggestion cards, English `lang` marking within Thai cards, no document overflow, and real Thai ArrowRight input with localized live output. Public deployment verification remains pending. |
 
 ## Known limitations and review triggers
 
@@ -245,10 +257,12 @@ Final judgment of natural Thai wording belongs to the project owner and is still
 | 2026-07-16 | Verify deployed keyboard-corrected candidate | Maintainer browser review | English and Thai desktop and 390 px checks passed responsive, semantic, 44 px target, console, localized input, and actual keyboard behavior checks. Focus-modality, reduced-motion preference, and named screen-reader emulation were unavailable and are recorded as evidence boundaries rather than silently inferred results. |
 | 2026-07-16 | Complete maintainer review preparation | Codex-assisted maintainer review | The required maintainer-controlled gates passed and the lesson moved from `prototype` to `review-ready`. Thai-language approval, promoted-deployment verification, and final publication approval remain separate blockers. |
 | 2026-07-16 | Verify promoted production deployment | Maintainer deployment verification | Commit `7414277` displayed the promoted status consistently on English and Thai lesson and registry routes; live localized Arrow-key interaction also passed. The deployment blocker was removed, leaving only project-owner Thai-language and final-publication decisions. |
+| 2026-07-16 | Rebind the review to current shared dependencies | Independent lifecycle audit and maintainer correction | The manifest now covers the shared rendering and suggestion inputs that materially affect the lesson. Because commit `7414277` predates those bytes, deployment verification returned to pending until the new promoted commit is checked. |
 
 ## Publication decision
 
-- Registry status after review preparation: `review-ready`. Technical, English, implementation, visual/accessibility, source, and promoted-deployment gates passed; both project-owner decisions remain pending, so the lesson must stay below `published`.
+- Registry status after review preparation: `review-ready`. Technical, English, implementation, visual/accessibility, and source gates passed; current promoted-deployment verification and both project-owner decisions remain pending, so the lesson must stay below `published`.
+- Public promoted-deployment verification: Pending for the current bound manifest.
 - Project-owner publication decision: Pending.
 - Thai-language decision: Pending.
 - Qualified-review decision: Not required for the current low-risk conceptual scope; reassess if scope changes.

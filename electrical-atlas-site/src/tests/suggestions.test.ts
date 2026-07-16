@@ -17,6 +17,7 @@ describe("suggestion system", () => {
 
   it("builds localized route prefixes for Thai suggestions", () => {
     const suggestions = getLessonSuggestions("what-is-electricity", "th", atlasTopics);
+    const hrefs = suggestions.map((suggestion) => suggestion.href);
 
     expect(suggestions.some((suggestion) => suggestion.href === "/th/lessons/voltage/")).toBe(true);
     expect(suggestions.some((suggestion) => suggestion.href === "/th/lessons/current/")).toBe(true);
@@ -27,6 +28,20 @@ describe("suggestion system", () => {
     expect(suggestions.some((suggestion) => suggestion.href === "/th/lessons/battery/")).toBe(true);
     expect(suggestions.some((suggestion) => suggestion.href === "/th/lessons/mosfet/")).toBe(true);
     expect(suggestions.every((suggestion) => suggestion.href.startsWith("/th/"))).toBe(true);
+    expect(hrefs).toContain("/th/topics/fundamentals-charge/");
+    expect(hrefs).toContain("/th/topics/fundamentals-dc/");
+    expect(hrefs).toContain("/th/topics/fundamentals-ac/");
+    expect(hrefs).not.toContain("/th/topics/storage-lithium-ion/");
+    expect(suggestions.filter((suggestion) => suggestion.kind === "lesson").every((suggestion) => suggestion.contentLocale === "th")).toBe(true);
+    expect(suggestions.filter((suggestion) => suggestion.kind === "topic").every((suggestion) => suggestion.contentLocale === "en")).toBe(true);
+  });
+
+  it("allows lesson pages to cap a long relationship list", () => {
+    const suggestions = getLessonSuggestions("what-is-electricity", "en", atlasTopics, 6);
+
+    expect(suggestions).toHaveLength(6);
+    expect(suggestions[0]?.href).toBe("/en/lessons/voltage/");
+    expect(suggestions.some((suggestion) => suggestion.href === "/en/topics/fundamentals-charge/")).toBe(true);
   });
 
   it("builds curated voltage lesson suggestions", () => {

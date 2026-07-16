@@ -42,8 +42,8 @@ const copy = {
             <span>{item.kind === "lesson" ? copy.lesson : copy.topic}</span>
             <span>{item.relation}</span>
           </div>
-          <h3>{item.title}</h3>
-          <p>{item.summary}</p>
+          <h3 lang={item.contentLocale === locale ? undefined : item.contentLocale}>{item.title}</h3>
+          <p lang={item.contentLocale === locale ? undefined : item.contentLocale}>{item.summary}</p>
         </a>
       ))}
     </div>

@@ -191,6 +191,20 @@ export const atlasRelationships: AtlasRelationship[] = [
   },
   {
     source: { kind: "lesson", id: "what-is-electricity" },
+    target: { kind: "topic", id: "ea.fundamentals.charge" },
+    type: "physical-mechanism",
+    weight: 92,
+    label: { en: "charge foundation" },
+  },
+  {
+    source: { kind: "lesson", id: "what-is-electricity" },
+    target: { kind: "topic", id: "ea.fundamentals.charge-carrier" },
+    type: "physical-mechanism",
+    weight: 68,
+    label: { en: "material carrier path" },
+  },
+  {
+    source: { kind: "lesson", id: "what-is-electricity" },
     target: { kind: "topic", id: "ea.fundamentals.voltage" },
     type: "successor",
     weight: 80,
@@ -217,10 +231,17 @@ export const atlasRelationships: AtlasRelationship[] = [
   },
   {
     source: { kind: "lesson", id: "what-is-electricity" },
-    target: { kind: "topic", id: "ea.storage.lithium-ion" },
-    type: "energy-source",
-    weight: 40,
-    label: { en: "energy source path" },
+    target: { kind: "topic", id: "ea.fundamentals.dc" },
+    type: "successor",
+    weight: 48,
+    label: { en: "DC branch" },
+  },
+  {
+    source: { kind: "lesson", id: "what-is-electricity" },
+    target: { kind: "topic", id: "ea.fundamentals.ac" },
+    type: "successor",
+    weight: 47,
+    label: { en: "AC branch" },
   },
 
   {

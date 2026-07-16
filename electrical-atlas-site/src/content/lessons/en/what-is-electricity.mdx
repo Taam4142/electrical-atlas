@@ -1,12 +1,16 @@
+import CircuitFieldDemo from "../../../components/CircuitFieldDemo";
+
 <section>
 
-## 1. A useful definition
+## 1. A definition that can grow with you
 
-Electricity is not one single thing. It is a family of effects caused by electric charge and electromagnetic fields. When charge is separated, fields appear. When a conducting path is available, charges can respond to those fields. When energy is transferred into a device, something useful can happen: a lamp glows, a motor turns, a sensor reports, or a transistor switches.
+**Electricity is a general name for phenomena associated with electric charge and electric current.** We describe those phenomena using electric and magnetic fields, forces, material behavior, and energy transfer.
+
+Electricity is therefore not one substance that a source pours into a wire. Electric charge is a property of matter. A distribution of charge produces an electric field, and redistributing charge changes that field. In a complete system, fields exert forces on charged particles and help transfer energy from a source to a load.
 
 <aside className="callout">
 
-**First mental model:** do not imagine electricity as a bucket of invisible liquid poured from the battery into the lamp. Imagine matter full of charge carriers, and an electromagnetic field that organizes how energy moves through the circuit.
+**First mental model:** matter already contains charged particles. A source establishes an electrical condition; fields and materials determine how local charge carriers respond; energy changes form in the load.
 
 </aside>
 
@@ -16,53 +20,64 @@ Electricity is not one single thing. It is a family of effects caused by electri
 
 ## 2. Matter already contains charge
 
-Atoms contain positively charged protons and negatively charged electrons. Most everyday objects are nearly neutral because positive and negative charge balance. But “neutral” does not mean “no charge exists.” It means the charges add up to nearly zero from the outside.
+Atoms contain positively charged protons and negatively charged electrons. An everyday object described as neutral has nearly equal total positive and negative charge, so its **net charge** is near zero. Neutral does not mean “charge-free”: the object can still become polarized, and local electric fields can still exist.
 
-- **Conductors** such as copper have mobile electrons that can drift through the material.
-- **Insulators** hold their charges more tightly, so steady current is difficult.
-- **Semiconductors** can be controlled by doping, electric fields, heat, and light.
-- **Electrolytes and plasmas** can carry charge with ions, electrons, or both.
+Charge is conserved: it can move between objects or regions, but an isolated system does not create or destroy net charge. For ordinary observable charge, the amount appears in integer multiples of the elementary charge.
 
-</section>
+Different materials provide different mobile charge carriers:
 
-<section>
+- **Metals** such as copper conduct mainly through mobile electrons.
+- **Insulators** bind charge more strongly, although their behavior still depends on field strength, geometry, temperature, frequency, and breakdown limits.
+- **Semiconductors** use controllable electron and hole populations; material structure, doping, fields, temperature, and light can all matter.
+- **Electrolytes** conduct mainly through moving ions, while **plasmas** contain mobile electrons and ions.
 
-## 3. The field is the messenger
-
-When a battery is connected to a circuit, it separates charge chemically. That separation creates voltage, and voltage is connected to electric potential energy. The important cause-and-effect signal is not one electron sprinting from the battery to the lamp. The electric field pattern around the circuit establishes very quickly, usually a significant fraction of the speed of light depending on geometry and materials.
-
-Once the field is established, charges throughout the wire begin to drift. Their drift speed is slow, often fractions of a millimeter per second in ordinary circuits. The lamp can still respond quickly because the field acts through the whole circuit, not because one special electron completed a race.
+Current direction is defined by convention as the direction positive charge would move. In a copper wire, the average electron drift points in the opposite direction.
 
 </section>
 
 <section>
 
-## 4. Four words that must not be mixed up
+## 3. Field, potential difference, and a closed path
 
-- **Voltage** is energy per unit charge. It is like a difference in electrical “height.”
-- **Current** is the rate of charge flow: `I = dQ/dt`.
-- **Resistance** describes how strongly a material or device opposes current for a given voltage.
-- **Power** is the rate of energy transfer: `P = VI`.
+An electric field describes the electric force per unit positive test charge at a location. Charges have fields even before a conducting loop is completed. Moving or redistributing charge changes the field pattern; fields do not suddenly begin to exist only when a switch closes.
 
-In a simple resistor-like load, Ohm’s law says `V = IR`. That is useful, but it is not the whole story of electricity. Fields, materials, heating, geometry, frequency, and device physics all matter later.
+**Voltage is electric potential difference between two points.** In the electrostatic model, it tells us the change in electric potential energy per unit charge between those points. A battery uses electrochemical reactions to do work on charge and maintain a terminal potential difference while remaining nearly neutral overall.
+
+With a switch open, a battery can still have terminal voltage and electric fields, including a field across the contact gap. The broken path prevents a **sustained loop current**. When the contacts meet, the circuit's electromagnetic boundary conditions change. That disturbance propagates through the physical conductors and return path in finite time; its speed depends on geometry and materials. Local carriers respond after the change reaches them, while their average drift remains much slower.
 
 </section>
+
+<section>
+
+## 4. Keep these quantities separate
+
+- **Voltage `V` — volt (`V = J/C`):** electric potential difference between two points.
+- **Current `I` — ampere (`A = C/s`):** rate at which charge crosses a chosen surface, `I = dQ/dt`.
+- **Resistance `R` — ohm (`Ω = V/A`):** ratio `V/I` for a resistive two-terminal element at a stated operating condition.
+- **Power `P` — watt (`W = J/s`):** rate of energy transfer; for steady DC, `P = VI`.
+- **Energy — joule (`J`):** amount transferred or converted over time, `energy = ∫ P dt`.
+
+For an approximately ohmic element over a stated range, `V = IR`. That does not make resistance a universal constant. Temperature, material, geometry, frequency, and operating point can change the relationship.
+
+</section>
+
+<CircuitFieldDemo client:load locale="en" />
 
 <section>
 
 ## 5. How a battery lights an incandescent lamp
 
-1. The battery uses chemistry to maintain a voltage between its terminals.
-2. With the switch open, the conducting path is broken, so there is no steady loop current.
-3. Closing the switch changes the boundary condition of the circuit.
-4. The electric field pattern establishes around the circuit and inside the conductors.
-5. Charge carriers in the wire drift in response to the field.
-6. Energy is delivered into the lamp filament, where collisions heat the filament.
-7. When the filament becomes hot enough, it emits visible light and infrared radiation.
+1. Electrochemical reactions in the battery maintain a terminal potential difference.
+2. With the switch open, fields and terminal voltage can exist, but the broken path prevents sustained loop current.
+3. When the contacts meet, the electromagnetic boundary conditions change.
+4. The change propagates through the circuit. Reflections and other transients occur before the circuit approaches a steady operating state.
+5. Local electric fields in the conductors drive charge carriers. Conventional current points from the source's positive terminal through the external circuit; copper-electron drift points the other way.
+6. In the filament, electrical energy is converted mostly into thermal energy. As the filament becomes hot, it emits a broad spectrum containing infrared and visible light.
+7. In steady DC, the electrical power received by the lamp can be calculated as `P = VI` at its terminals.
 
 <aside className="callout">
 
-The first interactive visual above is intentionally simplified. Its job is to prevent a bad story: “electrons leave the battery, race to the lamp, and carry all the energy inside the wire.”
+The visual compares only an open state with an idealized closed **steady state**. It deliberately does not animate a made-up “half current” while the switch is still open.
 
 </aside>
 
@@ -70,44 +85,82 @@ The first interactive visual above is intentionally simplified. Its job is to pr
 
 <section>
 
-## 6. Common traps
+## 6. What the simple lamp model leaves out
 
-- **“Voltage flows.”** Voltage does not flow. Charge can flow; voltage is a difference in potential.
-- **“Current is used up.”** In a simple series loop, the current is the same through each part. Energy is transferred, not current.
-- **“Electrons move at light speed.”** The field effect can propagate quickly; electron drift is slow.
-- **“Ground always means zero danger.”** Grounding is a safety and reference system, not magic. It must be designed and verified.
+A real incandescent lamp is not a fixed 30 Ω resistor during turn-on. A cold filament normally has lower resistance, so its initial current can be higher. Its resistance rises as it heats, and its light output follows a slower thermal process. A real battery also has internal resistance, and wires and switch contacts add resistance and inductance.
+
+These omitted effects are not errors when the boundary is visible. The simple model answers one narrow question: **what differs between an open circuit and the final idealized DC condition?** Separate lessons can later model signal propagation, contact bounce and arcing, filament warm-up, source voltage sag, and thermal radiation without mixing their time scales.
+
+</section>
+
+<section>
+
+## 7. The first branches of the electricity map
+
+- **Static electricity** focuses on charge imbalance, polarization, fields, force, and discharge.
+- **Direct current (DC)** describes current whose conventional direction does not reverse; its magnitude may still vary.
+- **Alternating current (AC)** changes direction periodically and is described with waveform, frequency, phase, impedance, and power concepts.
+- **Magnetism** is inseparable from moving charge and current at deeper levels.
+- **Electromagnetic induction** connects changing magnetic flux with induced electric effects and is central to transformers, generators, motors, and many sensors.
+- **Electronics** controls charge and fields in materials and devices such as diodes, transistors, sensors, processors, and power converters.
+
+The atlas treats these as connected branches, not isolated definitions.
+
+</section>
+
+<section>
+
+## 8. Common traps
+
+- **“A neutral object contains no charge.”** Its positive and negative charges approximately balance; they have not disappeared.
+- **“Voltage flows.”** Charge can cross a surface; voltage compares electric potential between points.
+- **“Current is used up.”** In a steady lumped single-path circuit with negligible charge accumulation, the same current passes each series element. Energy is transferred and converted.
+- **“Electrons race around the whole loop at light speed.”** A change in electromagnetic state propagates through the circuit much faster than the average electron drift.
+- **“All circuit energy travels inside the copper.”** Electromagnetic power flow is a field-and-system question. The wire guides the circuit behavior, but the complete energy story involves fields in and around conductors and components.
+- **“Ground means zero volts and safe.”** Ground can mean a circuit reference, chassis, system ground, reference Earth, or protective conductor. These are not automatically interchangeable, and none makes arbitrary contact safe.
 
 </section>
 
 <section className="technical-only">
 
-## Technical track: equations behind the story
+## Technical track: equations and their limits
 
-Charge is quantized: `q = ne`, where `e` is the elementary charge. Electric fields relate to force through `F = qE`, and potential relates to field through `E = -grad(V)` in electrostatic conditions.
+For ordinary observable charge, `q = N e`, where `q` is charge in coulombs (`C`), `N` is a signed integer, and the elementary-charge magnitude is exactly `e = 1.602 176 634 × 10⁻¹⁹ C` in SI.
 
-Current density can be modeled as `J = sigma E` in an ohmic material. Conservation of charge appears as the continuity equation: `div(J) + d(rho)/dt = 0`. At deeper levels, Maxwell’s equations describe how electric and magnetic fields relate to charge, current, and changing fields.
+The electric force on a stationary charge is `𝐅ₑ = q𝐄`. The full electromagnetic force on a point charge is `𝐅 = q(𝐄 + 𝐯 × 𝐁)`, where `𝐅` is force in newtons (`N`), `𝐄` is electric-field strength in volts per metre (`V/m`), `𝐯` is velocity in metres per second (`m/s`), and `𝐁` is magnetic flux density in teslas (`T`).
 
-Energy transfer is more subtle than “energy travels inside the copper.” In field theory, electromagnetic power flow is described by the Poynting vector `S = E x H`. For a beginner lesson, we do not need full field simulation, but we must avoid teaching a model that later becomes impossible to repair.
+In electrostatic or other conservative-field conditions, `ΔV = ΔU/q` and `𝐄 = −∇V`. Here `ΔV` is potential difference in volts, `ΔU` is electric-potential-energy change in joules, and `∇V` is the spatial gradient of potential. A time-varying magnetic field can produce a nonconservative electric field, so one global scalar-potential story is not sufficient for every electromagnetic situation.
 
-</section>
+Current is `I = dQ/dt`. In a local, linear, isotropic ohmic material, the constitutive model is `𝐉 = σ𝐄`, where current density `𝐉` is in amperes per square metre (`A/m²`) and conductivity `σ` is in siemens per metre (`S/m`). This is a material model, not a universal law. Local charge conservation is `∇·𝐉 + ∂ρ/∂t = 0`, where `ρ` is volume charge density in coulombs per cubic metre (`C/m³`) and `∇·` denotes divergence.
 
-<section>
+Instantaneous terminal power is `p(t) = u(t)i(t)`; the steady-DC form is `P = VI`. Electromagnetic power-flow density is described by the Poynting vector `𝐒 = 𝐄 × 𝐇` in watts per square metre (`W/m²`), where magnetic-field strength `𝐇` is in amperes per metre (`A/m`). This field description complements circuit theory; it does not justify saying energy exists only inside or only outside a conductor.
 
-## 7. Where this connects next
-
-This lesson is the gateway into the atlas. The next concepts are electric field, voltage, current, resistance, energy, DC and AC, then components. The first large component module should be MOSFET, because it connects material physics, electric fields, switching, digital logic, power electronics, and real-world design limits.
-
-Thailand-specific safety, wiring, metrology, spectrum, and energy regulation topics will be handled as dedicated lessons. Exact Thai standard numbers and editions must be checked against official sources before publication.
+Maxwell's equations connect charge, current, electric fields, magnetic fields, and changing fields. Constitutive relations such as `𝐉 = σ𝐄` then describe how particular materials respond.
 
 </section>
 
 <section>
 
-## Reference direction for review
+## 9. Safety and Thailand scope
 
-- Introductory electromagnetism textbooks for charge, field, potential, and Maxwell-level framing.
-- Practical electronics references for circuits, components, measurement, and real device behavior.
-- IEC Electropedia/IEV terminology and relevant IEEE/IEC standards families for vocabulary alignment.
-- Thai official sources such as TISI/TIS, EIT, MEA, PEA, ERC, NBTC, and NIMT when standards or public safety claims are made.
+This page is a conceptual explanation, not a wiring or live-work procedure. Do not reproduce the drawing with household mains, and do not short-circuit a battery. Real sources and lamps require correctly rated components; conductors, contacts, and filaments can become hot enough to burn or start a fire.
+
+The lesson makes no claim about an exact Thai installation rule or legal threshold. When the atlas adds Thai wiring, protection, utility, or public-safety instructions, the exact current source, edition, scope, and applicable authority must be verified before publication. General international or U.S. safety material cannot substitute for Thai requirements.
+
+</section>
+
+<section>
+
+## 10. Sources and further reading
+
+- [IEC Electropedia, IEV 151-11-01 — electricity](https://www.electropedia.org/iev/iev.nsf/display?ievref=151-11-01&openform=)
+- [BIPM, *The International System of Units (SI)*, 9th edition](https://www.bipm.org/en/publications/si-brochure/)
+- OpenStax *University Physics Volume 2*: [electric charge](https://openstax.org/books/university-physics-volume-2/pages/5-1-electric-charge), [electric field](https://openstax.org/books/university-physics-volume-2/pages/5-4-electric-field), [potential difference](https://openstax.org/books/university-physics-volume-2/pages/7-2-electric-potential-and-potential-difference), [current](https://openstax.org/books/university-physics-volume-2/pages/9-1-electrical-current), [conduction in metals](https://openstax.org/books/university-physics-volume-2/pages/9-2-model-of-conduction-in-metals), [resistance](https://openstax.org/books/university-physics-volume-2/pages/9-3-resistivity-and-resistance), [Ohm's law](https://openstax.org/books/university-physics-volume-2/pages/9-4-ohms-law), [power](https://openstax.org/books/university-physics-volume-2/pages/9-5-electrical-energy-and-power), [emf and batteries](https://openstax.org/books/university-physics-volume-2/pages/10-1-electromotive-force), [series and parallel circuits](https://openstax.org/books/university-physics-volume-2/pages/10-2-resistors-in-series-and-parallel), [Faraday's law](https://openstax.org/books/university-physics-volume-2/pages/13-1-faradays-law), and [DC and AC sources](https://openstax.org/books/university-physics-volume-2/pages/15-1-ac-sources)
+- [MIT OpenCourseWare 6.013, Chapter 7 — TEM transmission lines](https://ocw.mit.edu/courses/6-013-electromagnetics-and-applications-spring-2009/790b8f65328723ec194cb440b303f8fb_MIT6_013S09_chap07.pdf)
+- [MIT OpenCourseWare, *Electromagnetic Fields and Energy*, Chapter 11 — energy and power flow](https://ocw.mit.edu/courses/res-6-001-electromagnetic-fields-and-energy-spring-2008/pages/chapter-11/)
+- [CDC/NIOSH — Electrical Safety in the Workplace](https://www.cdc.gov/niosh/electrical-safety/index.html) (general U.S. occupational guidance, not Thai law)
+- [Panasonic Energy — battery safety](https://www.panasonic.com/global/energy/study/academy/safety.html) (manufacturer guidance, not Thai law or a substitute for a product datasheet)
+
+Use the relationship cards below to continue by prerequisite, physical mechanism, circuit law, energy path, or application. Their order comes from the atlas relationship data rather than a manual list embedded in this lesson.
 
 </section>
