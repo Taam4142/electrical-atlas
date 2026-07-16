@@ -19,7 +19,7 @@ In the status column, `candidate` means the lesson is part of this strategic cur
 
 | # | Lesson | Primary atlas node | Priority | Status | Why it belongs early |
 | ---: | --- | --- | --- | --- | --- |
-| 1 | What Is Electricity? | `ea.fundamentals.electricity` | P0 | review-ready | The gateway concept for the whole site; maintainer review-preparation gates passed, while deployment verification, Thai approval, and publication approval remain pending. |
+| 1 | What Is Electricity? | `ea.fundamentals.electricity` | P0 | review-ready | The gateway concept for the whole site; maintainer and public-deployment gates passed, while Thai approval and publication approval remain pending. |
 | 2 | Electric Charge | `ea.fundamentals.charge` | P1 | candidate | Explains what is moving, stored, separated, and conserved. |
 | 3 | Voltage | `ea.fundamentals.voltage` | P1 | review-ready | Learners need energy-per-charge before circuits make sense. |
 | 4 | Electric Current | `ea.fundamentals.current` | P1 | prototype | The core flow quantity behind circuits, signals, and power. |

@@ -284,7 +284,7 @@ Required work:
 4. Review the English lesson for teaching clarity. **Completed for the bound candidate revision.**
 5. Review the Thai lesson for natural language and glossary consistency. **Maintainer preparation is complete; project-owner Thai approval is pending.**
 6. Complete desktop, mobile, keyboard, reduced-motion, and screen-reader-oriented checks. **Completed 2026-07-16 for the maintainer-controlled gate: English/Thai desktop and 390 px layout, 44 px targets, actual slider keyboard behavior, semantic names/live output/transcript, focus-visible CSS, and reduced-motion CSS/information paths passed. Keyboard-focus modality, OS reduced-motion preference, and a named screen reader could not be emulated by the browser backend, so the evidence record states those boundaries explicitly.**
-7. Check the deployed English and Thai pages. **Completed 2026-07-16 on commit `7414277`: English and Thai lesson and registry routes displayed the localized `review-ready` status, and live localized Arrow-key interaction still passed on both lesson routes at 390 px.**
+7. Check the deployed English and Thai pages. **Completed for the current rebound revision on 2026-07-16 at commit `0bea714`: English and Thai lesson and registry routes displayed localized `review-ready`/verified-source states, ten-card suggestions and language metadata remained correct, real Arrow-key interaction produced localized output on both lesson routes at 390 px, and no document overflow or public-console warning/error was found. Commit `7414277` remains earlier historical evidence.**
 8. Record reviewer, review date, source status, limitations, and revision. **Completed in the versioned review record; later decisions must be appended, not inferred.**
 9. Mark the lesson `published` only after every required gate passes. **Pending; the registry is now correctly `review-ready`, while project-owner Thai-language approval and final publication approval remain required.**
 
@@ -301,6 +301,7 @@ The gateway review corrected a high-value teaching risk before promotion:
 - exact sources and claim mappings are preserved in [What Is Electricity review — v0.1](lesson-reviews/what-is-electricity-v0.1.md);
 - the gateway relationship list now prioritizes charge and charge carriers and records DC/AC branches instead of jumping to lithium-ion chemistry;
 - maintainer browser review covered both languages at default desktop, 390 px, and 320 px, with localized live output, native controls, visible focus, no page-level overflow, English-language marking on canonical topic cards, and no console errors.
+- public Vercel commit `0bea714` passed the rebound English/Thai lesson and registry checks, closed-state values, 390/320 px layout, source and language metadata, ten relationship cards, and public-console inspection.
 
 This conceptual scope does not assert a Thai standard number, installation rule, utility requirement, or legal threshold. No standards-specific or qualified-human approval is needed for review preparation. Project-owner Thai-language and final-publication decisions remain pending and cannot be inferred from implementation approval.
 
@@ -390,6 +391,6 @@ Do not silently decide these during unrelated implementation work.
 
 ## 8. Immediate next checkpoint
 
-Phase A1 and Phase A2 are implemented. Phase B has produced a `review-ready` Voltage lesson and a review-prepared What Is Electricity gateway. The immediate content checkpoint is the curriculum decision that controls Electric Charge and Capacitor ordering; project-owner Thai-language and final-publication decisions for the two review-ready lessons may happen independently and do not block that planning work.
+Phase A1 and Phase A2 are implemented. Phase B has produced `review-ready` Voltage and What Is Electricity lessons whose current bound public deployments have been verified. The immediate content checkpoint is the curriculum decision that controls Electric Charge and Capacitor ordering; project-owner Thai-language and final-publication decisions for the two review-ready lessons may happen independently and do not block that planning work.
 
 The remaining proposed sequence is the standalone Electric Charge decision, then the approved content choice, while applying the same review workflow to Electric Current when it becomes the active lesson candidate.

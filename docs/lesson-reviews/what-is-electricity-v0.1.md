@@ -12,7 +12,6 @@
   "qualifiedReviewRequired": false,
   "qualifiedReviewReason": "The reviewed revision is a low-risk conceptual explanation with an explicit no-mains and no-construction boundary, no live-work procedure, no installation instruction, and no claim that an exact Thai rule applies.",
   "blockers": [
-    "preview-deployment-verification",
     "owner-thai-language-approval",
     "owner-publication-approval"
   ],
@@ -87,11 +86,11 @@
       "note": "English and Thai local previews passed default desktop, 390 px, and 320 px checks for responsive geometry, visible focus, 64–86 px demo controls, localized phrasing-only live output, visible model boundary, transcript, current-language metadata, English language marking on canonical topic text, no page overflow, coherent endpoint values, and no console errors. The essential wire stroke is now 3.36:1 against the lesson canvas. The backend did not demonstrate Enter/Space activation or a named screen reader, so no platform assistive-technology result is claimed; native button semantics and click state changes were verified."
     },
     "previewDeployment": {
-      "status": "pending",
+      "status": "passed",
       "reviewer": "Maintainer deployment verification",
       "reviewerAuthority": "maintainer",
-      "reviewedAt": null,
-      "note": "The promoted revision has not yet been verified on the public Vercel deployment."
+      "reviewedAt": "2026-07-16",
+      "note": "Public Vercel commit 0bea714 passed English at 390 px and Thai at 320 px: localized review-ready/source metadata, language switching, open/closed state controls, 0.300 A and 2.70 W closed-state values, visible model boundary, ten suggestions, English lang marking within Thai canonical-topic cards, no document overflow, and no public console warning/error. English and Thai registry cards also showed the matching review-ready and verified-source states."
     },
     "publication": {
       "status": "pending",
@@ -134,7 +133,7 @@ Status: maintainer review preparation is complete; the lesson is `review-ready`,
 | Qualified review | Publication governance risk matrix | Not required for this scope | Becomes required if the risk class or instruction scope changes. |
 | Implementation | Maintainer automated verification | Passed 2026-07-16 | Supports review preparation for the exact file manifest. |
 | Visual/accessibility | Maintainer browser review | Passed 2026-07-16 with explicit backend boundaries | Supports `review-ready`; does not infer Thai or publication approval. |
-| Preview/live deployment | Maintainer deployment verification | Pending | Must pass for the promoted public candidate. |
+| Preview/live deployment | Maintainer deployment verification | Passed 2026-07-16 on commit `0bea714` | English/Thai lesson and registry states, interaction, narrow layout, language metadata, and console passed for the bound revision. |
 | Final publication | Project owner | Pending | Blocks `published`. |
 
 The project owner's governance acceptance assigns roles; it does not approve this lesson revision.
@@ -249,13 +248,14 @@ The project owner's governance acceptance assigns roles; it does not approve thi
 | 2026-07-16 | Complete local rendered review | Maintainer browser review | English/Thai desktop and narrow layouts, semantics, localization, focus, target size, live state, overflow, and console checks passed within documented backend limits. |
 | 2026-07-16 | Promote review preparation | Maintainer review | Registry moved to `review-ready`; public deployment, Thai-language approval, and final publication remain pending. |
 | 2026-07-16 | Complete independent final audits | Read-only code, Thai-parity, and lifecycle reviews | Corrected the lamp result type, live-output HTML structure, wire contrast, visible model assumptions, Thai meaning-sensitive wording, source coverage, shared dependency manifest, and stale Voltage deployment binding before commit. No owner approval was inferred. |
+| 2026-07-16 | Verify promoted public deployment | Maintainer deployment verification | Commit `0bea714` passed English and Thai lesson and registry checks, localized closed-state interaction, 390/320 px no-overflow checks, relationship-card language metadata, and public-console inspection. The deployment blocker was removed; owner Thai-language and publication decisions remain. |
 
 ## Publication decision
 
 - Registry status after review preparation: `review-ready`.
 - Source status: `verified` for the bound conceptual scope.
 - Qualified-review decision: Not required for the current scope; reassess on any practical, hazardous, regulated, installation, or standards-sensitive expansion.
-- Public promoted-deployment verification: Pending.
+- Public promoted-deployment verification: Passed 2026-07-16 on commit `0bea714`.
 - Project-owner Thai-language decision: Pending.
 - Project-owner publication decision: Pending.
 - Final publication date: Pending.

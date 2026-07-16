@@ -12,7 +12,6 @@
   "qualifiedReviewRequired": false,
   "qualifiedReviewReason": "The reviewed revision is a low-risk conceptual lesson with general safety boundaries, no live-work procedure, no installation instruction, and no claim that an exact Thai rule applies universally.",
   "blockers": [
-    "preview-deployment-verification",
     "owner-thai-language-approval",
     "owner-publication-approval"
   ],
@@ -89,11 +88,11 @@
       "note": "After inspecting the shared registry and lamp-helper diffs, 12 Node checks, 80 Vitest tests across 13 files, Astro diagnostics for 93 files, the 3,245-page production build, 3,214 topic robots policies, and 3,246 internal references passed. Voltage content and calculations remain unchanged."
     },
     "previewDeployment": {
-      "status": "pending",
+      "status": "passed",
       "reviewer": "Maintainer deployment verification",
       "reviewerAuthority": "maintainer",
-      "reviewedAt": null,
-      "note": "Commit 7414277 remains valid historical evidence for the earlier revision. The current manifest now binds updated shared physics, suggestion, layout, language, topic-data, and contrast dependencies, so the new promoted commit must be verified on both public lesson routes before this gate passes again."
+      "reviewedAt": "2026-07-16",
+      "note": "Commit 0bea714 contains the current rebound manifest. English and Thai public lesson routes retained localized review-ready/source metadata, current language switching, ten suggestions, no document overflow at 390 px, and real ArrowRight behavior from 9 V to 9.5 V with a localized 95 microjoule live result. Both registry cards matched, English lang marking remained present within Thai canonical-topic cards, and public console inspection found no warning/error. Commit 7414277 remains historical evidence for the earlier revision."
     },
     "publication": {
       "status": "pending",
@@ -135,7 +134,7 @@ Status: review preparation is complete; the lesson is `review-ready`, not approv
 | English content | Codex-assisted maintainer content audit | Passed 2026-07-15 | No owner action required unless wording changes materially. |
 | Thai language | Project owner | Pending | Blocks publication. |
 | Visual/accessibility | Maintainer browser review | Passed 2026-07-16 with documented emulation boundaries | Supports `review-ready`; does not grant Thai-language or publication approval. |
-| Preview/live deployment | Maintainer deployment verification | Pending for the current manifest | Commit `7414277` is retained as historical evidence, but it predates the newly bound shared dependencies. |
+| Preview/live deployment | Maintainer deployment verification | Passed 2026-07-16 on commit `0bea714` | The rebound English/Thai lesson and registry surfaces agree with the current manifest. |
 | Final publication | Project owner | Pending | Blocks `published`. |
 
 The project owner's acceptance of the governance model on 2026-07-14 approved these roles, not this lesson revision.
@@ -228,8 +227,8 @@ Final judgment of natural Thai wording belongs to the project owner and is still
 | Native keyboard controls and visible focus | Passed for control behavior: actual Arrow, Home, End, and Page input changed both sliders, localized `aria-valuetext`, the live result, and the zero/maximum visual states. CSS inspection confirmed the range control's 3 px `:focus-visible` outline; the browser backend could not synthesize keyboard-only focus modality, so no rendered Tab-modality claim is made. |
 | Reduced-motion behavior | Passed by CSSOM and information-path inspection: the parsed `prefers-reduced-motion: reduce` rule reduces animation and transition duration to `0.01ms`; the demo has no animations and only three nonessential 0.18 s visual transitions, while all changing information is also present as text/live output and in the transcript. OS preference emulation was unavailable. |
 | Screen-reader-oriented names, live output, and transcript | Passed browser-semantic inspection: both native ranges have associated labels and localized `aria-valuetext`; the result is an `output` with `aria-live="polite"` and `aria-atomic="true"`; the diagram is hidden by an `aria-hidden="true"` stage and has a text transcript. The rounded spoken/visible result contains no raw floating artifact. No named platform screen reader was tested. |
-| Deployed English/Thai pages | Historical pass on commit `7414277`; pending for the current manifest, which now binds updated shared physics, suggestion, layout, language, topic-data, and contrast dependencies. |
-| Current rebound local candidate | Passed at 390 px in English and Thai: review-ready/source metadata, language switch, ten suggestion cards, English `lang` marking within Thai cards, no document overflow, and real Thai ArrowRight input with localized live output. Public deployment verification remains pending. |
+| Deployed English/Thai pages | Passed for the current manifest on commit `0bea714`; commit `7414277` remains historical evidence for the earlier revision. |
+| Current rebound candidate | Local and deployed checks passed at 390 px in English and Thai: review-ready/source metadata, language switch, ten suggestion cards, English `lang` marking within Thai cards, no document overflow, and real ArrowRight input with localized live output. |
 
 ## Known limitations and review triggers
 
@@ -258,11 +257,12 @@ Final judgment of natural Thai wording belongs to the project owner and is still
 | 2026-07-16 | Complete maintainer review preparation | Codex-assisted maintainer review | The required maintainer-controlled gates passed and the lesson moved from `prototype` to `review-ready`. Thai-language approval, promoted-deployment verification, and final publication approval remain separate blockers. |
 | 2026-07-16 | Verify promoted production deployment | Maintainer deployment verification | Commit `7414277` displayed the promoted status consistently on English and Thai lesson and registry routes; live localized Arrow-key interaction also passed. The deployment blocker was removed, leaving only project-owner Thai-language and final-publication decisions. |
 | 2026-07-16 | Rebind the review to current shared dependencies | Independent lifecycle audit and maintainer correction | The manifest now covers the shared rendering and suggestion inputs that materially affect the lesson. Because commit `7414277` predates those bytes, deployment verification returned to pending until the new promoted commit is checked. |
+| 2026-07-16 | Verify rebound production deployment | Maintainer deployment verification | Commit `0bea714` passed English and Thai lesson and registry status checks, 390 px layout, localized ArrowRight/live-output behavior, ten-card suggestions, Thai-card language metadata, and public-console inspection. The current deployment blocker was removed. |
 
 ## Publication decision
 
-- Registry status after review preparation: `review-ready`. Technical, English, implementation, visual/accessibility, and source gates passed; current promoted-deployment verification and both project-owner decisions remain pending, so the lesson must stay below `published`.
-- Public promoted-deployment verification: Pending for the current bound manifest.
+- Registry status after review preparation: `review-ready`. Technical, English, implementation, visual/accessibility, source, and current promoted-deployment gates passed; both project-owner decisions remain pending, so the lesson must stay below `published`.
+- Public promoted-deployment verification: Passed 2026-07-16 on commit `0bea714`.
 - Project-owner publication decision: Pending.
 - Thai-language decision: Pending.
 - Qualified-review decision: Not required for the current low-risk conceptual scope; reassess if scope changes.
