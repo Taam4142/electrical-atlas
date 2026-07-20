@@ -12,7 +12,6 @@
   "qualifiedReviewRequired": false,
   "qualifiedReviewReason": "The reviewed revision is a low-risk conceptual lesson with general safety boundaries, no live-work procedure, no installation instruction, and no claim that an exact Thai rule applies universally.",
   "blockers": [
-    "preview-deployment-verification",
     "owner-thai-language-approval",
     "owner-publication-approval"
   ],
@@ -89,11 +88,11 @@
       "note": "The rebound candidate passed the complete Node and Vitest suites, Astro diagnostics, production generation, topic robots-policy audit, and internal-link validation. Voltage content and calculations remain unchanged; shared registry and relationship changes add the reviewed Charge lesson and its prerequisite links."
     },
     "previewDeployment": {
-      "status": "pending",
+      "status": "passed",
       "reviewer": "Maintainer deployment verification",
       "reviewerAuthority": "maintainer",
-      "reviewedAt": null,
-      "note": "Commits 7414277 and 0bea714 remain historical deployment evidence. The shared registry and relationship graph changed for Electric Charge, so the exact rebound candidate must be pushed and live-checked before this gate passes again."
+      "reviewedAt": "2026-07-20",
+      "note": "Vercel reported success for exact rebound commit d10c466. Public English and Thai Voltage routes retained review-ready/verified metadata, no narrow-layout overflow, eleven suggestions with Charge first, correct localized paths and Thailand-context labels, and no browser-console warning or error. Commits 7414277 and 0bea714 remain historical evidence."
     },
     "publication": {
       "status": "pending",
@@ -135,7 +134,7 @@ Status: review preparation is complete; the lesson is `review-ready`, not approv
 | English content | Codex-assisted maintainer content audit | Passed 2026-07-15 | No owner action required unless wording changes materially. |
 | Thai language | Project owner | Pending | Blocks publication. |
 | Visual/accessibility | Maintainer browser review | Passed 2026-07-20 with documented emulation boundaries | Supports `review-ready`; does not grant Thai-language or publication approval. |
-| Preview/live deployment | Maintainer deployment verification | Pending for the rebound candidate | Commit `0bea714` is historical evidence; the exact new commit must be live-checked. |
+| Preview/live deployment | Maintainer deployment verification | Passed 2026-07-20 on commit `d10c466` | The rebound English/Thai lesson surfaces render eleven cards with Charge first. |
 | Final publication | Project owner | Pending | Blocks `published`. |
 
 The project owner's acceptance of the governance model on 2026-07-14 approved these roles, not this lesson revision.
@@ -228,8 +227,8 @@ Final judgment of natural Thai wording belongs to the project owner and is still
 | Native keyboard controls and visible focus | Passed for control behavior: actual Arrow, Home, End, and Page input changed both sliders, localized `aria-valuetext`, the live result, and the zero/maximum visual states. CSS inspection confirmed the range control's 3 px `:focus-visible` outline; the browser backend could not synthesize keyboard-only focus modality, so no rendered Tab-modality claim is made. |
 | Reduced-motion behavior | Passed by CSSOM and information-path inspection: the parsed `prefers-reduced-motion: reduce` rule reduces animation and transition duration to `0.01ms`; the demo has no animations and only three nonessential 0.18 s visual transitions, while all changing information is also present as text/live output and in the transcript. OS preference emulation was unavailable. |
 | Screen-reader-oriented names, live output, and transcript | Passed browser-semantic inspection: both native ranges have associated labels and localized `aria-valuetext`; the result is an `output` with `aria-live="polite"` and `aria-atomic="true"`; the diagram is hidden by an `aria-hidden="true"` stage and has a text transcript. The rounded spoken/visible result contains no raw floating artifact. No named platform screen reader was tested. |
-| Deployed English/Thai pages | Commits `7414277` and `0bea714` remain historical evidence; the exact current manifest is awaiting public verification. |
-| Current rebound candidate | Local checks passed in English and Thai: review-ready/source metadata, language switch, eleven suggestion cards with Charge first, English `lang` marking within Thai cards, no document overflow, and the established localized range behavior. |
+| Deployed English/Thai pages | Exact commit `d10c466` passed public verification; commits `7414277` and `0bea714` remain historical evidence. |
+| Current rebound candidate | Local and public checks passed in English and Thai: review-ready/source metadata, language switch, eleven suggestion cards with Charge first, correct localized paths and Thailand-context labels, no document overflow, and no browser-console warning/error. |
 
 ## Known limitations and review triggers
 
@@ -260,11 +259,12 @@ Final judgment of natural Thai wording belongs to the project owner and is still
 | 2026-07-16 | Rebind the review to current shared dependencies | Independent lifecycle audit and maintainer correction | The manifest now covers the shared rendering and suggestion inputs that materially affect the lesson. Because commit `7414277` predates those bytes, deployment verification returned to pending until the new promoted commit is checked. |
 | 2026-07-16 | Verify rebound production deployment | Maintainer deployment verification | Commit `0bea714` passed English and Thai lesson and registry status checks, 390 px layout, localized ArrowRight/live-output behavior, ten-card suggestions, Thai-card language metadata, and public-console inspection. The current deployment blocker was removed. |
 | 2026-07-20 | Rebind after Electric Charge integration | Maintainer implementation and browser review | Shared registry and relationship bytes changed. Automated and local visual gates were reaffirmed, Charge became the first related lesson, the rendered relationship list increased to eleven cards, and public deployment returned to pending until the exact candidate is live. |
+| 2026-07-20 | Verify rebound public deployment | Maintainer deployment verification | Vercel reported exact commit `d10c466` successful; English and Thai Voltage routes retained review-ready/verified metadata, eleven cards with Charge first, correct localized and Thailand-context labels, no narrow-layout overflow, and no browser-console warning/error. |
 
 ## Publication decision
 
-- Registry status after review preparation: `review-ready`. Technical, English, implementation, visual/accessibility, and source gates passed; the rebound deployment gate and both project-owner decisions remain pending, so the lesson must stay below `published`.
-- Public promoted-deployment verification: Pending for the current rebound candidate; commit `0bea714` remains historical evidence.
+- Registry status after review preparation: `review-ready`. Technical, English, implementation, visual/accessibility, source, and rebound deployment gates passed; both project-owner decisions remain pending, so the lesson must stay below `published`.
+- Public promoted-deployment verification: Passed 2026-07-20 on exact commit `d10c466`; commit `0bea714` remains historical evidence.
 - Project-owner publication decision: Pending.
 - Thai-language decision: Pending.
 - Qualified-review decision: Not required for the current low-risk conceptual scope; reassess if scope changes.

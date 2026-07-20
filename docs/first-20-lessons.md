@@ -19,8 +19,8 @@ In the status column, `candidate` means the lesson is part of this strategic cur
 
 | # | Lesson | Primary atlas node | Priority | Status | Why it belongs early |
 | ---: | --- | --- | --- | --- | --- |
-| 1 | What Is Electricity? | `ea.fundamentals.electricity` | P0 | review-ready | The gateway concept for the whole site; maintainer gates passed, while the current shared-data deployment recheck, Thai approval, and publication approval remain pending. |
-| 2 | Electric Charge | `ea.fundamentals.charge` | P1 | review-ready | Bilingual conceptual lesson and bounded conservation demo are source-verified; Thai-language and final publication approval remain pending. |
+| 1 | What Is Electricity? | `ea.fundamentals.electricity` | P0 | review-ready | The gateway concept for the whole site; maintainer and exact-deployment gates passed, while Thai approval and publication approval remain pending. |
+| 2 | Electric Charge | `ea.fundamentals.charge` | P1 | review-ready | Bilingual conceptual lesson and bounded conservation demo are source-verified and deployed; Thai-language and final publication approval remain pending. |
 | 3 | Voltage | `ea.fundamentals.voltage` | P1 | review-ready | Learners need energy-per-charge before circuits make sense. |
 | 4 | Electric Current | `ea.fundamentals.current` | P1 | prototype | The core flow quantity behind circuits, signals, and power. |
 | 5 | Resistance and Conductance | `ea.fundamentals.resistance` | P1 | prototype | Turns material behavior into circuit behavior. |

@@ -12,7 +12,6 @@
   "qualifiedReviewRequired": false,
   "qualifiedReviewReason": "The reviewed revision is a low-risk conceptual lesson with a bounded electron-transfer model, no live-work procedure, no installation instruction, and no claim that a Thai or international ESD standard supplies a universal human-safety threshold.",
   "blockers": [
-    "preview-deployment-verification",
     "owner-thai-language-approval",
     "owner-publication-approval"
   ],
@@ -89,11 +88,11 @@
       "note": "English and Thai local pages were reviewed across narrow and desktop layouts for hydration, overflow, control size, limits, reset, localized live status, focus retention, transcript, suggestions, and console output. Native buttons and focus behavior are present; this browser backend did not reliably demonstrate Enter/Space activation, OS reduced motion, a named screen reader, or actual 400% browser zoom, so those platform results are not claimed."
     },
     "previewDeployment": {
-      "status": "pending",
+      "status": "passed",
       "reviewer": "Maintainer deployment verification",
       "reviewerAuthority": "maintainer",
-      "reviewedAt": null,
-      "note": "The exact reviewed candidate must be pushed, deployed, and checked on the public English and Thai routes before this gate can pass."
+      "reviewedAt": "2026-07-20",
+      "note": "Vercel reported success for exact commit d10c466. Public English and Thai Charge routes showed review-ready/verified metadata, ten suggestions, the scoped TIS source, no narrow-layout overflow, localized hydrated interaction, correct signed ledger/conservation behavior, limit/reset behavior, and no browser-console warning or error; both registry cards matched."
     },
     "publication": {
       "status": "pending",
@@ -136,7 +135,7 @@ Status: the lesson is `review-ready`, not approved for publication.
 | Qualified-human review | Publication governance risk matrix | Not required 2026-07-20 | Applies only to this low-risk conceptual revision. |
 | Implementation verification | Maintainer automated verification | Passed 2026-07-20 | Bound tests and build must remain green. |
 | Visual/accessibility | Maintainer browser review | Passed 2026-07-20 with stated platform limits | Supports review readiness; does not claim screen-reader certification. |
-| Preview deployment | Maintainer deployment verification | Pending | Exact deployed candidate must be checked. |
+| Preview deployment | Maintainer deployment verification | Passed 2026-07-20 on commit `d10c466` | Exact English/Thai lesson and registry surfaces were live-checked. |
 | Publication | Project owner | Pending | Blocks `published`. |
 
 ## Exact sources
@@ -221,7 +220,7 @@ Status: the lesson is `review-ready`, not approved for publication.
 - The technical track does not cover relativistic field theory, quantum electrodynamics, specialist quasiparticle descriptions, or charge renormalization.
 - Safety text is a boundary, not a safe-work procedure. Adding experiments, ESD workstation design, hazardous-location thresholds, grounding/bonding steps, lightning protection, or Thai installation requirements triggers qualified and standards-specific review.
 - A material lesson, model, shared registry, route shell, suggestion system, or presentation change invalidates the recorded file hashes and requires deliberate re-review.
-- Final Thai-language approval, exact public-deployment verification, and final publication approval remain open.
+- Final Thai-language approval and final publication approval remain open; exact public-deployment verification passed for commit `d10c466`.
 
 ## Decision history
 
@@ -229,13 +228,15 @@ Status: the lesson is `review-ready`, not approved for publication.
 | --- | --- | --- |
 | 2026-07-20 | Bound the lesson to schema-v2 review evidence and moved it from `prototype`/`draft` to `review-ready`/`verified`. | Exact sources, claims, implementation, and local visual evidence meet the preparation gates for this low-risk conceptual scope. |
 | 2026-07-20 | Marked qualified-human review not required for this revision. | The lesson contains no live-work, installation, or practical hazardous procedure; the decision must be revisited if scope expands. |
-| 2026-07-20 | Kept Thai-language, preview-deployment, and publication gates pending. | These decisions require project-owner authority or evidence from the exact deployed commit and cannot be inferred from local implementation. |
+| 2026-07-20 | Initially kept Thai-language, preview-deployment, and publication gates pending. | These decisions require project-owner authority or evidence from the exact deployed commit and cannot be inferred from local implementation. |
+| 2026-07-20 | Verified the exact public deployment. | GitHub/Vercel reported deployment success for commit `d10c466`; English/Thai Charge routes and registry cards passed localized metadata, responsive geometry, interaction, conservation, suggestion, source-scope, and console checks. The deployment blocker was removed. |
 
 ## Publication decision
 
 The lesson is available as a review-ready page so it can be inspected. It is **not published in the governance sense**. Promotion to `published` requires:
 
 1. project-owner approval of the Thai wording;
-2. public verification of the exact hash-bound candidate;
-3. project-owner publication approval; and
-4. no material file change or expired evidence before that decision.
+2. project-owner publication approval; and
+3. no material file change or expired evidence before that decision.
+
+Exact public-deployment verification passed on 2026-07-20 for commit `d10c466`.

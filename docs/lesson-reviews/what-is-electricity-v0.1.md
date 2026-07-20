@@ -12,7 +12,6 @@
   "qualifiedReviewRequired": false,
   "qualifiedReviewReason": "The reviewed revision is a low-risk conceptual explanation with an explicit no-mains and no-construction boundary, no live-work procedure, no installation instruction, and no claim that an exact Thai rule applies.",
   "blockers": [
-    "preview-deployment-verification",
     "owner-thai-language-approval",
     "owner-publication-approval"
   ],
@@ -87,11 +86,11 @@
       "note": "The existing English and Thai visual evidence was rechecked against the rebound local candidate: review-ready/source metadata remained correct, the gateway still renders its ten-card cap with Charge first and no duplicate Charge topic, and shared layout behavior remains intact. Prior focus, responsive, contrast, live-output, transcript, and console evidence still applies. The browser backend did not demonstrate Enter/Space activation, OS reduced motion, actual 400% zoom, or a named screen reader, so no platform result for those checks is claimed."
     },
     "previewDeployment": {
-      "status": "pending",
+      "status": "passed",
       "reviewer": "Maintainer deployment verification",
       "reviewerAuthority": "maintainer",
-      "reviewedAt": null,
-      "note": "Commit 0bea714 remains historical deployment evidence. The shared registry and relationship graph changed for Electric Charge, so the exact rebound candidate must be pushed and live-checked before this gate passes again."
+      "reviewedAt": "2026-07-20",
+      "note": "Vercel reported success for exact rebound commit d10c466. Public English and Thai gateway routes retained review-ready/verified metadata, no narrow-layout overflow, a ten-card cap with Charge first and no duplicate Charge topic, correct localized paths, and no browser-console warning or error. Commit 0bea714 remains historical evidence."
     },
     "publication": {
       "status": "pending",
@@ -134,7 +133,7 @@ Status: maintainer review preparation is complete; the lesson is `review-ready`,
 | Qualified review | Publication governance risk matrix | Not required for this scope | Becomes required if the risk class or instruction scope changes. |
 | Implementation | Maintainer automated verification | Passed 2026-07-20 | Supports review preparation for the rebound file manifest. |
 | Visual/accessibility | Maintainer browser review | Passed 2026-07-20 with explicit backend boundaries | Supports `review-ready`; does not infer Thai or publication approval. |
-| Preview/live deployment | Maintainer deployment verification | Pending for the rebound candidate | Commit `0bea714` is historical evidence; the exact new commit must be live-checked. |
+| Preview/live deployment | Maintainer deployment verification | Passed 2026-07-20 on commit `d10c466` | The rebound English/Thai lesson surfaces retained the ten-card cap with Charge first. |
 | Final publication | Project owner | Pending | Blocks `published`. |
 
 The project owner's governance acceptance assigns roles; it does not approve this lesson revision.
@@ -251,13 +250,14 @@ The project owner's governance acceptance assigns roles; it does not approve thi
 | 2026-07-16 | Complete independent final audits | Read-only code, Thai-parity, and lifecycle reviews | Corrected the lamp result type, live-output HTML structure, wire contrast, visible model assumptions, Thai meaning-sensitive wording, source coverage, shared dependency manifest, and stale Voltage deployment binding before commit. No owner approval was inferred. |
 | 2026-07-16 | Verify promoted public deployment | Maintainer deployment verification | Commit `0bea714` passed English and Thai lesson and registry checks, localized closed-state interaction, 390/320 px no-overflow checks, relationship-card language metadata, and public-console inspection. The deployment blocker was removed; owner Thai-language and publication decisions remain. |
 | 2026-07-20 | Rebind after Electric Charge integration | Maintainer implementation and browser review | Shared registry and relationship bytes changed. Automated and local visual gates were reaffirmed, the gateway retained its ten-card cap with Charge first and no duplicate Charge topic, and public deployment returned to pending until the exact candidate is live. |
+| 2026-07-20 | Verify rebound public deployment | Maintainer deployment verification | Vercel reported exact commit `d10c466` successful; English and Thai gateway routes retained review-ready/verified metadata, the ten-card cap with Charge first, correct localized paths, no narrow-layout overflow, and no browser-console warning/error. |
 
 ## Publication decision
 
 - Registry status after review preparation: `review-ready`.
 - Source status: `verified` for the bound conceptual scope.
 - Qualified-review decision: Not required for the current scope; reassess on any practical, hazardous, regulated, installation, or standards-sensitive expansion.
-- Public promoted-deployment verification: Pending for the current rebound candidate; commit `0bea714` remains historical evidence.
+- Public promoted-deployment verification: Passed 2026-07-20 on exact commit `d10c466`; commit `0bea714` remains historical evidence.
 - Project-owner Thai-language decision: Pending.
 - Project-owner publication decision: Pending.
 - Final publication date: Pending.
