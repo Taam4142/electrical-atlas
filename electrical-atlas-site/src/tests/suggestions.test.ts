@@ -19,6 +19,7 @@ describe("suggestion system", () => {
     const suggestions = getLessonSuggestions("what-is-electricity", "th", atlasTopics);
     const hrefs = suggestions.map((suggestion) => suggestion.href);
 
+    expect(suggestions.some((suggestion) => suggestion.href === "/th/lessons/charge/")).toBe(true);
     expect(suggestions.some((suggestion) => suggestion.href === "/th/lessons/voltage/")).toBe(true);
     expect(suggestions.some((suggestion) => suggestion.href === "/th/lessons/current/")).toBe(true);
     expect(suggestions.some((suggestion) => suggestion.href === "/th/lessons/resistance/")).toBe(true);
@@ -28,7 +29,7 @@ describe("suggestion system", () => {
     expect(suggestions.some((suggestion) => suggestion.href === "/th/lessons/battery/")).toBe(true);
     expect(suggestions.some((suggestion) => suggestion.href === "/th/lessons/mosfet/")).toBe(true);
     expect(suggestions.every((suggestion) => suggestion.href.startsWith("/th/"))).toBe(true);
-    expect(hrefs).toContain("/th/topics/fundamentals-charge/");
+    expect(hrefs).not.toContain("/th/topics/fundamentals-charge/");
     expect(hrefs).toContain("/th/topics/fundamentals-dc/");
     expect(hrefs).toContain("/th/topics/fundamentals-ac/");
     expect(hrefs).not.toContain("/th/topics/storage-lithium-ion/");
@@ -40,8 +41,37 @@ describe("suggestion system", () => {
     const suggestions = getLessonSuggestions("what-is-electricity", "en", atlasTopics, 6);
 
     expect(suggestions).toHaveLength(6);
-    expect(suggestions[0]?.href).toBe("/en/lessons/voltage/");
-    expect(suggestions.some((suggestion) => suggestion.href === "/en/topics/fundamentals-charge/")).toBe(true);
+    expect(suggestions[0]?.href).toBe("/en/lessons/charge/");
+    expect(suggestions.some((suggestion) => suggestion.href === "/en/topics/fundamentals-charge/")).toBe(false);
+  });
+
+  it("builds curated Electric Charge lesson suggestions without duplicating its topic record", () => {
+    const suggestions = getLessonSuggestions("charge", "en", atlasTopics);
+    const hrefs = suggestions.map((suggestion) => suggestion.href);
+
+    expect(hrefs).toEqual([
+      "/en/lessons/what-is-electricity/",
+      "/en/lessons/voltage/",
+      "/en/lessons/current/",
+      "/en/topics/fundamentals-charge-carrier/",
+      "/en/topics/em-field-electric/",
+      "/en/topics/fundamentals-electrification/",
+      "/en/topics/fundamentals-static-electricity/",
+      "/en/topics/em-electrostatics-coulomb-law/",
+      "/en/topics/transport-continuity/",
+      "/en/topics/em-capacitance/",
+    ]);
+    expect(hrefs).toContain("/en/lessons/what-is-electricity/");
+    expect(hrefs).toContain("/en/lessons/voltage/");
+    expect(hrefs).toContain("/en/lessons/current/");
+    expect(hrefs).not.toContain("/en/lessons/capacitor/");
+    expect(hrefs).not.toContain("/en/topics/fundamentals-charge/");
+    expect(hrefs).toContain("/en/topics/fundamentals-charge-carrier/");
+    expect(hrefs).toContain("/en/topics/fundamentals-electrification/");
+    expect(hrefs).toContain("/en/topics/fundamentals-static-electricity/");
+    expect(hrefs).toContain("/en/topics/em-electrostatics-coulomb-law/");
+    expect(hrefs).toContain("/en/topics/transport-continuity/");
+    expect(hrefs).toContain("/en/topics/em-capacitance/");
   });
 
   it("builds curated voltage lesson suggestions", () => {
@@ -50,6 +80,7 @@ describe("suggestion system", () => {
 
     expect(suggestions.length).toBeGreaterThanOrEqual(6);
     expect(hrefs).toContain("/en/lessons/what-is-electricity/");
+    expect(hrefs).toContain("/en/lessons/charge/");
     expect(hrefs).toContain("/en/lessons/current/");
     expect(hrefs).not.toContain("/en/topics/fundamentals-current/");
     expect(hrefs).toContain("/en/topics/em-potential-electric/");
@@ -61,6 +92,7 @@ describe("suggestion system", () => {
     const hrefs = suggestions.map((suggestion) => suggestion.href);
 
     expect(suggestions.length).toBeGreaterThanOrEqual(7);
+    expect(hrefs).toContain("/en/lessons/charge/");
     expect(hrefs).toContain("/en/lessons/voltage/");
     expect(hrefs).toContain("/en/lessons/resistance/");
     expect(hrefs).toContain("/en/lessons/ohms-law/");

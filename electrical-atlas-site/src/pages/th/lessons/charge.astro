@@ -1,0 +1,32 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import LessonShell from "../../../components/LessonShell.astro";
+import LessonModeToggle from "../../../components/LessonModeToggle";
+import SuggestionSection from "../../../components/SuggestionSection.astro";
+import Content from "../../../content/lessons/th/charge.mdx";
+import { atlasTopics } from "../../../lib/generated/atlasTopics";
+import { getLessonSuggestions } from "../../../lib/suggestions";
+
+const suggestions = getLessonSuggestions("charge", "th", atlasTopics);
+---
+
+<BaseLayout
+  title="ประจุไฟฟ้าคืออะไร?"
+  description="บทเรียนพื้นฐานแบบภาพเรื่องประจุบวก ประจุลบ ประจุสุทธิ การอนุรักษ์ การควอนไทซ์ พาหะประจุ และโพลาไรเซชัน"
+  lang="th"
+  counterpartPath="/en/lessons/charge/"
+>
+  <LessonShell
+    locale="th"
+    eyebrow="บทเรียนพื้นฐาน"
+    title="ประจุไฟฟ้าคืออะไร?"
+    subtitle="ประจุเป็นสมบัติที่มีเครื่องหมายและเป็นปริมาณที่อนุรักษ์ ไม่ใช่สารที่วงจรใช้จนหมด"
+    lessonId="ea.lesson.charge.v0.1"
+  >
+    <LessonModeToggle client:load locale="th" />
+    <div class="lesson-content">
+      <Content />
+    </div>
+    <SuggestionSection locale="th" items={suggestions} />
+  </LessonShell>
+</BaseLayout>

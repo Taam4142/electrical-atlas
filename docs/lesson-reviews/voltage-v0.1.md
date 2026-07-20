@@ -6,17 +6,18 @@
   "lessonId": "ea.lesson.voltage.v0.1",
   "recordState": "in-review",
   "sourceStatus": "verified",
-  "reviewedRevision": "sha256:2cfc3a07987d6aeaaa487e216d349229da13772841199e503fccce9d46f43361",
-  "reviewedAt": "2026-07-16",
+  "reviewedRevision": "sha256:e7478278251d1b652bc817ae6b7590aaf99e4adf6f39a71973fff680b371df16",
+  "reviewedAt": "2026-07-20",
   "nextReviewAt": "2027-01-14",
   "qualifiedReviewRequired": false,
   "qualifiedReviewReason": "The reviewed revision is a low-risk conceptual lesson with general safety boundaries, no live-work procedure, no installation instruction, and no claim that an exact Thai rule applies universally.",
   "blockers": [
+    "preview-deployment-verification",
     "owner-thai-language-approval",
     "owner-publication-approval"
   ],
   "reviewedFiles": {
-    "electrical-atlas-site/src/lib/lessonRegistry.ts": "8a3606a4742d6c5a0e7bb9224a0603fb4365f99e01045acfeb7e8d4eb8a41593",
+    "electrical-atlas-site/src/lib/lessonRegistry.ts": "7b01e3c8cd9c174f1aafb573520f28a7cba0c9c62961a7ee00456237b97eb475",
     "electrical-atlas-site/src/content/lessons/en/voltage.mdx": "801061c892c21be084e18a73c09fe4dd202cf9cb95a849b319dbcd3a2587d883",
     "electrical-atlas-site/src/content/lessons/th/voltage.mdx": "7ff016ed44376d2c6979314d0ce8f45c296fe5a713466fb8a163e09af38c0e3c",
     "electrical-atlas-site/src/components/VoltageEnergyDemo.tsx": "df37130d9eba89fddb523d0da5ff56ffa013538ebd2bfe3a7f9706034d32a5e7",
@@ -33,7 +34,7 @@
     "electrical-atlas-site/src/lib/generated/atlasTopics.ts": "97ebe07b32cec59b107bef8329e847eebc5aca081591d2092904127e837968ed",
     "electrical-atlas-site/src/lib/topicLabels.ts": "aa8613f68e11228ebe9d793a06a141956cc81c8975df30dcb26830202a92cf69",
     "electrical-atlas-site/src/lib/navigation.ts": "bf6f57be6e15bf4f98980885ce39f6f3b7732ab36f89cd5b62a828c0cfd6801f",
-    "electrical-atlas-site/src/lib/relationships.ts": "d5ae80218424add43359cf3c8408b7f28d18575519da1262cb53376700a50217",
+    "electrical-atlas-site/src/lib/relationships.ts": "5aacc0d5c587c696691f25daa9dd13278c9de32bd558e7583124971ef6a8be37",
     "electrical-atlas-site/src/lib/suggestions.ts": "21c5c24f3c21fbedd83767123126c54620b20644a28ea85ff4d8f29054111024",
     "electrical-atlas-site/src/components/SuggestionSection.astro": "68dcf8965bc3a612104f655cfca7852a482990ab217950288878eb6f864a321f"
   },
@@ -70,8 +71,8 @@
       "status": "passed",
       "reviewer": "Maintainer browser review",
       "reviewerAuthority": "maintainer",
-      "reviewedAt": "2026-07-16",
-      "note": "The established deployed English and Thai desktop and 390 px checks passed responsive geometry, 44 px controls, localized semantic values, live output, transcript, console, and actual Arrow/Home/End/Page behavior including zero and maximum states. The current rebound local candidate was rechecked at 390 px: Thai ArrowRight changed 9 V to 9.5 V and the localized live result to 95 microjoules; both languages retained ten suggestions, correct language metadata, review-ready status, and no document overflow. CSS inspection confirmed a 3 px focus-visible rule and a reduced-motion rule that collapses nonessential transitions; this browser backend could not emulate keyboard-only focus modality, the OS reduced-motion preference, or a named screen reader, so no platform assistive-technology result is claimed."
+      "reviewedAt": "2026-07-20",
+      "note": "The established English and Thai desktop and narrow-layout evidence remains valid. The rebound local candidate retained review-ready/source metadata, localized range behavior and live output, correct language metadata, no document overflow, and now renders eleven relationship-driven suggestions with Charge first. CSS still provides the 3 px focus-visible rule and reduced-motion override. This browser backend could not emulate keyboard-only focus modality, actual 400% zoom, the OS reduced-motion preference, or a named screen reader, so no platform result for those checks is claimed."
     },
     "qualifiedHuman": {
       "status": "not-required",
@@ -84,15 +85,15 @@
       "status": "passed",
       "reviewer": "Maintainer automated verification",
       "reviewerAuthority": "maintainer",
-      "reviewedAt": "2026-07-16",
-      "note": "After inspecting the shared registry and lamp-helper diffs, 12 Node checks, 80 Vitest tests across 13 files, Astro diagnostics for 93 files, the 3,245-page production build, 3,214 topic robots policies, and 3,246 internal references passed. Voltage content and calculations remain unchanged."
+      "reviewedAt": "2026-07-20",
+      "note": "The rebound candidate passed the complete Node and Vitest suites, Astro diagnostics, production generation, topic robots-policy audit, and internal-link validation. Voltage content and calculations remain unchanged; shared registry and relationship changes add the reviewed Charge lesson and its prerequisite links."
     },
     "previewDeployment": {
-      "status": "passed",
+      "status": "pending",
       "reviewer": "Maintainer deployment verification",
       "reviewerAuthority": "maintainer",
-      "reviewedAt": "2026-07-16",
-      "note": "Commit 0bea714 contains the current rebound manifest. English and Thai public lesson routes retained localized review-ready/source metadata, current language switching, ten suggestions, no document overflow at 390 px, and real ArrowRight behavior from 9 V to 9.5 V with a localized 95 microjoule live result. Both registry cards matched, English lang marking remained present within Thai canonical-topic cards, and public console inspection found no warning/error. Commit 7414277 remains historical evidence for the earlier revision."
+      "reviewedAt": null,
+      "note": "Commits 7414277 and 0bea714 remain historical deployment evidence. The shared registry and relationship graph changed for Electric Charge, so the exact rebound candidate must be pushed and live-checked before this gate passes again."
     },
     "publication": {
       "status": "pending",
@@ -122,7 +123,7 @@ Status: review preparation is complete; the lesson is `review-ready`, not approv
 | Source status | `verified` for this reviewed conceptual scope |
 | Safety level | `low` — conceptual lesson with explicit live-measurement and mains boundaries |
 | Thailand context | Required for one narrowly scoped ERC tariff/service example; no installation rule is given |
-| Evidence review date | 2026-07-16 (source review completed 2026-07-14) |
+| Evidence review date | 2026-07-20 (source review completed 2026-07-14) |
 | Next Thai-source currency check | 2027-01-14, or sooner if the ERC page changes |
 
 ## Approval ownership and gates
@@ -133,8 +134,8 @@ Status: review preparation is complete; the lesson is `review-ready`, not approv
 | Low-risk technical accuracy | Codex-assisted maintainer technical audit | Passed 2026-07-16 for the current scope | Must be reassessed if hands-on, hazardous, or regulated practice is added. |
 | English content | Codex-assisted maintainer content audit | Passed 2026-07-15 | No owner action required unless wording changes materially. |
 | Thai language | Project owner | Pending | Blocks publication. |
-| Visual/accessibility | Maintainer browser review | Passed 2026-07-16 with documented emulation boundaries | Supports `review-ready`; does not grant Thai-language or publication approval. |
-| Preview/live deployment | Maintainer deployment verification | Passed 2026-07-16 on commit `0bea714` | The rebound English/Thai lesson and registry surfaces agree with the current manifest. |
+| Visual/accessibility | Maintainer browser review | Passed 2026-07-20 with documented emulation boundaries | Supports `review-ready`; does not grant Thai-language or publication approval. |
+| Preview/live deployment | Maintainer deployment verification | Pending for the rebound candidate | Commit `0bea714` is historical evidence; the exact new commit must be live-checked. |
 | Final publication | Project owner | Pending | Blocks `published`. |
 
 The project owner's acceptance of the governance model on 2026-07-14 approved these roles, not this lesson revision.
@@ -219,16 +220,16 @@ Final judgment of natural Thai wording belongs to the project owner and is still
 | --- | --- |
 | Focused localized-number regression | Passed: English and Thai formatting tests both convert the real default-model artifact to the shared `90` display/announcement value. |
 | Focused keyboard-value regression | Passed: Arrow, Home, End, Page, boundary, and unrelated-key cases cover the bounded range-value helper used by both Voltage sliders. |
-| Full website test suite | Passed: 12 Node checks and 76 Vitest tests across 12 files. |
-| Astro/type check | Passed: 92 files, 0 errors, warnings, or hints. |
-| Production build and internal-link validation | Passed: 3,245 pages, 3,214 topic robots policies, and 3,246 unique root-relative references validated. |
+| Full website test suite | All Node checks and Vitest files passed for the rebound candidate. |
+| Astro/type check | Passed with 0 errors, warnings, or hints for the rebound candidate. |
+| Production build and internal-link validation | Production generation, topic robots policies, and internal references passed for the rebound candidate. |
 | Desktop English/Thai visual check | Passed on deployed commit `bc12ec1`: the demo retained its two-column desktop layout, 44 px controls, localized values, and no document-level horizontal overflow or console errors. |
 | Mobile English/Thai visual check | Passed at 390 × 844 on deployed commit `bc12ec1`: the demo used one column, its stage, controls, metrics, header, and document did not overflow, and both range targets remained 44 px. The navigation's three-pixel excess is contained by its intentional `overflow-x: auto` mobile rail rather than expanding the document. |
 | Native keyboard controls and visible focus | Passed for control behavior: actual Arrow, Home, End, and Page input changed both sliders, localized `aria-valuetext`, the live result, and the zero/maximum visual states. CSS inspection confirmed the range control's 3 px `:focus-visible` outline; the browser backend could not synthesize keyboard-only focus modality, so no rendered Tab-modality claim is made. |
 | Reduced-motion behavior | Passed by CSSOM and information-path inspection: the parsed `prefers-reduced-motion: reduce` rule reduces animation and transition duration to `0.01ms`; the demo has no animations and only three nonessential 0.18 s visual transitions, while all changing information is also present as text/live output and in the transcript. OS preference emulation was unavailable. |
 | Screen-reader-oriented names, live output, and transcript | Passed browser-semantic inspection: both native ranges have associated labels and localized `aria-valuetext`; the result is an `output` with `aria-live="polite"` and `aria-atomic="true"`; the diagram is hidden by an `aria-hidden="true"` stage and has a text transcript. The rounded spoken/visible result contains no raw floating artifact. No named platform screen reader was tested. |
-| Deployed English/Thai pages | Passed for the current manifest on commit `0bea714`; commit `7414277` remains historical evidence for the earlier revision. |
-| Current rebound candidate | Local and deployed checks passed at 390 px in English and Thai: review-ready/source metadata, language switch, ten suggestion cards, English `lang` marking within Thai cards, no document overflow, and real ArrowRight input with localized live output. |
+| Deployed English/Thai pages | Commits `7414277` and `0bea714` remain historical evidence; the exact current manifest is awaiting public verification. |
+| Current rebound candidate | Local checks passed in English and Thai: review-ready/source metadata, language switch, eleven suggestion cards with Charge first, English `lang` marking within Thai cards, no document overflow, and the established localized range behavior. |
 
 ## Known limitations and review triggers
 
@@ -258,11 +259,12 @@ Final judgment of natural Thai wording belongs to the project owner and is still
 | 2026-07-16 | Verify promoted production deployment | Maintainer deployment verification | Commit `7414277` displayed the promoted status consistently on English and Thai lesson and registry routes; live localized Arrow-key interaction also passed. The deployment blocker was removed, leaving only project-owner Thai-language and final-publication decisions. |
 | 2026-07-16 | Rebind the review to current shared dependencies | Independent lifecycle audit and maintainer correction | The manifest now covers the shared rendering and suggestion inputs that materially affect the lesson. Because commit `7414277` predates those bytes, deployment verification returned to pending until the new promoted commit is checked. |
 | 2026-07-16 | Verify rebound production deployment | Maintainer deployment verification | Commit `0bea714` passed English and Thai lesson and registry status checks, 390 px layout, localized ArrowRight/live-output behavior, ten-card suggestions, Thai-card language metadata, and public-console inspection. The current deployment blocker was removed. |
+| 2026-07-20 | Rebind after Electric Charge integration | Maintainer implementation and browser review | Shared registry and relationship bytes changed. Automated and local visual gates were reaffirmed, Charge became the first related lesson, the rendered relationship list increased to eleven cards, and public deployment returned to pending until the exact candidate is live. |
 
 ## Publication decision
 
-- Registry status after review preparation: `review-ready`. Technical, English, implementation, visual/accessibility, source, and current promoted-deployment gates passed; both project-owner decisions remain pending, so the lesson must stay below `published`.
-- Public promoted-deployment verification: Passed 2026-07-16 on commit `0bea714`.
+- Registry status after review preparation: `review-ready`. Technical, English, implementation, visual/accessibility, and source gates passed; the rebound deployment gate and both project-owner decisions remain pending, so the lesson must stay below `published`.
+- Public promoted-deployment verification: Pending for the current rebound candidate; commit `0bea714` remains historical evidence.
 - Project-owner publication decision: Pending.
 - Thai-language decision: Pending.
 - Qualified-review decision: Not required for the current low-risk conceptual scope; reassess if scope changes.

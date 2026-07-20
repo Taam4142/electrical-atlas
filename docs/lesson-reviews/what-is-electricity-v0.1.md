@@ -6,24 +6,25 @@
   "lessonId": "ea.lesson.what-is-electricity.v0.1",
   "recordState": "in-review",
   "sourceStatus": "verified",
-  "reviewedRevision": "sha256:3cd003f56afde310b82f37acaf207a02f00d76eb4d57c81335293bf67e4d50d2",
-  "reviewedAt": "2026-07-16",
+  "reviewedRevision": "sha256:4c845b4bb97c4c5b99059b069e5e483d521c806bd56cf5ec15619a24b342b041",
+  "reviewedAt": "2026-07-20",
   "nextReviewAt": "2027-07-16",
   "qualifiedReviewRequired": false,
   "qualifiedReviewReason": "The reviewed revision is a low-risk conceptual explanation with an explicit no-mains and no-construction boundary, no live-work procedure, no installation instruction, and no claim that an exact Thai rule applies.",
   "blockers": [
+    "preview-deployment-verification",
     "owner-thai-language-approval",
     "owner-publication-approval"
   ],
   "reviewedFiles": {
-    "electrical-atlas-site/src/lib/lessonRegistry.ts": "8a3606a4742d6c5a0e7bb9224a0603fb4365f99e01045acfeb7e8d4eb8a41593",
+    "electrical-atlas-site/src/lib/lessonRegistry.ts": "7b01e3c8cd9c174f1aafb573520f28a7cba0c9c62961a7ee00456237b97eb475",
     "electrical-atlas-site/src/content/lessons/en/what-is-electricity.mdx": "662fd84322391e06bd1f1f961de0e8823c49d6a11e92e7ddb4cbd43e136ba306",
     "electrical-atlas-site/src/content/lessons/th/what-is-electricity.mdx": "b0b87f546802fb2d47921fa7ae04ee101903894bfdf14dab73524f7f83bc7517",
     "electrical-atlas-site/src/components/CircuitFieldDemo.tsx": "5cbb98bfea354cf0ed340ad0ce13b92ccd0793d0f4e8db4c7b67ce4c2202ddb6",
     "electrical-atlas-site/src/lib/physics.ts": "9d981d77f41304211bd37e6f71f695499851e4e513a4e360b6a5d66a5adbaec7",
     "electrical-atlas-site/src/pages/en/lessons/what-is-electricity.astro": "95ea74542db08f8d9eac7db16abcd6fa4175a497d831fe6e49a4f62df2de3567",
     "electrical-atlas-site/src/pages/th/lessons/what-is-electricity.astro": "96fdfeb678842876f24c548b3694884e21a263a7b07df6ce9f2580cfdeacfea4",
-    "electrical-atlas-site/src/lib/relationships.ts": "d5ae80218424add43359cf3c8408b7f28d18575519da1262cb53376700a50217",
+    "electrical-atlas-site/src/lib/relationships.ts": "5aacc0d5c587c696691f25daa9dd13278c9de32bd558e7583124971ef6a8be37",
     "electrical-atlas-site/src/lib/suggestions.ts": "21c5c24f3c21fbedd83767123126c54620b20644a28ea85ff4d8f29054111024",
     "electrical-atlas-site/src/components/SuggestionSection.astro": "68dcf8965bc3a612104f655cfca7852a482990ab217950288878eb6f864a321f",
     "electrical-atlas-site/src/styles/global.css": "a3d77fbdded3732744a7be81e825ae8b46c2d4c47ab5d71d6233e4ee51869613",
@@ -75,22 +76,22 @@
       "status": "passed",
       "reviewer": "Maintainer automated verification",
       "reviewerAuthority": "maintainer",
-      "reviewedAt": "2026-07-16",
-      "note": "The revision-bound candidate passed 12 Node checks, 80 Vitest tests across 13 files, Astro diagnostics for 93 files, the 3,245-page production build, 3,214 topic robots policies, and 3,246 internal references."
+      "reviewedAt": "2026-07-20",
+      "note": "The rebound candidate passed the complete Node and Vitest suites, Astro diagnostics, production generation, topic robots-policy audit, and internal-link validation. The gateway content and numeric model remain unchanged; the shared registry and relationship changes add the reviewed Charge lesson."
     },
     "visualAccessibility": {
       "status": "passed",
       "reviewer": "Maintainer browser review",
       "reviewerAuthority": "maintainer",
-      "reviewedAt": "2026-07-16",
-      "note": "English and Thai local previews passed default desktop, 390 px, and 320 px checks for responsive geometry, visible focus, 64–86 px demo controls, localized phrasing-only live output, visible model boundary, transcript, current-language metadata, English language marking on canonical topic text, no page overflow, coherent endpoint values, and no console errors. The essential wire stroke is now 3.36:1 against the lesson canvas. The backend did not demonstrate Enter/Space activation or a named screen reader, so no platform assistive-technology result is claimed; native button semantics and click state changes were verified."
+      "reviewedAt": "2026-07-20",
+      "note": "The existing English and Thai visual evidence was rechecked against the rebound local candidate: review-ready/source metadata remained correct, the gateway still renders its ten-card cap with Charge first and no duplicate Charge topic, and shared layout behavior remains intact. Prior focus, responsive, contrast, live-output, transcript, and console evidence still applies. The browser backend did not demonstrate Enter/Space activation, OS reduced motion, actual 400% zoom, or a named screen reader, so no platform result for those checks is claimed."
     },
     "previewDeployment": {
-      "status": "passed",
+      "status": "pending",
       "reviewer": "Maintainer deployment verification",
       "reviewerAuthority": "maintainer",
-      "reviewedAt": "2026-07-16",
-      "note": "Public Vercel commit 0bea714 passed English at 390 px and Thai at 320 px: localized review-ready/source metadata, language switching, open/closed state controls, 0.300 A and 2.70 W closed-state values, visible model boundary, ten suggestions, English lang marking within Thai canonical-topic cards, no document overflow, and no public console warning/error. English and Thai registry cards also showed the matching review-ready and verified-source states."
+      "reviewedAt": null,
+      "note": "Commit 0bea714 remains historical deployment evidence. The shared registry and relationship graph changed for Electric Charge, so the exact rebound candidate must be pushed and live-checked before this gate passes again."
     },
     "publication": {
       "status": "pending",
@@ -119,7 +120,7 @@ Status: maintainer review preparation is complete; the lesson is `review-ready`,
 | Source status | `verified` for the bound conceptual scope |
 | Safety level | `low` — conceptual explanation with no-mains and no-construction boundaries |
 | Thailand context | No Thai compliance, installation, utility, or legal claim is made; IEC terminology is used only for conceptual distinctions. |
-| Evidence review date | 2026-07-16 |
+| Evidence review date | 2026-07-20 (source/content conclusions retained from 2026-07-16) |
 | Next source currency check | 2027-07-16, or earlier on material content/source change |
 
 ## Approval ownership and gates
@@ -131,9 +132,9 @@ Status: maintainer review preparation is complete; the lesson is `review-ready`,
 | English content | Codex-assisted maintainer content audit | Passed 2026-07-16 | No owner action required unless wording changes materially. |
 | Thai language | Project owner | Pending | Blocks publication. |
 | Qualified review | Publication governance risk matrix | Not required for this scope | Becomes required if the risk class or instruction scope changes. |
-| Implementation | Maintainer automated verification | Passed 2026-07-16 | Supports review preparation for the exact file manifest. |
-| Visual/accessibility | Maintainer browser review | Passed 2026-07-16 with explicit backend boundaries | Supports `review-ready`; does not infer Thai or publication approval. |
-| Preview/live deployment | Maintainer deployment verification | Passed 2026-07-16 on commit `0bea714` | English/Thai lesson and registry states, interaction, narrow layout, language metadata, and console passed for the bound revision. |
+| Implementation | Maintainer automated verification | Passed 2026-07-20 | Supports review preparation for the rebound file manifest. |
+| Visual/accessibility | Maintainer browser review | Passed 2026-07-20 with explicit backend boundaries | Supports `review-ready`; does not infer Thai or publication approval. |
+| Preview/live deployment | Maintainer deployment verification | Pending for the rebound candidate | Commit `0bea714` is historical evidence; the exact new commit must be live-checked. |
 | Final publication | Project owner | Pending | Blocks `published`. |
 
 The project owner's governance acceptance assigns roles; it does not approve this lesson revision.
@@ -217,10 +218,10 @@ The project owner's governance acceptance assigns roles; it does not approve thi
 
 | Check | Result |
 | --- | --- |
-| Focused model/physics/relationship/suggestion tests | 33 tests across 4 files passed before the full gate |
-| Astro diagnostics after content and component revision | 93 files; 0 errors, warnings, or hints |
-| Full repository test gate | 12 Node checks and 80 Vitest tests across 13 files passed |
-| Astro and production build | 93 files produced 0 errors/warnings/hints; 3,245 pages built; 3,214 topic robots policies and 3,246 internal references validated |
+| Focused model/physics/relationship/suggestion tests | Passed before the full repository gate; Charge-specific coverage is recorded in its own review. |
+| Astro diagnostics after the shared-data rebound | Passed with 0 errors, warnings, or hints. |
+| Full repository test gate | All Node checks and Vitest files passed for the rebound candidate. |
+| Astro and production build | Production generation, topic robots policies, and internal references passed for the rebound candidate. |
 | English local browser review | Default desktop and 390 px passed coherent values, responsive stacking, visible focus, large controls, live output, transcript, relationship cap, no overflow, and no console errors |
 | Thai local browser review | 390 px and 320 px passed localized state/output, 64–86 px controls, `lang="th"`, current-language switch, `lang="en"` on canonical topic text, readable definition list, no overflow, and no console errors |
 | Browser evidence boundary | Native semantic buttons and click state changes passed. The browser backend did not demonstrate Enter/Space activation, OS reduced-motion emulation, or a named screen reader; no result for those platform checks is inferred. |
@@ -249,13 +250,14 @@ The project owner's governance acceptance assigns roles; it does not approve thi
 | 2026-07-16 | Promote review preparation | Maintainer review | Registry moved to `review-ready`; public deployment, Thai-language approval, and final publication remain pending. |
 | 2026-07-16 | Complete independent final audits | Read-only code, Thai-parity, and lifecycle reviews | Corrected the lamp result type, live-output HTML structure, wire contrast, visible model assumptions, Thai meaning-sensitive wording, source coverage, shared dependency manifest, and stale Voltage deployment binding before commit. No owner approval was inferred. |
 | 2026-07-16 | Verify promoted public deployment | Maintainer deployment verification | Commit `0bea714` passed English and Thai lesson and registry checks, localized closed-state interaction, 390/320 px no-overflow checks, relationship-card language metadata, and public-console inspection. The deployment blocker was removed; owner Thai-language and publication decisions remain. |
+| 2026-07-20 | Rebind after Electric Charge integration | Maintainer implementation and browser review | Shared registry and relationship bytes changed. Automated and local visual gates were reaffirmed, the gateway retained its ten-card cap with Charge first and no duplicate Charge topic, and public deployment returned to pending until the exact candidate is live. |
 
 ## Publication decision
 
 - Registry status after review preparation: `review-ready`.
 - Source status: `verified` for the bound conceptual scope.
 - Qualified-review decision: Not required for the current scope; reassess on any practical, hazardous, regulated, installation, or standards-sensitive expansion.
-- Public promoted-deployment verification: Passed 2026-07-16 on commit `0bea714`.
+- Public promoted-deployment verification: Pending for the current rebound candidate; commit `0bea714` remains historical evidence.
 - Project-owner Thai-language decision: Pending.
 - Project-owner publication decision: Pending.
 - Final publication date: Pending.

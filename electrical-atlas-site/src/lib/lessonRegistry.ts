@@ -69,6 +69,40 @@ export const lessonRegistry = [
     demoComponent: "CircuitFieldDemo",
   },
   {
+    slug: "charge",
+    lessonId: "ea.lesson.charge.v0.1",
+    primaryTopicId: "ea.fundamentals.charge",
+    coveredTopicIds: ["ea.fundamentals.charge"],
+    status: "review-ready",
+    safetyLevel: "low",
+    sourceStatus: "verified",
+    requiresThailandContext: false,
+    order: 2,
+    navGroup: "foundation",
+    titles: {
+      en: "What Is Electric Charge?",
+      th: "ประจุไฟฟ้าคืออะไร?",
+    },
+    navLabels: {
+      en: "Electric charge",
+      th: "ประจุไฟฟ้า",
+    },
+    summaries: {
+      en: "Positive, negative, and net charge explained through conservation, quantization, carriers, and polarization.",
+      th: "ประจุบวก ประจุลบ และประจุสุทธิ อธิบายผ่านการอนุรักษ์ การควอนไทซ์ พาหะประจุ และโพลาไรเซชัน",
+    },
+    paths: {
+      en: "/en/lessons/charge/",
+      th: "/th/lessons/charge/",
+    },
+    hasPage: {
+      en: true,
+      th: true,
+    },
+    reviewRecord: "docs/lesson-reviews/charge-v0.1.md",
+    demoComponent: "ChargeTransferDemo",
+  },
+  {
     slug: "voltage",
     lessonId: "ea.lesson.voltage.v0.1",
     primaryTopicId: "ea.fundamentals.voltage",
@@ -77,7 +111,7 @@ export const lessonRegistry = [
     safetyLevel: "low",
     sourceStatus: "verified",
     requiresThailandContext: true,
-    order: 2,
+    order: 3,
     navGroup: "foundation",
     titles: {
       en: "What Is Voltage?",
@@ -111,7 +145,7 @@ export const lessonRegistry = [
     safetyLevel: "low",
     sourceStatus: "needed",
     requiresThailandContext: false,
-    order: 3,
+    order: 4,
     navGroup: "foundation",
     titles: {
       en: "What Is Electric Current?",
@@ -144,7 +178,7 @@ export const lessonRegistry = [
     safetyLevel: "low",
     sourceStatus: "needed",
     requiresThailandContext: false,
-    order: 4,
+    order: 5,
     navGroup: "foundation",
     titles: {
       en: "Resistance and Conductance",
@@ -177,7 +211,7 @@ export const lessonRegistry = [
     safetyLevel: "low",
     sourceStatus: "needed",
     requiresThailandContext: false,
-    order: 5,
+    order: 6,
     navGroup: "circuit",
     titles: {
       en: "Ohm's Law",
@@ -210,7 +244,7 @@ export const lessonRegistry = [
     safetyLevel: "low",
     sourceStatus: "needed",
     requiresThailandContext: true,
-    order: 6,
+    order: 7,
     navGroup: "circuit",
     titles: {
       en: "Series and Parallel Circuits",
@@ -243,7 +277,7 @@ export const lessonRegistry = [
     safetyLevel: "low",
     sourceStatus: "needed",
     requiresThailandContext: false,
-    order: 7,
+    order: 8,
     navGroup: "power",
     titles: {
       en: "Electrical Power and Energy",
@@ -276,7 +310,7 @@ export const lessonRegistry = [
     safetyLevel: "moderate",
     sourceStatus: "needed",
     requiresThailandContext: true,
-    order: 8,
+    order: 9,
     navGroup: "power",
     titles: {
       en: "Battery",
@@ -309,7 +343,7 @@ export const lessonRegistry = [
     safetyLevel: "low",
     sourceStatus: "needed",
     requiresThailandContext: false,
-    order: 9,
+    order: 10,
     navGroup: "component",
     titles: {
       en: "What Is a MOSFET?",
@@ -347,7 +381,7 @@ export const lessonRegistry = [
     safetyLevel: "moderate",
     sourceStatus: "draft",
     requiresThailandContext: true,
-    order: 10,
+    order: 11,
     navGroup: "component",
     titles: {
       en: "Switches and Contacts",
@@ -380,7 +414,7 @@ export const lessonRegistry = [
     safetyLevel: "moderate",
     sourceStatus: "needed",
     requiresThailandContext: true,
-    order: 11,
+    order: 12,
     navGroup: "component",
     titles: {
       en: "Capacitor",
@@ -412,7 +446,7 @@ export const lessonRegistry = [
     safetyLevel: "low",
     sourceStatus: "needed",
     requiresThailandContext: false,
-    order: 12,
+    order: 13,
     navGroup: "component",
     titles: {
       en: "Diode",

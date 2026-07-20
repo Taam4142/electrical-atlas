@@ -1,6 +1,6 @@
 # Project review and next-phase plan — 2026-07-14
 
-Status: Phase A1 and Phase A2 were implemented on 2026-07-14. Phase B was approved on 2026-07-14; Voltage is `review-ready`, and the proven workflow was applied to What Is Electricity on 2026-07-16. Later phases remain recommendations pending separate approval. Project-owner Thai-language and final-publication decisions remain lesson-specific and pending.
+Status: Phase A1 and Phase A2 were implemented on 2026-07-14. Phase B was approved on 2026-07-14; Voltage and What Is Electricity proved the revision-bound workflow, and Electric Charge joined them at `review-ready` on 2026-07-20. Capacitor is the next content milestone. Later phases remain recommendations pending separate approval. Project-owner Thai-language and final-publication decisions remain lesson-specific and pending.
 
 This document preserves the project retrospective performed on 2026-07-14. It records the current evidence, the main risks, and the recommended sequence of work so future sessions do not have to reconstruct the reasoning from chat history.
 
@@ -284,11 +284,11 @@ Required work:
 4. Review the English lesson for teaching clarity. **Completed for the bound candidate revision.**
 5. Review the Thai lesson for natural language and glossary consistency. **Maintainer preparation is complete; project-owner Thai approval is pending.**
 6. Complete desktop, mobile, keyboard, reduced-motion, and screen-reader-oriented checks. **Completed 2026-07-16 for the maintainer-controlled gate: English/Thai desktop and 390 px layout, 44 px targets, actual slider keyboard behavior, semantic names/live output/transcript, focus-visible CSS, and reduced-motion CSS/information paths passed. Keyboard-focus modality, OS reduced-motion preference, and a named screen reader could not be emulated by the browser backend, so the evidence record states those boundaries explicitly.**
-7. Check the deployed English and Thai pages. **Completed for the current rebound revision on 2026-07-16 at commit `0bea714`: English and Thai lesson and registry routes displayed localized `review-ready`/verified-source states, ten-card suggestions and language metadata remained correct, real Arrow-key interaction produced localized output on both lesson routes at 390 px, and no document overflow or public-console warning/error was found. Commit `7414277` remains earlier historical evidence.**
+7. Check the deployed English and Thai pages. **Commit `0bea714` passed this gate on 2026-07-16 and remains historical evidence, with `7414277` as the earlier deployment event. Electric Charge changed the shared registry and relationship graph on 2026-07-20, so the exact new candidate must be deployed and rechecked before the live gate is current again.**
 8. Record reviewer, review date, source status, limitations, and revision. **Completed in the versioned review record; later decisions must be appended, not inferred.**
 9. Mark the lesson `published` only after every required gate passes. **Pending; the registry is now correctly `review-ready`, while project-owner Thai-language approval and final publication approval remain required.**
 
-After the pilot, apply the proven workflow to What Is Electricity and Electric Current. **What Is Electricity review preparation was completed on 2026-07-16; Electric Current remains the next workflow candidate after the curriculum checkpoint.**
+After the pilot, apply the proven workflow to later lessons. **What Is Electricity review preparation was completed on 2026-07-16, Electric Charge followed on 2026-07-20, and the approved curriculum sequence now makes Capacitor the next content milestone.** This sentence supersedes the earlier Electric Current candidate note without changing the dated pilot history above.
 
 #### Phase B continuation — What Is Electricity
 
@@ -339,10 +339,12 @@ Exit criteria:
 
 Before Phase D starts, confirm when the standalone Electric Charge lesson belongs in the sequence:
 
-1. **Preferred option:** publish a standalone Electric Charge lesson before Capacitor, then continue with Diode and Inductor or Relay.
+1. **Preferred option:** build and prepare a standalone Electric Charge lesson before Capacitor, then continue with Diode and Inductor or Relay.
 2. **Compact option:** put a clearly scoped charge-and-field prerequisite unit inside the Capacitor lesson, then schedule the standalone Electric Charge lesson separately.
 
-The preferred option gives capacitance an explicit foundation in separated charge, fields, voltage, and stored energy. This remains a recommendation, not an approved lesson-order decision.
+The preferred option gives capacitance an explicit foundation in separated charge, fields, voltage, and stored energy.
+
+**Decision update — 2026-07-17:** the project owner approved the preferred curriculum placement. Electric Charge is now a standalone bilingual lesson immediately after the gateway and before Voltage and Capacitor. This decision authorizes the teaching order and implementation work; it does not grant Thai-language acceptance or lesson publication. The compact option remains decision history only and is not the active curriculum path.
 
 After content resumes, reduce at least one structural risk after every two substantial lesson additions.
 
@@ -385,12 +387,11 @@ These decisions matter but do not block Phase A:
 - whether outside contributions will be accepted;
 - whether the long-term topic platform remains fully static or moves to server/on-demand generation;
 - whether Incandescent Lamp becomes its own canonical component node;
-- whether the standalone Electric Charge lesson comes before Capacitor or later after Capacitor introduces a prerequisite charge-and-field capsule.
 
 Do not silently decide these during unrelated implementation work.
 
 ## 8. Immediate next checkpoint
 
-Phase A1 and Phase A2 are implemented. Phase B has produced `review-ready` Voltage and What Is Electricity lessons whose current bound public deployments have been verified. The immediate content checkpoint is the curriculum decision that controls Electric Charge and Capacitor ordering; project-owner Thai-language and final-publication decisions for the two review-ready lessons may happen independently and do not block that planning work.
+Phase A1 and Phase A2 are implemented. Phase B produced `review-ready` Voltage and What Is Electricity lessons, and the same revision-bound workflow moved the standalone Electric Charge lesson to `review-ready` with verified sources on 2026-07-20. Project-owner Thai-language and final-publication decisions remain separate and do not block maintainer preparation of the next lesson.
 
-The remaining proposed sequence is the standalone Electric Charge decision, then the approved content choice, while applying the same review workflow to Electric Current when it becomes the active lesson candidate.
+The immediate checkpoint is to scope and implement Capacitor on top of the completed Charge foundation, using the same source, technical, implementation, accessibility, deployment, Thai-language, and publication boundaries. After that, continue to Diode and then Inductor or Relay.

@@ -23,8 +23,9 @@ Already included:
 - A guide page for using the site.
 - A subject map and searchable topic browser.
 - 1,607 generated topic record pages from the Markdown inventory.
-- Ten starter lessons:
+- Eleven starter lessons:
   - What Is Electricity?
+  - Electric Charge
   - Voltage
   - Electric Current
   - Resistance and Conductance
@@ -34,7 +35,7 @@ Already included:
   - Electrical Power and Energy
   - Battery
   - MOSFET
-- Interactive visuals for the first electricity lesson, Voltage, Electric Current, Resistance and Conductance, Ohm's Law, Series and Parallel Circuits, Switches and Contacts, Electrical Power and Energy, Battery, and MOSFET switching lessons.
+- Interactive visuals for the first electricity lesson, Electric Charge, Voltage, Electric Current, Resistance and Conductance, Ohm's Law, Series and Parallel Circuits, Switches and Contacts, Electrical Power and Energy, Battery, and MOSFET switching lessons.
 - Suggested next lessons/topics at the end of lesson and topic pages, now backed by an explicit relationship seed graph plus metadata fallback.
 - A lesson registry v0.1 that centralizes lesson metadata, topic coverage, language routes, status, safety level, and source-review state.
 - Tests for physics helpers, interactions, generated topic data, suggestions, and text-encoding guardrails.
@@ -144,9 +145,9 @@ See [docs/deployment.md](docs/deployment.md).
 
 ## Near roadmap
 
-The [project review and next-phase plan dated 2026-07-14](docs/project-review-2026-07-14.md) contains the latest evidence-backed phase sequence and implementation record. Phase A1 and Phase A2 were implemented on 2026-07-14. Phase B is approved and in progress; later phases remain recommendations pending separate approval.
+The [project review and next-phase plan dated 2026-07-14](docs/project-review-2026-07-14.md) contains the evidence-backed phase sequence and implementation record. Phase A1 and Phase A2 were implemented on 2026-07-14. Phase B established the revision-bound lesson workflow, which now continues as a standing per-lesson process; later phases remain recommendations pending separate approval.
 
-Phase A1 corrected public status truth, invalid preview IDs, stale guidance, the root gateway, and unfinished-topic indexing behavior. Phase A2 established one reproducible root install path, strict inventory and relationship validation, generated-data drift checks, and a test-gated Vercel build. Phase B is using Voltage to prove the publication workflow. Publication ownership is now recorded in [Publication governance](docs/publication-governance.md); final Thai-language and lesson-level publication approval are still pending. Electric Charge versus Capacitor ordering remains an explicit curriculum decision rather than an approved change.
+Phase A1 corrected public status truth, invalid preview IDs, stale guidance, the root gateway, and unfinished-topic indexing behavior. Phase A2 established one reproducible root install path, strict inventory and relationship validation, generated-data drift checks, and a test-gated Vercel build. Phase B used Voltage and What Is Electricity to prove the revision-bound workflow, then applied it to Electric Charge. Charge is now `review-ready` with verified sources but remains below `published`; Thai-language and final publication decisions still belong to the project owner. Capacitor is the next content milestone.
 
 ## License
 

@@ -93,6 +93,7 @@ describe("lesson registry", () => {
   it("returns implemented lessons in registry order for homepage and header navigation", () => {
     expect(getImplementedLessons("en").map((lesson) => lesson.slug)).toEqual([
       "what-is-electricity",
+      "charge",
       "voltage",
       "current",
       "resistance",
@@ -107,6 +108,13 @@ describe("lesson registry", () => {
     expect(getLessonHomeLabel(getImplementedLessons("th")[0], "th")).toBe("เริ่มบทแรก: ไฟฟ้าคืออะไร?");
   });
 
+  it("keeps every curriculum order unique", () => {
+    const orders = registryEntries.map((lesson) => lesson.order);
+
+    expect(new Set(orders).size).toBe(orders.length);
+    expect([...orders].sort((a, b) => a - b)).toEqual(orders);
+  });
+
   it("allows roadmap and outline lessons without creating empty lesson pages", () => {
     const nonPublicPlanningStatuses = ["candidate", "planned", "outlined"] as const;
     const planningLessonsWithPages = registryEntries
@@ -119,6 +127,9 @@ describe("lesson registry", () => {
   });
 
   it("derives available topic-record lesson links from coverage metadata", () => {
+    expect(getAvailableLessonForCoveredTopic("ea.fundamentals.charge", "en")?.paths.en).toBe(
+      "/en/lessons/charge/",
+    );
     expect(getAvailableLessonForCoveredTopic("ea.fundamentals.voltage", "en")?.paths.en).toBe("/en/lessons/voltage/");
     expect(getAvailableLessonForCoveredTopic("ea.fundamentals.conductance", "en")?.paths.en).toBe(
       "/en/lessons/resistance/",
@@ -131,6 +142,19 @@ describe("lesson registry", () => {
       "/th/lessons/switches-contacts/",
     );
     expect(getAvailableLessonForCoveredTopic("ea.component.capacitor", "en")).toBeUndefined();
+  });
+
+  it("tracks Electric Charge as a bilingual low-risk review-ready lesson", () => {
+    const charge = registryEntries.find((lesson) => lesson.slug === "charge");
+
+    expect(charge?.status).toBe("review-ready");
+    expect(charge?.order).toBe(2);
+    expect(charge?.hasPage).toEqual({ en: true, th: true });
+    expect(charge?.coveredTopicIds).toEqual(["ea.fundamentals.charge"]);
+    expect(charge?.requiresThailandContext).toBe(false);
+    expect(charge?.sourceStatus).toBe("verified");
+    expect(charge?.reviewRecord).toBe("docs/lesson-reviews/charge-v0.1.md");
+    expect(charge?.demoComponent).toBe("ChargeTransferDemo");
   });
 
   it("keeps route availability separate from publication maturity", () => {

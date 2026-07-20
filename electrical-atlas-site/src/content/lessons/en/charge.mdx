@@ -1,0 +1,213 @@
+import ChargeTransferDemo from "../../../components/ChargeTransferDemo";
+
+<section>
+
+## 1. A useful definition
+
+**Electric charge** is an additive scalar physical quantity attributed to particles and systems. It is one property that characterizes their electromagnetic interactions.
+
+Charge can be **positive**, **negative**, or **zero**. The symbols `q` and `Q` are both common. Authors often use `q` for an individual or point charge and `Q` for a total charge, but notation depends on context. Its SI unit is the **coulomb** (`C`).
+
+In plain language: charge is not a material, energy, or particle. It is a signed property that particles and complete objects can carry.
+
+<aside className="callout">
+
+**First mental model:** treat charge like a signed ledger. Add every positive and negative contribution. The answer is the object's **net charge**.
+
+</aside>
+
+</section>
+
+<section>
+
+## 2. Positive, negative, and neutral
+
+An electron carries charge `−e`; a proton carries `+e`; a neutron has zero **net** charge. The elementary-charge magnitude is exactly:
+
+`e = 1.602 176 634 × 10⁻¹⁹ C`
+
+For a simple ordinary atom or ion, charge bookkeeping can be written:
+
+`Q = (Nₚ − Nₑ)e`
+
+Here `Nₚ` is the number of protons and `Nₑ` is the number of electrons included in the chosen system.
+
+An electrically neutral object has `Q = 0`. That does **not** mean it contains no charged particles. It normally contains enormous amounts of positive and negative charge whose signed totals balance.
+
+The words positive and negative are sign conventions. They do not mean good and bad, full and empty, or two different electrical substances.
+
+</section>
+
+<section>
+
+## 3. Charge moves; the total is conserved
+
+Charge can cross the boundary between two objects. If an electron moves from initially neutral metal object A to initially neutral metal object B:
+
+- A loses negative charge and has net charge `+e`.
+- B gains negative charge and has net charge `−e`.
+- the isolated pair still has total charge `0`.
+
+This is **conservation of electric charge**. For an isolated system:
+
+`Q_total,before = Q_total,after`
+
+An open system may gain or lose charge, but the change must be accounted for by charge crossing its boundary. Saying that opposite charges “cancel” means their signed sum is zero; it does not mean the charged particles necessarily disappeared.
+
+</section>
+
+<ChargeTransferDemo client:load locale="en" />
+
+<section>
+
+## 4. What can carry charge
+
+An electron is one charge carrier, but **charge is not another word for electron**. The mobile carrier depends on the material and physical process:
+
+- In many metals, conduction electrons redistribute and drift while the lattice ions remain bound near their lattice sites and do not carry the ordinary conduction current.
+- In electrolytes, positive and negative ions can carry charge.
+- In semiconductors, electrons and holes describe important carrier behavior.
+- In ionized gases and plasmas, electrons and ions can both move.
+
+That is why “positive charge always means missing electrons” is too broad. It is correct for the specific metal-object bookkeeping model above, but positive ions and semiconductor holes require their own physical explanations.
+
+</section>
+
+<section>
+
+## 5. Charging, redistribution, and polarization
+
+Objects can acquire net charge when charge transfers across a system boundary. Contact and separation can transfer electrons between materials. Rubbing creates many contact-and-separation events; it separates charge rather than manufacturing positive and negative charge from nothing. The direction and amount of transfer depend on the particular material pair and contact conditions; detailed triboelectric rankings and microscopic mechanisms are outside this lesson.
+
+A conductor permits substantial charge redistribution under stated conditions. An insulating medium permits negligible bulk current under its stated conditions, so added charge may remain more localized. These are useful material models, not permanent absolute labels: temperature, moisture, field strength, frequency, direction, and material condition can change behavior, and sufficient field can cause leakage or breakdown.
+
+**Polarization** is different from net charging. Positive and negative charge shift or reorient within an object while its total may remain zero. A charged object can therefore attract a neutral object through polarization. Attraction alone does not prove that two objects have opposite net charges.
+
+Bringing a charged object near a conductor can polarize it. That approach alone does not necessarily leave the conductor with permanent net charge after the charged object is removed; charging by induction needs a complete, carefully defined sequence and system boundary.
+
+</section>
+
+<section>
+
+## 6. Main symbols and equations
+
+- `q`, `Q`: electric charge in coulombs (`C`).
+- `e`: positive elementary-charge magnitude, exactly `1.602 176 634 × 10⁻¹⁹ C`.
+- `N`: signed whole-number count of elementary-charge units in the ordinary-matter model.
+- `I`: electric current in amperes (`A`).
+- `t`: time in seconds (`s`).
+
+For ordinary isolated particles and bulk matter at this lesson's scale:
+
+`Q = N e`
+
+One coulomb is one ampere-second:
+
+`1 C = 1 A·s`
+
+Choose an oriented surface and define one crossing direction as positive. Current through that surface is the time derivative of signed transferred charge:
+
+`I = dQ_transferred/dt`
+
+If current is constant during `Δt`, then `ΔQ_transferred = IΔt`.
+
+<aside className="callout">
+
+**Quantization boundary:** `Q = Ne` is the right introductory model for the ordinary isolated particles and macroscopic matter used here. It is not a complete statement about every advanced particle-physics or condensed-matter description; those cases require their own carefully sourced specialist lessons.
+
+</aside>
+
+</section>
+
+<section>
+
+## 7. Why charge matters everywhere else
+
+Charge is a prerequisite for much of the atlas:
+
+- **Electric field:** charge contributes to fields, and fields exert force on charge.
+- **Voltage:** electric potential difference describes potential-energy change per unit charge.
+- **Current:** current counts how quickly charge crosses a boundary.
+- **Capacitor:** equal and opposite plate charges can be separated while the complete two-terminal capacitor remains net neutral.
+- **Battery:** electrochemical reactions separate charge and maintain terminal potential difference; a battery is not a tank of spare electrons.
+- **Electronics:** diodes, transistors, sensors, memory, and displays control carriers, fields, and charge distributions.
+
+Charge can be stationary while current is zero. Charge can also be moving while the net charge of a region remains approximately zero. Amount, distribution, and flow rate are different questions.
+
+</section>
+
+<section>
+
+## 8. Common mistakes
+
+- **“A neutral object has no charge inside it.”** Neutral means the signed total is zero.
+- **“Charge is a particle.”** Charge is a property; electrons, protons, ions, and other carriers are particles or excitations with charge.
+- **“Positive charge means protons moved through the wire.”** In an ordinary metal, conduction electrons move while the lattice ions remain bound near their lattice sites and do not carry the ordinary conduction current.
+- **“Rubbing creates charge.”** It transfers and separates existing charge.
+- **“Polarized means net charged.”** A polarized object can still have `Q = 0`.
+- **“If something is attracted, it must have the opposite sign.”** A charged object can attract a neutral object by polarization.
+- **“Charge is used up by a lamp.”** A load converts energy; steady current describes continuing charge transfer.
+- **“Static means nothing microscopic moves.”** Charges may move while the distribution is forming or discharging; electrostatic language describes a state whose time variation can be neglected.
+
+</section>
+
+<section>
+
+## 9. Limits, failure modes, and safety
+
+This lesson is conceptual, not an experiment or wiring procedure. Do not use household mains, outlet earth or neutral, opened appliances, charged capacitors, improvised high-voltage sources, CRT or microwave-oven parts, or other high-energy equipment to reproduce its diagrams.
+
+Electrostatic discharge can damage electronic components. In an ignitable atmosphere, a static discharge can ignite a flammable vapour–air mixture or a combustible-dust cloud. A high static voltage is not automatically harmless, and there is no single universal safe charge or voltage: risk depends on the source, available energy, current path, duration, environment, and exposed equipment.
+
+The page gives no grounding, bonding, ESD-control, lightning-protection, or Thai installation instruction. Those subjects need task-specific sources, current Thai requirements where applicable, and qualified review.
+
+</section>
+
+<section className="technical-only">
+
+## Technical track
+
+Charge is additive:
+
+`Q_total = Σᵢ qᵢ`
+
+Here each `qᵢ` is one signed charge included in the stated system. For a continuous volume distribution, `Q = ∫_V ρ dV`, where `ρ` is volume charge density in coulombs per cubic metre (`C/m³`). Line and surface distributions use `λ` in `C/m` and `σ` in `C/m²`.
+
+Local charge conservation is the continuity equation:
+
+`∂ρ/∂t + ∇·𝐉 = 0`
+
+For a fixed control volume `V`, its integral form says that the rate of change of charge inside the volume equals the negative outward current through its boundary:
+
+`d/dt [∫_V ρ dV] = −∯_{∂V} 𝐉 · 𝐧 dA`
+
+Here `𝐉` is electric current density due to charge transport, summed over the included carriers, in amperes per square metre (`A/m²`); `𝐧` is the outward unit normal to the boundary `∂V`; and `dA` is a boundary-area element.
+
+For two stationary point charges in vacuum, separated by distance `r`, Coulomb's electrostatic model gives:
+
+`𝐅₁₂ = [1 / (4πε₀)](q₁q₂ / r²)𝐫̂₂₁`
+
+Here `𝐅₁₂` is the force on charge `q₁` due to charge `q₂`, `𝐫̂₂₁` is the unit vector pointing from `q₂` toward `q₁`, `r` is their separation in metres, and `ε₀` is the vacuum permittivity. The sign of `q₁q₂` sets whether the force points along or opposite `𝐫̂₂₁`. This point-charge, vacuum, electrostatic equation is not a complete model of extended bodies, material polarization, moving charges, radiation, or time-varying systems.
+
+</section>
+
+<section>
+
+## 10. Sources and further reading
+
+- [IEC Electropedia, IEV 113-02-10 — electric charge](https://www.electropedia.org/iev/iev.nsf/display?ievref=113-02-10&openform=)
+- [BIPM, *The International System of Units (SI)*, 9th edition](https://www.bipm.org/en/publications/si-brochure/)
+- [NIST CODATA — elementary charge](https://physics.nist.gov/cuu/Constants/Value/e.html)
+- [Thai Industrial Standards Institute, TIS 3458 Part 5(2)-2565 — *Electrostatics: Protection of electronic devices from electrostatic phenomena — User guide*](https://a.tisi.go.th/t/?n=7020) (a general Thai device-protection standard, not a human-safety threshold or an installation procedure)
+- OpenStax *University Physics Volume 2*: [electric charge](https://openstax.org/books/university-physics-volume-2/pages/5-1-electric-charge) and [conductors, insulators, and charging by induction](https://openstax.org/books/university-physics-volume-2/pages/5-2-conductors-insulators-and-charging-by-induction)
+- [OpenStax *University Physics Volume 2*, §5.3 — Coulomb's Law](https://openstax.org/books/university-physics-volume-2/pages/5-3-coulombs-law)
+- Carrier examples: OpenStax on [metal conduction](https://openstax.org/books/university-physics-volume-2/pages/9-2-model-of-conduction-in-metals), [electrolytes](https://openstax.org/books/chemistry-2e/pages/11-2-electrolytes), and [semiconductors](https://openstax.org/books/university-physics-volume-3/pages/9-6-semiconductors-and-doping), plus [DOE Explains...Plasma](https://www.energy.gov/science/doe-explainsplasma)
+- [U.S. Department of Energy — DOE Explains...Batteries](https://www.energy.gov/science/doe-explainsbatteries)
+- [MIT OpenCourseWare, *Electromagnetic Fields and Energy*, Chapter 2 — Maxwell's Differential Laws in Free Space](https://ocw.mit.edu/courses/res-6-001-electromagnetic-fields-and-energy-spring-2008/1e8d59800f74bd41872c7a673e473509_02.pdf)
+- [EOS/ESD Association — *Fundamentals of ESD, Part 1*](https://www.esda.org/assets/Documents/Fundamentals-of-ESD-Part-1-An-Introduction-to-ESD.pdf) (electronic-device damage and contact/separation context, not a human-safety threshold)
+- [OSHA Technical Manual, Section IV, Chapter 5 — Ethanol Processing](https://www.osha.gov/otm/section-4-safety-hazards/chapter-5) (industry-specific U.S. ignition-hazard context, not Thai law or general installation guidance)
+- [OSHA — *Hazard Communication Guidance for Combustible Dusts*](https://www.osha.gov/publications/3371combustible-dust) (U.S. combustible-dust hazard context, not Thai law or a design procedure)
+
+Use the relationship cards below to continue by prerequisite, successor, carrier mechanism, field, mathematical law, or application. Their order comes from the atlas relationship data rather than a manual list embedded in this lesson.
+
+</section>

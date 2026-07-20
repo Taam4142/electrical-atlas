@@ -31,8 +31,18 @@ It is not a legal dictionary and it is not a standards translation. It is a work
 | electrical engineering | วิศวกรรมไฟฟ้า | engineering, EE | preferred | Use for the professional discipline. |
 | electronics | อิเล็กทรอนิกส์ | electronics | preferred | Use for electronic devices/circuits; avoid merging with all electrical power topics. |
 | electric charge | ประจุไฟฟ้า | charge | preferred | In beginner text, introduce as a property carried by particles. |
+| elementary charge | ประจุมูลฐาน | elementary charge, `e` | preferred | `e` is the positive magnitude; the electron charge is `−e`. NIMT/SI wording supports `ประจุมูลฐาน`. |
+| positive / negative charge | ประจุบวก / ประจุลบ | positive / negative | preferred | Treat these as algebraic signs, not good/bad or full/empty labels. |
+| net charge | ประจุสุทธิ | ประจุไฟฟ้าสุทธิ | preferred | The signed total over a stated system boundary. |
+| electrically neutral | เป็นกลางทางไฟฟ้า | neutral | preferred | Means net charge is zero, not absence of charged particles. Avoid bare `นิวทรัล`, which may be confused with an installation neutral conductor. |
+| conservation of electric charge | กฎการอนุรักษ์ประจุไฟฟ้า | charge conservation | preferred | State the system boundary; an open system can exchange charge with its surroundings. |
+| charge carrier | พาหะประจุ | carrier | preferred | Can mean electrons, ions, holes, or another context-dependent carrier. |
 | electron | อิเล็กตรอน | electron | preferred | Keep English in equations if needed. |
 | ion | ไอออน | ion | preferred | Relevant for batteries, electrochemistry, plasma, and sensors. |
+| static electricity | ไฟฟ้าสถิต | electrostatics | contextual | Do not imply that every microscopic carrier is motionless or that discharge is itself a static state. |
+| electric polarization | โพลาไรเซชันทางไฟฟ้า | การแยก/เลื่อนการกระจายประจุ | contextual, owner review pending | IEC/IPST source alignment is recorded in the Electric Charge review. Explain in plain Thai on first use and distinguish polarization from nonzero net charge; final natural wording remains an owner Thai-review item. |
+| electrostatic induction | การเหนี่ยวนำไฟฟ้าสถิต | induction | preferred | A nearby charged object can first polarize a conductor; permanent net charging needs a complete sequence and system boundary. |
+| electrostatic discharge | การคายประจุไฟฟ้าสถิต | ESD | safety-sensitive | Keep `ESD` when discussing electronics. Device-withstand values are not human-safety thresholds. |
 | electric field | สนามไฟฟ้า | E-field | preferred | Use `สนาม` only when the surrounding text is clearly electrical. |
 | magnetic field | สนามแม่เหล็ก | B-field, H-field | preferred | Distinguish magnetic flux density `B` from magnetic field strength `H` in advanced lessons. |
 | voltage | แรงดันไฟฟ้า | voltage, ความต่างศักย์ไฟฟ้า | preferred | For beginners, use `แรงดันไฟฟ้า`. Use `ความต่างศักย์ไฟฟ้า` when teaching potential difference formally. |

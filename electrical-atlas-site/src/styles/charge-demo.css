@@ -1,0 +1,226 @@
+.charge-demo-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(310px, 0.85fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+.charge-demo-stage,
+.charge-demo-controls {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 253, 247, 0.72);
+}
+
+.charge-demo-stage {
+  display: grid;
+  min-height: 320px;
+  place-items: center;
+  padding: 0.5rem;
+}
+
+.charge-demo-controls {
+  padding: 1rem;
+}
+
+.charge-demo-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.charge-demo-backplate {
+  fill: #f7fafc;
+  stroke: rgba(47, 111, 159, 0.16);
+  stroke-width: 2;
+}
+
+.charge-object rect {
+  stroke-width: 4;
+}
+
+.charge-object--neutral rect {
+  fill: rgba(91, 105, 120, 0.08);
+  stroke: #667585;
+}
+
+.charge-object--positive rect {
+  fill: rgba(185, 120, 36, 0.12);
+  stroke: #9c621b;
+}
+
+.charge-object--negative rect {
+  fill: rgba(47, 111, 159, 0.12);
+  stroke: #2f6f9f;
+}
+
+.charge-object-name,
+.charge-object-state,
+.charge-transfer-count,
+.charge-pair-total {
+  fill: var(--ink-soft);
+  font-weight: 800;
+}
+
+.charge-object-name {
+  font-size: 28px;
+}
+
+.charge-object-value {
+  fill: var(--text);
+  font-size: 48px;
+  font-weight: 900;
+}
+
+.charge-object-state {
+  font-size: 18px;
+  text-transform: uppercase;
+}
+
+.charge-transfer-arrow {
+  stroke: #3f7d55;
+  stroke-width: 7;
+  stroke-linecap: round;
+}
+
+.charge-transfer-arrowhead {
+  fill: #3f7d55;
+}
+
+.charge-transfer-count {
+  font-size: 20px;
+}
+
+.charge-pair-total {
+  font-size: 22px;
+}
+
+.charge-demo-control-label {
+  margin-top: 0;
+  font-weight: 850;
+}
+
+.charge-demo-actions {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.charge-demo-actions button {
+  min-height: 48px;
+  border: 1px solid rgba(47, 111, 159, 0.28);
+  border-radius: var(--radius-md);
+  padding: 0.72rem 0.85rem;
+  background: rgba(47, 111, 159, 0.08);
+  color: var(--text);
+  cursor: pointer;
+  font: inherit;
+  font-weight: 800;
+  line-height: 1.3;
+}
+
+.charge-demo-actions button:hover:not([aria-disabled="true"]) {
+  border-color: rgba(47, 111, 159, 0.5);
+  background: rgba(47, 111, 159, 0.14);
+}
+
+.charge-demo-actions button:focus-visible {
+  outline: 3px solid var(--cyan);
+  outline-offset: 3px;
+}
+
+.charge-demo-actions button[aria-disabled="true"] {
+  cursor: not-allowed;
+  opacity: 0.48;
+}
+
+.charge-demo-actions .charge-demo-reset {
+  border-color: rgba(185, 120, 36, 0.3);
+  background: rgba(185, 120, 36, 0.08);
+}
+
+.charge-demo-summary {
+  display: block;
+  margin: 1rem 0;
+  border-left: 4px solid var(--green);
+  padding: 0.75rem 0.9rem;
+  background: rgba(63, 125, 85, 0.07);
+  color: var(--text);
+  font-weight: 850;
+}
+
+.charge-ledger {
+  display: grid;
+  gap: 0.7rem;
+  margin: 0;
+}
+
+.charge-ledger div {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 0.75rem;
+  background: rgba(30, 41, 59, 0.03);
+}
+
+.charge-ledger dt {
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.charge-ledger dd {
+  display: grid;
+  gap: 0.18rem;
+  margin: 0.25rem 0 0;
+}
+
+.charge-ledger dd strong {
+  color: var(--text);
+  font-size: 1.08rem;
+}
+
+.charge-ledger dd span,
+.charge-ledger dd small,
+.charge-demo-limit {
+  color: var(--muted);
+}
+
+.charge-demo-limit {
+  margin-bottom: 0;
+  font-size: 0.88rem;
+}
+
+@media (max-width: 760px) {
+  .charge-demo-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .charge-demo-stage {
+    min-height: 240px;
+  }
+}
+
+@media (max-width: 420px) {
+  .charge-demo-stage {
+    padding: 0.2rem;
+  }
+
+  .charge-demo-controls {
+    padding: 0.85rem;
+  }
+
+  .charge-object-name {
+    font-size: 38px;
+  }
+
+  .charge-object-value {
+    font-size: 62px;
+  }
+
+  .charge-transfer-count {
+    font-size: 36px;
+  }
+
+  .charge-object-state,
+  .charge-pair-total {
+    display: none;
+  }
+}

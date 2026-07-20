@@ -252,7 +252,7 @@ The safest path is to migrate gradually. Do not rewrite everything at once.
 
 ### Phase 1: Create the registry
 
-Add `lessonRegistry.ts` with entries for the current ten prototype lessons:
+The original Phase 1 implementation added `lessonRegistry.ts` for these ten prototype lessons:
 
 1. What Is Electricity?
 2. Voltage
@@ -272,7 +272,7 @@ Add roadmap entries for the immediate next lessons if useful:
 
 Planned and outlined lessons should have `hasPage.en: false` and `hasPage.th: false` until real content and route wrappers exist. Switches and Contacts is now a bilingual `prototype` with real routes, content, an interactive demo, and draft source status.
 
-Current status: completed for the current ten prototype lessons plus roadmap metadata for Capacitor and Diode. The Switches and Contacts planning outline remains in `docs/lesson-outlines/switches-contacts.md` as production history.
+Current status: the registry now represents eleven available lessons—three `review-ready` and eight `prototype`—plus planned Capacitor and Diode entries. Electric Charge was inserted after the gateway and promoted to `review-ready` on 2026-07-20. The Switches and Contacts planning outline remains in `docs/lesson-outlines/switches-contacts.md` as production history.
 
 ### Phase 2: Replace lesson labels in suggestions
 
@@ -429,7 +429,7 @@ Keeping these separate avoids mixing two different kinds of knowledge.
 
 The first registry implementation is successful when:
 
-- the current ten available prototypes and two planned lessons are represented in one registry;
+- the current eleven available lessons and two planned lessons are represented in one registry, with their distinct maturity states preserved;
 - suggestion lesson cards use registry metadata;
 - topic records derive lesson availability links from registry coverage and show maturity separately;
 - tests fail if a relationship points to a missing lesson slug;

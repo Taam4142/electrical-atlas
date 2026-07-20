@@ -156,5 +156,6 @@ Use a public review-ready deployment or Vercel preview for the live-page check. 
 
 ## Records
 
+- [Electric Charge v0.1](charge-v0.1.md) — verified-source review-ready lesson; deployment recheck plus final owner and Thai-language approval pending.
 - [Voltage v0.1](voltage-v0.1.md) — Phase B publication pilot; final owner and Thai-language approval pending.
 - [What Is Electricity v0.1](what-is-electricity-v0.1.md) — gateway review; final owner and Thai-language approval pending.

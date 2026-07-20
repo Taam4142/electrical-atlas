@@ -1,0 +1,32 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import LessonShell from "../../../components/LessonShell.astro";
+import LessonModeToggle from "../../../components/LessonModeToggle";
+import SuggestionSection from "../../../components/SuggestionSection.astro";
+import Content from "../../../content/lessons/en/charge.mdx";
+import { atlasTopics } from "../../../lib/generated/atlasTopics";
+import { getLessonSuggestions } from "../../../lib/suggestions";
+
+const suggestions = getLessonSuggestions("charge", "en", atlasTopics);
+---
+
+<BaseLayout
+  title="What Is Electric Charge?"
+  description="A visual foundation lesson about positive, negative, and net electric charge; conservation, quantization, carriers, and polarization."
+  lang="en"
+  counterpartPath="/th/lessons/charge/"
+>
+  <LessonShell
+    locale="en"
+    eyebrow="foundation lesson"
+    title="What Is Electric Charge?"
+    subtitle="Charge is a signed property and conserved quantity—not a substance that circuits use up."
+    lessonId="ea.lesson.charge.v0.1"
+  >
+    <LessonModeToggle client:load locale="en" />
+    <div class="lesson-content">
+      <Content />
+    </div>
+    <SuggestionSection locale="en" items={suggestions} />
+  </LessonShell>
+</BaseLayout>

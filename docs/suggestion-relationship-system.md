@@ -65,6 +65,7 @@ The first supported relation types are:
 - `paired-foundation`
 - `technical-definition`
 - `physical-mechanism`
+- `phenomenon`
 - `mathematical-law`
 - `reciprocal`
 - `component`

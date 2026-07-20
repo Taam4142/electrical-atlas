@@ -31,7 +31,7 @@ The latest dated review is:
 docs/project-review-2026-07-14.md
 ```
 
-Phase A1 and Phase A2 were implemented on 2026-07-14. Phase B was approved on 2026-07-14 and is using Voltage as the publication pilot. Later phases remain recommendations pending separate approval. The Phase A1 visual browser matrix still needs a clean rerun; see the implementation record in the dated review.
+Phase A1 and Phase A2 were implemented on 2026-07-14. Phase B proved the revision-bound workflow with Voltage and What Is Electricity and then applied it to Electric Charge. Capacitor is the active next lesson. Later phases remain recommendations pending separate approval; browser evidence must continue to name any platform or emulation limits rather than imply unsupported coverage.
 
 Build, generator, CI, and deployment decisions live in:
 
@@ -80,7 +80,7 @@ Phase A1 completed the public-truth, canonical-preview-ID, stale-guidance, minim
 - avoid unverified Thailand-specific standards claims;
 - keep Thai terminology and UTF-8 rendering consistent;
 - keep future dependency upgrades deliberate and commit the root lockfile with exact package changes;
-- prove the complete source-review and publication workflow on one lesson before accumulating many more prototypes.
+- apply the revision-bound source, implementation, browser, deployment, Thai-language, and publication workflow to each lesson; Capacitor is next, and project-owner decisions must never be inferred from maintainer preparation.
 
 ## Lesson authoring workflow
 

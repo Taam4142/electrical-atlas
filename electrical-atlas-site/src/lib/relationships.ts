@@ -7,6 +7,7 @@ export type RelationshipType =
   | "paired-foundation"
   | "technical-definition"
   | "physical-mechanism"
+  | "phenomenon"
   | "mathematical-law"
   | "reciprocal"
   | "component"
@@ -42,6 +43,7 @@ export const relationshipDirectionality: Record<RelationshipType, RelationshipDi
   "paired-foundation": "symmetric",
   "technical-definition": "directed",
   "physical-mechanism": "directed",
+  phenomenon: "directed",
   "mathematical-law": "directed",
   reciprocal: "symmetric",
   component: "directed",
@@ -77,6 +79,10 @@ export const relationshipLabels: Record<RelationshipType, Record<RelationshipLoc
   "physical-mechanism": {
     en: "physical mechanism",
     th: "กลไกทางฟิสิกส์",
+  },
+  phenomenon: {
+    en: "related phenomenon",
+    th: "ปรากฏการณ์ที่เกี่ยวข้อง",
   },
   "mathematical-law": {
     en: "mathematical law",
@@ -135,9 +141,16 @@ export const relationshipLabels: Record<RelationshipType, Record<RelationshipLoc
 export const atlasRelationships: AtlasRelationship[] = [
   {
     source: { kind: "lesson", id: "what-is-electricity" },
-    target: { kind: "lesson", id: "voltage" },
+    target: { kind: "lesson", id: "charge" },
     type: "successor",
     weight: 100,
+    label: { en: "next foundation lesson", th: "บทพื้นฐานถัดไป" },
+  },
+  {
+    source: { kind: "lesson", id: "what-is-electricity" },
+    target: { kind: "lesson", id: "voltage" },
+    type: "successor",
+    weight: 96,
     label: { en: "next foundation lesson" },
   },
   {
@@ -245,11 +258,96 @@ export const atlasRelationships: AtlasRelationship[] = [
   },
 
   {
+    source: { kind: "lesson", id: "charge" },
+    target: { kind: "lesson", id: "what-is-electricity" },
+    type: "prerequisite",
+    weight: 100,
+    label: { en: "foundation refresher", th: "ทบทวนบทพื้นฐาน" },
+  },
+  {
+    source: { kind: "lesson", id: "charge" },
+    target: { kind: "lesson", id: "voltage" },
+    type: "successor",
+    weight: 96,
+    label: { en: "energy per charge next", th: "เรียนพลังงานต่อประจุต่อ" },
+  },
+  {
+    source: { kind: "lesson", id: "charge" },
+    target: { kind: "lesson", id: "current" },
+    type: "successor",
+    weight: 94,
+    label: { en: "charge flow rate next", th: "เรียนอัตราการไหลของประจุต่อ" },
+  },
+  {
+    source: { kind: "lesson", id: "charge" },
+    target: { kind: "lesson", id: "capacitor" },
+    type: "successor",
+    weight: 82,
+    label: { en: "charge separation in a component", th: "การแยกประจุในชิ้นส่วน" },
+  },
+  {
+    source: { kind: "lesson", id: "charge" },
+    target: { kind: "topic", id: "ea.fundamentals.charge-carrier" },
+    type: "physical-mechanism",
+    weight: 90,
+    label: { en: "what carries charge", th: "สิ่งที่เป็นพาหะประจุ" },
+  },
+  {
+    source: { kind: "lesson", id: "charge" },
+    target: { kind: "topic", id: "ea.em.field.electric" },
+    type: "physical-mechanism",
+    weight: 88,
+    label: { en: "field produced by charge", th: "สนามที่เชื่อมกับประจุ" },
+  },
+  {
+    source: { kind: "lesson", id: "charge" },
+    target: { kind: "topic", id: "ea.fundamentals.electrification" },
+    type: "physical-mechanism",
+    weight: 86,
+    label: { en: "ways charge is separated", th: "วิธีแยกและถ่ายโอนประจุ" },
+  },
+  {
+    source: { kind: "lesson", id: "charge" },
+    target: { kind: "topic", id: "ea.fundamentals.static-electricity" },
+    type: "phenomenon",
+    weight: 82,
+    label: { en: "electrostatic phenomenon", th: "ปรากฏการณ์ไฟฟ้าสถิต" },
+  },
+  {
+    source: { kind: "lesson", id: "charge" },
+    target: { kind: "topic", id: "ea.em.electrostatics.coulomb-law" },
+    type: "mathematical-law",
+    weight: 80,
+    label: { en: "force between ideal point charges", th: "แรงระหว่างประจุจุดอุดมคติ" },
+  },
+  {
+    source: { kind: "lesson", id: "charge" },
+    target: { kind: "topic", id: "ea.transport.continuity" },
+    type: "mathematical-law",
+    weight: 72,
+    label: { en: "local conservation equation", th: "สมการอนุรักษ์แบบเฉพาะที่" },
+  },
+  {
+    source: { kind: "lesson", id: "charge" },
+    target: { kind: "topic", id: "ea.em.capacitance" },
+    type: "successor",
+    weight: 68,
+    label: { en: "charge and voltage storage relation", th: "ความสัมพันธ์การเก็บประจุและแรงดัน" },
+  },
+
+  {
     source: { kind: "lesson", id: "voltage" },
     target: { kind: "lesson", id: "what-is-electricity" },
     type: "prerequisite",
     weight: 95,
     label: { en: "foundation refresher" },
+  },
+  {
+    source: { kind: "lesson", id: "voltage" },
+    target: { kind: "lesson", id: "charge" },
+    type: "prerequisite",
+    weight: 97,
+    label: { en: "charge foundation", th: "พื้นฐานเรื่องประจุ" },
   },
   {
     source: { kind: "lesson", id: "voltage" },
@@ -341,6 +439,13 @@ export const atlasRelationships: AtlasRelationship[] = [
     label: { en: "stores energy by voltage" },
   },
 
+  {
+    source: { kind: "lesson", id: "current" },
+    target: { kind: "lesson", id: "charge" },
+    type: "prerequisite",
+    weight: 97,
+    label: { en: "quantity that crosses the boundary", th: "ปริมาณที่ข้ามขอบเขต" },
+  },
   {
     source: { kind: "lesson", id: "current" },
     target: { kind: "lesson", id: "voltage" },
@@ -1043,6 +1148,28 @@ export const atlasRelationships: AtlasRelationship[] = [
     type: "application",
     weight: 68,
     label: { en: "flyback path for coils" },
+  },
+
+  {
+    source: { kind: "lesson", id: "capacitor" },
+    target: { kind: "lesson", id: "charge" },
+    type: "prerequisite",
+    weight: 100,
+    label: { en: "charge and conservation foundation", th: "พื้นฐานเรื่องประจุและการอนุรักษ์" },
+  },
+  {
+    source: { kind: "lesson", id: "capacitor" },
+    target: { kind: "lesson", id: "voltage" },
+    type: "prerequisite",
+    weight: 96,
+    label: { en: "voltage foundation", th: "พื้นฐานเรื่องแรงดัน" },
+  },
+  {
+    source: { kind: "lesson", id: "capacitor" },
+    target: { kind: "lesson", id: "current" },
+    type: "prerequisite",
+    weight: 92,
+    label: { en: "charging-current foundation", th: "พื้นฐานเรื่องกระแสขณะชาร์จ" },
   },
 
   {

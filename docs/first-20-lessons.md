@@ -19,8 +19,8 @@ In the status column, `candidate` means the lesson is part of this strategic cur
 
 | # | Lesson | Primary atlas node | Priority | Status | Why it belongs early |
 | ---: | --- | --- | --- | --- | --- |
-| 1 | What Is Electricity? | `ea.fundamentals.electricity` | P0 | review-ready | The gateway concept for the whole site; maintainer and public-deployment gates passed, while Thai approval and publication approval remain pending. |
-| 2 | Electric Charge | `ea.fundamentals.charge` | P1 | candidate | Explains what is moving, stored, separated, and conserved. |
+| 1 | What Is Electricity? | `ea.fundamentals.electricity` | P0 | review-ready | The gateway concept for the whole site; maintainer gates passed, while the current shared-data deployment recheck, Thai approval, and publication approval remain pending. |
+| 2 | Electric Charge | `ea.fundamentals.charge` | P1 | review-ready | Bilingual conceptual lesson and bounded conservation demo are source-verified; Thai-language and final publication approval remain pending. |
 | 3 | Voltage | `ea.fundamentals.voltage` | P1 | review-ready | Learners need energy-per-charge before circuits make sense. |
 | 4 | Electric Current | `ea.fundamentals.current` | P1 | prototype | The core flow quantity behind circuits, signals, and power. |
 | 5 | Resistance and Conductance | `ea.fundamentals.resistance` | P1 | prototype | Turns material behavior into circuit behavior. |
@@ -77,15 +77,14 @@ This batch prepares the way for power electronics, embedded outputs, protection,
 
 ## Next lessons to build
 
-Phase A1 truth/current-state stabilization and Phase A2 executable integrity from the [Project review and next-phase plan — 2026-07-14](project-review-2026-07-14.md) were implemented. Voltage proved the revision-bound workflow and is `review-ready`. The same workflow has now prepared What Is Electricity for review. Publication and Thai-language ownership are recorded in [Publication governance](publication-governance.md); both lessons must remain below `published` until the project owner completes each lesson-level approval.
+Phase A1 truth/current-state stabilization and Phase A2 executable integrity from the [Project review and next-phase plan — 2026-07-14](project-review-2026-07-14.md) were implemented. Voltage and What Is Electricity proved the revision-bound workflow, and Electric Charge has now passed the same maintainer-controlled preparation gates. All three are `review-ready`, not `published`; Thai-language and final publication ownership remain with the project owner under [Publication governance](publication-governance.md).
 
-Preferred content order after the gateway checkpoint, pending a curriculum decision:
+The project owner approved the preferred curriculum order on 2026-07-17, and the Electric Charge checkpoint is complete at `review-ready`. The active sequence is now:
 
-1. **Electric Charge** - the preferred standalone foundation for separation, storage, conservation, fields, current, and semiconductor behavior.
-2. **Capacitor** - introduces stored electric-field energy, filtering, timing, and transients after the charge foundation is explicit.
-3. **Diode** - introduces one-way conduction, polarity, rectification, and LED prerequisites.
-4. **Inductor or Relay** - choose Inductor for field-energy foundations, or Relay if we deliberately continue the mechanical-switching path.
+1. **Capacitor** - introduces stored electric-field energy, filtering, timing, and transients after the charge foundation is explicit.
+2. **Diode** - introduces one-way conduction, polarity, rectification, and LED prerequisites.
+3. **Inductor or Relay** - choose Inductor for field-energy foundations, or Relay if we deliberately continue the mechanical-switching path.
 
-Alternative: begin Capacitor with a clearly scoped charge-and-field prerequisite capsule, then schedule the standalone Electric Charge lesson separately. This choice has not been approved yet.
+The former compact alternative—putting a charge-and-field capsule inside Capacitor before a standalone Charge lesson—is retained only as decision history. It is no longer the active plan. The registry, relationship graph, and lesson routes now place Electric Charge directly after the gateway and before Voltage and Capacitor.
 
 After those, the original "battery lights a lamp" lesson can become a strong integrated beginner mini-project rather than a lonely one-off.
