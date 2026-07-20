@@ -22,5 +22,5 @@ The registry entry in `electrical-atlas-site/src/lib/lessonRegistry.ts` should s
 
 ## Current records
 
-- [Capacitance and Capacitors](capacitor.md) — implemented bilingual `review-ready` scope record; qualified-human, Thai-language, deployment, and publication decisions remain separate.
+- [Capacitance and Capacitors](capacitor.md) — implemented bilingual `review-ready` scope record; exact deployment passed, while qualified-human, Thai-language, and publication decisions remain separate.
 - [Switches and Contacts](switches-contacts.md) — retained production history for the implemented prototype.

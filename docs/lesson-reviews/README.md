@@ -156,7 +156,7 @@ Use a public review-ready deployment or Vercel preview for the live-page check. 
 
 ## Records
 
-- [Capacitance and Capacitors v0.1](capacitor-v0.1.md) — verified-source review-ready candidate; qualified-human, exact-deployment, Thai-language, and publication gates remain pending.
-- [Electric Charge v0.1](charge-v0.1.md) — verified-source review-ready lesson; Capacitor-integrated exact deployment, final owner, and Thai-language approval remain pending.
-- [Voltage v0.1](voltage-v0.1.md) — Phase B publication pilot; Capacitor-integrated exact deployment plus final owner and Thai-language approval remain pending.
-- [What Is Electricity v0.1](what-is-electricity-v0.1.md) — gateway review; Capacitor-integrated exact deployment plus final owner and Thai-language approval remain pending.
+- [Capacitance and Capacitors v0.1](capacitor-v0.1.md) — verified-source review-ready candidate; exact deployment passed, while qualified-human, Thai-language, and publication gates remain pending.
+- [Electric Charge v0.1](charge-v0.1.md) — verified-source review-ready lesson; exact deployment passed, while final owner and Thai-language approval remain pending.
+- [Voltage v0.1](voltage-v0.1.md) — Phase B publication pilot; exact deployment passed, while final owner and Thai-language approval remain pending.
+- [What Is Electricity v0.1](what-is-electricity-v0.1.md) — gateway review; exact deployment passed, while final owner and Thai-language approval remain pending.

@@ -13,7 +13,6 @@
   "qualifiedReviewReason": "The lesson is conceptual and gives no live-work or discharge procedure, but its moderate-safety scope discusses retained energy, polarized-component misuse, component failure, and mains-connected application classes. A qualified human must review that exact scope before publication.",
   "blockers": [
     "qualified-human-review",
-    "preview-deployment-verification",
     "owner-thai-language-approval",
     "owner-publication-approval"
   ],
@@ -91,11 +90,11 @@
       "note": "Local English and Thai routes were reviewed at desktop, 760 px, 390 px, and 320 px widths. Hydration, static accessible slider names, localized value text and live output, keyboard steps and endpoints, 44 px controls, zero-field state, transcript, guided/technical modes, deterministic suggestions, contained mobile navigation, page overflow, and console output passed. This does not claim a named screen reader, OS reduced-motion mode, or actual 400 percent browser zoom."
     },
     "previewDeployment": {
-      "status": "pending",
+      "status": "passed",
       "reviewer": "Maintainer deployment verification",
       "reviewerAuthority": "maintainer",
-      "reviewedAt": null,
-      "note": "The exact bound candidate has not yet been committed, deployed, and checked on the public English and Thai routes."
+      "reviewedAt": "2026-07-20",
+      "note": "GitHub reported Vercel success for exact commit 182a8b0. Public English and Thai Capacitor routes retained review-ready/verified metadata, twelve localized suggestions, static slider names, localized value/live output, hydrated keyboard changes and zero-field endpoint, desktop and 390 px containment, and no browser-console warning or error."
     },
     "publication": {
       "status": "pending",
@@ -137,7 +136,7 @@ Status: the lesson is a `review-ready` candidate, not approved for publication.
 | Qualified-human review | Qualified electrical/electronic reviewer | Pending | Blocks publication because safety is `moderate`; it does not block review-ready preparation. |
 | Implementation verification | Maintainer automated verification | Passed 2026-07-20 | The exact bound manifest passed the complete repository test, diagnostic, and production-build gates. |
 | Visual/accessibility | Maintainer browser review | Passed 2026-07-20 with stated platform limits | Supports review readiness; does not claim named-screen-reader or 400-percent-zoom certification. |
-| Preview deployment | Maintainer deployment verification | Pending | The exact commit must be public and live-checked. |
+| Preview deployment | Maintainer deployment verification | Passed 2026-07-20 on commit `182a8b0` | Exact English/Thai pages, interaction, suggestions, narrow layout, metadata, and console state were live-checked. |
 | Publication | Project owner | Pending | Blocks `published`. |
 
 ## Exact sources
@@ -214,7 +213,7 @@ Status: the lesson is a `review-ready` candidate, not approved for publication.
 | Astro routes | English and Thai diagnostic/build checks render the new route wrappers with counterpart links, metadata, lesson shell, guided/technical toggle, and relationship-driven suggestions. |
 | Full repository gate | Passed: 12 Node checks, 119 Vitest tests in 17 files, 105-file Astro diagnostics with zero findings, and 3,249 generated pages with 3,214 topic robots policies and 3,250 unique root-relative references validated. |
 | Browser review | Local English/Thai desktop, 760 px, 390 px, and 320 px checks passed: hydration, keyboard controls and endpoints, localized live output, zero-field state, 44 px targets, transcript, track toggle, suggestions, contained mobile navigation, page overflow, and console. |
-| Public deployment | Pending an exact committed candidate. |
+| Public deployment | Passed: GitHub reported Vercel success for exact commit `182a8b0`; public EN/TH pages retained review-ready/verified metadata, twelve localized suggestions, hydrated keyboard and zero-field behavior, desktop/390 px containment, and a clean console. |
 
 ## Known limitations and review triggers
 
@@ -225,7 +224,7 @@ Status: the lesson is a `review-ready` candidate, not approved for publication.
 - The safety text is a boundary, not a safe-work method. Any numerical threshold, discharge design, probing, replacement, mains selection, motor servicing, installation, or compliance instruction triggers current exact-standard and qualified-human review.
 - The TIS record is evidence of one Thai product-standard scope only. Do not infer universal Thai applicability, legal status for another product, or IEC-to-TIS equivalence.
 - The local browser backend did not provide a named screen reader, OS-level reduced-motion emulation, or actual 400-percent zoom. English phrases inside Thai prose also need a future site-wide inline-language strategy rather than a lesson-specific partial convention.
-- Final Thai-language approval, qualified-human review, exact-deployment verification, and final publication approval remain open.
+- Final Thai-language approval, qualified-human review, and final publication approval remain open; exact-deployment verification passed on commit `182a8b0`.
 - A material lesson, model, registry, relationship, route-shell, suggestion-system, or presentation change invalidates the recorded file hashes and requires deliberate re-review.
 
 ## Decision history
@@ -237,6 +236,7 @@ Status: the lesson is a `review-ready` candidate, not approved for publication.
 | 2026-07-20 | Set safety to `moderate` and require qualified-human review. | Retained energy, polarized failure, and mains-application boundaries are material even though no practical procedure is given. |
 | 2026-07-20 | Use TIS 60252 Part 1-2568 only as an application-specific Thai example. | Its official scope is AC motor capacitors, not every capacitor or general servicing work. |
 | 2026-07-20 | Keep Thai-language, qualified-human, exact-deployment, and publication decisions pending. | Their required authority or exact public evidence cannot be inferred from implementation and maintainer research. |
+| 2026-07-20 | Verify the exact public candidate. | GitHub reported Vercel success for commit `182a8b0`; public English/Thai lesson pages passed metadata, interaction, deterministic suggestions, responsive containment, and console checks without inferring the remaining approvals. |
 
 ## Publication decision
 
@@ -244,6 +244,6 @@ The lesson is available at `review-ready` so the exact bilingual candidate can b
 
 1. qualified-human review of this exact moderate-safety scope;
 2. project-owner approval of the Thai wording;
-3. successful exact-commit public deployment verification;
+3. successful exact-commit public deployment verification — passed on commit `182a8b0`;
 4. project-owner publication approval; and
 5. no material file change or expired evidence before those decisions.

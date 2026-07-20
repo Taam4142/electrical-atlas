@@ -19,8 +19,8 @@ In the status column, `candidate` means the lesson is part of this strategic cur
 
 | # | Lesson | Primary atlas node | Priority | Status | Why it belongs early |
 | ---: | --- | --- | --- | --- | --- |
-| 1 | What Is Electricity? | `ea.fundamentals.electricity` | P0 | review-ready | The gateway concept for the whole site; maintainer preparation passed, while the Capacitor-integrated deployment recheck, Thai approval, and publication approval remain pending. |
-| 2 | Electric Charge | `ea.fundamentals.charge` | P1 | review-ready | Bilingual conceptual lesson and bounded conservation demo are source-verified; the Capacitor-integrated deployment recheck, Thai-language approval, and final publication approval remain pending. |
+| 1 | What Is Electricity? | `ea.fundamentals.electricity` | P0 | review-ready | The gateway concept for the whole site; maintainer preparation and exact deployment passed, while Thai approval and publication approval remain pending. |
+| 2 | Electric Charge | `ea.fundamentals.charge` | P1 | review-ready | Bilingual conceptual lesson and bounded conservation demo are source-verified and exactly deployed; Thai-language approval and final publication approval remain pending. |
 | 3 | Voltage | `ea.fundamentals.voltage` | P1 | review-ready | Learners need energy-per-charge before circuits make sense. |
 | 4 | Electric Current | `ea.fundamentals.current` | P1 | prototype | The core flow quantity behind circuits, signals, and power. |
 | 5 | Resistance and Conductance | `ea.fundamentals.resistance` | P1 | prototype | Turns material behavior into circuit behavior. |
@@ -29,7 +29,7 @@ In the status column, `candidate` means the lesson is part of this strategic cur
 | 8 | Series and Parallel Circuits | `ea.circuit.topology.series-parallel` | P1 | prototype | Needed for almost every beginner circuit explanation. |
 | 9 | Battery | `ea.storage.electrochemistry` | P1 | prototype | Gives a real source of voltage and energy; supports the lamp lesson. |
 | 10 | Switches and Contacts | `ea.component.switch` | P2 | prototype | Bridges everyday switching to ideal/real circuit behavior. |
-| 11 | Capacitance and Capacitors | `ea.component.capacitor` | P2 | review-ready | Bilingual field/charge/energy model, ideal equations, real-device limits, stored-energy safety, and scoped Thai standards context; qualified-human, Thai-language, deployment, and publication gates remain separate. |
+| 11 | Capacitance and Capacitors | `ea.component.capacitor` | P2 | review-ready | Bilingual field/charge/energy model, ideal equations, real-device limits, stored-energy safety, scoped Thai standards context, and exact deployment passed; qualified-human, Thai-language, and publication gates remain open. |
 | 12 | Diode | `ea.device.diode.pn` | P2 | planned | First semiconductor one-way device; foundation for rectifiers and LEDs. |
 | 13 | Inductor | `ea.component.inductor` | P2 | candidate | Magnetic storage, switching converters, motors, relays, EMI. |
 | 14 | LED | `ea.photonics.led` | P2 | candidate | Familiar diode application with current limiting and polarity. |

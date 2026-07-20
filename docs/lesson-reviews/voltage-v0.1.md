@@ -12,7 +12,6 @@
   "qualifiedReviewRequired": false,
   "qualifiedReviewReason": "The reviewed revision is a low-risk conceptual lesson with general safety boundaries, no live-work procedure, no installation instruction, and no claim that an exact Thai rule applies universally.",
   "blockers": [
-    "preview-deployment-verification",
     "owner-thai-language-approval",
     "owner-publication-approval"
   ],
@@ -89,11 +88,11 @@
       "note": "The rebound candidate passed the complete Node and Vitest suites, Astro diagnostics, production generation, topic robots-policy audit, and internal-link validation. Voltage content and calculations remain unchanged; shared registry and relationship changes add the reviewed Charge lesson and its prerequisite links."
     },
     "previewDeployment": {
-      "status": "pending",
+      "status": "passed",
       "reviewer": "Maintainer deployment verification",
       "reviewerAuthority": "maintainer",
-      "reviewedAt": null,
-      "note": "The manifest was rebound after Capacitor integration changed the shared registry and relationship graph. Commit d10c466 remains historical deployment evidence for the previous fingerprint; this exact revision still requires public verification."
+      "reviewedAt": "2026-07-20",
+      "note": "GitHub reported Vercel success for exact commit 182a8b0. Public English and Thai Voltage routes retained review-ready/verified metadata, eleven localized suggestions including the Capacitor lesson, no document overflow at 390 px, and no browser-console warning or error. Commits d10c466, 7414277, and 0bea714 remain historical evidence."
     },
     "publication": {
       "status": "pending",
@@ -135,7 +134,7 @@ Status: review preparation is complete; the lesson is `review-ready`, not approv
 | English content | Codex-assisted maintainer content audit | Passed 2026-07-15 | No owner action required unless wording changes materially. |
 | Thai language | Project owner | Pending | Blocks publication. |
 | Visual/accessibility | Maintainer browser review | Passed 2026-07-20 with documented emulation boundaries | Supports `review-ready`; does not grant Thai-language or publication approval. |
-| Preview/live deployment | Maintainer deployment verification | Pending for the rebound manifest | Commit `d10c466` is historical evidence for the previous fingerprint; the Capacitor-integrated revision still requires an exact public check. |
+| Preview/live deployment | Maintainer deployment verification | Passed 2026-07-20 on commit `182a8b0` | The rebound English/Thai surfaces retained review-ready/verified metadata and eleven localized suggestions including Capacitor. |
 | Final publication | Project owner | Pending | Blocks `published`. |
 
 The project owner's acceptance of the governance model on 2026-07-14 approved these roles, not this lesson revision.
@@ -228,8 +227,8 @@ Final judgment of natural Thai wording belongs to the project owner and is still
 | Native keyboard controls and visible focus | Passed for control behavior: actual Arrow, Home, End, and Page input changed both sliders, localized `aria-valuetext`, the live result, and the zero/maximum visual states. CSS inspection confirmed the range control's 3 px `:focus-visible` outline; the browser backend could not synthesize keyboard-only focus modality, so no rendered Tab-modality claim is made. |
 | Reduced-motion behavior | Passed by CSSOM and information-path inspection: the parsed `prefers-reduced-motion: reduce` rule reduces animation and transition duration to `0.01ms`; the demo has no animations and only three nonessential 0.18 s visual transitions, while all changing information is also present as text/live output and in the transcript. OS preference emulation was unavailable. |
 | Screen-reader-oriented names, live output, and transcript | Passed browser-semantic inspection: both native ranges have associated labels and localized `aria-valuetext`; the result is an `output` with `aria-live="polite"` and `aria-atomic="true"`; the diagram is hidden by an `aria-hidden="true"` stage and has a text transcript. The rounded spoken/visible result contains no raw floating artifact. No named platform screen reader was tested. |
-| Deployed English/Thai pages | Commit `d10c466` passed the previous rebound fingerprint; commits `7414277` and `0bea714` are also historical evidence. The Capacitor-integrated fingerprint is pending an exact public check. |
-| Current rebound candidate | Automated relationship checks and local English/Thai 390 px rendering pass: eleven suggestions include the localized Capacitor lesson, the document does not overflow, and the browser console is clean. Exact public verification remains pending. |
+| Deployed English/Thai pages | Exact commit `182a8b0` passed the Capacitor-integrated fingerprint; commits `d10c466`, `7414277`, and `0bea714` remain historical evidence. |
+| Current rebound candidate | Automated, local, and public English/Thai checks pass: eleven suggestions include the localized Capacitor lesson, the 390 px document does not overflow, and the browser console is clean. |
 
 ## Known limitations and review triggers
 
@@ -262,11 +261,12 @@ Final judgment of natural Thai wording belongs to the project owner and is still
 | 2026-07-20 | Rebind after Electric Charge integration | Maintainer implementation and browser review | Shared registry and relationship bytes changed. Automated and local visual gates were reaffirmed, Charge became the first related lesson, the rendered relationship list increased to eleven cards, and public deployment returned to pending until the exact candidate is live. |
 | 2026-07-20 | Verify rebound public deployment | Maintainer deployment verification | Vercel reported exact commit `d10c466` successful; English and Thai Voltage routes retained review-ready/verified metadata, eleven cards with Charge first, correct localized and Thailand-context labels, no narrow-layout overflow, and no browser-console warning/error. |
 | 2026-07-20 | Rebind after Capacitor integration | Maintainer lifecycle correction | The shared registry and relationship graph changed again. Commit `d10c466` remains historical evidence, while public deployment verification returns to pending for the new fingerprint. |
+| 2026-07-20 | Verify Capacitor-integrated deployment | Maintainer deployment verification | GitHub reported Vercel success for exact commit `182a8b0`; English and Thai Voltage routes retained review-ready/verified metadata, eleven suggestions including Capacitor, 390 px page containment, and a clean browser console. |
 
 ## Publication decision
 
-- Registry status after review preparation: `review-ready`. Technical, English, implementation, visual/accessibility, and source gates passed; rebound deployment and both project-owner decisions remain pending, so the lesson must stay below `published`.
-- Public promoted-deployment verification: Pending for the Capacitor-integrated fingerprint; commits `d10c466` and `0bea714` remain historical evidence.
+- Registry status after review preparation: `review-ready`. Technical, English, implementation, visual/accessibility, source, and rebound-deployment gates passed; both project-owner decisions remain pending, so the lesson must stay below `published`.
+- Public promoted-deployment verification: Passed 2026-07-20 on exact commit `182a8b0`; commits `d10c466` and `0bea714` remain historical evidence.
 - Project-owner publication decision: Pending.
 - Thai-language decision: Pending.
 - Qualified-review decision: Not required for the current low-risk conceptual scope; reassess if scope changes.

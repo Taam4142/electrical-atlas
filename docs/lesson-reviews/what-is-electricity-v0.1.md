@@ -12,7 +12,6 @@
   "qualifiedReviewRequired": false,
   "qualifiedReviewReason": "The reviewed revision is a low-risk conceptual explanation with an explicit no-mains and no-construction boundary, no live-work procedure, no installation instruction, and no claim that an exact Thai rule applies.",
   "blockers": [
-    "preview-deployment-verification",
     "owner-thai-language-approval",
     "owner-publication-approval"
   ],
@@ -87,11 +86,11 @@
       "note": "The existing English and Thai visual evidence was rechecked against the rebound local candidate: review-ready/source metadata remained correct, the gateway still renders its ten-card cap with Charge first and no duplicate Charge topic, and shared layout behavior remains intact. Prior focus, responsive, contrast, live-output, transcript, and console evidence still applies. The browser backend did not demonstrate Enter/Space activation, OS reduced motion, actual 400% zoom, or a named screen reader, so no platform result for those checks is claimed."
     },
     "previewDeployment": {
-      "status": "pending",
+      "status": "passed",
       "reviewer": "Maintainer deployment verification",
       "reviewerAuthority": "maintainer",
-      "reviewedAt": null,
-      "note": "The manifest was rebound after Capacitor integration changed the shared registry and relationship graph. Commit d10c466 remains historical deployment evidence for the previous fingerprint; this exact revision still requires public verification."
+      "reviewedAt": "2026-07-20",
+      "note": "GitHub reported Vercel success for exact commit 182a8b0. Public English and Thai gateway routes retained review-ready/verified metadata, the ten-card cap, localized paths, no document overflow at 390 px, and no browser-console warning or error. Commits d10c466 and 0bea714 remain historical evidence."
     },
     "publication": {
       "status": "pending",
@@ -134,7 +133,7 @@ Status: maintainer review preparation is complete; the lesson is `review-ready`,
 | Qualified review | Publication governance risk matrix | Not required for this scope | Becomes required if the risk class or instruction scope changes. |
 | Implementation | Maintainer automated verification | Passed 2026-07-20 | Supports review preparation for the rebound file manifest. |
 | Visual/accessibility | Maintainer browser review | Passed 2026-07-20 with explicit backend boundaries | Supports `review-ready`; does not infer Thai or publication approval. |
-| Preview/live deployment | Maintainer deployment verification | Pending for the rebound manifest | Commit `d10c466` is historical evidence for the previous fingerprint; the Capacitor-integrated revision still requires an exact public check. |
+| Preview/live deployment | Maintainer deployment verification | Passed 2026-07-20 on commit `182a8b0` | The rebound English/Thai lesson surfaces retained review-ready/verified metadata and the ten-card cap. |
 | Final publication | Project owner | Pending | Blocks `published`. |
 
 The project owner's governance acceptance assigns roles; it does not approve this lesson revision.
@@ -253,13 +252,14 @@ The project owner's governance acceptance assigns roles; it does not approve thi
 | 2026-07-20 | Rebind after Electric Charge integration | Maintainer implementation and browser review | Shared registry and relationship bytes changed. Automated and local visual gates were reaffirmed, the gateway retained its ten-card cap with Charge first and no duplicate Charge topic, and public deployment returned to pending until the exact candidate is live. |
 | 2026-07-20 | Verify rebound public deployment | Maintainer deployment verification | Vercel reported exact commit `d10c466` successful; English and Thai gateway routes retained review-ready/verified metadata, the ten-card cap with Charge first, correct localized paths, no narrow-layout overflow, and no browser-console warning/error. |
 | 2026-07-20 | Rebind after Capacitor integration | Maintainer lifecycle correction | The shared registry and relationship graph changed again. Commit `d10c466` remains historical evidence, while public deployment verification returns to pending for the new fingerprint. |
+| 2026-07-20 | Verify Capacitor-integrated deployment | Maintainer deployment verification | GitHub reported Vercel success for exact commit `182a8b0`; English and Thai gateway routes retained review-ready/verified metadata, ten suggestions, 390 px page containment, and a clean browser console. |
 
 ## Publication decision
 
 - Registry status after review preparation: `review-ready`.
 - Source status: `verified` for the bound conceptual scope.
 - Qualified-review decision: Not required for the current scope; reassess on any practical, hazardous, regulated, installation, or standards-sensitive expansion.
-- Public promoted-deployment verification: Pending for the Capacitor-integrated fingerprint; commits `d10c466` and `0bea714` remain historical evidence.
+- Public promoted-deployment verification: Passed 2026-07-20 on exact commit `182a8b0`; commits `d10c466` and `0bea714` remain historical evidence.
 - Project-owner Thai-language decision: Pending.
 - Project-owner publication decision: Pending.
 - Final publication date: Pending.

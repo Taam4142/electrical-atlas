@@ -12,7 +12,6 @@
   "qualifiedReviewRequired": false,
   "qualifiedReviewReason": "The reviewed revision is a low-risk conceptual lesson with a bounded electron-transfer model, no live-work procedure, no installation instruction, and no claim that a Thai or international ESD standard supplies a universal human-safety threshold.",
   "blockers": [
-    "preview-deployment-verification",
     "owner-thai-language-approval",
     "owner-publication-approval"
   ],
@@ -89,11 +88,11 @@
       "note": "English and Thai local pages were reviewed across narrow and desktop layouts for hydration, overflow, control size, limits, reset, localized live status, focus retention, transcript, suggestions, and console output. Native buttons and focus behavior are present; this browser backend did not reliably demonstrate Enter/Space activation, OS reduced motion, a named screen reader, or actual 400% browser zoom, so those platform results are not claimed."
     },
     "previewDeployment": {
-      "status": "pending",
+      "status": "passed",
       "reviewer": "Maintainer deployment verification",
       "reviewerAuthority": "maintainer",
-      "reviewedAt": null,
-      "note": "The manifest was rebound after Capacitor integration changed the shared registry and relationship graph. Commit d10c466 remains historical deployment evidence for the previous fingerprint; this exact revision still requires public verification."
+      "reviewedAt": "2026-07-20",
+      "note": "GitHub reported Vercel success for exact commit 182a8b0. Public English and Thai Charge routes retained review-ready/verified metadata, ten localized suggestions including the Capacitor lesson, no document overflow at 390 px, and no browser-console warning or error. Commit d10c466 remains historical evidence."
     },
     "publication": {
       "status": "pending",
@@ -136,7 +135,7 @@ Status: the lesson is `review-ready`, not approved for publication.
 | Qualified-human review | Publication governance risk matrix | Not required 2026-07-20 | Applies only to this low-risk conceptual revision. |
 | Implementation verification | Maintainer automated verification | Passed 2026-07-20 | Bound tests and build must remain green. |
 | Visual/accessibility | Maintainer browser review | Passed 2026-07-20 with stated platform limits | Supports review readiness; does not claim screen-reader certification. |
-| Preview deployment | Maintainer deployment verification | Pending for the rebound manifest | Commit `d10c466` is historical evidence for the previous fingerprint; the Capacitor-integrated revision still requires an exact public check. |
+| Preview deployment | Maintainer deployment verification | Passed 2026-07-20 on commit `182a8b0` | Exact English/Thai lesson surfaces retained verified review metadata and ten localized suggestions including Capacitor. |
 | Publication | Project owner | Pending | Blocks `published`. |
 
 ## Exact sources
@@ -221,7 +220,7 @@ Status: the lesson is `review-ready`, not approved for publication.
 - The technical track does not cover relativistic field theory, quantum electrodynamics, specialist quasiparticle descriptions, or charge renormalization.
 - Safety text is a boundary, not a safe-work procedure. Adding experiments, ESD workstation design, hazardous-location thresholds, grounding/bonding steps, lightning protection, or Thai installation requirements triggers qualified and standards-specific review.
 - A material lesson, model, shared registry, route shell, suggestion system, or presentation change invalidates the recorded file hashes and requires deliberate re-review.
-- Final Thai-language approval, exact public-deployment verification for the rebound fingerprint, and final publication approval remain open; commit `d10c466` is historical evidence.
+- Final Thai-language approval and final publication approval remain open; exact public-deployment verification passed on commit `182a8b0`, while `d10c466` remains historical evidence.
 
 ## Decision history
 
@@ -232,14 +231,15 @@ Status: the lesson is `review-ready`, not approved for publication.
 | 2026-07-20 | Initially kept Thai-language, preview-deployment, and publication gates pending. | These decisions require project-owner authority or evidence from the exact deployed commit and cannot be inferred from local implementation. |
 | 2026-07-20 | Verified the exact public deployment. | GitHub/Vercel reported deployment success for commit `d10c466`; English/Thai Charge routes and registry cards passed localized metadata, responsive geometry, interaction, conservation, suggestion, source-scope, and console checks. The deployment blocker was removed. |
 | 2026-07-20 | Rebound after Capacitor integration. | The shared registry and relationship graph changed. Commit `d10c466` remains historical evidence, while public deployment verification returns to pending for the new fingerprint. |
+| 2026-07-20 | Verify Capacitor-integrated deployment. | GitHub reported Vercel success for exact commit `182a8b0`; English and Thai Charge routes retained review-ready/verified metadata, ten suggestions including Capacitor, 390 px page containment, and a clean browser console. |
 
 ## Publication decision
 
 The lesson is available as a review-ready page so it can be inspected. It is **not published in the governance sense**. Promotion to `published` requires:
 
-1. successful exact-commit public deployment verification for the current fingerprint;
+1. successful exact-commit public deployment verification for the current fingerprint — passed on commit `182a8b0`;
 2. project-owner approval of the Thai wording;
 3. project-owner publication approval; and
 4. no material file change or expired evidence before those decisions.
 
-Exact public-deployment verification is pending for the Capacitor-integrated fingerprint; commit `d10c466` remains historical evidence for the prior revision.
+Exact public-deployment verification passed on 2026-07-20 for commit `182a8b0`; commit `d10c466` remains historical evidence for the prior revision.

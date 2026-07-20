@@ -34,7 +34,7 @@ lastSourceReview: 2026-07-20
 nextSourceReview: 2027-01-20
 -->
 
-Implementation status: bilingual implementation candidate created on 2026-07-20. Public-facing content lives in `electrical-atlas-site/src/content/lessons/en/capacitor.mdx` and `electrical-atlas-site/src/content/lessons/th/capacitor.mdx`; route wrappers and an interactive field model live in the Astro site. This status does **not** mean that Thai-language, qualified-human, deployment, or publication approval has been granted.
+Implementation status: bilingual implementation candidate created on 2026-07-20. Public-facing content lives in `electrical-atlas-site/src/content/lessons/en/capacitor.mdx` and `electrical-atlas-site/src/content/lessons/th/capacitor.mdx`; route wrappers and an interactive field model live in the Astro site. Exact public-deployment verification passed for commit `182a8b0`. This status does **not** grant Thai-language, qualified-human, or publication approval.
 
 ## 1. Purpose and learning outcome
 
