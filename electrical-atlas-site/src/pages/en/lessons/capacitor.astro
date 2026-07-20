@@ -1,0 +1,32 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import LessonShell from "../../../components/LessonShell.astro";
+import LessonModeToggle from "../../../components/LessonModeToggle";
+import SuggestionSection from "../../../components/SuggestionSection.astro";
+import Content from "../../../content/lessons/en/capacitor.mdx";
+import { atlasTopics } from "../../../lib/generated/atlasTopics";
+import { getLessonSuggestions } from "../../../lib/suggestions";
+
+const suggestions = getLessonSuggestions("capacitor", "en", atlasTopics);
+---
+
+<BaseLayout
+  title="Capacitance and Capacitors"
+  description="A visual component lesson explaining capacitance, capacitor structure, electric-field energy, ideal RC behaviour, real ratings, and stored-energy safety."
+  lang="en"
+  counterpartPath="/th/lessons/capacitor/"
+>
+  <LessonShell
+    locale="en"
+    eyebrow="component lesson"
+    title="Capacitance and Capacitors"
+    subtitle="Separate charge, build an electric field, and store energy—while keeping the component, the quantity, and the ideal model distinct."
+    lessonId="ea.lesson.capacitor.v0.1"
+  >
+    <LessonModeToggle client:load locale="en" />
+    <div class="lesson-content">
+      <Content />
+    </div>
+    <SuggestionSection locale="en" items={suggestions} />
+  </LessonShell>
+</BaseLayout>

@@ -1,0 +1,274 @@
+import CapacitorFieldDemo from "../../../components/CapacitorFieldDemo";
+
+<section>
+
+## 1. Three ideas with similar names
+
+**Capacitance** is a physical quantity that relates separated electric charge to voltage under stated conditions. Its SI unit is the **farad** (`F`).
+
+A **capacitor** is a two-terminal component designed to provide capacitance. It normally contains two conductors separated by an insulating material called a **dielectric**.
+
+An **ideal capacitor** is a circuit model. Choose `v` as the voltage of one terminal relative to the other and `q` as the charge on that referenced positive terminal. For a linear, constant capacitance:
+
+`q = Cv`
+
+The physical component, the measured quantity, and the ideal model are related, but they are not interchangeable words.
+
+<aside className="callout">
+
+**First mental model:** a capacitor separates equal amounts of positive and negative terminal charge. The separation creates an electric field, and the field configuration stores energy.
+
+</aside>
+
+</section>
+
+<section>
+
+## 2. What a capacitor is made of
+
+A basic capacitor has:
+
+- two conductive regions, often called **plates** even when their real shape is rolled, stacked, porous, or microscopic;
+- two **terminals** connected to those conductors;
+- a **dielectric** between them;
+- a package, seals, and markings suited to the component family.
+
+When an external source is connected, charge is redistributed through the external wires. In the ideal two-terminal model, one plate has `+q` and the other has `-q`.
+
+`Q_complete = (+q) + (-q) = 0`
+
+The complete capacitor can therefore remain net neutral while each terminal has nonzero charge. Ordinary conduction electrons do not need to cross the intact dielectric. The source moves charge through the external circuit and establishes the terminal voltage and electric field.
+
+</section>
+
+<section>
+
+## 3. Field, dielectric, and polarization
+
+Separated terminal charge creates an electric field between and around the conductors. A dielectric in that field **polarizes**: its bound positive and negative charge distributions shift slightly or reorient. The material can still have zero net charge.
+
+For the same terminal voltage and geometry, this polarization can let more free charge appear on the conductors than would appear with vacuum between them. In the usual linear model, that means greater capacitance.
+
+The dielectric is not an unlimited barrier. Sufficient electric field, defects, heat, contamination, ageing, or mechanical damage can produce leakage or electrical breakdown. Real behaviour also depends on material, frequency, temperature, voltage, and time.
+
+<aside className="callout">
+
+**Where is the energy?** In the elementary electrostatic model, energy is associated with the electric field and the polarized material—not with electrons being stored inside the dielectric like objects in a box.
+
+</aside>
+
+</section>
+
+<section>
+
+## 4. Charge, voltage, geometry, and energy
+
+For a constant, linear ideal capacitor:
+
+`q = Cv`
+
+Once `C` and the sign convention are fixed, charge and voltage are linked; they are not independent settings. A capacitance of one farad means one coulomb of terminal-charge magnitude per volt in this model:
+
+`1 F = 1 C/V`
+
+For two large parallel plates with area `A`, separation `d`, a uniform linear dielectric of permittivity `ε`, and negligible edge fringing:
+
+`C ≈ εA/d`
+
+This bounded approximation explains useful trends: larger facing area or larger permittivity increases capacitance; larger separation decreases it. It is not the design equation for every real geometry or material condition.
+
+For a fixed, linear capacitance charged quasistatically from zero voltage, the stored energy is:
+
+`U = ½Cv² = q²/(2C) = ½qv`
+
+Doubling `C` at the same voltage doubles both terminal-charge magnitude and energy. Doubling voltage at the same `C` doubles charge but makes the energy four times as large. The familiar `½Cv²` expression is not automatically valid for a strongly nonlinear, hysteretic, or time-varying capacitance.
+
+</section>
+
+<CapacitorFieldDemo client:load locale="en" />
+
+<section>
+
+## 5. Current and changing voltage
+
+Current at a capacitor terminal is the rate at which its referenced terminal charge changes:
+
+`i = dq/dt`
+
+Use the **passive sign convention**: `i` is positive when it enters the terminal whose voltage `v` is referenced positive. If `C` is constant and the device is linear:
+
+`i = C dv/dt`
+
+This equation says:
+
+- a steady capacitor voltage gives zero current in the ideal model after the transient;
+- a changing voltage requires current;
+- a larger capacitance needs more current for the same rate of voltage change;
+- an ideal capacitor's voltage cannot jump instantaneously under finite current.
+
+The more general relation is still `i = dq/dt`. If capacitance changes with voltage, time, temperature, or another variable, writing only `i = C dv/dt` can miss terms or use the wrong model. Real capacitors also have leakage, so their steady DC current is not exactly zero.
+
+</section>
+
+<section>
+
+## 6. The ideal RC transient
+
+Connect an initially uncharged ideal capacitor to an ideal DC source `V_s` through a resistor `R` at `t = 0`. Under those assumptions:
+
+`v_C(t) = V_s[1 - e^(-t/RC)]`
+
+`i(t) = (V_s/R)e^(-t/RC)`
+
+The product `RC` is the **time constant**:
+
+`τ = RC`
+
+After one time constant, the capacitor voltage is about `63.2%` of its final value. After `5τ`, it is about `99.3%`—close, but not mathematically “fully charged.”
+
+If a capacitor begins at `V_0`, the source is absent, and it is discharged only through the ideal resistor:
+
+`v_C(t) = V_0e^(-t/RC)`
+
+These are ideal series-RC models, not universal waiting-time or discharge instructions. A real circuit can include source resistance, several discharge paths, leakage, switches, nonlinear loads, ESR, inductance, measurement loading, and hazardous stored energy.
+
+</section>
+
+<section>
+
+## 7. What capacitors do in circuits
+
+Capacitors are used to:
+
+- support a supply locally during short changes in load (**decoupling** and bulk capacitance);
+- couple changing signals while separating DC bias conditions;
+- form timing and filter networks with resistors;
+- form resonant networks with inductors;
+- absorb or redirect some switching transients in properly designed snubbers;
+- suppress interference using components certified for the exact application;
+- sense position, touch, pressure, humidity, or material changes;
+- start or run some AC motors using purpose-designed motor capacitors;
+- store energy for a short pulse or backup function.
+
+The phrase “a capacitor blocks DC and passes AC” is only a shortcut. An ideal capacitor carries no current after reaching steady voltage in a DC circuit, while a changing voltage produces current. How much of a signal appears elsewhere depends on frequency, capacitance, source and load impedance, and the rest of the circuit.
+
+</section>
+
+<section>
+
+## 8. Real families, ratings, and nonidealities
+
+Common families include ceramic, film, aluminium electrolytic, tantalum electrolytic, and supercapacitors. Their useful ranges and failure behaviour differ. A family name alone does not determine whether a part is suitable.
+
+Read the datasheet for quantities such as:
+
+- nominal capacitance and tolerance;
+- rated voltage and allowed polarity;
+- temperature and frequency range;
+- leakage current;
+- **equivalent series resistance** (`ESR`), which causes loss and heating;
+- **equivalent series inductance** (`ESL`), which limits high-frequency behaviour;
+- ripple-current and pulse limits;
+- capacitance change with bias, temperature, frequency, and ageing;
+- dielectric absorption, lifetime, dimensions, and environmental rating.
+
+Many aluminium and tantalum electrolytic capacitors are polarized, so their terminals must not be treated as interchangeable. Some ceramic capacitors lose a substantial fraction of their nominal capacitance under DC bias. Every real capacitor has limits that the single ideal symbol hides.
+
+</section>
+
+<section>
+
+## 9. Common mistakes
+
+- **“Capacitance is how much charge a capacitor can hold.”** Capacitance relates terminal charge to voltage under stated conditions; ratings and failure limits are separate.
+- **“Electrons cross the dielectric while it charges.”** External conduction current redistributes charge on the conductors; an intact ideal dielectric does not provide that conduction path.
+- **“A charged capacitor has net charge.”** The ideal complete two-terminal capacitor has equal and opposite terminal charges, so their sum is zero.
+- **“Charge is used up inside the capacitor.”** Charge is redistributed; energy is exchanged with the field and circuit.
+- **“Charge, voltage, and capacitance can all be chosen independently.”** In the linear model, `q = Cv` links them.
+- **“Every capacitor follows `C = εA/d` exactly.”** That is an approximation for a stated parallel-plate geometry and material model.
+- **“A capacitor passes every AC signal.”** Its effect depends on frequency and the complete circuit, and real parasitics matter.
+- **“Five time constants means fully charged.”** The ideal curve is about `99.3%` of its final value.
+- **“Unplugged means discharged.”** Stored voltage and energy may remain.
+
+</section>
+
+<section>
+
+## 10. Failure and safety boundary
+
+A capacitor can retain energy after its source is disconnected. “Off” or “unplugged” does not prove zero voltage, zero charge, or zero stored energy. There is no universal safe waiting time or discharge method for every circuit.
+
+Wrong polarity, overvoltage, excessive ripple current, heat, ageing, contamination, or mechanical cracking can cause leakage, short circuit, loss of capacitance, heating, venting, rupture, smoke, or fire, depending on the capacitor and fault. A pressure vent reduces some consequences in certain electrolytic designs; it does not make misuse safe.
+
+Do not open or probe mains appliances, microwave ovens, CRT equipment, inverters, photovoltaic equipment, EV systems, industrial controls, or high-energy battery systems to find capacitors. Do not improvise a discharge procedure from this page. Work on stored-energy equipment requires task-specific qualification, circuit documentation, isolation and verification procedures, suitable tools, and the current requirements for that workplace and jurisdiction.
+
+Capacitors connected to the supply mains for interference suppression are covered by application-specific safety requirements. Use only components and designs intended and certified for the exact position and service. This lesson does not select an X/Y class, replacement part, motor capacitor, or wiring method.
+
+</section>
+
+<section className="technical-only">
+
+## Technical track: why current appears continuous
+
+Conduction current flows in the external wires as mobile carriers redistribute charge on the conductors. In an ideal capacitor, those carriers do not cross the dielectric gap.
+
+Maxwell's displacement-current term accounts for the changing electric displacement field. For an appropriate surface `S` spanning the ideal capacitor gap:
+
+`I_d = d/dt ∫_S D · dA`
+
+Here `D` is electric displacement. In the quasistatic ideal lumped model, this displacement-current contribution across a gap-spanning surface matches the conduction current at the external terminal. More generally, for different surfaces that share the same boundary, it is the **sum of conduction-current and displacement-current contributions** that keeps the Maxwell–Ampère relation independent of which spanning surface is chosen.
+
+This does not mean that “displacement current” is a stream of conduction electrons jumping through the dielectric. Real dielectric leakage and breakdown are separate conduction processes.
+
+For a sinusoidal steady-state linear ideal capacitor, the impedance is:
+
+`Z_C = 1/(jωC)`
+
+This phasor-domain result applies to sinusoidal steady state. It does not describe the initial transient by itself, and real ESR, ESL, leakage, and frequency-dependent capacitance alter the impedance.
+
+</section>
+
+<section>
+
+## 11. Thailand context
+
+Thailand's IPST Project 14 Physics Book 4 teaches capacitor operation, capacitance, stored energy, and capacitor connections; the Thai terminology and introductory sequence here are aligned with that curriculum context.
+
+Thai Industrial Standard **TIS 60252 Part 1-2568** is specifically about AC motor capacitors: general performance, testing, ratings, safety requirements, and guidance for installation and use within that product scope. It is evidence that capacitor standards are application-specific—not a general rule for every capacitor and not permission to service a motor or mains circuit.
+
+IEC 60384-1 is a generic international specification for fixed capacitors used in electronic equipment. IEC 60384-14 adds a particular scope for suppression capacitors and connection to the supply mains. Citing those IEC families does not by itself establish Thai legal applicability or approve a design. The exact product, current edition, Thai adoption, authority, and use must be verified before making a compliance claim.
+
+</section>
+
+<section>
+
+## 12. Sources and scope
+
+Definitions, units, and foundational models:
+
+- [IEC Electropedia, IEV 151-13-28 — capacitor](https://www.electropedia.org/iev/iev.nsf/display?ievref=151-13-28&openform=)
+- [IEC Electropedia, IEV 131-12-13 — capacitance](https://www.electropedia.org/iev/iev.nsf/display?ievref=131-12-13&openform=)
+- [IEC Electropedia, IEV 131-12-12 — ideal capacitor](https://www.electropedia.org/iev/iev.nsf/display?ievref=131-12-12&openform=)
+- [BIPM, *The International System of Units (SI)*, 9th edition, version 4.01](https://www.bipm.org/en/si-brochure-9)
+- OpenStax *University Physics Volume 2*: [capacitors and capacitance](https://openstax.org/books/university-physics-volume-2/pages/8-1-capacitors-and-capacitance), [stored energy](https://openstax.org/books/university-physics-volume-2/pages/8-3-energy-stored-in-a-capacitor), [dielectrics](https://openstax.org/books/university-physics-volume-2/pages/8-4-capacitor-with-a-dielectric), [RC circuits](https://openstax.org/books/university-physics-volume-2/pages/10-5-rc-circuits), and [displacement current](https://openstax.org/books/university-physics-volume-2/pages/16-1-maxwells-equations-and-electromagnetic-waves)
+
+Real components, safety, and standards context:
+
+- [IEC 60384-1:2021 — fixed capacitors for use in electronic equipment, generic specification](https://webstore.iec.ch/en/publication/62499)
+- [IEC 60384-14:2023 with Amendment 1:2025 — suppression capacitors and connection to the supply mains](https://webstore.iec.ch/en/publication/108455)
+- [Panasonic Industry — capacitor characteristics including ESR, ESL, leakage, and impedance](https://industrial.panasonic.com/ww/ds/ss/technical/lc3)
+- [Nichicon — application guidelines for aluminium electrolytic capacitors](https://www.nichicon.co.jp/english/products/pdf/aluminum.pdf)
+- [KEMET — tantalum and polymer capacitor FAQs](https://www.kemet.com/en/us/capacitors/polymer/tantalum-polymer-faqs.html) (polarity and handling context for those families)
+- [CDC/NIOSH — Electrical Safety in the Workplace](https://www.cdc.gov/niosh/electrical-safety/about/index.html)
+- [OSHA 29 CFR 1910.333 — stored electric energy](https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.333) — a U.S. workplace rule, not Thai law or a do-it-yourself procedure.
+
+Thai curriculum and standards context:
+
+- IPST Project 14: [capacitor operation](https://proj14.ipst.ac.th/m4-6-physics/m5-phys-book4/phys-m5b4-024/), [capacitance](https://proj14.ipst.ac.th/m4-6-physics/m5-phys-book4/phys-m5b4-025/), [stored energy](https://proj14.ipst.ac.th/m4-6-physics/m5-phys-book4/phys-m5b4-026/), and [capacitor connections](https://proj14.ipst.ac.th/m4-6-physics/m5-phys-book4/phys-m5b4-027/)
+- [Thai Industrial Standards Institute, TIS 60252 Part 1-2568 — AC motor capacitors](https://a.tisi.go.th/t/?n=9179)
+
+Sources were reviewed on 2026-07-20. This lesson is conceptual education. It provides no live-work, discharge, replacement, motor-service, mains-selection, or installation procedure, and it makes no publication or compliance approval claim.
+
+Use the relationship-driven suggestions below to continue by prerequisite, circuit behaviour, component family, application, or safety topic.
+
+</section>

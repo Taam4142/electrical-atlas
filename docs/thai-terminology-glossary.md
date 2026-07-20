@@ -22,6 +22,7 @@ It is not a legal dictionary and it is not a standards translation. It is a work
 | `contextual` | Choose wording based on physical, circuit, installation, or standards context. |
 | `safety-sensitive` | Wrong wording can mislead practical or regulated work. Verify before standards/safety publication. |
 | `needs source review` | Use as draft wording only until checked against authoritative Thai or bilingual sources. |
+| `owner review pending` | Approval modifier: the prepared Thai wording still awaits project-owner natural-language review. It is independent of technical/source maturity and does not itself approve or reject the lesson. |
 
 ## Core fundamentals
 
@@ -54,6 +55,9 @@ It is not a legal dictionary and it is not a standards translation. It is a work
 | conductance | ความนำไฟฟ้า | conductance | preferred | Opposite view of resistance; measured in siemens. |
 | impedance | อิมพีแดนซ์ | impedance, ความต้านทานเชิงซ้อน | contextual | Use `อิมพีแดนซ์` in AC/RF lessons; define complex meaning later. |
 | capacitance | ความจุไฟฟ้า | capacitance | preferred | Avoid confusing the quantity with a physical capacitor. |
+| stored energy | พลังงานสะสม | พลังงานที่เก็บไว้ | contextual, owner review pending | In the capacitor lesson, identify the field/material configuration and do not imply that charge itself is consumed. |
+| time constant | ค่าคงตัวเวลา | time constant, `τ` | preferred, owner review pending | Define the specific system, such as `τ = RC`; it is not a universal safety waiting time. |
+| transient response | การตอบสนองในภาวะชั่วครู่ | transient response | contextual, owner review pending | Use for the changing state before a stated steady condition; keep model assumptions visible. |
 | inductance | ความเหนี่ยวนำ | inductance | preferred | Use for the quantity; `ตัวเหนี่ยวนำ` is the component. |
 | power | กำลังไฟฟ้า | power | preferred | Measured in watts. |
 | energy | พลังงานไฟฟ้า | energy | preferred | Measured in joules or watt-hours depending context. |
@@ -70,6 +74,7 @@ It is not a legal dictionary and it is not a standards translation. It is a work
 | insulator | ฉนวน | insulator | preferred | Can mean material or insulation layer; clarify when needed. |
 | semiconductor | สารกึ่งตัวนำ | semiconductor | preferred | Use for silicon, GaN, SiC, etc. |
 | dielectric | ไดอิเล็กทริก | dielectric, ฉนวนไฟฟ้า | contextual | In capacitor lessons, `ไดอิเล็กทริก` is more precise than general insulation. |
+| dielectric breakdown | การพังทลายของไดอิเล็กทริก | การทะลุฉนวน, dielectric breakdown | safety-sensitive, owner review pending | Choose wording by physical/product context. Do not provide a universal breakdown or safe-working threshold. |
 | copper | ทองแดง | copper | preferred | Common conductor material. |
 | aluminum | อะลูมิเนียม | aluminium/aluminum | preferred | Use for conductors, heatsinks, enclosures. |
 | silicon | ซิลิคอน | silicon | preferred | Do not confuse with silicone rubber. |
@@ -83,6 +88,9 @@ It is not a legal dictionary and it is not a standards translation. It is a work
 | --- | --- | --- | --- | --- |
 | resistor | ตัวต้านทาน | resistor | preferred | Component; quantity is `ความต้านทาน`. |
 | capacitor | ตัวเก็บประจุ | capacitor | preferred | Keep `capacitor` in part labels if natural. |
+| polarized capacitor | ตัวเก็บประจุแบบมีขั้ว | polarized capacitor | safety-sensitive, owner review pending | Polarity markings and allowed reverse conditions are product-specific; do not turn the term into a universal selection rule. |
+| equivalent series resistance | ความต้านทานอนุกรมสมมูล | ESR | contextual, owner review pending | Define `ESR` on first use and connect it to real loss/heating without treating it as a constant at all frequencies and conditions. |
+| equivalent series inductance | ความเหนี่ยวนำอนุกรมสมมูล | ESL | contextual, owner review pending | Define `ESL` on first use; geometry and frequency affect the useful model. |
 | inductor | ตัวเหนี่ยวนำ | inductor | preferred | Component that stores magnetic-field energy. |
 | transformer | หม้อแปลง | transformer | preferred | For power systems, include rating and safety context carefully. |
 | battery | แบตเตอรี่ | battery | preferred | Common Thai usage. |
@@ -116,6 +124,8 @@ It is not a legal dictionary and it is not a standards translation. It is a work
 | closed circuit | วงจรปิด | closed circuit | preferred | Means there is a complete conducting path. |
 | short circuit | ลัดวงจร | short circuit | safety-sensitive | Strongly avoid making short circuits look harmless in visuals. |
 | voltage drop | แรงดันตกคร่อม | voltage drop | preferred | Use across components/paths. |
+| rated voltage | แรงดันพิกัด | voltage rating | safety-sensitive, owner review pending | A datasheet rating is conditional and is not identical to a universal safe voltage. |
+| ripple current | กระแสริปเปิล | ripple-current rating | safety-sensitive, owner review pending | State whether this means waveform content or a component rating; temperature, frequency, cooling, and lifetime conditions matter. |
 | measurement | การวัด | measurement | preferred | Distinguish measured value, instrument, and uncertainty. |
 | multimeter | มัลติมิเตอร์ | meter | preferred | Add safety warning before measuring live circuits. |
 | oscilloscope | ออสซิลโลสโคป | scope | preferred | Ground clip safety needs careful treatment. |

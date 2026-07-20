@@ -56,22 +56,22 @@ describe("suggestion system", () => {
       "/en/topics/fundamentals-charge-carrier/",
       "/en/topics/em-field-electric/",
       "/en/topics/fundamentals-electrification/",
+      "/en/lessons/capacitor/",
       "/en/topics/fundamentals-static-electricity/",
       "/en/topics/em-electrostatics-coulomb-law/",
       "/en/topics/transport-continuity/",
-      "/en/topics/em-capacitance/",
     ]);
     expect(hrefs).toContain("/en/lessons/what-is-electricity/");
     expect(hrefs).toContain("/en/lessons/voltage/");
     expect(hrefs).toContain("/en/lessons/current/");
-    expect(hrefs).not.toContain("/en/lessons/capacitor/");
+    expect(hrefs).toContain("/en/lessons/capacitor/");
     expect(hrefs).not.toContain("/en/topics/fundamentals-charge/");
     expect(hrefs).toContain("/en/topics/fundamentals-charge-carrier/");
     expect(hrefs).toContain("/en/topics/fundamentals-electrification/");
     expect(hrefs).toContain("/en/topics/fundamentals-static-electricity/");
     expect(hrefs).toContain("/en/topics/em-electrostatics-coulomb-law/");
     expect(hrefs).toContain("/en/topics/transport-continuity/");
-    expect(hrefs).toContain("/en/topics/em-capacitance/");
+    expect(hrefs).not.toContain("/en/topics/em-capacitance/");
   });
 
   it("builds curated voltage lesson suggestions", () => {
@@ -84,7 +84,8 @@ describe("suggestion system", () => {
     expect(hrefs).toContain("/en/lessons/current/");
     expect(hrefs).not.toContain("/en/topics/fundamentals-current/");
     expect(hrefs).toContain("/en/topics/em-potential-electric/");
-    expect(hrefs).toContain("/en/topics/component-capacitor/");
+    expect(hrefs).toContain("/en/lessons/capacitor/");
+    expect(hrefs).not.toContain("/en/topics/component-capacitor/");
   });
 
   it("builds curated current lesson suggestions", () => {
@@ -202,8 +203,33 @@ describe("suggestion system", () => {
     expect(hrefs).toContain("/en/topics/material-contact/");
     expect(hrefs).toContain("/en/topics/transport-joule-heating/");
     expect(hrefs).toContain("/en/topics/component-fuse/");
-    expect(hrefs).toContain("/en/topics/component-capacitor/");
+    expect(hrefs).toContain("/en/lessons/capacitor/");
+    expect(hrefs).not.toContain("/en/topics/component-capacitor/");
     expect(hrefs).toContain("/en/topics/device-diode-pn/");
+  });
+
+  it("builds deterministic Capacitor suggestions without repeating covered topic records", () => {
+    const suggestions = getLessonSuggestions("capacitor", "en", atlasTopics);
+    const hrefs = suggestions.map((suggestion) => suggestion.href);
+
+    expect(hrefs).toEqual([
+      "/en/lessons/charge/",
+      "/en/lessons/voltage/",
+      "/en/lessons/current/",
+      "/en/lessons/resistance/",
+      "/en/lessons/power-energy/",
+      "/en/lessons/series-parallel/",
+      "/en/topics/em-dielectric-polarization/",
+      "/en/topics/em-potential-energy/",
+      "/en/topics/circuit-time-constant/",
+      "/en/topics/circuit-transient-first-order/",
+      "/en/topics/em-dielectric-breakdown/",
+      "/en/topics/safety-stored-energy/",
+    ]);
+    expect(hrefs).not.toContain("/en/lessons/capacitor/");
+    expect(hrefs).not.toContain("/en/topics/component-capacitor/");
+    expect(hrefs).not.toContain("/en/topics/em-capacitance/");
+    expect(hrefs).not.toContain("/en/topics/circuit-element-capacitor-ideal/");
   });
 
   it("keeps structured relationship records pointed at real topic IDs", () => {

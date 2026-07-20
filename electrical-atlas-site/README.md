@@ -65,4 +65,4 @@ The visual language is a clean technical-studio style inspired by good engineeri
 - Topic record pages are mapped reference stubs, not finished lessons.
 - An available lesson page may still have `prototype` maturity; only registry `status: published` may be called published.
 - Thai standards and official-practice claims require current verification against authoritative Thai sources before use.
-- The interactive circuit is simplified and marked as conceptual. It teaches causality, not exact electromagnetic-field simulation.
+- Interactive models are simplified and disclose their boundaries. They teach selected causal relationships, not complete electromagnetic fields, component qualification, or safe-work procedures.

@@ -1,6 +1,6 @@
 # Project review and next-phase plan — 2026-07-14
 
-Status: Phase A1 and Phase A2 were implemented on 2026-07-14. Phase B was approved on 2026-07-14; Voltage and What Is Electricity proved the revision-bound workflow, and Electric Charge joined them at `review-ready` on 2026-07-20. Capacitor is the next content milestone. Later phases remain recommendations pending separate approval. Project-owner Thai-language and final-publication decisions remain lesson-specific and pending.
+Status: Phase A1 and Phase A2 were implemented on 2026-07-14. Phase B was approved on 2026-07-14; Voltage and What Is Electricity established the review-preparation and revision-binding workflow, and Electric Charge plus Capacitance and Capacitors joined them at `review-ready` on 2026-07-20. The Phase B publication exit remains open because no lesson is governance-published. Diode is the next content milestone. Later phases remain recommendations pending separate approval. Qualified-human, project-owner Thai-language, and final-publication decisions remain lesson-specific and are not inferred from maintainer preparation.
 
 This document preserves the project retrospective performed on 2026-07-14. It records the current evidence, the main risks, and the recommended sequence of work so future sessions do not have to reconstruct the reasoning from chat history.
 
@@ -212,7 +212,7 @@ Verification evidence:
 
 Remaining acceptance check:
 
-- rerun the desktop/mobile browser matrix when the in-app browser automation connection is healthy. The 2026-07-14 attempt failed during browser-runtime initialization before page interaction, so no visual-layout claim is recorded from that attempt.
+- The in-app browser tooling is healthy again and later lesson-specific English/Thai responsive reviews are recorded in their own evidence files. The original Phase A1 whole-site desktop/mobile matrix was never rerun as one formal acceptance event, so no retrospective 2026-07-14 visual-layout claim is inferred; rerun that broader matrix only if closing Phase A1 at phase level becomes necessary.
 
 #### Phase A2: reproducibility and executable integrity
 
@@ -263,7 +263,7 @@ Verification evidence:
 | Lockfile ownership | one tracked root `package-lock.json` |
 | Production dependency audit | 0 production vulnerabilities; compatible transitive language-server update removed the initial development-only advisories |
 
-Repository-enforced acceptance is complete. Two external-state checks remain operational rather than source-controlled: GitHub should require the `Website checks` job before merging, and Vercel must keep Root Directory blank/repository-root with `main` as the production branch. The Phase A1 visual browser matrix also remains open until browser automation is healthy.
+Repository-enforced acceptance is complete. Two external-state checks remain operational rather than source-controlled: GitHub should require the `Website checks` job before merging, and Vercel must keep Root Directory blank/repository-root with `main` as the production branch. Browser automation is now healthy and supports lesson-level evidence, but the original Phase A1 whole-site visual matrix remains formally unclosed.
 
 ### Phase B — Prove the publication workflow
 
@@ -284,11 +284,11 @@ Required work:
 4. Review the English lesson for teaching clarity. **Completed for the bound candidate revision.**
 5. Review the Thai lesson for natural language and glossary consistency. **Maintainer preparation is complete; project-owner Thai approval is pending.**
 6. Complete desktop, mobile, keyboard, reduced-motion, and screen-reader-oriented checks. **Completed 2026-07-16 for the maintainer-controlled gate: English/Thai desktop and 390 px layout, 44 px targets, actual slider keyboard behavior, semantic names/live output/transcript, focus-visible CSS, and reduced-motion CSS/information paths passed. Keyboard-focus modality, OS reduced-motion preference, and a named screen reader could not be emulated by the browser backend, so the evidence record states those boundaries explicitly.**
-7. Check the deployed English and Thai pages. **Commit `d10c466` passed the current rebound gate on 2026-07-20: Vercel reported the exact commit successful; English/Thai Charge, gateway, Voltage, and registry surfaces retained localized review/source states, expected relationship counts/order, narrow-layout containment, and a clean console, while the Charge interaction also passed publicly. Commits `0bea714` and `7414277` remain historical evidence.**
+7. Check the deployed English and Thai pages. **Commit `d10c466` passed the previous rebound gate on 2026-07-20. Capacitor integration changed shared registry and relationship bytes, so `d10c466`, `0bea714`, and `7414277` are historical evidence while the new exact candidate awaits public verification.**
 8. Record reviewer, review date, source status, limitations, and revision. **Completed in the versioned review record; later decisions must be appended, not inferred.**
 9. Mark the lesson `published` only after every required gate passes. **Pending; the registry is now correctly `review-ready`, while project-owner Thai-language approval and final publication approval remain required.**
 
-After the pilot, apply the proven workflow to later lessons. **What Is Electricity review preparation was completed on 2026-07-16, Electric Charge followed on 2026-07-20, and the approved curriculum sequence now makes Capacitor the next content milestone.** This sentence supersedes the earlier Electric Current candidate note without changing the dated pilot history above.
+After the pilot, apply the established review-preparation and revision-binding workflow to later lessons; the full publication workflow is not proved until the exit criteria below are met. **What Is Electricity review preparation was completed on 2026-07-16; Electric Charge and Capacitance and Capacitors followed on 2026-07-20, and the approved curriculum sequence now makes Diode the next content milestone.** This sentence supersedes the earlier Electric Current and Capacitor candidate notes without changing the dated pilot history above.
 
 #### Phase B continuation — What Is Electricity
 
@@ -392,6 +392,6 @@ Do not silently decide these during unrelated implementation work.
 
 ## 8. Immediate next checkpoint
 
-Phase A1 and Phase A2 are implemented. Phase B produced `review-ready` Voltage and What Is Electricity lessons, and the same revision-bound workflow moved the standalone Electric Charge lesson to `review-ready` with verified sources on 2026-07-20. Project-owner Thai-language and final-publication decisions remain separate and do not block maintainer preparation of the next lesson.
+Phase A1 and Phase A2 are implemented. Phase B produced `review-ready` Voltage and What Is Electricity lessons, and the same revision-bound preparation workflow moved the standalone Electric Charge and Capacitance and Capacitors lessons to `review-ready` with verified sources on 2026-07-20. This proves repeatable preparation and evidence binding, not the full publication lifecycle: the exit criterion requiring at least one genuinely `published` lesson remains unmet. Project-owner Thai-language and final-publication decisions remain separate; the moderate-safety capacitor scope additionally retains qualified-human review before publication.
 
-The immediate checkpoint is to scope and implement Capacitor on top of the completed Charge foundation, using the same source, technical, implementation, accessibility, deployment, Thai-language, and publication boundaries. After that, continue to Diode and then Inductor or Relay.
+The immediate checkpoint is to deploy the Capacitor-integrated candidate and verify the rebound gateway, Charge, Voltage, and Capacitor fingerprints on that exact commit without inferring qualified-human or owner approvals. After that, scope and implement Diode, then choose Inductor or Relay according to the desired field-energy versus mechanical-switching path.

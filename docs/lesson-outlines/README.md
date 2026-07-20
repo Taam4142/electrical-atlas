@@ -19,3 +19,8 @@ electrical-atlas-site/src/content/lessons/th/<slug>.mdx
 ```
 
 The registry entry in `electrical-atlas-site/src/lib/lessonRegistry.ts` should show the current truth: `planned`, `outlined`, `prototype`, `review-ready`, `published`, or `revision-needed`.
+
+## Current records
+
+- [Capacitance and Capacitors](capacitor.md) — implemented bilingual `review-ready` scope record; qualified-human, Thai-language, deployment, and publication decisions remain separate.
+- [Switches and Contacts](switches-contacts.md) — retained production history for the implemented prototype.

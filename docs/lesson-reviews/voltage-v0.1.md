@@ -6,17 +6,18 @@
   "lessonId": "ea.lesson.voltage.v0.1",
   "recordState": "in-review",
   "sourceStatus": "verified",
-  "reviewedRevision": "sha256:e7478278251d1b652bc817ae6b7590aaf99e4adf6f39a71973fff680b371df16",
+  "reviewedRevision": "sha256:1fcb6f13da2850fd2df8f6f642ec59a9605dec52cf970179d1db9f7b8a0d32c9",
   "reviewedAt": "2026-07-20",
   "nextReviewAt": "2027-01-14",
   "qualifiedReviewRequired": false,
   "qualifiedReviewReason": "The reviewed revision is a low-risk conceptual lesson with general safety boundaries, no live-work procedure, no installation instruction, and no claim that an exact Thai rule applies universally.",
   "blockers": [
+    "preview-deployment-verification",
     "owner-thai-language-approval",
     "owner-publication-approval"
   ],
   "reviewedFiles": {
-    "electrical-atlas-site/src/lib/lessonRegistry.ts": "7b01e3c8cd9c174f1aafb573520f28a7cba0c9c62961a7ee00456237b97eb475",
+    "electrical-atlas-site/src/lib/lessonRegistry.ts": "75e1f10a3945ef7aa4ff29c836b67897867148977b7ca46d72de09e8265846bc",
     "electrical-atlas-site/src/content/lessons/en/voltage.mdx": "801061c892c21be084e18a73c09fe4dd202cf9cb95a849b319dbcd3a2587d883",
     "electrical-atlas-site/src/content/lessons/th/voltage.mdx": "7ff016ed44376d2c6979314d0ce8f45c296fe5a713466fb8a163e09af38c0e3c",
     "electrical-atlas-site/src/components/VoltageEnergyDemo.tsx": "df37130d9eba89fddb523d0da5ff56ffa013538ebd2bfe3a7f9706034d32a5e7",
@@ -33,7 +34,7 @@
     "electrical-atlas-site/src/lib/generated/atlasTopics.ts": "97ebe07b32cec59b107bef8329e847eebc5aca081591d2092904127e837968ed",
     "electrical-atlas-site/src/lib/topicLabels.ts": "aa8613f68e11228ebe9d793a06a141956cc81c8975df30dcb26830202a92cf69",
     "electrical-atlas-site/src/lib/navigation.ts": "bf6f57be6e15bf4f98980885ce39f6f3b7732ab36f89cd5b62a828c0cfd6801f",
-    "electrical-atlas-site/src/lib/relationships.ts": "5aacc0d5c587c696691f25daa9dd13278c9de32bd558e7583124971ef6a8be37",
+    "electrical-atlas-site/src/lib/relationships.ts": "0b26312a35c77ba6964043898a51e2a219fae5af8c7db7057b490a1b34645a30",
     "electrical-atlas-site/src/lib/suggestions.ts": "21c5c24f3c21fbedd83767123126c54620b20644a28ea85ff4d8f29054111024",
     "electrical-atlas-site/src/components/SuggestionSection.astro": "68dcf8965bc3a612104f655cfca7852a482990ab217950288878eb6f864a321f"
   },
@@ -88,11 +89,11 @@
       "note": "The rebound candidate passed the complete Node and Vitest suites, Astro diagnostics, production generation, topic robots-policy audit, and internal-link validation. Voltage content and calculations remain unchanged; shared registry and relationship changes add the reviewed Charge lesson and its prerequisite links."
     },
     "previewDeployment": {
-      "status": "passed",
+      "status": "pending",
       "reviewer": "Maintainer deployment verification",
       "reviewerAuthority": "maintainer",
-      "reviewedAt": "2026-07-20",
-      "note": "Vercel reported success for exact rebound commit d10c466. Public English and Thai Voltage routes retained review-ready/verified metadata, no narrow-layout overflow, eleven suggestions with Charge first, correct localized paths and Thailand-context labels, and no browser-console warning or error. Commits 7414277 and 0bea714 remain historical evidence."
+      "reviewedAt": null,
+      "note": "The manifest was rebound after Capacitor integration changed the shared registry and relationship graph. Commit d10c466 remains historical deployment evidence for the previous fingerprint; this exact revision still requires public verification."
     },
     "publication": {
       "status": "pending",
@@ -134,7 +135,7 @@ Status: review preparation is complete; the lesson is `review-ready`, not approv
 | English content | Codex-assisted maintainer content audit | Passed 2026-07-15 | No owner action required unless wording changes materially. |
 | Thai language | Project owner | Pending | Blocks publication. |
 | Visual/accessibility | Maintainer browser review | Passed 2026-07-20 with documented emulation boundaries | Supports `review-ready`; does not grant Thai-language or publication approval. |
-| Preview/live deployment | Maintainer deployment verification | Passed 2026-07-20 on commit `d10c466` | The rebound English/Thai lesson surfaces render eleven cards with Charge first. |
+| Preview/live deployment | Maintainer deployment verification | Pending for the rebound manifest | Commit `d10c466` is historical evidence for the previous fingerprint; the Capacitor-integrated revision still requires an exact public check. |
 | Final publication | Project owner | Pending | Blocks `published`. |
 
 The project owner's acceptance of the governance model on 2026-07-14 approved these roles, not this lesson revision.
@@ -227,8 +228,8 @@ Final judgment of natural Thai wording belongs to the project owner and is still
 | Native keyboard controls and visible focus | Passed for control behavior: actual Arrow, Home, End, and Page input changed both sliders, localized `aria-valuetext`, the live result, and the zero/maximum visual states. CSS inspection confirmed the range control's 3 px `:focus-visible` outline; the browser backend could not synthesize keyboard-only focus modality, so no rendered Tab-modality claim is made. |
 | Reduced-motion behavior | Passed by CSSOM and information-path inspection: the parsed `prefers-reduced-motion: reduce` rule reduces animation and transition duration to `0.01ms`; the demo has no animations and only three nonessential 0.18 s visual transitions, while all changing information is also present as text/live output and in the transcript. OS preference emulation was unavailable. |
 | Screen-reader-oriented names, live output, and transcript | Passed browser-semantic inspection: both native ranges have associated labels and localized `aria-valuetext`; the result is an `output` with `aria-live="polite"` and `aria-atomic="true"`; the diagram is hidden by an `aria-hidden="true"` stage and has a text transcript. The rounded spoken/visible result contains no raw floating artifact. No named platform screen reader was tested. |
-| Deployed English/Thai pages | Exact commit `d10c466` passed public verification; commits `7414277` and `0bea714` remain historical evidence. |
-| Current rebound candidate | Local and public checks passed in English and Thai: review-ready/source metadata, language switch, eleven suggestion cards with Charge first, correct localized paths and Thailand-context labels, no document overflow, and no browser-console warning/error. |
+| Deployed English/Thai pages | Commit `d10c466` passed the previous rebound fingerprint; commits `7414277` and `0bea714` are also historical evidence. The Capacitor-integrated fingerprint is pending an exact public check. |
+| Current rebound candidate | Automated relationship checks and local English/Thai 390 px rendering pass: eleven suggestions include the localized Capacitor lesson, the document does not overflow, and the browser console is clean. Exact public verification remains pending. |
 
 ## Known limitations and review triggers
 
@@ -260,11 +261,12 @@ Final judgment of natural Thai wording belongs to the project owner and is still
 | 2026-07-16 | Verify rebound production deployment | Maintainer deployment verification | Commit `0bea714` passed English and Thai lesson and registry status checks, 390 px layout, localized ArrowRight/live-output behavior, ten-card suggestions, Thai-card language metadata, and public-console inspection. The current deployment blocker was removed. |
 | 2026-07-20 | Rebind after Electric Charge integration | Maintainer implementation and browser review | Shared registry and relationship bytes changed. Automated and local visual gates were reaffirmed, Charge became the first related lesson, the rendered relationship list increased to eleven cards, and public deployment returned to pending until the exact candidate is live. |
 | 2026-07-20 | Verify rebound public deployment | Maintainer deployment verification | Vercel reported exact commit `d10c466` successful; English and Thai Voltage routes retained review-ready/verified metadata, eleven cards with Charge first, correct localized and Thailand-context labels, no narrow-layout overflow, and no browser-console warning/error. |
+| 2026-07-20 | Rebind after Capacitor integration | Maintainer lifecycle correction | The shared registry and relationship graph changed again. Commit `d10c466` remains historical evidence, while public deployment verification returns to pending for the new fingerprint. |
 
 ## Publication decision
 
-- Registry status after review preparation: `review-ready`. Technical, English, implementation, visual/accessibility, source, and rebound deployment gates passed; both project-owner decisions remain pending, so the lesson must stay below `published`.
-- Public promoted-deployment verification: Passed 2026-07-20 on exact commit `d10c466`; commit `0bea714` remains historical evidence.
+- Registry status after review preparation: `review-ready`. Technical, English, implementation, visual/accessibility, and source gates passed; rebound deployment and both project-owner decisions remain pending, so the lesson must stay below `published`.
+- Public promoted-deployment verification: Pending for the Capacitor-integrated fingerprint; commits `d10c466` and `0bea714` remain historical evidence.
 - Project-owner publication decision: Pending.
 - Thai-language decision: Pending.
 - Qualified-review decision: Not required for the current low-risk conceptual scope; reassess if scope changes.

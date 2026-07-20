@@ -1,0 +1,32 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import LessonShell from "../../../components/LessonShell.astro";
+import LessonModeToggle from "../../../components/LessonModeToggle";
+import SuggestionSection from "../../../components/SuggestionSection.astro";
+import Content from "../../../content/lessons/th/capacitor.mdx";
+import { atlasTopics } from "../../../lib/generated/atlasTopics";
+import { getLessonSuggestions } from "../../../lib/suggestions";
+
+const suggestions = getLessonSuggestions("capacitor", "th", atlasTopics);
+---
+
+<BaseLayout
+  title="ความจุไฟฟ้าและตัวเก็บประจุ"
+  description="บทเรียนภาพอธิบายความจุไฟฟ้า โครงสร้างตัวเก็บประจุ พลังงานในสนามไฟฟ้า พฤติกรรมวงจร RC อุดมคติ พิกัดของชิ้นส่วนจริง และความปลอดภัยจากพลังงานสะสม"
+  lang="th"
+  counterpartPath="/en/lessons/capacitor/"
+>
+  <LessonShell
+    locale="th"
+    eyebrow="บทเรียนชิ้นส่วน"
+    title="ความจุไฟฟ้าและตัวเก็บประจุ"
+    subtitle="แยกประจุ สร้างสนามไฟฟ้า และเก็บพลังงาน โดยแยกให้ชัดระหว่างชิ้นส่วน ปริมาณทางฟิสิกส์ และแบบจำลองอุดมคติ"
+    lessonId="ea.lesson.capacitor.v0.1"
+  >
+    <LessonModeToggle client:load locale="th" />
+    <div class="lesson-content">
+      <Content />
+    </div>
+    <SuggestionSection locale="th" items={suggestions} />
+  </LessonShell>
+</BaseLayout>

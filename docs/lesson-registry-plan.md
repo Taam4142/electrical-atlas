@@ -265,14 +265,14 @@ The original Phase 1 implementation added `lessonRegistry.ts` for these ten prot
 9. MOSFET
 10. Switches and Contacts
 
-Add roadmap entries for the immediate next lessons if useful:
+The original roadmap entries added for the immediate queue were:
 
-- Capacitor — `planned`
+- Capacitor — originally `planned`, now implemented as the `review-ready` **Capacitance and Capacitors** lesson
 - Diode — `planned`
 
 Planned and outlined lessons should have `hasPage.en: false` and `hasPage.th: false` until real content and route wrappers exist. Switches and Contacts is now a bilingual `prototype` with real routes, content, an interactive demo, and draft source status.
 
-Current status: the registry now represents eleven available lessons—three `review-ready` and eight `prototype`—plus planned Capacitor and Diode entries. Electric Charge was inserted after the gateway and promoted to `review-ready` on 2026-07-20. The Switches and Contacts planning outline remains in `docs/lesson-outlines/switches-contacts.md` as production history.
+Current status: the registry now represents twelve available lessons—four `review-ready` and eight `prototype`—plus one planned Diode entry. Electric Charge and Capacitance and Capacitors were promoted to `review-ready` on 2026-07-20. The Capacitor lesson's reviewed coverage intentionally resolves the component, capacitance quantity, and ideal-capacitor topic records to one lesson route. The Switches and Contacts planning outline remains in `docs/lesson-outlines/switches-contacts.md` as production history.
 
 ### Phase 2: Replace lesson labels in suggestions
 
@@ -429,7 +429,7 @@ Keeping these separate avoids mixing two different kinds of knowledge.
 
 The first registry implementation is successful when:
 
-- the current eleven available lessons and two planned lessons are represented in one registry, with their distinct maturity states preserved;
+- the current twelve available lessons and one planned lesson are represented in one registry, with their distinct maturity states preserved;
 - suggestion lesson cards use registry metadata;
 - topic records derive lesson availability links from registry coverage and show maturity separately;
 - tests fail if a relationship points to a missing lesson slug;

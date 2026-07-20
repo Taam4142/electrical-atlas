@@ -31,7 +31,7 @@ The latest dated review is:
 docs/project-review-2026-07-14.md
 ```
 
-Phase A1 and Phase A2 were implemented on 2026-07-14. Phase B proved the revision-bound workflow with Voltage and What Is Electricity and then applied it to Electric Charge. Capacitor is the active next lesson. Later phases remain recommendations pending separate approval; browser evidence must continue to name any platform or emulation limits rather than imply unsupported coverage.
+Phase A1 and Phase A2 were implemented on 2026-07-14. Phase B established the review-preparation and revision-binding workflow with Voltage and What Is Electricity and then applied it to Electric Charge and Capacitance and Capacitors; the full publication lifecycle remains unproved until a lesson genuinely reaches `published`. Diode is the active next lesson. The capacitor lesson deliberately covers `ea.component.capacitor`, `ea.em.capacitance`, and `ea.circuit.element.capacitor-ideal`; its moderate safety scope requires a qualified-human gate before publication, in addition to project-owner Thai-language and publication decisions. Later phases remain recommendations pending separate approval; browser evidence must continue to name any platform or emulation limits rather than imply unsupported coverage.
 
 Build, generator, CI, and deployment decisions live in:
 
@@ -80,7 +80,7 @@ Phase A1 completed the public-truth, canonical-preview-ID, stale-guidance, minim
 - avoid unverified Thailand-specific standards claims;
 - keep Thai terminology and UTF-8 rendering consistent;
 - keep future dependency upgrades deliberate and commit the root lockfile with exact package changes;
-- apply the revision-bound source, implementation, browser, deployment, Thai-language, and publication workflow to each lesson; Capacitor is next, and project-owner decisions must never be inferred from maintainer preparation.
+- apply the revision-bound source, implementation, browser, deployment, qualified-human, Thai-language, and publication workflow to each lesson; Diode is next, and neither qualified-human nor project-owner decisions may be inferred from maintainer preparation.
 
 ## Lesson authoring workflow
 

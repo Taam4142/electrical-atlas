@@ -103,6 +103,7 @@ describe("lesson registry", () => {
       "battery",
       "mosfet",
       "switches-contacts",
+      "capacitor",
     ]);
 
     expect(getLessonHomeLabel(getImplementedLessons("th")[0], "th")).toBe("เริ่มบทแรก: ไฟฟ้าคืออะไร?");
@@ -123,7 +124,7 @@ describe("lesson registry", () => {
       .map((lesson) => lesson.slug);
 
     expect(planningLessonsWithPages).toEqual([]);
-    expect(registryEntries.find((lesson) => lesson.slug === "capacitor")?.status).toBe("planned");
+    expect(registryEntries.find((lesson) => lesson.slug === "diode")?.status).toBe("planned");
   });
 
   it("derives available topic-record lesson links from coverage metadata", () => {
@@ -141,7 +142,15 @@ describe("lesson registry", () => {
     expect(getAvailableLessonForCoveredTopic("ea.transport.contact", "th")?.paths.th).toBe(
       "/th/lessons/switches-contacts/",
     );
-    expect(getAvailableLessonForCoveredTopic("ea.component.capacitor", "en")).toBeUndefined();
+    expect(getAvailableLessonForCoveredTopic("ea.component.capacitor", "en")?.paths.en).toBe(
+      "/en/lessons/capacitor/",
+    );
+    expect(getAvailableLessonForCoveredTopic("ea.em.capacitance", "th")?.paths.th).toBe(
+      "/th/lessons/capacitor/",
+    );
+    expect(getAvailableLessonForCoveredTopic("ea.circuit.element.capacitor-ideal", "en")?.paths.en).toBe(
+      "/en/lessons/capacitor/",
+    );
   });
 
   it("tracks Electric Charge as a bilingual low-risk review-ready lesson", () => {
@@ -161,12 +170,36 @@ describe("lesson registry", () => {
     const availablePrototype = registryEntries.find(
       (lesson) => lesson.hasPage.en && lesson.status === "prototype",
     );
-    const capacitor = registryEntries.find((lesson) => lesson.slug === "capacitor");
+    const diode = registryEntries.find((lesson) => lesson.slug === "diode");
 
     expect(availablePrototype && isLessonAvailable(availablePrototype, "en")).toBe(true);
     expect(availablePrototype && isLessonPublished(availablePrototype)).toBe(false);
-    expect(capacitor && isLessonAvailable(capacitor, "en")).toBe(false);
-    expect(capacitor && isLessonPublished(capacitor)).toBe(false);
+    expect(diode && isLessonAvailable(diode, "en")).toBe(false);
+    expect(diode && isLessonPublished(diode)).toBe(false);
+  });
+
+  it("tracks Capacitance and Capacitors as a bilingual review-ready lesson", () => {
+    const capacitor = registryEntries.find((lesson) => lesson.slug === "capacitor");
+
+    expect(capacitor?.lessonId).toBe("ea.lesson.capacitor.v0.1");
+    expect(capacitor?.primaryTopicId).toBe("ea.component.capacitor");
+    expect(capacitor?.coveredTopicIds).toEqual([
+      "ea.component.capacitor",
+      "ea.em.capacitance",
+      "ea.circuit.element.capacitor-ideal",
+    ]);
+    expect(capacitor?.status).toBe("review-ready");
+    expect(capacitor?.sourceStatus).toBe("verified");
+    expect(capacitor?.safetyLevel).toBe("moderate");
+    expect(capacitor?.requiresThailandContext).toBe(true);
+    expect(capacitor?.order).toBe(12);
+    expect(capacitor?.hasPage).toEqual({ en: true, th: true });
+    expect(capacitor?.titles).toEqual({
+      en: "Capacitance and Capacitors",
+      th: "ความจุไฟฟ้าและตัวเก็บประจุ",
+    });
+    expect(capacitor?.reviewRecord).toBe("docs/lesson-reviews/capacitor-v0.1.md");
+    expect(capacitor?.demoComponent).toBe("CapacitorFieldDemo");
   });
 
   it("tracks Switches and Contacts as a bilingual source-sensitive prototype", () => {

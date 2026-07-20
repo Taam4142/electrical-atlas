@@ -6,7 +6,7 @@ It is intentionally broader than a feature roadmap. A feature roadmap says what 
 
 Electrical Atlas has an unusually large ambition: explain electrical and electronic knowledge across fundamentals, components, circuits, power, embedded systems, standards, safety, manufacturing, applications, history, and future research. The goal is possible only if the project stays organized. The main danger is not one big failure. The main danger is many small inconsistencies accumulating until the site becomes hard to trust or hard to maintain.
 
-The latest evidence-backed plan and implementation record is [Project review and next-phase plan — 2026-07-14](project-review-2026-07-14.md). Phase A1 and Phase A2 were implemented on 2026-07-14. Phase B moved Voltage and What Is Electricity to `review-ready`, and Electric Charge reached the same state on 2026-07-20. Their maintainer-controlled preparation gates and the exact shared-data deployment gate passed on commit `d10c466`. Project-owner Thai-language and publication decisions remain separate. Later phases remain recommendations pending separate approval. The executable build/release contract is documented in [Build and release integrity](build-release-integrity.md), and approval boundaries are documented in [Publication governance](publication-governance.md).
+The latest evidence-backed plan and implementation record is [Project review and next-phase plan — 2026-07-14](project-review-2026-07-14.md). Phase A1 and Phase A2 were implemented on 2026-07-14. Phase B moved Voltage and What Is Electricity to `review-ready`; Electric Charge and Capacitance and Capacitors reached the same state on 2026-07-20. Commit `d10c466` is historical exact-deployment evidence for the earlier three lessons' previous shared-data fingerprints. Capacitor integration rebound all four records, so the new exact-candidate deployment evidence remains pending; the capacitor's qualified-human, project-owner Thai-language, and project-owner publication gates also remain separate. Later phases remain recommendations pending separate approval. The executable build/release contract is documented in [Build and release integrity](build-release-integrity.md), and approval boundaries are documented in [Publication governance](publication-governance.md).
 
 ## How to use this document
 
@@ -76,7 +76,7 @@ The taxonomy can be broad. Published lessons must stay reviewed, honest, and app
 
 **Warning spot:** The registry now centralizes lesson identity, titles, routes, status, coverage, safety, and source state for suggestions, home actions, lesson browsing, topic links, lesson UI, and tests. Remaining drift can still occur in route wrappers, strategic documents, and manually repeated explanatory copy.
 
-**Why it matters:** At eleven available lessons this is manageable. At 20+ lessons, one forgotten edit can break a route, a language counterpart, a suggestion, or an available-topic link.
+**Why it matters:** At twelve available lessons this is manageable. At 20+ lessons, one forgotten edit can break a route, a language counterpart, a suggestion, or an available-topic link.
 
 **Risk reduction:**
 
@@ -140,7 +140,7 @@ The taxonomy can be broad. Published lessons must stay reviewed, honest, and app
 **Acceptance checks:**
 
 - Every lesson has a recorded safety level.
-- Moderate/high safety lessons cannot be marked `published` without source review.
+- Moderate/high safety lessons cannot be marked `published` without current source review and qualified-human approval of the exact safety scope.
 - Thailand-specific standards claims are not hard-coded unless verified.
 
 ### 5. Thailand-specific standards and local context
@@ -215,7 +215,7 @@ The taxonomy can be broad. Published lessons must stay reviewed, honest, and app
 - Eventually move relationship data to JSON/YAML or generated data if TypeScript becomes too bulky.
 - Distinguish prerequisite relationships from ordinary related-topic links.
 - Keep relationship labels short and human-readable.
-- Decide whether a lesson and its canonical topic should both appear when that lesson becomes available. For the next Capacitor milestone, either add `ea.em.capacitance` to the lesson's reviewed coverage when justified or explicitly accept both “Capacitor lesson” and “Capacitance topic” cards; do not let the duplicate-looking pair appear accidentally.
+- Decide whether a lesson and its canonical topic should both appear when that lesson becomes available. **Capacitor decision — 2026-07-20:** the implemented lesson substantively teaches the physical component, capacitance quantity, and ideal two-terminal element, so its reviewed coverage includes `ea.component.capacitor`, `ea.em.capacitance`, and `ea.circuit.element.capacitor-ideal`. The suggestion engine therefore prefers the available lesson and suppresses duplicate-looking cards for those covered topic records.
 
 **Acceptance checks:**
 
@@ -504,7 +504,7 @@ The taxonomy can be broad. Published lessons must stay reviewed, honest, and app
 
 ## Recommended order of action
 
-Do not try to fix every risk at once. The detailed sequence and approval state are maintained only in the [2026-07-14 project review](project-review-2026-07-14.md). Phase A1 and Phase A2 are implemented; Phase B and its standing workflow have produced three `review-ready` lessons. Their project-owner Thai-language and publication decisions remain pending, and any shared-data change must be rebound and deployed before the corresponding live gate is called current. Later phases still need separate approval. This risk register intentionally avoids duplicating that phase plan.
+Do not try to fix every risk at once. The detailed sequence and approval state are maintained only in the [2026-07-14 project review](project-review-2026-07-14.md). Phase A1 and Phase A2 are implemented; Phase B and its standing workflow have produced four `review-ready` lessons. Their project-owner Thai-language and publication decisions remain pending; Capacitance and Capacitors also requires qualified-human review, and any shared-data change must be rebound and deployed before the corresponding live gate is called current. Later phases still need separate approval. This risk register intentionally avoids duplicating that phase plan.
 
 Continue applying the standing rules in this document: keep checks and deployment healthy, describe content status truthfully, do not publish unverified safety or standards claims, preserve Thai terminology and encoding quality, and record newly discovered structural risks.
 
@@ -527,7 +527,7 @@ The project is safer to scale when:
 - every lesson is declared once in a registry;
 - every suggestion target points to a real lesson or topic;
 - every topic record clearly separates mapped-record status, lesson-page availability, and lesson maturity;
-- every moderate/high safety lesson has visible warnings and source status;
+- every moderate/high safety lesson has visible warnings, current source status, and an explicit qualified-human publication gate;
 - Thai terms are consistent and UTF-8-safe;
 - dependency upgrades are intentional;
 - tests catch missing routes, duplicate IDs, and broken relationships;

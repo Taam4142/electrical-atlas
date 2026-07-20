@@ -6,24 +6,25 @@
   "lessonId": "ea.lesson.what-is-electricity.v0.1",
   "recordState": "in-review",
   "sourceStatus": "verified",
-  "reviewedRevision": "sha256:4c845b4bb97c4c5b99059b069e5e483d521c806bd56cf5ec15619a24b342b041",
+  "reviewedRevision": "sha256:b4c1320811c7a7b7ab77cb7ecef2d9eca8af25a4f77b1b926e9c585fb3ce6a9a",
   "reviewedAt": "2026-07-20",
   "nextReviewAt": "2027-07-16",
   "qualifiedReviewRequired": false,
   "qualifiedReviewReason": "The reviewed revision is a low-risk conceptual explanation with an explicit no-mains and no-construction boundary, no live-work procedure, no installation instruction, and no claim that an exact Thai rule applies.",
   "blockers": [
+    "preview-deployment-verification",
     "owner-thai-language-approval",
     "owner-publication-approval"
   ],
   "reviewedFiles": {
-    "electrical-atlas-site/src/lib/lessonRegistry.ts": "7b01e3c8cd9c174f1aafb573520f28a7cba0c9c62961a7ee00456237b97eb475",
+    "electrical-atlas-site/src/lib/lessonRegistry.ts": "75e1f10a3945ef7aa4ff29c836b67897867148977b7ca46d72de09e8265846bc",
     "electrical-atlas-site/src/content/lessons/en/what-is-electricity.mdx": "662fd84322391e06bd1f1f961de0e8823c49d6a11e92e7ddb4cbd43e136ba306",
     "electrical-atlas-site/src/content/lessons/th/what-is-electricity.mdx": "b0b87f546802fb2d47921fa7ae04ee101903894bfdf14dab73524f7f83bc7517",
     "electrical-atlas-site/src/components/CircuitFieldDemo.tsx": "5cbb98bfea354cf0ed340ad0ce13b92ccd0793d0f4e8db4c7b67ce4c2202ddb6",
     "electrical-atlas-site/src/lib/physics.ts": "9d981d77f41304211bd37e6f71f695499851e4e513a4e360b6a5d66a5adbaec7",
     "electrical-atlas-site/src/pages/en/lessons/what-is-electricity.astro": "95ea74542db08f8d9eac7db16abcd6fa4175a497d831fe6e49a4f62df2de3567",
     "electrical-atlas-site/src/pages/th/lessons/what-is-electricity.astro": "96fdfeb678842876f24c548b3694884e21a263a7b07df6ce9f2580cfdeacfea4",
-    "electrical-atlas-site/src/lib/relationships.ts": "5aacc0d5c587c696691f25daa9dd13278c9de32bd558e7583124971ef6a8be37",
+    "electrical-atlas-site/src/lib/relationships.ts": "0b26312a35c77ba6964043898a51e2a219fae5af8c7db7057b490a1b34645a30",
     "electrical-atlas-site/src/lib/suggestions.ts": "21c5c24f3c21fbedd83767123126c54620b20644a28ea85ff4d8f29054111024",
     "electrical-atlas-site/src/components/SuggestionSection.astro": "68dcf8965bc3a612104f655cfca7852a482990ab217950288878eb6f864a321f",
     "electrical-atlas-site/src/styles/global.css": "a3d77fbdded3732744a7be81e825ae8b46c2d4c47ab5d71d6233e4ee51869613",
@@ -86,11 +87,11 @@
       "note": "The existing English and Thai visual evidence was rechecked against the rebound local candidate: review-ready/source metadata remained correct, the gateway still renders its ten-card cap with Charge first and no duplicate Charge topic, and shared layout behavior remains intact. Prior focus, responsive, contrast, live-output, transcript, and console evidence still applies. The browser backend did not demonstrate Enter/Space activation, OS reduced motion, actual 400% zoom, or a named screen reader, so no platform result for those checks is claimed."
     },
     "previewDeployment": {
-      "status": "passed",
+      "status": "pending",
       "reviewer": "Maintainer deployment verification",
       "reviewerAuthority": "maintainer",
-      "reviewedAt": "2026-07-20",
-      "note": "Vercel reported success for exact rebound commit d10c466. Public English and Thai gateway routes retained review-ready/verified metadata, no narrow-layout overflow, a ten-card cap with Charge first and no duplicate Charge topic, correct localized paths, and no browser-console warning or error. Commit 0bea714 remains historical evidence."
+      "reviewedAt": null,
+      "note": "The manifest was rebound after Capacitor integration changed the shared registry and relationship graph. Commit d10c466 remains historical deployment evidence for the previous fingerprint; this exact revision still requires public verification."
     },
     "publication": {
       "status": "pending",
@@ -133,7 +134,7 @@ Status: maintainer review preparation is complete; the lesson is `review-ready`,
 | Qualified review | Publication governance risk matrix | Not required for this scope | Becomes required if the risk class or instruction scope changes. |
 | Implementation | Maintainer automated verification | Passed 2026-07-20 | Supports review preparation for the rebound file manifest. |
 | Visual/accessibility | Maintainer browser review | Passed 2026-07-20 with explicit backend boundaries | Supports `review-ready`; does not infer Thai or publication approval. |
-| Preview/live deployment | Maintainer deployment verification | Passed 2026-07-20 on commit `d10c466` | The rebound English/Thai lesson surfaces retained the ten-card cap with Charge first. |
+| Preview/live deployment | Maintainer deployment verification | Pending for the rebound manifest | Commit `d10c466` is historical evidence for the previous fingerprint; the Capacitor-integrated revision still requires an exact public check. |
 | Final publication | Project owner | Pending | Blocks `published`. |
 
 The project owner's governance acceptance assigns roles; it does not approve this lesson revision.
@@ -251,13 +252,14 @@ The project owner's governance acceptance assigns roles; it does not approve thi
 | 2026-07-16 | Verify promoted public deployment | Maintainer deployment verification | Commit `0bea714` passed English and Thai lesson and registry checks, localized closed-state interaction, 390/320 px no-overflow checks, relationship-card language metadata, and public-console inspection. The deployment blocker was removed; owner Thai-language and publication decisions remain. |
 | 2026-07-20 | Rebind after Electric Charge integration | Maintainer implementation and browser review | Shared registry and relationship bytes changed. Automated and local visual gates were reaffirmed, the gateway retained its ten-card cap with Charge first and no duplicate Charge topic, and public deployment returned to pending until the exact candidate is live. |
 | 2026-07-20 | Verify rebound public deployment | Maintainer deployment verification | Vercel reported exact commit `d10c466` successful; English and Thai gateway routes retained review-ready/verified metadata, the ten-card cap with Charge first, correct localized paths, no narrow-layout overflow, and no browser-console warning/error. |
+| 2026-07-20 | Rebind after Capacitor integration | Maintainer lifecycle correction | The shared registry and relationship graph changed again. Commit `d10c466` remains historical evidence, while public deployment verification returns to pending for the new fingerprint. |
 
 ## Publication decision
 
 - Registry status after review preparation: `review-ready`.
 - Source status: `verified` for the bound conceptual scope.
 - Qualified-review decision: Not required for the current scope; reassess on any practical, hazardous, regulated, installation, or standards-sensitive expansion.
-- Public promoted-deployment verification: Passed 2026-07-20 on exact commit `d10c466`; commit `0bea714` remains historical evidence.
+- Public promoted-deployment verification: Pending for the Capacitor-integrated fingerprint; commits `d10c466` and `0bea714` remain historical evidence.
 - Project-owner Thai-language decision: Pending.
 - Project-owner publication decision: Pending.
 - Final publication date: Pending.
